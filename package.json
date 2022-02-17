@@ -7,7 +7,7 @@
   "scripts": {
     "prepublish": "yarn build",
     "build": "tsc",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "yarn build && node ./dist/index.js"
   },
   "keywords": [],
   "author": "Wil Macedo",
