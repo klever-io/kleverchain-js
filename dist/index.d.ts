@@ -1,2 +1,2 @@
-declare const test: () => string;
-export default test;
+declare const main: () => string;
+export default main;

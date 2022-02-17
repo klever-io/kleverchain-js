@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const test = () => {
+const main = () => {
     return "Hello World";
 };
-exports.default = test;
+exports.default = main;
