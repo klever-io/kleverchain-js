@@ -1,6 +1,6 @@
 import { sendTransaction } from "./transaction";
 import { TransactionType } from "./types";
-import { ICreateMarket, IFreeze, ITransfer } from "./types/contract";
+import { ICreateMarket, IFreeze, ITransfer, IUnfreeze } from "./types/contract";
 import { IBasePayload } from "./types/payload";
 
 class Account {
@@ -30,30 +30,31 @@ class Account {
   }
 
   async sendTransfer(payload: ITransfer) {
-    const response = await sendTransaction(TransactionType.Transfer, {
+    return sendTransaction(TransactionType.Transfer, {
       ...this.getBasePayload(),
       ...payload,
     });
-
-    return response;
   }
 
   async createMarketplace(payload: ICreateMarket) {
-    const response = await sendTransaction(TransactionType.CreateMarketplace, {
+    return sendTransaction(TransactionType.CreateMarketplace, {
       ...this.getBasePayload(),
       ...payload,
     });
-
-    return response;
   }
 
   async sendFreeze(payload: IFreeze) {
-    const response = await sendTransaction(TransactionType.Freeze, {
+    return sendTransaction(TransactionType.Freeze, {
       ...this.getBasePayload(),
       ...payload,
     });
+  }
 
-    return response;
+  async sendUnfreeze(payload: IUnfreeze) {
+    return sendTransaction(TransactionType.Unfreeze, {
+      ...this.getBasePayload(),
+      ...payload,
+    });
   }
 }
 

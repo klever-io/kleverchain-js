@@ -7,4 +7,5 @@ export enum TransactionType {
   Transfer,
   CreateMarketplace,
   Freeze,
+  Unfreeze,
 }
