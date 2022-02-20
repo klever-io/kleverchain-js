@@ -5,4 +5,5 @@ interface Window {
 
   sendTransfer(payload: string): Promise<ITransactionResponse>;
   createMarketplace(payload: string): Promise<ITransactionResponse>;
+  sendFreeze(payload: string): Promise<ITransactionResponse>;
 }
