@@ -1,7 +1,8 @@
 import Account from "./account";
 import { getAccountByPem } from "./core";
+import { sendTransaction } from "./transaction";
 
-const init = async () => {
+const initialize = async () => {
   const { instance } = await WebAssembly.instantiateStreaming(
     fetch("SDK.wasm"),
     window.go.importObject
@@ -10,4 +11,4 @@ const init = async () => {
   await window.go.run(instance);
 };
 
-export { init, Account, getAccountByPem };
+export { initialize, Account, getAccountByPem, sendTransaction };
