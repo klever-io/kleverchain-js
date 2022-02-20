@@ -14,3 +14,8 @@ export interface IFreeze {
   amount: number;
   asset?: string;
 }
+
+export interface IUnfreeze {
+  bucketId: string;
+  asset?: string;
+}
