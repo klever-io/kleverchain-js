@@ -1,7 +1,13 @@
-const main = (): string => {
-  return "Hello World";
+import Account from "./account";
+import { getAccountByPem } from "./core";
+
+const init = async () => {
+  const { instance } = await WebAssembly.instantiateStreaming(
+    fetch("SDK.wasm"),
+    window.go.importObject
+  );
+
+  await window.go.run(instance);
 };
 
-console.log(main());
-
-export default main;
+export { init, Account, getAccountByPem };
