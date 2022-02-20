@@ -1,6 +1,12 @@
 import { sendTransaction } from "./transaction";
 import { TransactionType } from "./types";
-import { ICreateMarket, IFreeze, ITransfer, IUnfreeze } from "./types/contract";
+import {
+  ICreateMarket,
+  IFreeze,
+  ITransfer,
+  IUnfreeze,
+  IWithdraw,
+} from "./types/contract";
 import { IBasePayload } from "./types/payload";
 
 class Account {
@@ -52,6 +58,13 @@ class Account {
 
   async sendUnfreeze(payload: IUnfreeze) {
     return sendTransaction(TransactionType.Unfreeze, {
+      ...this.getBasePayload(),
+      ...payload,
+    });
+  }
+
+  async sendWithdraw(payload: IWithdraw) {
+    return sendTransaction(TransactionType.Withdraw, {
       ...this.getBasePayload(),
       ...payload,
     });
