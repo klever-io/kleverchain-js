@@ -7,4 +7,5 @@ interface Window {
   createMarketplace(payload: string): Promise<ITransactionResponse>;
   sendFreeze(payload: string): Promise<ITransactionResponse>;
   sendUnfreeze(payload: string): Promise<ITransactionResponse>;
+  sendUndelegate(payload: string): Promise<ITransactionResponse>;
 }
