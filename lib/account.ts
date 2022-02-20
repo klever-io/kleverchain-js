@@ -1,18 +1,7 @@
 import { sendTransaction } from "./transaction";
 import { TransactionType } from "./types";
+import { ICreateMarket, IFreeze, ITransfer } from "./types/contract";
 import { IBasePayload } from "./types/payload";
-
-interface ITransfer {
-  receiver: string;
-  amount: number;
-  asset?: string;
-}
-
-interface ICreateMarket {
-  name: string;
-  referralAddress?: string;
-  referralPercentage: number;
-}
 
 class Account {
   private address: string;
@@ -51,6 +40,15 @@ class Account {
 
   async createMarketplace(payload: ICreateMarket) {
     const response = await sendTransaction(TransactionType.CreateMarketplace, {
+      ...this.getBasePayload(),
+      ...payload,
+    });
+
+    return response;
+  }
+
+  async sendFreeze(payload: IFreeze) {
+    const response = await sendTransaction(TransactionType.Freeze, {
       ...this.getBasePayload(),
       ...payload,
     });

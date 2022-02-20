@@ -6,4 +6,5 @@ export interface IPemResponse {
 export enum TransactionType {
   Transfer,
   CreateMarketplace,
+  Freeze,
 }
