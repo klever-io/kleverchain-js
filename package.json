@@ -1,5 +1,5 @@
 {
-  "name": "klv-testing-lib",
+  "name": "kleverchain-js",
   "version": "1.0.0",
   "description": "Kleverchain SDK integration with JS",
   "main": "dist/index.js",
