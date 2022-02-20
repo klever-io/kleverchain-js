@@ -1,5 +1,5 @@
 import Account from "./account";
-import { getAccountByPem } from "./core";
+import { getAccountByPem, createAccount } from "./core";
 import { sendTransaction } from "./transaction";
 
 const initialize = async () => {
@@ -11,4 +11,4 @@ const initialize = async () => {
   await window.go.run(instance);
 };
 
-export { initialize, Account, getAccountByPem, sendTransaction };
+export { initialize, Account, getAccountByPem, sendTransaction, createAccount };
