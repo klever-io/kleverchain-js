@@ -12,8 +12,12 @@ const sendTransaction = async (
     case TransactionType.Transfer:
       method = window.sendTransfer;
       break;
+    case TransactionType.CreateMarketplace:
+      method = window.createMarketplace;
+      break;
     default:
       method = window.sendTransfer;
+      break;
   }
 
   return method(JSON.stringify(payload));

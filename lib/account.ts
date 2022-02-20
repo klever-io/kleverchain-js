@@ -8,6 +8,12 @@ interface ITransfer {
   asset?: string;
 }
 
+interface ICreateMarket {
+  name: string;
+  referralAddress?: string;
+  referralPercentage: number;
+}
+
 class Account {
   private address: string;
   private privateKey: string;
@@ -36,6 +42,15 @@ class Account {
 
   async sendTransfer(payload: ITransfer) {
     const response = await sendTransaction(TransactionType.Transfer, {
+      ...this.getBasePayload(),
+      ...payload,
+    });
+
+    return response;
+  }
+
+  async createMarketplace(payload: ICreateMarket) {
+    const response = await sendTransaction(TransactionType.CreateMarketplace, {
       ...this.getBasePayload(),
       ...payload,
     });
