@@ -4,6 +4,6 @@ export interface IPemResponse {
 }
 
 export enum TransactionType {
-  Transfer = 0,
-  CreateMarketplace = 20,
+  Transfer,
+  CreateMarketplace,
 }
