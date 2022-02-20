@@ -21,6 +21,9 @@ const sendTransaction = async (
     case TransactionType.Unfreeze:
       method = window.sendUnfreeze;
       break;
+    case TransactionType.Undelegate:
+      method = window.sendUnfreeze;
+      break;
     default:
       method = window.sendTransfer;
       break;
