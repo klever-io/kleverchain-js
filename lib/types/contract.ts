@@ -19,3 +19,7 @@ export interface IUnfreeze {
   bucketId: string;
   asset?: string;
 }
+
+export interface ISetAccountName {
+  name: string;
+}
