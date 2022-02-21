@@ -66,3 +66,4 @@ All available transactions:
 - `Undelegate`
 - `SetAccountName`
 - `Votes`
+- `Claim`
