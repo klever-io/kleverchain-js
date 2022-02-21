@@ -2,10 +2,11 @@ import { sendTransaction } from "./transaction";
 import { TransactionType } from "./types";
 import {
   ICreateMarket,
+  ITransfer,
+  IUndelegate,
   IDelegate,
   IFreeze,
   ISetAccountName,
-  ITransfer,
   IUnfreeze,
 } from "./types/contract";
 import { IBasePayload } from "./types/payload";
@@ -64,6 +65,13 @@ class Account {
     });
   }
 
+  async sendUndelegate(payload: IUndelegate) {
+    return sendTransaction(TransactionType.Undelegate, {
+      ...this.getBasePayload(),
+      ...payload,
+    });
+  }
+      
   async sendDelegate(payload: IDelegate) {
     return sendTransaction(TransactionType.Delegate, {
       ...this.getBasePayload(),
