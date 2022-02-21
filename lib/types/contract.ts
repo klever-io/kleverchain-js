@@ -23,3 +23,7 @@ export interface IUnfreeze {
 export interface IDelegate {
   bucketID: string;
 }
+
+export interface ISetAccountName {
+  name: string;
+}

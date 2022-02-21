@@ -24,6 +24,9 @@ const sendTransaction = async (
     case TransactionType.Delegate:
       method = window.sendDelegate;
       break;
+    case TransactionType.SetAccountName:
+      method = window.setAccountName;
+      break;
     default:
       method = window.sendTransfer;
       break;

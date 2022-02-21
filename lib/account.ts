@@ -4,6 +4,7 @@ import {
   ICreateMarket,
   IDelegate,
   IFreeze,
+  ISetAccountName,
   ITransfer,
   IUnfreeze,
 } from "./types/contract";
@@ -65,6 +66,13 @@ class Account {
 
   async sendDelegate(payload: IDelegate) {
     return sendTransaction(TransactionType.Delegate, {
+      ...this.getBasePayload(),
+      ...payload,
+    });
+  }
+
+  async setAccountName(payload: ISetAccountName) {
+    return sendTransaction(TransactionType.SetAccountName, {
       ...this.getBasePayload(),
       ...payload,
     });
