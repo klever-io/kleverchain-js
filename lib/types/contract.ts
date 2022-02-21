@@ -35,3 +35,8 @@ export interface IDelegate {
 export interface ISetAccountName {
   name: string;
 }
+
+export interface IVotes {
+  amount: number;
+  proposalID: number;
+}
