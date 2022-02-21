@@ -51,6 +51,9 @@ const sendTransaction = async (
     case TransactionType.BuyOrder:
       method = window.sendBuyOrder;
       break;
+    case TransactionType.CreateAsset:
+      method = window.sendCreateAsset;
+      break;
     default:
       method = window.sendTransfer;
       break;

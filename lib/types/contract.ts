@@ -66,3 +66,62 @@ export interface IBuyOrder {
   currencyId: string;
   amount: number;
 }
+
+export interface ICreateAsset {
+  name: string;
+  ticker: string;
+  owner: string;
+  precision: number;
+  uris: string;
+  initialSupply: number;
+  circulatingSupply: number;
+  maxSupply: number;
+  type?: number;
+  staking?: Staking;
+  royalties?: Royalties;
+  roles?: Roles[];
+  properties?: Properties;
+  attributes?: Attributes;
+}
+
+interface Staking {
+  type: number;
+  apr: number;
+  minEpochsToClaim: number;
+  minEpochsToUnstake: number;
+  minEpochsToWithdraw: number;
+}
+
+interface Royalties {
+  address?: string;
+  transferPercentage?: RoyaltyInfo[];
+  transferFixed?: number;
+  marketPercentage?: number;
+  marketFixed?: number;
+}
+
+interface RoyaltyInfo {
+  amount?: number;
+  percentage?: number;
+}
+
+interface Roles {
+  address: string;
+  hasRoleMint: boolean;
+  hasRoleSetICOPrices: boolean;
+}
+
+interface Properties {
+  canFreeze?: boolean;
+  canWipe?: boolean;
+  canPause?: boolean;
+  canMint?: boolean;
+  canBurn?: boolean;
+  canChangeOwner?: boolean;
+  canAddRoles?: boolean;
+}
+
+interface Attributes {
+  isPaused?: boolean;
+  isNFTMintStopped?: boolean;
+}

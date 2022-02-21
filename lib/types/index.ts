@@ -18,4 +18,5 @@ export enum TransactionType {
   CancelMarketOrder,
   SellOrder,
   BuyOrder,
+  CreateAsset,
 }

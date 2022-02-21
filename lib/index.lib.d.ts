@@ -17,4 +17,5 @@ interface Window {
   sendCancelMarketOrder(payload: string): Promise<ITransactionResponse>;
   sendSellOrder(payload: string): Promise<ITransactionResponse>;
   sendBuyOrder(payload: string): Promise<ITransactionResponse>;
+  sendCreateAsset(payload: string): Promise<ITransactionResponse>;
 }
