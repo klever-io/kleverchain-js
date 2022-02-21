@@ -39,6 +39,9 @@ const sendTransaction = async (
     case TransactionType.Claim:
       method = window.sendClaim;
       break;
+    case TransactionType.Unjail:
+      method = window.sendUnjail;
+      break;
     default:
       method = window.sendTransfer;
       break;

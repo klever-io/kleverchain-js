@@ -109,6 +109,13 @@ class Account {
       ...payload,
     });
   }
+
+  async sendUnjail(payload: IClaim) {
+    return sendTransaction(TransactionType.Unjail, {
+      ...this.getBasePayload(),
+      ...payload,
+    });
+  }
 }
 
 export default Account;
