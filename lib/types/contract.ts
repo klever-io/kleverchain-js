@@ -45,3 +45,7 @@ export interface IClaim {
   claimType: number;
   id: string;
 }
+
+export interface ICancelMarketOrder {
+  orderId: string;
+}
