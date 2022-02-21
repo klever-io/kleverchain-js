@@ -59,3 +59,10 @@ export interface ISellOrder {
   reservePrice: number;
   endTime: number;
 }
+
+export interface IBuyOrder {
+  buyType: number;
+  id: string;
+  currencyId: string;
+  amount: number;
+}

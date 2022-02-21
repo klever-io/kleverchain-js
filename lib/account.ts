@@ -12,6 +12,8 @@ import {
   IVotes,
   IClaim,
   ICancelMarketOrder,
+  ISellOrder,
+  IBuyOrder,
 } from "./types/contract";
 import { IBasePayload } from "./types/payload";
 
@@ -127,6 +129,13 @@ class Account {
 
   async sendSellOrder(payload: ISellOrder) {
     return sendTransaction(TransactionType.SellOrder, {
+      ...this.getBasePayload(),
+      ...payload,
+    });
+  }
+
+  async sendBuyOrder(payload: IBuyOrder) {
+    return sendTransaction(TransactionType.BuyOrder, {
       ...this.getBasePayload(),
       ...payload,
     });

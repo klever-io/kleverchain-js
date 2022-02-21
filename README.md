@@ -69,3 +69,4 @@ All available transactions:
 - `Claim`
 - `Cancel market order`
 - `Sell order`
+- `Buy order`
