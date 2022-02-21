@@ -8,6 +8,7 @@ export enum TransactionType {
   CreateMarketplace,
   Freeze,
   Unfreeze,
+  Withdraw,
   Undelegate,
   Delegate,
   SetAccountName,

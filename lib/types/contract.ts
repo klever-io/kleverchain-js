@@ -20,6 +20,10 @@ export interface IUnfreeze {
   asset?: string;
 }
 
+export interface IWithdraw {
+  assetId: string;
+}
+
 export interface IUndelegate {
   bucketID: string;
 }

@@ -8,6 +8,7 @@ import {
   IFreeze,
   ISetAccountName,
   IUnfreeze,
+  IWithdraw,
 } from "./types/contract";
 import { IBasePayload } from "./types/payload";
 
@@ -64,6 +65,12 @@ class Account {
       ...payload,
     });
   }
+
+  async sendWithdraw(payload: IWithdraw) {
+    return sendTransaction(TransactionType.Withdraw, {
+      ...this.getBasePayload(),
+      ...payload,
+  });
 
   async sendUndelegate(payload: IUndelegate) {
     return sendTransaction(TransactionType.Undelegate, {
