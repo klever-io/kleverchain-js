@@ -70,7 +70,8 @@ class Account {
     return sendTransaction(TransactionType.Withdraw, {
       ...this.getBasePayload(),
       ...payload,
-  });
+    });
+  }
 
   async sendUndelegate(payload: IUndelegate) {
     return sendTransaction(TransactionType.Undelegate, {
@@ -78,7 +79,7 @@ class Account {
       ...payload,
     });
   }
-      
+
   async sendDelegate(payload: IDelegate) {
     return sendTransaction(TransactionType.Delegate, {
       ...this.getBasePayload(),
