@@ -125,3 +125,10 @@ interface Attributes {
   isPaused?: boolean;
   isNFTMintStopped?: boolean;
 }
+
+export interface IProposal {
+  parameter: number;
+  epochsDuration: number;
+  value: string;
+  description: string;
+}

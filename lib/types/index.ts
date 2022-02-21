@@ -19,4 +19,5 @@ export enum TransactionType {
   SellOrder,
   BuyOrder,
   CreateAsset,
+  Proposal,
 }
