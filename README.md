@@ -64,6 +64,7 @@ All available transactions:
 - `Withdraw`
 - `Delegate`
 - `Undelegate`
-- `SetAccountName`
+- `Set account name`
 - `Votes`
 - `Claim`
+- `Cancel market order`

@@ -42,6 +42,9 @@ const sendTransaction = async (
     case TransactionType.Unjail:
       method = window.sendUnjail;
       break;
+    case TransactionType.CancelMarketOrder:
+      method = window.sendCancelMarketOrder;
+      break;
     default:
       method = window.sendTransfer;
       break;

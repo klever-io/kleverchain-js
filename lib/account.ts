@@ -11,6 +11,7 @@ import {
   IWithdraw,
   IVotes,
   IClaim,
+  ICancelMarketOrder,
 } from "./types/contract";
 import { IBasePayload } from "./types/payload";
 
@@ -112,6 +113,13 @@ class Account {
 
   async sendUnjail(payload: IClaim) {
     return sendTransaction(TransactionType.Unjail, {
+      ...this.getBasePayload(),
+      ...payload,
+    });
+  }
+
+  async sendCancelMarketOrder(payload: ICancelMarketOrder) {
+    return sendTransaction(TransactionType.CancelMarketOrder, {
       ...this.getBasePayload(),
       ...payload,
     });
