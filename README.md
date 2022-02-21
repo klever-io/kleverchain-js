@@ -71,3 +71,4 @@ All available transactions:
 - `Sell order`
 - `Buy order`
 - `Create Asset`
+- `Proposal`
