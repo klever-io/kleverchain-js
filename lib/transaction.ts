@@ -21,6 +21,9 @@ const sendTransaction = async (
     case TransactionType.Unfreeze:
       method = window.sendUnfreeze;
       break;
+    case TransactionType.SetAccountName:
+      method = window.setAccountName;
+      break;
     default:
       method = window.sendTransfer;
       break;
