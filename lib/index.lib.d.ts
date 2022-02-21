@@ -13,4 +13,5 @@ interface Window {
   setAccountName(payload: string): Promise<ITransactionResponse>;
   sendVotes(payload: string): Promise<ITransactionResponse>;
   sendClaim(payload: string): Promise<ITransactionResponse>;
+  sendUnjail(payload: string): Promise<ITransactionResponse>;
 }

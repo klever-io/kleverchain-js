@@ -14,4 +14,5 @@ export enum TransactionType {
   SetAccountName,
   Votes,
   Claim,
+  Unjail,
 }
