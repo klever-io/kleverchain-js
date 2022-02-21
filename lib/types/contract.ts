@@ -16,10 +16,22 @@ export interface IFreeze {
 }
 
 export interface IUnfreeze {
-  bucketId: string;
+  bucketID: string;
   asset?: string;
 }
 
 export interface IWithdraw {
   assetId: string;
+}
+
+export interface IUndelegate {
+  bucketID: string;
+}
+
+export interface IDelegate {
+  bucketID: string;
+}
+
+export interface ISetAccountName {
+  name: string;
 }

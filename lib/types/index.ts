@@ -9,4 +9,7 @@ export enum TransactionType {
   Freeze,
   Unfreeze,
   Withdraw,
+  Undelegate,
+  Delegate,
+  SetAccountName,
 }
