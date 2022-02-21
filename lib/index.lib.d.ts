@@ -8,4 +8,6 @@ interface Window {
   sendFreeze(payload: string): Promise<ITransactionResponse>;
   sendUnfreeze(payload: string): Promise<ITransactionResponse>;
   sendUndelegate(payload: string): Promise<ITransactionResponse>;
+  sendDelegate(payload: string): Promise<ITransactionResponse>;
+  setAccountName(payload: string): Promise<ITransactionResponse>;
 }
