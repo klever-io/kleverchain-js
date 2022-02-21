@@ -124,6 +124,13 @@ class Account {
       ...payload,
     });
   }
+
+  async sendSellOrder(payload: ISellOrder) {
+    return sendTransaction(TransactionType.SellOrder, {
+      ...this.getBasePayload(),
+      ...payload,
+    });
+  }
 }
 
 export default Account;
