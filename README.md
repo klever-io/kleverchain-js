@@ -70,3 +70,4 @@ All available transactions:
 - `Cancel market order`
 - `Sell order`
 - `Buy order`
+- `Create Asset`
