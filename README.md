@@ -68,3 +68,4 @@ All available transactions:
 - `Votes`
 - `Claim`
 - `Cancel market order`
+- `Sell order`

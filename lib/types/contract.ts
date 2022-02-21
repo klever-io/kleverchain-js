@@ -49,3 +49,13 @@ export interface IClaim {
 export interface ICancelMarketOrder {
   orderId: string;
 }
+
+export interface ISellOrder {
+  marketType: number;
+  marketplaceId: string;
+  assetId: string;
+  currencyId: string;
+  price: number;
+  reservePrice: number;
+  endTime: number;
+}

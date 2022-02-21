@@ -15,4 +15,5 @@ interface Window {
   sendClaim(payload: string): Promise<ITransactionResponse>;
   sendUnjail(payload: string): Promise<ITransactionResponse>;
   sendCancelMarketOrder(payload: string): Promise<ITransactionResponse>;
+  sendSellOrder(payload: string): Promise<ITransactionResponse>;
 }

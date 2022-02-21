@@ -16,4 +16,5 @@ export enum TransactionType {
   Claim,
   Unjail,
   CancelMarketOrder,
+  SellOrder,
 }

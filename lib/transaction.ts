@@ -45,6 +45,9 @@ const sendTransaction = async (
     case TransactionType.CancelMarketOrder:
       method = window.sendCancelMarketOrder;
       break;
+    case TransactionType.SellOrder:
+      method = window.sendSellOrder;
+      break;
     default:
       method = window.sendTransfer;
       break;
