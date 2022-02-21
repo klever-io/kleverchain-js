@@ -10,6 +10,7 @@ import {
   IUnfreeze,
   IWithdraw,
   IVotes,
+  IClaim,
 } from "./types/contract";
 import { IBasePayload } from "./types/payload";
 
@@ -97,6 +98,13 @@ class Account {
 
   async sendVotes(payload: IVotes) {
     return sendTransaction(TransactionType.Votes, {
+      ...this.getBasePayload(),
+      ...payload,
+    });
+  }
+
+  async sendClaim(payload: IClaim) {
+    return sendTransaction(TransactionType.Claim, {
       ...this.getBasePayload(),
       ...payload,
     });

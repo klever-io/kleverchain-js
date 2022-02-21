@@ -40,3 +40,8 @@ export interface IVotes {
   amount: number;
   proposalID: number;
 }
+
+export interface IClaim {
+  claimType: number;
+  id: string;
+}
