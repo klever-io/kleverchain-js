@@ -33,6 +33,9 @@ const sendTransaction = async (
     case TransactionType.SetAccountName:
       method = window.setAccountName;
       break;
+    case TransactionType.Votes:
+      method = window.sendVotes;
+      break;
     default:
       method = window.sendTransfer;
       break;

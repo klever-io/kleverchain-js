@@ -9,6 +9,7 @@ import {
   ISetAccountName,
   IUnfreeze,
   IWithdraw,
+  IVotes,
 } from "./types/contract";
 import { IBasePayload } from "./types/payload";
 
@@ -89,6 +90,13 @@ class Account {
 
   async setAccountName(payload: ISetAccountName) {
     return sendTransaction(TransactionType.SetAccountName, {
+      ...this.getBasePayload(),
+      ...payload,
+    });
+  }
+
+  async sendVotes(payload: IVotes) {
+    return sendTransaction(TransactionType.Votes, {
       ...this.getBasePayload(),
       ...payload,
     });
