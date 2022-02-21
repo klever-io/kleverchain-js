@@ -61,3 +61,8 @@ All available transactions:
 - `CreateMarket`
 - `Freeze`
 - `Unfreeze`
+- `Withdraw`
+- `Delegate`
+- `Undelegate`
+- `SetAccountName`
+- `Votes`

@@ -12,4 +12,5 @@ interface Window {
   sendDelegate(payload: string): Promise<ITransactionResponse>;
   setAccountName(payload: string): Promise<ITransactionResponse>;
   sendVotes(payload: string): Promise<ITransactionResponse>;
+  sendClaim(payload: string): Promise<ITransactionResponse>;
 }

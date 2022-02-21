@@ -13,4 +13,5 @@ export enum TransactionType {
   Delegate,
   SetAccountName,
   Votes,
+  Claim,
 }
