@@ -17,6 +17,7 @@ import {
   ICreateAsset,
   IProposal,
   IConfigMarket,
+  ICreateValidator,
 } from "./types/contract";
 import { IBasePayload } from "./types/payload";
 
@@ -53,7 +54,7 @@ class Account {
     });
   }
 
-  async createMarketplace(payload: ICreateMarket) {
+  async sendCreateMarketplace(payload: ICreateMarket) {
     return sendTransaction(TransactionType.CreateMarketplace, {
       ...this.getBasePayload(),
       ...payload,
@@ -160,6 +161,13 @@ class Account {
 
   async sendProposal(payload: IProposal) {
     return sendTransaction(TransactionType.Proposal, {
+      ...this.getBasePayload(),
+      ...payload,
+    });
+  }
+
+  async sendCreateValidator(payload: ICreateValidator) {
+    return sendTransaction(TransactionType.CreateValidator, {
       ...this.getBasePayload(),
       ...payload,
     });

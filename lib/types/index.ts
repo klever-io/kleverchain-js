@@ -21,4 +21,5 @@ export enum TransactionType {
   BuyOrder,
   CreateAsset,
   Proposal,
+  CreateValidator,
 }
