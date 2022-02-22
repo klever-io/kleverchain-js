@@ -22,4 +22,5 @@ export enum TransactionType {
   CreateAsset,
   Proposal,
   CreateValidator,
+  ConfigValidator,
 }

@@ -172,6 +172,13 @@ class Account {
       ...payload,
     });
   }
+
+  async sendConfigValidator(payload: ICreateValidator) {
+    return sendTransaction(TransactionType.ConfigValidator, {
+      ...this.getBasePayload(),
+      ...payload,
+    });
+  }
 }
 
 export default Account;
