@@ -63,6 +63,8 @@ const sendTransaction = async (
     case TransactionType.CreateValidator:
       method = window.sendCreateValidator;
       break;
+    case TransactionType.ConfigValidator:
+      method = window.sendConfigValidator;
     default:
       method = window.sendTransfer;
       break;

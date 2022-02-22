@@ -73,4 +73,5 @@ All available transactions:
 - `Create Asset`
 - `Proposal`
 - `Config market`
-- `Create Validator`
+- `Create validator`
+- `Config validator`
