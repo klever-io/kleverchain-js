@@ -72,3 +72,4 @@ All available transactions:
 - `Buy order`
 - `Create Asset`
 - `Proposal`
+- `Config market`
