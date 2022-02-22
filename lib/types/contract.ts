@@ -132,3 +132,10 @@ export interface IProposal {
   value: string;
   description: string;
 }
+
+export interface IConfigMarket {
+  name: string;
+  marketID: string;
+  referralAddress?: string;
+  referralPercentage: number;
+}

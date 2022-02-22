@@ -15,6 +15,9 @@ const sendTransaction = async (
     case TransactionType.CreateMarketplace:
       method = window.createMarketplace;
       break;
+    case TransactionType.ConfigMarketplace:
+      method = window.sendConfigMarketplace;
+      break;
     case TransactionType.Freeze:
       method = window.sendFreeze;
       break;

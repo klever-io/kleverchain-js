@@ -16,6 +16,7 @@ import {
   IBuyOrder,
   ICreateAsset,
   IProposal,
+  IConfigMarket,
 } from "./types/contract";
 import { IBasePayload } from "./types/payload";
 
@@ -54,6 +55,13 @@ class Account {
 
   async createMarketplace(payload: ICreateMarket) {
     return sendTransaction(TransactionType.CreateMarketplace, {
+      ...this.getBasePayload(),
+      ...payload,
+    });
+  }
+
+  async sendConfigMarketplace(payload: IConfigMarket) {
+    return sendTransaction(TransactionType.ConfigMarketplace, {
       ...this.getBasePayload(),
       ...payload,
     });
