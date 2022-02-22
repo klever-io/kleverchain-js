@@ -139,3 +139,17 @@ export interface IConfigMarket {
   referralAddress?: string;
   referralPercentage: number;
 }
+
+export interface ICreateValidator {
+  name: string;
+  address: string;
+  rewardAddress: string;
+  bls: string;
+  canDelegate: boolean;
+  maxDelegationAmount: number;
+  comission: number;
+  logo: string;
+  uris: {
+    [key: string]: string;
+  };
+}

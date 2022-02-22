@@ -20,4 +20,5 @@ interface Window {
   sendCreateAsset(payload: string): Promise<ITransactionResponse>;
   sendProposal(payload: string): Promise<ITransactionResponse>;
   sendConfigMarketplace(payload: string): Promise<ITransactionResponse>;
+  sendCreateValidator(payload: string): Promise<ITransactionResponse>;
 }
