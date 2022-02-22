@@ -6,6 +6,7 @@ export interface IPemResponse {
 export enum TransactionType {
   Transfer,
   CreateMarketplace,
+  ConfigMarketplace,
   Freeze,
   Unfreeze,
   Withdraw,
