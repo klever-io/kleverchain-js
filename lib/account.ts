@@ -39,7 +39,9 @@ class Account {
   }
 
   async getBalance() {
-    const account: IAccount = await window.getAccount(this.address);
+    const response = await window.getAccount(this.address);
+
+    const account: IAccount = JSON.parse(response);
     if (account.error.length !== 0) {
       return 0;
     }
