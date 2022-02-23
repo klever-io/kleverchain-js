@@ -1,5 +1,6 @@
 interface Window {
   go: any;
+  getAccount(address: string): Promise<IAccount>;
   parsePemFileData(pemData: string): Promise<IPemResponse>;
   createAccount(): Promise<IPemResponse>;
 

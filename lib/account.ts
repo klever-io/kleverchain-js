@@ -1,5 +1,5 @@
 import { sendTransaction } from "./transaction";
-import { TransactionType } from "./types";
+import { IAccount, TransactionType } from "./types";
 import {
   ICreateMarket,
   ITransfer,
@@ -36,6 +36,15 @@ class Account {
 
   getPrivateKey() {
     return this.privateKey;
+  }
+
+  async getBalance() {
+    const account: IAccount = await window.getAccount(this.address);
+    if (account.error.length !== 0) {
+      return 0;
+    }
+
+    return account.data.account.balance;
   }
 
   getBasePayload() {
