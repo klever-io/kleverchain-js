@@ -1,5 +1,5 @@
 import { sendTransaction } from "./transaction";
-import { IAccount, TransactionType } from "./types";
+import { TransactionType } from "./types";
 import {
   ICreateMarket,
   ITransfer,
@@ -20,6 +20,7 @@ import {
   ICreateValidator,
 } from "./types/contract";
 import { IBasePayload } from "./types/payload";
+import { IAccountResponse } from "./types/response";
 
 class Account {
   private address: string;
@@ -41,12 +42,23 @@ class Account {
   async getBalance() {
     const response = await window.getAccount(this.address);
 
-    const account: IAccount = JSON.parse(response);
+    const account: IAccountResponse = JSON.parse(response);
     if (account.error.length !== 0) {
       return 0;
     }
 
     return account.data.account.balance;
+  }
+
+  async getAssets() {
+    const response = await window.getAccount(this.address);
+
+    const account: IAccountResponse = JSON.parse(response);
+    if (account.error.length !== 0) {
+      return [];
+    }
+
+    return account.data.account.assets;
   }
 
   getBasePayload() {

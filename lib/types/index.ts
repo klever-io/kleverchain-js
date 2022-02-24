@@ -3,21 +3,6 @@ export interface IPemResponse {
   privateKey: string;
 }
 
-export interface IAccount {
-  data: {
-    account: {
-      address: string;
-      nonce: number;
-      rootHash: string;
-      balance: number;
-      allowance: number;
-      timestamp: number;
-    };
-  };
-  error: string;
-  code: string;
-}
-
 export enum TransactionType {
   Transfer,
   CreateMarketplace,
