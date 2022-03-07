@@ -13,7 +13,7 @@ const sendTransaction = async (
       method = window.sendTransfer;
       break;
     case TransactionType.CreateMarketplace:
-      method = window.createMarketplace;
+      method = window.sendCreateMarketplace;
       break;
     case TransactionType.ConfigMarketplace:
       method = window.sendConfigMarketplace;

@@ -11,4 +11,4 @@ const initialize = async () => {
   await window.go.run(instance);
 };
 
-export { initialize, Account, getAccountByPem, sendTransaction, createAccount };
+export { Account, getAccountByPem, sendTransaction, createAccount, initialize };

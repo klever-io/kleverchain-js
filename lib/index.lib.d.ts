@@ -5,7 +5,7 @@ interface Window {
   createAccount(): Promise<IPemResponse>;
 
   sendTransfer(payload: string): Promise<ITransactionResponse>;
-  createMarketplace(payload: string): Promise<ITransactionResponse>;
+  sendCreateMarketplace(payload: string): Promise<ITransactionResponse>;
   sendFreeze(payload: string): Promise<ITransactionResponse>;
   sendUnfreeze(payload: string): Promise<ITransactionResponse>;
   sendWithdraw(payload: string): Promise<ITransactionResponse>;
