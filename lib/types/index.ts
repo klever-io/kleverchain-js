@@ -1,8 +1,3 @@
-export interface IPemResponse {
-  address: string;
-  privateKey: string;
-}
-
 export interface IAccount {
   data: {
     account: {
@@ -16,6 +11,15 @@ export interface IAccount {
   };
   error: string;
   code: string;
+}
+
+export interface IBasePayload {
+  sender: string;
+  privateKey: string;
+}
+
+export interface ISdkContext {
+  isLoaded(): boolean;
 }
 
 export enum TransactionType {

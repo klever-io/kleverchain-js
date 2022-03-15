@@ -1,5 +1,7 @@
-import { sendTransaction } from "./transaction";
-import { IAccount, TransactionType } from "./types";
+import { core } from "..";
+import { ErrEmptyAddress, ErrLoadSdk } from "../core/errors";
+import { sendTransaction } from "../transaction";
+import { IAccount, IBasePayload, TransactionType } from "../types";
 import {
   ICreateMarket,
   ITransfer,
@@ -18,8 +20,7 @@ import {
   IProposal,
   IConfigMarket,
   ICreateValidator,
-} from "./types/contract";
-import { IBasePayload } from "./types/payload";
+} from "../types/contract";
 
 class Account {
   private address: string;
@@ -39,6 +40,14 @@ class Account {
   }
 
   async getBalance() {
+    if (!core.isLoaded()) {
+      throw ErrLoadSdk;
+    }
+
+    if (this.address.length === 0) {
+      throw ErrEmptyAddress;
+    }
+
     const response = await window.getAccount(this.address);
 
     const account: IAccount = JSON.parse(response);
