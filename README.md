@@ -85,3 +85,4 @@ All available transactions:
 - `Config market`
 - `Create validator`
 - `Config validator`
+- `Config ICO`

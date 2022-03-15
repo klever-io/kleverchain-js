@@ -20,6 +20,7 @@ import {
   IProposal,
   IConfigMarket,
   ICreateValidator,
+  IConfigICO,
 } from "../types/contract";
 
 class Account {
@@ -195,6 +196,13 @@ class Account {
 
   async sendConfigValidator(payload: ICreateValidator) {
     return sendTransaction(TransactionType.ConfigValidator, {
+      ...this.getBasePayload(),
+      ...payload,
+    });
+  }
+
+  async sendConfigICO(payload: IConfigICO) {
+    return sendTransaction(TransactionType.ConfigICO, {
       ...this.getBasePayload(),
       ...payload,
     });
