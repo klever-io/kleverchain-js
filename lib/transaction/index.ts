@@ -1,11 +1,16 @@
-import { TransactionType } from "./types";
-import { IBasePayload } from "./types/payload";
-import { ITransactionResponse } from "./types/response";
+import { core } from "..";
+import { ErrLoadSdk } from "../core/errors";
+import { TransactionType, IBasePayload } from "../types";
+import { ITransactionResponse } from "../types/dtos";
 
 const sendTransaction = async (
   type: TransactionType,
   payload: IBasePayload
 ): Promise<ITransactionResponse> => {
+  if (!core.isLoaded()) {
+    throw ErrLoadSdk;
+  }
+
   let method;
 
   switch (type) {
@@ -65,6 +70,8 @@ const sendTransaction = async (
       break;
     case TransactionType.ConfigValidator:
       method = window.sendConfigValidator;
+    case TransactionType.ConfigICO:
+      method = window.sendConfigICO;
     default:
       method = window.sendTransfer;
       break;

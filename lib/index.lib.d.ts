@@ -23,4 +23,5 @@ interface Window {
   sendConfigMarketplace(payload: string): Promise<ITransactionResponse>;
   sendCreateValidator(payload: string): Promise<ITransactionResponse>;
   sendConfigValidator(payload: string): Promise<ITransactionResponse>;
+  sendConfigICO(payload: string): Promise<ITransactionResponse>;
 }

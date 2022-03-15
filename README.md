@@ -18,6 +18,16 @@ $ yarn add @klever/sdk
 
 ## Basic usage
 
+To initialize WASM file, need pass context provider to your DOM render file like `App.tsx`:
+
+```ts
+...
+  <SdkProvider>
+    ...
+  </SdkProvider>
+...
+```
+
 To make a contract call, there are _two ways_, you can call only one method passing the user data plus the contract data or you can create an instance of an account.
 
 > Sender address and private key is require in all transactions
@@ -75,3 +85,4 @@ All available transactions:
 - `Config market`
 - `Create validator`
 - `Config validator`
+- `Config ICO`

@@ -153,3 +153,19 @@ export interface ICreateValidator {
     [key: string]: string;
   };
 }
+
+interface Pack {
+  amount: number;
+  price: number;
+}
+interface PackInfo {
+  [key: string]: Pack[];
+}
+
+export interface IConfigICO {
+  receiverAddress: string;
+  assetID: string;
+  maxAmount: number;
+  status: number;
+  packInfo: PackInfo[];
+}
