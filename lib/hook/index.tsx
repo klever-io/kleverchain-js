@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
+import { Account } from "..";
 import core from "../core";
 
 import { ErrFetchBuffer, ErrFetchFile } from "../core/errors";
@@ -8,6 +9,7 @@ const SdkContext = createContext({} as ISdkContext);
 
 const SdkProvider: React.FC = ({ children }) => {
   const [loaded, setLoaded] = useState(false);
+  const [acc, setAcc] = useState<Account | null>(null);
 
   const initialize = async () => {
     const file = await fetch("SDK.wasm");
@@ -35,6 +37,8 @@ const SdkProvider: React.FC = ({ children }) => {
 
   const values: ISdkContext = {
     isLoaded: () => loaded,
+    getAccount: () => acc,
+    setAccount: (account) => setAcc(account),
   };
   return <SdkContext.Provider value={values}>{children}</SdkContext.Provider>;
 };

@@ -1,3 +1,5 @@
+import { Account } from "..";
+
 export interface IAccount {
   data: {
     account: {
@@ -20,6 +22,8 @@ export interface IBasePayload {
 
 export interface ISdkContext {
   isLoaded(): boolean;
+  getAccount(): Account | null;
+  setAccount(account: Account): void;
 }
 
 export enum TransactionType {
