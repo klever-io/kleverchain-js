@@ -86,3 +86,4 @@ All available transactions:
 - `Create validator`
 - `Config validator`
 - `Config ICO`
+- `Asset Trigger`

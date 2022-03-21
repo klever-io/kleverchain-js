@@ -169,3 +169,16 @@ export interface IConfigICO {
   status: number;
   packInfo: PackInfo[];
 }
+
+export interface IAssetTrigger {
+  triggerType: number;
+  assetId: string;
+  receiver: string;
+  amount: number;
+  uris: {
+    [key: string]: string;
+  };
+  logo: string;
+  mime: string;
+  role: Roles;
+}
