@@ -15,6 +15,8 @@ interface IBasePayload {
 }
 interface ISdkContext {
     isLoaded(): boolean;
+    getAccount(): Account | null;
+    setAccount(account: Account): void;
 }
 declare enum TransactionType {
     Transfer = 0,
@@ -35,7 +37,9 @@ declare enum TransactionType {
     CreateAsset = 15,
     Proposal = 16,
     CreateValidator = 17,
-    ConfigValidator = 18
+    ConfigValidator = 18,
+    ConfigICO = 19,
+    AssetTrigger = 20
 }
 
 interface ITransfer {
@@ -171,6 +175,20 @@ interface ICreateValidator {
         [key: string]: string;
     };
 }
+interface Pack {
+    amount: number;
+    price: number;
+}
+interface PackInfo {
+    [key: string]: Pack[];
+}
+interface IConfigICO {
+    receiverAddress: string;
+    assetID: string;
+    maxAmount: number;
+    status: number;
+    packInfo: PackInfo[];
+}
 
 declare class Account {
     private address;
@@ -199,6 +217,7 @@ declare class Account {
     sendProposal(payload: IProposal): Promise<ITransactionResponse>;
     sendCreateValidator(payload: ICreateValidator): Promise<ITransactionResponse>;
     sendConfigValidator(payload: ICreateValidator): Promise<ITransactionResponse>;
+    sendConfigICO(payload: IConfigICO): Promise<ITransactionResponse>;
 }
 
 declare const core: {
