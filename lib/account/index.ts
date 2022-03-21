@@ -207,6 +207,13 @@ class Account {
       ...payload,
     });
   }
+
+  async sendAssetTrigger(payload: IAssetTrigger) {
+    return sendTransaction(TransactionType.AssetTrigger, {
+      ...this.getBasePayload(),
+      ...payload,
+    });
+  }
 }
 
 export default Account;
