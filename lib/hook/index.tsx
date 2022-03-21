@@ -5,13 +5,31 @@ import core from "../core";
 import { ErrFetchBuffer, ErrFetchFile } from "../core/errors";
 import { ISdkContext } from "../types";
 
+const initGo = require("../scripts/init_go");
+
 const SdkContext = createContext({} as ISdkContext);
 
 const SdkProvider: React.FC = ({ children }) => {
   const [loaded, setLoaded] = useState(false);
   const [acc, setAcc] = useState<Account | null>(null);
 
+  const injectScripts = async () => {
+    const response = await fetch(initGo);
+    const res = response.text();
+
+    console.log(res);
+  };
+
   const initialize = async () => {
+    injectScripts();
+    // const script = document.createElement("script");
+
+    // script.type = "text/javascript";
+    // script.async = false;
+    // script.innerHTML = `alert('opa')`;
+
+    // document.body.appendChild(script);
+
     const file = await fetch("SDK.wasm");
     if (!file) {
       throw ErrFetchFile;
