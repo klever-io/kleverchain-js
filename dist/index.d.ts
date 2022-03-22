@@ -189,6 +189,18 @@ interface IConfigICO {
     status: number;
     packInfo: PackInfo[];
 }
+interface IAssetTrigger {
+    triggerType: number;
+    assetId: string;
+    receiver: string;
+    amount: number;
+    uris: {
+        [key: string]: string;
+    };
+    logo: string;
+    mime: string;
+    role: Roles;
+}
 
 declare class Account {
     private address;
@@ -218,6 +230,7 @@ declare class Account {
     sendCreateValidator(payload: ICreateValidator): Promise<ITransactionResponse>;
     sendConfigValidator(payload: ICreateValidator): Promise<ITransactionResponse>;
     sendConfigICO(payload: IConfigICO): Promise<ITransactionResponse>;
+    sendAssetTrigger(payload: IAssetTrigger): Promise<ITransactionResponse>;
 }
 
 declare const core: {

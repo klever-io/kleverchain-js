@@ -70,10 +70,13 @@ const sendTransaction = async (
       break;
     case TransactionType.ConfigValidator:
       method = window.sendConfigValidator;
+      break;
     case TransactionType.ConfigICO:
       method = window.sendConfigICO;
+      break;
     case TransactionType.AssetTrigger:
       method = window.sendAssetTrigger;
+      break;
     default:
       method = window.sendTransfer;
       break;
