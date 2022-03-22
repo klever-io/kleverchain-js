@@ -21,6 +21,7 @@ import {
   IConfigMarket,
   ICreateValidator,
   IConfigICO,
+  IAssetTrigger,
 } from "../types/contract";
 
 class Account {
