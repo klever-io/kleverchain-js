@@ -159,7 +159,9 @@ interface Pack {
   price: number;
 }
 interface PackInfo {
-  [key: string]: Pack[];
+  [key: string]: {
+    packItems: Pack[];
+  };
 }
 
 export interface IConfigICO {
