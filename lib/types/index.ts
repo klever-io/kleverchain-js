@@ -49,3 +49,19 @@ export enum TransactionType {
   ConfigICO,
   AssetTrigger,
 }
+
+export enum TriggerType {
+  Mint,
+  Burn,
+  Wipe,
+  Pause,
+  Resume,
+  ChangeOwner,
+  AddRole,
+  RemoveRole,
+  UpdateMetadata,
+  StopNFTMint,
+  UpdateLogo,
+  UpdateURIs,
+  ChangeRoyaltiesReceiver,
+}

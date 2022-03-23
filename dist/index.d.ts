@@ -180,7 +180,9 @@ interface Pack {
     price: number;
 }
 interface PackInfo {
-    [key: string]: Pack[];
+    [key: string]: {
+        packItems: Pack[];
+    };
 }
 interface IConfigICO {
     receiverAddress: string;

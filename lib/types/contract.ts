@@ -1,3 +1,5 @@
+import { TriggerType } from ".";
+
 export interface ITransfer {
   receiver: string;
   amount: number;
@@ -173,7 +175,7 @@ export interface IConfigICO {
 }
 
 export interface IAssetTrigger {
-  triggerType: number;
+  triggerType: TriggerType;
   assetId: string;
   receiver: string;
   amount: number;
