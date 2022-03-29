@@ -41,6 +41,21 @@ declare enum TransactionType {
     ConfigICO = 19,
     AssetTrigger = 20
 }
+declare enum TriggerType {
+    Mint = 0,
+    Burn = 1,
+    Wipe = 2,
+    Pause = 3,
+    Resume = 4,
+    ChangeOwner = 5,
+    AddRole = 6,
+    RemoveRole = 7,
+    UpdateMetadata = 8,
+    StopNFTMint = 9,
+    UpdateLogo = 10,
+    UpdateURIs = 11,
+    ChangeRoyaltiesReceiver = 12
+}
 
 interface ITransfer {
     receiver: string;
@@ -192,7 +207,7 @@ interface IConfigICO {
     packInfo: PackInfo[];
 }
 interface IAssetTrigger {
-    triggerType: number;
+    triggerType: TriggerType;
     assetId: string;
     receiver: string;
     amount: number;
