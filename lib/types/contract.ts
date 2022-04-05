@@ -31,6 +31,7 @@ export interface IUndelegate {
 }
 
 export interface IDelegate {
+  receiver: string;
   bucketID: string;
 }
 
