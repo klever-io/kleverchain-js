@@ -76,6 +76,7 @@ export interface ICreateAsset {
   owner: string;
   precision: number;
   uris: string;
+  logo: string;
   initialSupply: number;
   circulatingSupply: number;
   maxSupply: number;
