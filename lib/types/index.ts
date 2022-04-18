@@ -18,6 +18,7 @@ export interface IAccount {
 export interface IBasePayload {
   sender: string;
   privateKey: string;
+  nonce: number;
 }
 
 export interface ISdkContext {
