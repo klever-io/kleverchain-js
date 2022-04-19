@@ -1,17 +1,23 @@
 import React from 'react';
 
-interface ITransactionResponse {
-    txHashes: string[];
-    txCount: number;
+interface IAccount {
+    data: {
+        account: {
+            address: string;
+            nonce: number;
+            rootHash: string;
+            balance: number;
+            allowance: number;
+            timestamp: number;
+        };
+    };
+    error: string;
+    code: string;
 }
-interface IPemResponse {
-    address: string;
-    privateKey: string;
-}
-
 interface IBasePayload {
     sender: string;
     privateKey: string;
+    nonce: number;
 }
 interface ISdkContext {
     isLoaded(): boolean;
@@ -82,6 +88,7 @@ interface IUndelegate {
     bucketID: string;
 }
 interface IDelegate {
+    receiver: string;
     bucketID: string;
 }
 interface ISetAccountName {
@@ -119,6 +126,7 @@ interface ICreateAsset {
     owner: string;
     precision: number;
     uris: string;
+    logo: string;
     initialSupply: number;
     circulatingSupply: number;
     maxSupply: number;
@@ -226,7 +234,8 @@ declare class Account {
     getAddress(): string;
     getPrivateKey(): string;
     getBalance(): Promise<number>;
-    getBasePayload(): IBasePayload;
+    getNonce(): Promise<number>;
+    getBasePayload(): Promise<IBasePayload>;
     sendTransfer(payload: ITransfer): Promise<ITransactionResponse>;
     sendCreateMarketplace(payload: ICreateMarket): Promise<ITransactionResponse>;
     sendConfigMarketplace(payload: IConfigMarket): Promise<ITransactionResponse>;
@@ -250,6 +259,15 @@ declare class Account {
     sendAssetTrigger(payload: IAssetTrigger): Promise<ITransactionResponse>;
 }
 
+interface ITransactionResponse {
+    txHashes: string[];
+    txCount: number;
+}
+interface IPemResponse {
+    address: string;
+    privateKey: string;
+}
+
 declare const core: {
     getAccountByPem: (pemData: string) => Promise<Account>;
     createAccount: () => Promise<IPemResponse>;
@@ -263,4 +281,4 @@ declare const SdkContext: React.Context<ISdkContext>;
 declare const SdkProvider: React.FC;
 declare const useSdk: () => ISdkContext;
 
-export { Account, SdkContext, SdkProvider, core, sendTransaction, useSdk };
+export { Account, IAccount, IAssetTrigger, IBasePayload, IBuyOrder, ICancelMarketOrder, IClaim, IConfigICO, IConfigMarket, ICreateAsset, ICreateMarket, ICreateValidator, IDelegate, IFreeze, IPemResponse, IProposal, ISdkContext, ISellOrder, ISetAccountName, ITransactionResponse, ITransfer, IUndelegate, IUnfreeze, IVotes, IWithdraw, SdkContext, SdkProvider, TransactionType, TriggerType, core, sendTransaction, useSdk };
