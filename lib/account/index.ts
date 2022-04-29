@@ -176,11 +176,10 @@ class Account {
     });
   }
 
-  async sendUnjail(payload: IClaim) {
+  async sendUnjail() {
     const basePayload = await this.getBasePayload();
     return sendTransaction(TransactionType.Unjail, {
       ...basePayload,
-      ...payload,
     });
   }
 
