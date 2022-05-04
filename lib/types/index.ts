@@ -15,6 +15,20 @@ export interface IAccount {
   code: string;
 }
 
+export interface INodeAccount {
+  data: {
+    account: {
+      Address: string;
+      RootHash: string;
+      Balance: number;
+      Nonce: number;
+      Allowance: number;
+    };
+  };
+  error: string;
+  code: string;
+}
+
 export interface IBasePayload {
   sender: string;
   privateKey: string;

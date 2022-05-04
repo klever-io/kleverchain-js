@@ -1,27 +1,32 @@
 import { core } from "..";
 import { ErrEmptyAddress, ErrLoadSdk } from "../core/errors";
 import { sendTransaction } from "../transaction";
-import { IAccount, IBasePayload, TransactionType } from "../types";
 import {
+  IAccount,
+  IBasePayload,
+  INodeAccount,
+  TransactionType,
+} from "../types";
+import {
+  IAssetTrigger,
+  IBuyOrder,
+  ICancelMarketOrder,
+  IClaim,
+  IConfigICO,
+  IConfigMarket,
+  ICreateAsset,
   ICreateMarket,
-  ITransfer,
-  IUndelegate,
+  ICreateValidator,
   IDelegate,
   IFreeze,
-  ISetAccountName,
-  IUnfreeze,
-  IWithdraw,
-  IVotes,
-  IClaim,
-  ICancelMarketOrder,
-  ISellOrder,
-  IBuyOrder,
-  ICreateAsset,
   IProposal,
-  IConfigMarket,
-  ICreateValidator,
-  IConfigICO,
-  IAssetTrigger,
+  ISellOrder,
+  ISetAccountName,
+  ITransfer,
+  IUndelegate,
+  IUnfreeze,
+  IVotes,
+  IWithdraw,
 } from "../types/contract";
 
 class Account {
@@ -62,7 +67,7 @@ class Account {
 
   async getNonce() {
     const request = await fetch(
-      `node.devnet.klever.finance/node/address/${this.address}`,
+      `https://node.devnet.klever.finance/address/${this.address}`,
       {
         method: "GET",
         headers: {
@@ -71,9 +76,9 @@ class Account {
       }
     );
 
-    const response: IAccount = await request.json();
+    const response: INodeAccount = await request.json();
 
-    return response.data.account.nonce;
+    return response.data.account.Nonce;
   }
 
   async getBasePayload() {
