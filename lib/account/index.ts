@@ -67,7 +67,10 @@ class Account {
 
   async getNonce() {
     const request = await fetch(
-      `https://node.devnet.klever.finance/address/${this.address}`,
+      `${
+        process.env.REACT_APP_DEFAULT_NODE_HOST ||
+        "https://node.testnet.klever.finance"
+      }/address/${this.address}`,
       {
         method: "GET",
         headers: {
