@@ -1,18 +1,41 @@
 {
-  "name": "kleverchain-js",
-  "version": "1.0.0",
+  "name": "@klever/sdk",
+  "version": "1.1.8",
   "description": "Kleverchain SDK integration with JS",
-  "main": "dist/index.js",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
   "types": "dist/index.d.ts",
+  "files": [
+    "dist/**/*"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/klever-io/kleverchain-js.git"
+  },
   "scripts": {
     "prepublish": "yarn build",
-    "build": "tsc",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "rollup -c",
+    "test": "yarn build && node ./dist/index.js"
   },
   "keywords": [],
-  "author": "Wil Macedo",
+  "author": "Klever",
   "license": "MIT",
   "devDependencies": {
+    "@rollup/plugin-commonjs": "^21.0.2",
+    "@rollup/plugin-node-resolve": "^13.1.3",
+    "@rollup/plugin-typescript": "^8.3.1",
+    "@types/react": "^17.0.39",
+    "@types/react-dom": "^17.0.11",
+    "rollup": "^2.70.0",
+    "rollup-plugin-dts": "^4.2.0",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-terser": "^7.0.2",
+    "tslib": "^2.3.1",
     "typescript": "^4.5.5"
-  }
+  },
+  "peerDependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "dependencies": {}
 }
