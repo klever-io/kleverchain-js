@@ -247,7 +247,7 @@ declare class Account {
     setAccountName(payload: ISetAccountName): Promise<ITransactionResponse>;
     sendVotes(payload: IVotes): Promise<ITransactionResponse>;
     sendClaim(payload: IClaim): Promise<ITransactionResponse>;
-    sendUnjail(payload: IClaim): Promise<ITransactionResponse>;
+    sendUnjail(): Promise<ITransactionResponse>;
     sendCancelMarketOrder(payload: ICancelMarketOrder): Promise<ITransactionResponse>;
     sendSellOrder(payload: ISellOrder): Promise<ITransactionResponse>;
     sendBuyOrder(payload: IBuyOrder): Promise<ITransactionResponse>;
