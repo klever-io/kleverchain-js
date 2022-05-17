@@ -12,7 +12,7 @@ const SdkProvider: React.FC = ({ children }) => {
   const [acc, setAcc] = useState<Account | null>(null);
 
   const initialize = async () => {
-    const file = await fetch("SDK.wasm");
+    const file = await fetch("KleverSDK.wasm");
     if (!file) {
       throw ErrFetchFile;
     }
