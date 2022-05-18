@@ -36,6 +36,16 @@ const config = [
     output: [{ file: "dist/index.d.ts", format: "esm" }],
     plugins: [dts()],
   },
+  {
+    input: "./build.js",
+    output: [
+      {
+        file: "dist/build.js",
+        format: "cjs",
+      },
+    ],
+    plugins: [],
+  },
 ];
 
 export default config;
