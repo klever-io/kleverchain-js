@@ -1,12 +1,13 @@
 {
   "name": "@klever/sdk",
-  "version": "1.1.8",
+  "version": "1.2.2",
   "description": "Kleverchain SDK integration with JS",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
   "types": "dist/index.d.ts",
   "files": [
-    "dist/**/*"
+    "dist/**/*",
+    "./build.js"
   ],
   "repository": {
     "type": "git",
