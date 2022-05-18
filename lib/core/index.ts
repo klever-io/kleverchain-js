@@ -4,16 +4,16 @@ import { ErrLoadSdk } from "./errors";
 
 let sdkLoaded = false;
 
-const handleLoad = () => {
+const loadSDK = () => {
   sdkLoaded = true;
 };
 
-const isLoaded = () => {
+const isSDKLoaded = () => {
   return sdkLoaded;
 };
 
 const getAccountByPem = async (pemData: string): Promise<Account> => {
-  if (!isLoaded()) {
+  if (!isSDKLoaded()) {
     throw ErrLoadSdk;
   }
 
@@ -23,7 +23,7 @@ const getAccountByPem = async (pemData: string): Promise<Account> => {
 };
 
 const createAccount = async (): Promise<IPemResponse> => {
-  if (!isLoaded()) {
+  if (!isSDKLoaded()) {
     throw ErrLoadSdk;
   }
 
@@ -35,8 +35,8 @@ const createAccount = async (): Promise<IPemResponse> => {
 const core = {
   getAccountByPem,
   createAccount,
-  handleLoad,
-  isLoaded,
+  loadSDK,
+  isSDKLoaded,
 };
 
 export default core;

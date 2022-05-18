@@ -79,4 +79,5 @@ export enum TriggerType {
   UpdateLogo,
   UpdateURIs,
   ChangeRoyaltiesReceiver,
+  UpdateStaking,
 }
