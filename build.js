@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 const path = require("path");
 const https = require("https");
 const fs = require("fs");
@@ -7,7 +5,7 @@ const fs = require("fs");
 (() => {
   const bin = "KleverSDK.wasm";
   const url = `https://kleverchain-wasm.s3.eu-central-1.amazonaws.com/${bin}`;
-  const dest = path.join(__dirname, "..", "..", "..", "public");
+  const dest = path.join(__dirname, "..", "..", "..", "..", "public");
 
   try {
     fs.mkdirSync(dest, { recursive: true });
