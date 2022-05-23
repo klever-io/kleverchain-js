@@ -28,7 +28,7 @@ const SdkProvider: React.FC = ({ children }) => {
     window.go.run(instance);
 
     setLoaded(true);
-    core.handleLoad();
+    core.loadSDK();
   };
 
   useEffect(() => {

@@ -131,10 +131,11 @@ interface Attributes {
 }
 
 export interface IProposal {
-  parameter: number;
-  epochsDuration: number;
-  value: string;
+  parameters: {
+    [key: number]: string;
+  };
   description: string;
+  epochsDuration: number;
 }
 
 export interface IConfigMarket {
@@ -179,12 +180,13 @@ export interface IConfigICO {
 export interface IAssetTrigger {
   triggerType: TriggerType;
   assetId: string;
-  receiver: string;
-  amount: number;
-  uris: {
+  receiver?: string;
+  amount?: number;
+  uris?: {
     [key: string]: string;
   };
-  logo: string;
-  mime: string;
-  role: Roles;
+  logo?: string;
+  mime?: string;
+  role?: Roles;
+  staking?: Staking;
 }
