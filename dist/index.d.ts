@@ -60,7 +60,8 @@ declare enum TriggerType {
     StopNFTMint = 9,
     UpdateLogo = 10,
     UpdateURIs = 11,
-    ChangeRoyaltiesReceiver = 12
+    ChangeRoyaltiesReceiver = 12,
+    UpdateStaking = 13
 }
 
 interface ITransfer {
@@ -174,10 +175,11 @@ interface Attributes {
     isNFTMintStopped?: boolean;
 }
 interface IProposal {
-    parameter: number;
-    epochsDuration: number;
-    value: string;
+    parameters: {
+        [key: number]: string;
+    };
     description: string;
+    epochsDuration: number;
 }
 interface IConfigMarket {
     name: string;
@@ -217,14 +219,15 @@ interface IConfigICO {
 interface IAssetTrigger {
     triggerType: TriggerType;
     assetId: string;
-    receiver: string;
-    amount: number;
-    uris: {
+    receiver?: string;
+    amount?: number;
+    uris?: {
         [key: string]: string;
     };
-    logo: string;
-    mime: string;
-    role: Roles;
+    logo?: string;
+    mime?: string;
+    role?: Roles;
+    staking?: Staking;
 }
 
 declare class Account {
@@ -271,8 +274,8 @@ interface IPemResponse {
 declare const core: {
     getAccountByPem: (pemData: string) => Promise<Account>;
     createAccount: () => Promise<IPemResponse>;
-    handleLoad: () => void;
-    isLoaded: () => boolean;
+    loadSDK: () => void;
+    isSDKLoaded: () => boolean;
 };
 
 declare const sendTransaction: (type: TransactionType, payload: IBasePayload) => Promise<ITransactionResponse>;
