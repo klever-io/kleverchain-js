@@ -12,7 +12,7 @@ import {
   IBuyOrder,
   ICancelMarketOrder,
   IClaim,
-  IConfigICO,
+  IConfigITO,
   IConfigMarket,
   ICreateAsset,
   ICreateMarket,
@@ -247,9 +247,9 @@ class Account {
     });
   }
 
-  async sendConfigICO(payload: IConfigICO) {
+  async sendConfigITO(payload: IConfigITO) {
     const basePayload = await this.getBasePayload();
-    return sendTransaction(TransactionType.ConfigICO, {
+    return sendTransaction(TransactionType.ConfigITO, {
       ...basePayload,
       ...payload,
     });

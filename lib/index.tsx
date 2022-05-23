@@ -28,7 +28,7 @@ import {
   IProposal,
   IConfigMarket,
   ICreateValidator,
-  IConfigICO,
+  IConfigITO,
   IAssetTrigger,
 } from "./types/contract";
 
@@ -58,6 +58,6 @@ export {
   IProposal,
   IConfigMarket,
   ICreateValidator,
-  IConfigICO,
+  IConfigITO,
   IAssetTrigger,
 };

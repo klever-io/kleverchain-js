@@ -42,6 +42,7 @@ export interface ISetAccountName {
 export interface IVotes {
   amount: number;
   proposalID: number;
+  type: number;
 }
 
 export interface IClaim {
@@ -112,7 +113,7 @@ interface RoyaltyInfo {
 interface Roles {
   address: string;
   hasRoleMint: boolean;
-  hasRoleSetICOPrices: boolean;
+  hasRoleSetITOPrices: boolean;
 }
 
 interface Properties {
@@ -169,7 +170,7 @@ interface PackInfo {
   };
 }
 
-export interface IConfigICO {
+export interface IConfigITO {
   receiverAddress: string;
   assetID: string;
   maxAmount: number;
