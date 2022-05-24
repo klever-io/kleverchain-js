@@ -9,7 +9,7 @@ import packageJson from "./package.json";
 
 const config = [
   {
-    input: "lib/index.tsx",
+    input: "lib/index.ts",
     output: [
       {
         file: packageJson.main,
@@ -44,7 +44,17 @@ const config = [
         format: "cjs",
       },
     ],
-    plugins: [],
+    plugins: [terser()],
+  },
+  {
+    input: "./kleverSDKLoader.js",
+    output: [
+      {
+        file: "dist/kleverSDKLoader.js",
+        format: "cjs",
+      },
+    ],
+    plugins: [terser()],
   },
 ];
 

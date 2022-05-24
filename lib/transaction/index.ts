@@ -82,6 +82,9 @@ const sendTransaction = async (
       break;
   }
 
+  console.log(method);
+  console.log(JSON.stringify(payload));
+
   return method(JSON.stringify(payload));
 };
 
