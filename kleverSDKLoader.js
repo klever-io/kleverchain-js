@@ -772,18 +772,25 @@ window.onload = function () {
     }
 
     let file = await fetch(getCookie("kleverSDK"));
-    if (file.status === 404) {
+    if (
+      file.status === 404 ||
+      file.headers.get("Content-Type") !== "application/wasm"
+    ) {
       const fallbackPaths = [
         "assets/kleverSDK/kleverSDK.wasm",
         "kleverSDK.wasm",
         "assets/kleverSDK.wasm",
         "static/kleverSDK/kleverSDK.wasm",
         "static/kleverSDK.wasm",
+        "kleverSDK/kleverSDK.wasm",
       ];
 
       for (let i = 0; i < fallbackPaths.length; i++) {
         file = await fetch(fallbackPaths[i]);
-        if (file.ok) {
+        if (
+          file.ok &&
+          file.headers.get("Content-Type") === "application/wasm"
+        ) {
           document.cookie = `kleverSDK=${fallbackPaths[i]}`;
           break;
         }
