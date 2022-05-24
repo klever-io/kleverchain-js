@@ -71,8 +71,8 @@ const sendTransaction = async (
     case TransactionType.ConfigValidator:
       method = window.sendConfigValidator;
       break;
-    case TransactionType.ConfigICO:
-      method = window.sendConfigICO;
+    case TransactionType.ConfigITO:
+      method = window.sendConfigITO;
       break;
     case TransactionType.AssetTrigger:
       method = window.sendAssetTrigger;

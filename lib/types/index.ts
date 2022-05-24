@@ -61,7 +61,7 @@ export enum TransactionType {
   Proposal,
   CreateValidator,
   ConfigValidator,
-  ConfigICO,
+  ConfigITO,
   AssetTrigger,
 }
 
