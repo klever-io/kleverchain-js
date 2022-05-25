@@ -1,4 +1,4 @@
-import { TriggerType } from ".";
+import { TriggerType } from "./index";
 
 export interface ITransfer {
   receiver: string;

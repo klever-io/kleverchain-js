@@ -1,4 +1,4 @@
-import { core } from "..";
+import core from "../core";
 import { ErrLoadSdk } from "../core/errors";
 import { TransactionType, IBasePayload } from "../types";
 import { ITransactionResponse } from "../types/dtos";

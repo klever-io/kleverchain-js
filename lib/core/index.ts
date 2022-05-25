@@ -2,14 +2,8 @@ import Account from "../account";
 import { IPemResponse } from "../types/dtos";
 import { ErrLoadSdk } from "./errors";
 
-let sdkLoaded = false;
-
-const loadSDK = () => {
-  sdkLoaded = true;
-};
-
 const isSDKLoaded = () => {
-  return sdkLoaded;
+  return !!(window as any).Go;
 };
 
 const getAccountByPem = async (pemData: string): Promise<Account> => {
@@ -35,7 +29,6 @@ const createAccount = async (): Promise<IPemResponse> => {
 const core = {
   getAccountByPem,
   createAccount,
-  loadSDK,
   isSDKLoaded,
 };
 

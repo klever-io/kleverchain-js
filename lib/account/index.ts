@@ -1,4 +1,4 @@
-import { core } from "..";
+import core from "../core";
 import { ErrEmptyAddress, ErrLoadSdk } from "../core/errors";
 import { sendTransaction } from "../transaction";
 import {
@@ -68,7 +68,7 @@ class Account {
   async getNonce() {
     const request = await fetch(
       `${
-        process.env.REACT_APP_DEFAULT_NODE_HOST ||
+        process?.env?.REACT_APP_DEFAULT_NODE_HOST ||
         "https://node.testnet.klever.finance"
       }/address/${this.address}`,
       {

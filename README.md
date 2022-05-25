@@ -18,21 +18,49 @@ $ yarn add @klever/sdk
 
 ## Basic usage
 
-To initialize WASM file, need pass context provider to your DOM render file like `App.tsx`:
+After instalation, the KleverSDK folder will automatically appears inside your public, assets or static folder.
 
-```ts
-...
-  <SdkProvider>
-    ...
-  </SdkProvider>
-...
+To load the KleverSDK WASM file into your DOM you just need to import the loader script in your `index.html` or `app.html`:
+
+
+You can achieve this placing one of the script tags below:
+
+```tsx
+//If you're using React:
+<script src="%PUBLIC_URL%/kleverSDK/kleverSDKLoader.js"></script>
 ```
+
+```tsx
+//If you're using Vue or Svelte:
+<script src="/kleverSDK/kleverSDKLoader.js"></script>
+```
+
+```tsx
+//If you're using Sveltekit:
+<script src="%sveltekit.assets%/kleverSDK/kleverSDKLoader.js"></script>
+```
+
+```tsx
+//If you're using Angular:
+<script src="assets/kleverSDK/kleverSDKLoader.js"></script>
+```
+
+```tsx
+//If you're using NextJS:
+import Script from "next/script";
+
+<Script
+  src="/kleverSDK/kleverSDKLoader.js"
+  strategy="beforeInteractive"
+/>
+```
+>And so on, you can use any framework you'd like...
 
 To make a contract call, there are _two ways_, you can call only one method passing the user data plus the contract data or you can create an instance of an account.
 
 > Sender address and private key is require in all transactions
 
-With simple call:
+With a simple call:
 
 ```ts
 import { TransactionType } from "@klever/sdk/types";
@@ -49,7 +77,7 @@ const transactionPayload = {
 sendTransaction(transactionType, transactionPayload);
 ```
 
-With account instance:
+With an account instance:
 
 ```ts
 import { Account } from "@klever/sdk";
@@ -68,22 +96,81 @@ account.sendTransfer(transactionPayload);
 All available transactions:
 
 - `Transfer`
-- `CreateMarket`
 - `Freeze`
 - `Unfreeze`
-- `Withdraw`
 - `Delegate`
 - `Undelegate`
-- `Set account name`
-- `Votes`
 - `Claim`
-- `Cancel market order`
-- `Sell order`
-- `Buy order`
-- `Create Asset`
+- `Withdraw`
+- `CreateAsset`
+- `AssetTrigger`
+- `ConfigITO`
+- `CreateMarketplace`
+- `ConfigMarketplace`
+- `Sell`
+- `Buy`
+- `CancelMarketOrder`
 - `Proposal`
-- `Config market`
-- `Create validator`
-- `Config validator`
-- `Config ITO`
-- `Asset Trigger`
+- `Vote`
+- `CreateValidator`
+- `ConfigValidator`
+- `SetAccountName`
+
+## Extra
+If you want a global instance of your account to use throughout your app, you can create a custom hook to help you with that.
+
+
+Using React as example, you can create a `MyCustomHook.tsx` file and create your provider as follows:
+
+```tsx
+import { useState, createContext, useContext } from 'react';
+import { Account, core } from '@klever/sdk';
+
+interface ISdkContext {
+  isLoaded(): boolean;
+  getAccount(): Account | null;
+  setAccount(account: Account): void;
+}
+
+const SdkContext = createContext({} as ISdkContext);
+
+const SdkProvider: React.FC = ({ children }) => {
+  const [acc, setAcc] = useState<Account | null>(null);
+
+  const values: ISdkContext = {
+    isLoaded: () => core.isSDKLoaded(),
+    getAccount: () => acc,
+    setAccount: account => setAcc(account),
+  };
+  return <SdkContext.Provider value={values}>{children}</SdkContext.Provider>;
+};
+
+const useSdk = () => useContext(SdkContext);
+
+export { SdkContext, SdkProvider, useSdk };
+```
+
+and wrap your entire `App.tsx` in it:
+
+```ts
+import { SdkProvider } from './MyCustomHook';
+...
+  <SdkProvider>
+    ...
+  </SdkProvider>
+...
+```
+
+with that, you can use it on any child component you want, without the need to instantiate an account every time:
+
+```ts
+import { useSdk } from './MyCustomHook';
+...
+const sdk = useSdk();
+const account = sdk.getAccount();
+...
+await account.sendTransfer(payload)
+...
+```
+
+>The same pattern of global provider can be achieved in any framework you want, not only React.

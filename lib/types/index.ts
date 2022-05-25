@@ -1,4 +1,4 @@
-import { Account } from "..";
+import Account from "../account";
 
 export interface IAccount {
   data: {

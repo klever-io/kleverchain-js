@@ -1,5 +1,3 @@
-import React from 'react';
-
 interface IAccount {
     data: {
         account: {
@@ -18,11 +16,6 @@ interface IBasePayload {
     sender: string;
     privateKey: string;
     nonce: number;
-}
-interface ISdkContext {
-    isLoaded(): boolean;
-    getAccount(): Account | null;
-    setAccount(account: Account): void;
 }
 declare enum TransactionType {
     Transfer = 0,
@@ -44,7 +37,7 @@ declare enum TransactionType {
     Proposal = 16,
     CreateValidator = 17,
     ConfigValidator = 18,
-    ConfigICO = 19,
+    ConfigITO = 19,
     AssetTrigger = 20
 }
 declare enum TriggerType {
@@ -98,6 +91,7 @@ interface ISetAccountName {
 interface IVotes {
     amount: number;
     proposalID: number;
+    type: number;
 }
 interface IClaim {
     claimType: number;
@@ -159,7 +153,7 @@ interface RoyaltyInfo {
 interface Roles {
     address: string;
     hasRoleMint: boolean;
-    hasRoleSetICOPrices: boolean;
+    hasRoleSetITOPrices: boolean;
 }
 interface Properties {
     canFreeze?: boolean;
@@ -209,7 +203,7 @@ interface PackInfo {
         packItems: Pack[];
     };
 }
-interface IConfigICO {
+interface IConfigITO {
     receiverAddress: string;
     assetID: string;
     maxAmount: number;
@@ -258,7 +252,7 @@ declare class Account {
     sendProposal(payload: IProposal): Promise<ITransactionResponse>;
     sendCreateValidator(payload: ICreateValidator): Promise<ITransactionResponse>;
     sendConfigValidator(payload: ICreateValidator): Promise<ITransactionResponse>;
-    sendConfigICO(payload: IConfigICO): Promise<ITransactionResponse>;
+    sendConfigITO(payload: IConfigITO): Promise<ITransactionResponse>;
     sendAssetTrigger(payload: IAssetTrigger): Promise<ITransactionResponse>;
 }
 
@@ -274,14 +268,9 @@ interface IPemResponse {
 declare const core: {
     getAccountByPem: (pemData: string) => Promise<Account>;
     createAccount: () => Promise<IPemResponse>;
-    loadSDK: () => void;
     isSDKLoaded: () => boolean;
 };
 
 declare const sendTransaction: (type: TransactionType, payload: IBasePayload) => Promise<ITransactionResponse>;
 
-declare const SdkContext: React.Context<ISdkContext>;
-declare const SdkProvider: React.FC;
-declare const useSdk: () => ISdkContext;
-
-export { Account, IAccount, IAssetTrigger, IBasePayload, IBuyOrder, ICancelMarketOrder, IClaim, IConfigICO, IConfigMarket, ICreateAsset, ICreateMarket, ICreateValidator, IDelegate, IFreeze, IPemResponse, IProposal, ISdkContext, ISellOrder, ISetAccountName, ITransactionResponse, ITransfer, IUndelegate, IUnfreeze, IVotes, IWithdraw, SdkContext, SdkProvider, TransactionType, TriggerType, core, sendTransaction, useSdk };
+export { Account, IAccount, IAssetTrigger, IBasePayload, IBuyOrder, ICancelMarketOrder, IClaim, IConfigITO, IConfigMarket, ICreateAsset, ICreateMarket, ICreateValidator, IDelegate, IFreeze, IPemResponse, IProposal, ISellOrder, ISetAccountName, ITransactionResponse, ITransfer, IUndelegate, IUnfreeze, IVotes, IWithdraw, TransactionType, TriggerType, core, sendTransaction };
