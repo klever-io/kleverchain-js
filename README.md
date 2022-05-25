@@ -18,20 +18,43 @@ $ yarn add @klever/sdk
 
 ## Basic usage
 
-After instalation the KleverSDK folder will automatically appears inside your public, assets or static folder.
-To initialize the WASM file into your DOM only a import of the loader script is needed on your `index.html`:
+After instalation, the KleverSDK folder will automatically appears inside your public, assets or static folder.
 
-```html
-if you're using React:
+To load the KleverSDK WASM file into your DOM you just need to import the loader script in your `index.html` or `app.html`:
+
+
+You can achieve this placing one of the script tags below:
+
+```tsx
+//If you're using React:
 <script src="%PUBLIC_URL%/kleverSDK/kleverSDKLoader.js"></script>
-if you're using Vue or Svelte:
-<script src="/kleverSDK/kleverSDKLoader.js"></script>
-if you're using Sveltekit:
-<script src="%sveltekit.assets%/kleverSDK/kleverSDKLoader.js"></script>
-if you're using Angular
-<script src="assets/kleverSDK/kleverSDKLoader.js"></script>
-and so on ...
 ```
+
+```tsx
+//If you're using Vue or Svelte:
+<script src="/kleverSDK/kleverSDKLoader.js"></script>
+```
+
+```tsx
+//If you're using Sveltekit:
+<script src="%sveltekit.assets%/kleverSDK/kleverSDKLoader.js"></script>
+```
+
+```tsx
+//If you're using Angular:
+<script src="assets/kleverSDK/kleverSDKLoader.js"></script>
+```
+
+```tsx
+//If you're using NextJS:
+import Script from "next/script";
+
+<Script
+  src="/kleverSDK/kleverSDKLoader.js"
+  strategy="beforeInteractive"
+/>
+```
+>And so on, you can use any framework you'd like...
 
 To make a contract call, there are _two ways_, you can call only one method passing the user data plus the contract data or you can create an instance of an account.
 
@@ -73,22 +96,22 @@ account.sendTransfer(transactionPayload);
 All available transactions:
 
 - `Transfer`
-- `CreateMarket`
 - `Freeze`
 - `Unfreeze`
-- `Withdraw`
 - `Delegate`
 - `Undelegate`
-- `Set account name`
-- `Votes`
 - `Claim`
-- `Cancel market order`
-- `Sell order`
-- `Buy order`
-- `Create Asset`
+- `Withdraw`
+- `CreateAsset`
+- `AssetTrigger`
+- `ConfigITO`
+- `CreateMarketplace`
+- `ConfigMarketplace`
+- `Sell`
+- `Buy`
+- `CancelMarketOrder`
 - `Proposal`
-- `Config market`
-- `Create validator`
-- `Config validator`
-- `Config ITO`
-- `Asset Trigger`
+- `Vote`
+- `CreateValidator`
+- `ConfigValidator`
+- `SetAccountName`
