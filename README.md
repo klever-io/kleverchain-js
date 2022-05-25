@@ -18,14 +18,19 @@ $ yarn add @klever/sdk
 
 ## Basic usage
 
-To initialize WASM file, need pass context provider to your DOM render file like `App.tsx`:
+After instalation the KleverSDK folder will automatically appears inside your public, assets or static folder.
+To initialize the WASM file into your DOM only a import of the loader script is needed on your `index.html`:
 
-```ts
-...
-  <SdkProvider>
-    ...
-  </SdkProvider>
-...
+```html
+if you're using React:
+<script src="%PUBLIC_URL%/kleverSDK/kleverSDKLoader.js"></script>
+if you're using Vue or Svelte:
+<script src="/kleverSDK/kleverSDKLoader.js"></script>
+if you're using Sveltekit:
+<script src="%sveltekit.assets%/kleverSDK/kleverSDKLoader.js"></script>
+if you're using Angular
+<script src="assets/kleverSDK/kleverSDKLoader.js"></script>
+and so on ...
 ```
 
 To make a contract call, there are _two ways_, you can call only one method passing the user data plus the contract data or you can create an instance of an account.

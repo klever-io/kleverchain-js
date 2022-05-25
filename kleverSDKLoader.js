@@ -780,7 +780,9 @@ window.onload = function () {
         "assets/kleverSDK/kleverSDK.wasm",
         "kleverSDK.wasm",
         "assets/kleverSDK.wasm",
+        "public/kleverSDK/kleverSDK.wasm",
         "static/kleverSDK/kleverSDK.wasm",
+        "public/kleverSDK.wasm",
         "static/kleverSDK.wasm",
         "kleverSDK/kleverSDK.wasm",
       ];
