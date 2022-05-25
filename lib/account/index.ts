@@ -1,4 +1,4 @@
-import { core } from "..";
+import core from "../core";
 import { ErrEmptyAddress, ErrLoadSdk } from "../core/errors";
 import { sendTransaction } from "../transaction";
 import {

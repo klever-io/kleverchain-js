@@ -115,3 +115,62 @@ All available transactions:
 - `CreateValidator`
 - `ConfigValidator`
 - `SetAccountName`
+
+## Extra
+If you want a global instance of your account to use throughout your app, you can create a custom hook to help you with that.
+
+
+Using React as example, you can create a `MyCustomHook.tsx` file and create your provider as follows:
+
+```tsx
+import { useState, createContext, useContext } from 'react';
+import { Account, core } from '@klever/sdk';
+
+interface ISdkContext {
+  isLoaded(): boolean;
+  getAccount(): Account | null;
+  setAccount(account: Account): void;
+}
+
+const SdkContext = createContext({} as ISdkContext);
+
+const SdkProvider: React.FC = ({ children }) => {
+  const [acc, setAcc] = useState<Account | null>(null);
+
+  const values: ISdkContext = {
+    isLoaded: () => core.isSDKLoaded(),
+    getAccount: () => acc,
+    setAccount: account => setAcc(account),
+  };
+  return <SdkContext.Provider value={values}>{children}</SdkContext.Provider>;
+};
+
+const useSdk = () => useContext(SdkContext);
+
+export { SdkContext, SdkProvider, useSdk };
+```
+
+and wrap your entire `App.tsx` in it:
+
+```ts
+import { SdkProvider } from './MyCustomHook';
+...
+  <SdkProvider>
+    ...
+  </SdkProvider>
+...
+```
+
+with that, you can use it on any child component you want, without the need to instantiate an account every time:
+
+```ts
+import { useSdk } from './MyCustomHook';
+...
+const sdk = useSdk();
+const account = sdk.getAccount();
+...
+await account.sendTransfer(payload)
+...
+```
+
+>The same pattern of global provider can be achieved in any framework you want, not only React.
