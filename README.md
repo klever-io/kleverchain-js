@@ -60,7 +60,7 @@ To make a contract call, there are _two ways_, you can call only one method pass
 
 > Sender address and private key is require in all transactions
 
-With simple call:
+With a simple call:
 
 ```ts
 import { TransactionType } from "@klever/sdk/types";
@@ -77,7 +77,7 @@ const transactionPayload = {
 sendTransaction(transactionType, transactionPayload);
 ```
 
-With account instance:
+With an account instance:
 
 ```ts
 import { Account } from "@klever/sdk";
