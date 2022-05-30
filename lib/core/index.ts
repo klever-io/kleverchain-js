@@ -3,7 +3,7 @@ import { IPemResponse } from "../types/dtos";
 import { ErrLoadSdk } from "./errors";
 
 const isSDKLoaded = () => {
-  return !!(window as any).Go;
+  return !!globalThis.Go;
 };
 
 const getAccountByPem = async (pemData: string): Promise<Account> => {
@@ -11,7 +11,7 @@ const getAccountByPem = async (pemData: string): Promise<Account> => {
     throw ErrLoadSdk;
   }
 
-  const { address, privateKey } = await window.parsePemFileData(pemData);
+  const { address, privateKey } = await globalThis.parsePemFileData(pemData);
 
   return new Account(address, privateKey);
 };
@@ -21,7 +21,7 @@ const createAccount = async (): Promise<IPemResponse> => {
     throw ErrLoadSdk;
   }
 
-  const account = await window.createAccount();
+  const account = await globalThis.createAccount();
 
   return account;
 };
