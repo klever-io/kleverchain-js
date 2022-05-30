@@ -16,7 +16,9 @@ or
 $ yarn add @klever/sdk
 ```
 
-## Basic usage
+# Setup
+
+## Web App
 
 After instalation, the KleverSDK folder will automatically appears inside your public, assets or static folder.
 
@@ -55,6 +57,24 @@ import Script from "next/script";
 />
 ```
 >And so on, you can use any framework you'd like...
+
+## NodeJS
+<span style="color:lightgreen">NodeJS version 17.5+ is required, since we rely on the newly implemented fetch API.</span>
+
+Just import the `kleverSDKLoader` that appeared on the root level of your project after instalation.
+```tsx
+//CommonJS
+require("./kleverSDK/kleverSDKLoader");
+
+// or
+
+//ES Modules
+import "./kleverSDK/kleverSDKLoader"
+
+...
+```
+
+# Basic usage
 
 To make a contract call, there are _two ways_, you can call only one method passing the user data plus the contract data or you can create an instance of an account.
 
@@ -114,6 +134,7 @@ All available transactions:
 - `Vote`
 - `CreateValidator`
 - `ConfigValidator`
+- `Unjail`
 - `SetAccountName`
 
 ## Extra
