@@ -15,70 +15,70 @@ const sendTransaction = async (
 
   switch (type) {
     case TransactionType.Transfer:
-      method = window.sendTransfer;
+      method = globalThis.sendTransfer;
       break;
     case TransactionType.CreateMarketplace:
-      method = window.sendCreateMarketplace;
+      method = globalThis.sendCreateMarketplace;
       break;
     case TransactionType.ConfigMarketplace:
-      method = window.sendConfigMarketplace;
+      method = globalThis.sendConfigMarketplace;
       break;
     case TransactionType.Freeze:
-      method = window.sendFreeze;
+      method = globalThis.sendFreeze;
       break;
     case TransactionType.Unfreeze:
-      method = window.sendUnfreeze;
+      method = globalThis.sendUnfreeze;
       break;
     case TransactionType.Withdraw:
-      method = window.sendWithdraw;
+      method = globalThis.sendWithdraw;
       break;
     case TransactionType.Undelegate:
-      method = window.sendUndelegate;
+      method = globalThis.sendUndelegate;
       break;
     case TransactionType.Delegate:
-      method = window.sendDelegate;
+      method = globalThis.sendDelegate;
       break;
     case TransactionType.SetAccountName:
-      method = window.setAccountName;
+      method = globalThis.setAccountName;
       break;
     case TransactionType.Votes:
-      method = window.sendVotes;
+      method = globalThis.sendVotes;
       break;
     case TransactionType.Claim:
-      method = window.sendClaim;
+      method = globalThis.sendClaim;
       break;
     case TransactionType.Unjail:
-      method = window.sendUnjail;
+      method = globalThis.sendUnjail;
       break;
     case TransactionType.CancelMarketOrder:
-      method = window.sendCancelMarketOrder;
+      method = globalThis.sendCancelMarketOrder;
       break;
     case TransactionType.SellOrder:
-      method = window.sendSellOrder;
+      method = globalThis.sendSellOrder;
       break;
     case TransactionType.BuyOrder:
-      method = window.sendBuyOrder;
+      method = globalThis.sendBuyOrder;
       break;
     case TransactionType.CreateAsset:
-      method = window.sendCreateAsset;
+      method = globalThis.sendCreateAsset;
       break;
     case TransactionType.Proposal:
-      method = window.sendProposal;
+      method = globalThis.sendProposal;
       break;
     case TransactionType.CreateValidator:
-      method = window.sendCreateValidator;
+      method = globalThis.sendCreateValidator;
       break;
     case TransactionType.ConfigValidator:
-      method = window.sendConfigValidator;
+      method = globalThis.sendConfigValidator;
       break;
     case TransactionType.ConfigITO:
-      method = window.sendConfigITO;
+      method = globalThis.sendConfigITO;
       break;
     case TransactionType.AssetTrigger:
-      method = window.sendAssetTrigger;
+      method = globalThis.sendAssetTrigger;
       break;
     default:
-      method = window.sendTransfer;
+      method = globalThis.sendTransfer;
       break;
   }
 

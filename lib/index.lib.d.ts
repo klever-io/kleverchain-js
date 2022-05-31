@@ -1,28 +1,34 @@
-interface Window {
-  go: any;
-  getAccount(address: string): Promise<IAccount>;
-  parsePemFileData(pemData: string): Promise<IPemResponse>;
-  createAccount(): Promise<IPemResponse>;
+declare module globalThis {
+  var Go: any;
+  function getAccount(address: string): Promise<IAccount>;
+  function parsePemFileData(pemData: string): Promise<IPemResponse>;
+  function createAccount(): Promise<IPemResponse>;
 
-  sendTransfer(payload: string): Promise<ITransactionResponse>;
-  sendCreateMarketplace(payload: string): Promise<ITransactionResponse>;
-  sendFreeze(payload: string): Promise<ITransactionResponse>;
-  sendUnfreeze(payload: string): Promise<ITransactionResponse>;
-  sendWithdraw(payload: string): Promise<ITransactionResponse>;
-  sendUndelegate(payload: string): Promise<ITransactionResponse>;
-  sendDelegate(payload: string): Promise<ITransactionResponse>;
-  setAccountName(payload: string): Promise<ITransactionResponse>;
-  sendVotes(payload: string): Promise<ITransactionResponse>;
-  sendClaim(payload: string): Promise<ITransactionResponse>;
-  sendUnjail(payload: string): Promise<ITransactionResponse>;
-  sendCancelMarketOrder(payload: string): Promise<ITransactionResponse>;
-  sendSellOrder(payload: string): Promise<ITransactionResponse>;
-  sendBuyOrder(payload: string): Promise<ITransactionResponse>;
-  sendCreateAsset(payload: string): Promise<ITransactionResponse>;
-  sendProposal(payload: string): Promise<ITransactionResponse>;
-  sendConfigMarketplace(payload: string): Promise<ITransactionResponse>;
-  sendCreateValidator(payload: string): Promise<ITransactionResponse>;
-  sendConfigValidator(payload: string): Promise<ITransactionResponse>;
-  sendConfigITO(payload: string): Promise<ITransactionResponse>;
-  sendAssetTrigger(payload: string): Promise<ITransactionResponse>;
+  function sendTransfer(payload: string): Promise<ITransactionResponse>;
+  function sendCreateMarketplace(
+    payload: string
+  ): Promise<ITransactionResponse>;
+  function sendFreeze(payload: string): Promise<ITransactionResponse>;
+  function sendUnfreeze(payload: string): Promise<ITransactionResponse>;
+  function sendWithdraw(payload: string): Promise<ITransactionResponse>;
+  function sendUndelegate(payload: string): Promise<ITransactionResponse>;
+  function sendDelegate(payload: string): Promise<ITransactionResponse>;
+  function setAccountName(payload: string): Promise<ITransactionResponse>;
+  function sendVotes(payload: string): Promise<ITransactionResponse>;
+  function sendClaim(payload: string): Promise<ITransactionResponse>;
+  function sendUnjail(payload: string): Promise<ITransactionResponse>;
+  function sendCancelMarketOrder(
+    payload: string
+  ): Promise<ITransactionResponse>;
+  function sendSellOrder(payload: string): Promise<ITransactionResponse>;
+  function sendBuyOrder(payload: string): Promise<ITransactionResponse>;
+  function sendCreateAsset(payload: string): Promise<ITransactionResponse>;
+  function sendProposal(payload: string): Promise<ITransactionResponse>;
+  function sendConfigMarketplace(
+    payload: string
+  ): Promise<ITransactionResponse>;
+  function sendCreateValidator(payload: string): Promise<ITransactionResponse>;
+  function sendConfigValidator(payload: string): Promise<ITransactionResponse>;
+  function sendConfigITO(payload: string): Promise<ITransactionResponse>;
+  function sendAssetTrigger(payload: string): Promise<ITransactionResponse>;
 }
