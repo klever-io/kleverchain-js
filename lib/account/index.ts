@@ -47,7 +47,7 @@ class Account {
   }
 
   async getBalance() {
-    if (!core.isSDKLoaded()) {
+    if (!(await core.isSDKLoaded())) {
       throw ErrLoadSdk;
     }
 
