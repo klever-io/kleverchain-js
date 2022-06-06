@@ -59,7 +59,7 @@ import Script from "next/script";
 >And so on, you can use any framework you'd like...
 
 ## NodeJS
-<span style="color:lightgreen">NodeJS version 17.5+ is required, since we rely on the newly implemented fetch API.</span>
+<span style="color:lightgreen">NodeJS version 18+ is required, since we rely on the newly implemented fetch API.</span>
 
 Just require the `kleverSDKLoader` that appeared on the root level of your project after instalation.
 ```tsx
