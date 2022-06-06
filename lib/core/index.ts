@@ -2,12 +2,22 @@ import Account from "../account";
 import { IPemResponse } from "../types/dtos";
 import { ErrLoadSdk } from "./errors";
 
-const isSDKLoaded = () => {
-  return !!globalThis.Go;
+const isSDKLoaded = async () => {
+  if (!!globalThis.getAccount) return true;
+
+  for (let i = 0; i < 100; i++) {
+    const isLoaded = await new Promise((resolve) =>
+      setTimeout(() => resolve(!!globalThis.getAccount), 50)
+    );
+
+    if (isLoaded) return true;
+  }
+
+  return false;
 };
 
 const getAccountByPem = async (pemData: string): Promise<Account> => {
-  if (!isSDKLoaded()) {
+  if (!(await isSDKLoaded())) {
     throw ErrLoadSdk;
   }
 
@@ -17,7 +27,7 @@ const getAccountByPem = async (pemData: string): Promise<Account> => {
 };
 
 const createAccount = async (): Promise<IPemResponse> => {
-  if (!isSDKLoaded()) {
+  if (!(await isSDKLoaded())) {
     throw ErrLoadSdk;
   }
 

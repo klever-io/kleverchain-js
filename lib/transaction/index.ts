@@ -7,7 +7,7 @@ const sendTransaction = async (
   type: TransactionType,
   payload: IBasePayload
 ): Promise<ITransactionResponse> => {
-  if (!core.isSDKLoaded()) {
+  if (!(await core.isSDKLoaded())) {
     throw ErrLoadSdk;
   }
 

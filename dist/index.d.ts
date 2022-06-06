@@ -268,7 +268,7 @@ interface IPemResponse {
 declare const core: {
     getAccountByPem: (pemData: string) => Promise<Account>;
     createAccount: () => Promise<IPemResponse>;
-    isSDKLoaded: () => boolean;
+    isSDKLoaded: () => Promise<boolean>;
 };
 
 declare const sendTransaction: (type: TransactionType, payload: IBasePayload) => Promise<ITransactionResponse>;
