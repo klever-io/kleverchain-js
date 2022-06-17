@@ -25,6 +25,8 @@ import {
   ICreateValidator,
   IConfigITO,
   IAssetTrigger,
+  IUpdateAccountPermission,
+  ISetITOPrices,
 } from "./types/contract";
 
 export { Account, core, sendTransaction };
@@ -54,4 +56,6 @@ export {
   ICreateValidator,
   IConfigITO,
   IAssetTrigger,
+  IUpdateAccountPermission,
+  ISetITOPrices,
 };
