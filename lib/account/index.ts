@@ -27,6 +27,8 @@ import {
   IUnfreeze,
   IVotes,
   IWithdraw,
+  IUpdateAccountPermission,
+  ISetITOPrices,
 } from "../types/contract";
 
 class Account {
@@ -258,6 +260,21 @@ class Account {
   async sendAssetTrigger(payload: IAssetTrigger) {
     const basePayload = await this.getBasePayload();
     return sendTransaction(TransactionType.AssetTrigger, {
+      ...basePayload,
+      ...payload,
+    });
+  }
+  async sendUpdateAccountPermission(payload: IUpdateAccountPermission) {
+    const basePayload = await this.getBasePayload();
+    return sendTransaction(TransactionType.UpdateAccountPermission, {
+      ...basePayload,
+      ...payload,
+    });
+  }
+
+  async sendSetITOPrices(payload: ISetITOPrices) {
+    const basePayload = await this.getBasePayload();
+    return sendTransaction(TransactionType.SetITOPrices, {
       ...basePayload,
       ...payload,
     });
