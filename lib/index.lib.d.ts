@@ -31,4 +31,8 @@ declare module globalThis {
   function sendConfigValidator(payload: string): Promise<ITransactionResponse>;
   function sendConfigITO(payload: string): Promise<ITransactionResponse>;
   function sendAssetTrigger(payload: string): Promise<ITransactionResponse>;
+  function sendUpdateAccountPermission(
+    payload: string
+  ): Promise<ITransactionResponse>;
+  function sendSetITOPrices(payload: string): Promise<ITransactionResponse>;
 }

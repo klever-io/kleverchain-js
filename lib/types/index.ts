@@ -63,6 +63,8 @@ export enum TransactionType {
   ConfigValidator,
   ConfigITO,
   AssetTrigger,
+  UpdateAccountPermission,
+  SetITOPrices,
 }
 
 export enum TriggerType {

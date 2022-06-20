@@ -38,7 +38,9 @@ declare enum TransactionType {
     CreateValidator = 17,
     ConfigValidator = 18,
     ConfigITO = 19,
-    AssetTrigger = 20
+    AssetTrigger = 20,
+    UpdateAccountPermission = 21,
+    SetITOPrices = 22
 }
 declare enum TriggerType {
     Mint = 0,
@@ -223,6 +225,28 @@ interface IAssetTrigger {
     role?: Roles;
     staking?: Staking;
 }
+declare enum AccPermissionType {
+    OWNER = 0,
+    USER = 1
+}
+interface AccKey {
+    address: string;
+    weight: number;
+}
+interface AccPermission {
+    type: AccPermissionType;
+    permissionName: string;
+    threshold: number;
+    operations: string;
+    signers: AccKey[];
+}
+interface IUpdateAccountPermission {
+    permissions: AccPermission[];
+}
+interface ISetITOPrices {
+    assetID: string;
+    packInfo: PackInfo;
+}
 
 declare class Account {
     private address;
@@ -254,6 +278,8 @@ declare class Account {
     sendConfigValidator(payload: ICreateValidator): Promise<ITransactionResponse>;
     sendConfigITO(payload: IConfigITO): Promise<ITransactionResponse>;
     sendAssetTrigger(payload: IAssetTrigger): Promise<ITransactionResponse>;
+    sendUpdateAccountPermission(payload: IUpdateAccountPermission): Promise<ITransactionResponse>;
+    sendSetITOPrices(payload: ISetITOPrices): Promise<ITransactionResponse>;
 }
 
 interface ITransactionResponse {
@@ -273,4 +299,4 @@ declare const core: {
 
 declare const sendTransaction: (type: TransactionType, payload: IBasePayload) => Promise<ITransactionResponse>;
 
-export { Account, IAccount, IAssetTrigger, IBasePayload, IBuyOrder, ICancelMarketOrder, IClaim, IConfigITO, IConfigMarket, ICreateAsset, ICreateMarket, ICreateValidator, IDelegate, IFreeze, IPemResponse, IProposal, ISellOrder, ISetAccountName, ITransactionResponse, ITransfer, IUndelegate, IUnfreeze, IVotes, IWithdraw, TransactionType, TriggerType, core, sendTransaction };
+export { Account, IAccount, IAssetTrigger, IBasePayload, IBuyOrder, ICancelMarketOrder, IClaim, IConfigITO, IConfigMarket, ICreateAsset, ICreateMarket, ICreateValidator, IDelegate, IFreeze, IPemResponse, IProposal, ISellOrder, ISetAccountName, ISetITOPrices, ITransactionResponse, ITransfer, IUndelegate, IUnfreeze, IUpdateAccountPermission, IVotes, IWithdraw, TransactionType, TriggerType, core, sendTransaction };

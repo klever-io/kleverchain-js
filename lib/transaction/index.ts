@@ -77,6 +77,12 @@ const sendTransaction = async (
     case TransactionType.AssetTrigger:
       method = globalThis.sendAssetTrigger;
       break;
+    case TransactionType.UpdateAccountPermission:
+      method = globalThis.sendUpdateAccountPermission;
+      break;
+    case TransactionType.SetITOPrices:
+      method = globalThis.sendSetITOPrices;
+      break;
     default:
       method = globalThis.sendTransfer;
       break;

@@ -191,3 +191,30 @@ export interface IAssetTrigger {
   role?: Roles;
   staking?: Staking;
 }
+
+export enum AccPermissionType {
+  OWNER = 0,
+  USER = 1,
+}
+
+interface AccKey {
+  address: string;
+  weight: number;
+}
+
+interface AccPermission {
+  type: AccPermissionType;
+  permissionName: string;
+  threshold: number;
+  operations: string;
+  signers: AccKey[];
+}
+
+export interface IUpdateAccountPermission {
+  permissions: AccPermission[];
+}
+
+export interface ISetITOPrices {
+  assetID: string;
+  packInfo: PackInfo;
+}
