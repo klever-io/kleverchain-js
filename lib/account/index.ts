@@ -98,92 +98,136 @@ class Account {
     return basePayload;
   }
 
-  async sendTransfer(payload: ITransfer) {
+  async sendTransfer(payload: ITransfer, autobroadcast?: boolean) {
     const basePayload = await this.getBasePayload();
-    return sendTransaction(TransactionType.Transfer, {
-      ...basePayload,
-      ...payload,
-    });
+    return sendTransaction(
+      TransactionType.Transfer,
+      {
+        ...basePayload,
+        ...payload,
+      },
+      autobroadcast
+    );
   }
 
-  async sendCreateMarketplace(payload: ICreateMarket) {
+  async sendCreateMarketplace(payload: ICreateMarket, autobroadcast?: boolean) {
     const basePayload = await this.getBasePayload();
-    return sendTransaction(TransactionType.CreateMarketplace, {
-      ...basePayload,
-      ...payload,
-    });
+    return sendTransaction(
+      TransactionType.CreateMarketplace,
+      {
+        ...basePayload,
+        ...payload,
+      },
+      autobroadcast
+    );
   }
 
-  async sendConfigMarketplace(payload: IConfigMarket) {
+  async sendConfigMarketplace(payload: IConfigMarket, autobroadcast?: boolean) {
     const basePayload = await this.getBasePayload();
-    return sendTransaction(TransactionType.ConfigMarketplace, {
-      ...basePayload,
-      ...payload,
-    });
+    return sendTransaction(
+      TransactionType.ConfigMarketplace,
+      {
+        ...basePayload,
+        ...payload,
+      },
+      autobroadcast
+    );
   }
 
-  async sendFreeze(payload: IFreeze) {
+  async sendFreeze(payload: IFreeze, autobroadcast?: boolean) {
     const basePayload = await this.getBasePayload();
-    return sendTransaction(TransactionType.Freeze, {
-      ...basePayload,
-      ...payload,
-    });
+    return sendTransaction(
+      TransactionType.Freeze,
+      {
+        ...basePayload,
+        ...payload,
+      },
+      autobroadcast
+    );
   }
 
-  async sendUnfreeze(payload: IUnfreeze) {
+  async sendUnfreeze(payload: IUnfreeze, autobroadcast?: boolean) {
     const basePayload = await this.getBasePayload();
-    return sendTransaction(TransactionType.Unfreeze, {
-      ...basePayload,
-      ...payload,
-    });
+    return sendTransaction(
+      TransactionType.Unfreeze,
+      {
+        ...basePayload,
+        ...payload,
+      },
+      autobroadcast
+    );
   }
 
-  async sendWithdraw(payload: IWithdraw) {
+  async sendWithdraw(payload: IWithdraw, autobroadcast?: boolean) {
     const basePayload = await this.getBasePayload();
-    return sendTransaction(TransactionType.Withdraw, {
-      ...basePayload,
-      ...payload,
-    });
+    return sendTransaction(
+      TransactionType.Withdraw,
+      {
+        ...basePayload,
+        ...payload,
+      },
+      autobroadcast
+    );
   }
 
-  async sendUndelegate(payload: IUndelegate) {
+  async sendUndelegate(payload: IUndelegate, autobroadcast?: boolean) {
     const basePayload = await this.getBasePayload();
-    return sendTransaction(TransactionType.Undelegate, {
-      ...basePayload,
-      ...payload,
-    });
+    return sendTransaction(
+      TransactionType.Undelegate,
+      {
+        ...basePayload,
+        ...payload,
+      },
+      autobroadcast
+    );
   }
 
-  async sendDelegate(payload: IDelegate) {
+  async sendDelegate(payload: IDelegate, autobroadcast?: boolean) {
     const basePayload = await this.getBasePayload();
-    return sendTransaction(TransactionType.Delegate, {
-      ...basePayload,
-      ...payload,
-    });
+    return sendTransaction(
+      TransactionType.Delegate,
+      {
+        ...basePayload,
+        ...payload,
+      },
+      autobroadcast
+    );
   }
 
-  async setAccountName(payload: ISetAccountName) {
+  async setAccountName(payload: ISetAccountName, autobroadcast?: boolean) {
     const basePayload = await this.getBasePayload();
-    return sendTransaction(TransactionType.SetAccountName, {
-      ...basePayload,
-      ...payload,
-    });
+    return sendTransaction(
+      TransactionType.SetAccountName,
+      {
+        ...basePayload,
+        ...payload,
+      },
+      autobroadcast
+    );
   }
 
-  async sendVotes(payload: IVotes) {
+  async sendVotes(payload: IVotes, autobroadcast?: boolean) {
     const basePayload = await this.getBasePayload();
-    return sendTransaction(TransactionType.Votes, {
-      ...basePayload,
-      ...payload,
-    });
+    return sendTransaction(
+      TransactionType.Votes,
+      {
+        ...basePayload,
+        ...payload,
+      },
+      autobroadcast
+    );
   }
 
-  async sendClaim(payload: IClaim) {
+  async sendClaim(payload: IClaim, autobroadcast?: boolean) {
     const basePayload = await this.getBasePayload();
-    return sendTransaction(TransactionType.Claim, {
-      ...basePayload,
-      ...payload,
-    });
+    return sendTransaction(
+      TransactionType.Claim,
+      {
+        ...basePayload,
+        ...payload,
+      },
+      autobroadcast
+    );
   }
 
   async sendUnjail() {
@@ -193,91 +237,147 @@ class Account {
     });
   }
 
-  async sendCancelMarketOrder(payload: ICancelMarketOrder) {
+  async sendCancelMarketOrder(
+    payload: ICancelMarketOrder,
+    autobroadcast?: boolean
+  ) {
     const basePayload = await this.getBasePayload();
-    return sendTransaction(TransactionType.CancelMarketOrder, {
-      ...basePayload,
-      ...payload,
-    });
+    return sendTransaction(
+      TransactionType.CancelMarketOrder,
+      {
+        ...basePayload,
+        ...payload,
+      },
+      autobroadcast
+    );
   }
 
-  async sendSellOrder(payload: ISellOrder) {
+  async sendSellOrder(payload: ISellOrder, autobroadcast?: boolean) {
     const basePayload = await this.getBasePayload();
-    return sendTransaction(TransactionType.SellOrder, {
-      ...basePayload,
-      ...payload,
-    });
+    return sendTransaction(
+      TransactionType.SellOrder,
+      {
+        ...basePayload,
+        ...payload,
+      },
+      autobroadcast
+    );
   }
 
-  async sendBuyOrder(payload: IBuyOrder) {
+  async sendBuyOrder(payload: IBuyOrder, autobroadcast?: boolean) {
     const basePayload = await this.getBasePayload();
-    return sendTransaction(TransactionType.BuyOrder, {
-      ...basePayload,
-      ...payload,
-    });
+    return sendTransaction(
+      TransactionType.BuyOrder,
+      {
+        ...basePayload,
+        ...payload,
+      },
+      autobroadcast
+    );
   }
 
-  async sendCreateAsset(payload: ICreateAsset) {
+  async sendCreateAsset(payload: ICreateAsset, autobroadcast?: boolean) {
     const basePayload = await this.getBasePayload();
-    return sendTransaction(TransactionType.CreateAsset, {
-      ...basePayload,
-      ...payload,
-    });
+    return sendTransaction(
+      TransactionType.CreateAsset,
+      {
+        ...basePayload,
+        ...payload,
+      },
+      autobroadcast
+    );
   }
 
-  async sendProposal(payload: IProposal) {
+  async sendProposal(payload: IProposal, autobroadcast?: boolean) {
     const basePayload = await this.getBasePayload();
-    return sendTransaction(TransactionType.Proposal, {
-      ...basePayload,
-      ...payload,
-    });
+    return sendTransaction(
+      TransactionType.Proposal,
+      {
+        ...basePayload,
+        ...payload,
+      },
+      autobroadcast
+    );
   }
 
-  async sendCreateValidator(payload: ICreateValidator) {
+  async sendCreateValidator(
+    payload: ICreateValidator,
+    autobroadcast?: boolean
+  ) {
     const basePayload = await this.getBasePayload();
-    return sendTransaction(TransactionType.CreateValidator, {
-      ...basePayload,
-      ...payload,
-    });
+    return sendTransaction(
+      TransactionType.CreateValidator,
+      {
+        ...basePayload,
+        ...payload,
+      },
+      autobroadcast
+    );
   }
 
-  async sendConfigValidator(payload: ICreateValidator) {
+  async sendConfigValidator(
+    payload: ICreateValidator,
+    autobroadcast?: boolean
+  ) {
     const basePayload = await this.getBasePayload();
-    return sendTransaction(TransactionType.ConfigValidator, {
-      ...basePayload,
-      ...payload,
-    });
+    return sendTransaction(
+      TransactionType.ConfigValidator,
+      {
+        ...basePayload,
+        ...payload,
+      },
+      autobroadcast
+    );
   }
 
-  async sendConfigITO(payload: IConfigITO) {
+  async sendConfigITO(payload: IConfigITO, autobroadcast?: boolean) {
     const basePayload = await this.getBasePayload();
-    return sendTransaction(TransactionType.ConfigITO, {
-      ...basePayload,
-      ...payload,
-    });
+    return sendTransaction(
+      TransactionType.ConfigITO,
+      {
+        ...basePayload,
+        ...payload,
+      },
+      autobroadcast
+    );
   }
 
-  async sendAssetTrigger(payload: IAssetTrigger) {
+  async sendAssetTrigger(payload: IAssetTrigger, autobroadcast?: boolean) {
     const basePayload = await this.getBasePayload();
-    return sendTransaction(TransactionType.AssetTrigger, {
-      ...basePayload,
-      ...payload,
-    });
+    return sendTransaction(
+      TransactionType.AssetTrigger,
+      {
+        ...basePayload,
+        ...payload,
+      },
+      autobroadcast
+    );
   }
-  async sendUpdateAccountPermission(payload: IUpdateAccountPermission) {
+  async sendUpdateAccountPermission(
+    payload: IUpdateAccountPermission,
+    autobroadcast?: boolean
+  ) {
     const basePayload = await this.getBasePayload();
-    return sendTransaction(TransactionType.UpdateAccountPermission, {
-      ...basePayload,
-      ...payload,
-    });
+    return sendTransaction(
+      TransactionType.UpdateAccountPermission,
+      {
+        ...basePayload,
+        ...payload,
+      },
+      autobroadcast
+    );
   }
 
-  async sendSetITOPrices(payload: ISetITOPrices) {
+  async sendSetITOPrices(payload: ISetITOPrices, autobroadcast?: boolean) {
     const basePayload = await this.getBasePayload();
-    return sendTransaction(TransactionType.SetITOPrices, {
-      ...basePayload,
-      ...payload,
-    });
+    return sendTransaction(
+      TransactionType.SetITOPrices,
+      {
+        ...basePayload,
+        ...payload,
+      },
+      autobroadcast
+    );
   }
 }
 

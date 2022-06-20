@@ -1,5 +1,5 @@
 import Account from "../account";
-import { IPemResponse } from "../types/dtos";
+import { IBroadcastResponse, IPemResponse } from "../types/dtos";
 import { ErrLoadSdk } from "./errors";
 
 const isSDKLoaded = async () => {
@@ -36,10 +36,23 @@ const createAccount = async (): Promise<IPemResponse> => {
   return account;
 };
 
+const broadcastTransactions = async (
+  transactions: string
+): Promise<IBroadcastResponse> => {
+  if (!(await isSDKLoaded())) {
+    throw ErrLoadSdk;
+  }
+
+  const response = await globalThis.broadcast(transactions);
+
+  return response;
+};
+
 const core = {
   getAccountByPem,
   createAccount,
   isSDKLoaded,
+  broadcastTransactions,
 };
 
 export default core;

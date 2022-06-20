@@ -35,4 +35,5 @@ declare module globalThis {
     payload: string
   ): Promise<ITransactionResponse>;
   function sendSetITOPrices(payload: string): Promise<ITransactionResponse>;
+  function broadcast(payload: string): Promise<IBroadcastResponse>;
 }

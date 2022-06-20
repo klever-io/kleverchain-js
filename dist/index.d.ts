@@ -1,3 +1,28 @@
+interface Contract {
+    Type: number;
+    Parameter: any;
+}
+interface ITransactionResponse {
+    RawData: {
+        Version: number;
+        ChainID: number;
+        Nonce: number;
+        Sender: string;
+        Contract: Contract[];
+        KAppFee: number;
+        BandwidthFee: number;
+    };
+    Signature: string[];
+}
+interface IBroadcastResponse {
+    txHashes: string[];
+    txCount: number;
+}
+interface IPemResponse {
+    address: string;
+    privateKey: string;
+}
+
 interface IAccount {
     data: {
         account: {
@@ -257,38 +282,29 @@ declare class Account {
     getBalance(): Promise<number>;
     getNonce(): Promise<number>;
     getBasePayload(): Promise<IBasePayload>;
-    sendTransfer(payload: ITransfer): Promise<ITransactionResponse>;
-    sendCreateMarketplace(payload: ICreateMarket): Promise<ITransactionResponse>;
-    sendConfigMarketplace(payload: IConfigMarket): Promise<ITransactionResponse>;
-    sendFreeze(payload: IFreeze): Promise<ITransactionResponse>;
-    sendUnfreeze(payload: IUnfreeze): Promise<ITransactionResponse>;
-    sendWithdraw(payload: IWithdraw): Promise<ITransactionResponse>;
-    sendUndelegate(payload: IUndelegate): Promise<ITransactionResponse>;
-    sendDelegate(payload: IDelegate): Promise<ITransactionResponse>;
-    setAccountName(payload: ISetAccountName): Promise<ITransactionResponse>;
-    sendVotes(payload: IVotes): Promise<ITransactionResponse>;
-    sendClaim(payload: IClaim): Promise<ITransactionResponse>;
-    sendUnjail(): Promise<ITransactionResponse>;
-    sendCancelMarketOrder(payload: ICancelMarketOrder): Promise<ITransactionResponse>;
-    sendSellOrder(payload: ISellOrder): Promise<ITransactionResponse>;
-    sendBuyOrder(payload: IBuyOrder): Promise<ITransactionResponse>;
-    sendCreateAsset(payload: ICreateAsset): Promise<ITransactionResponse>;
-    sendProposal(payload: IProposal): Promise<ITransactionResponse>;
-    sendCreateValidator(payload: ICreateValidator): Promise<ITransactionResponse>;
-    sendConfigValidator(payload: ICreateValidator): Promise<ITransactionResponse>;
-    sendConfigITO(payload: IConfigITO): Promise<ITransactionResponse>;
-    sendAssetTrigger(payload: IAssetTrigger): Promise<ITransactionResponse>;
-    sendUpdateAccountPermission(payload: IUpdateAccountPermission): Promise<ITransactionResponse>;
-    sendSetITOPrices(payload: ISetITOPrices): Promise<ITransactionResponse>;
-}
-
-interface ITransactionResponse {
-    txHashes: string[];
-    txCount: number;
-}
-interface IPemResponse {
-    address: string;
-    privateKey: string;
+    sendTransfer(payload: ITransfer, autobroadcast?: boolean): Promise<ITransactionResponse | IBroadcastResponse>;
+    sendCreateMarketplace(payload: ICreateMarket, autobroadcast?: boolean): Promise<ITransactionResponse | IBroadcastResponse>;
+    sendConfigMarketplace(payload: IConfigMarket, autobroadcast?: boolean): Promise<ITransactionResponse | IBroadcastResponse>;
+    sendFreeze(payload: IFreeze, autobroadcast?: boolean): Promise<ITransactionResponse | IBroadcastResponse>;
+    sendUnfreeze(payload: IUnfreeze, autobroadcast?: boolean): Promise<ITransactionResponse | IBroadcastResponse>;
+    sendWithdraw(payload: IWithdraw, autobroadcast?: boolean): Promise<ITransactionResponse | IBroadcastResponse>;
+    sendUndelegate(payload: IUndelegate, autobroadcast?: boolean): Promise<ITransactionResponse | IBroadcastResponse>;
+    sendDelegate(payload: IDelegate, autobroadcast?: boolean): Promise<ITransactionResponse | IBroadcastResponse>;
+    setAccountName(payload: ISetAccountName, autobroadcast?: boolean): Promise<ITransactionResponse | IBroadcastResponse>;
+    sendVotes(payload: IVotes, autobroadcast?: boolean): Promise<ITransactionResponse | IBroadcastResponse>;
+    sendClaim(payload: IClaim, autobroadcast?: boolean): Promise<ITransactionResponse | IBroadcastResponse>;
+    sendUnjail(): Promise<ITransactionResponse | IBroadcastResponse>;
+    sendCancelMarketOrder(payload: ICancelMarketOrder, autobroadcast?: boolean): Promise<ITransactionResponse | IBroadcastResponse>;
+    sendSellOrder(payload: ISellOrder, autobroadcast?: boolean): Promise<ITransactionResponse | IBroadcastResponse>;
+    sendBuyOrder(payload: IBuyOrder, autobroadcast?: boolean): Promise<ITransactionResponse | IBroadcastResponse>;
+    sendCreateAsset(payload: ICreateAsset, autobroadcast?: boolean): Promise<ITransactionResponse | IBroadcastResponse>;
+    sendProposal(payload: IProposal, autobroadcast?: boolean): Promise<ITransactionResponse | IBroadcastResponse>;
+    sendCreateValidator(payload: ICreateValidator, autobroadcast?: boolean): Promise<ITransactionResponse | IBroadcastResponse>;
+    sendConfigValidator(payload: ICreateValidator, autobroadcast?: boolean): Promise<ITransactionResponse | IBroadcastResponse>;
+    sendConfigITO(payload: IConfigITO, autobroadcast?: boolean): Promise<ITransactionResponse | IBroadcastResponse>;
+    sendAssetTrigger(payload: IAssetTrigger, autobroadcast?: boolean): Promise<ITransactionResponse | IBroadcastResponse>;
+    sendUpdateAccountPermission(payload: IUpdateAccountPermission, autobroadcast?: boolean): Promise<ITransactionResponse | IBroadcastResponse>;
+    sendSetITOPrices(payload: ISetITOPrices, autobroadcast?: boolean): Promise<ITransactionResponse | IBroadcastResponse>;
 }
 
 declare const core: {
@@ -297,6 +313,6 @@ declare const core: {
     isSDKLoaded: () => Promise<boolean>;
 };
 
-declare const sendTransaction: (type: TransactionType, payload: IBasePayload) => Promise<ITransactionResponse>;
+declare const sendTransaction: (type: TransactionType, payload: IBasePayload, autobroadcast?: boolean) => Promise<ITransactionResponse | IBroadcastResponse>;
 
 export { Account, IAccount, IAssetTrigger, IBasePayload, IBuyOrder, ICancelMarketOrder, IClaim, IConfigITO, IConfigMarket, ICreateAsset, ICreateMarket, ICreateValidator, IDelegate, IFreeze, IPemResponse, IProposal, ISellOrder, ISetAccountName, ISetITOPrices, ITransactionResponse, ITransfer, IUndelegate, IUnfreeze, IUpdateAccountPermission, IVotes, IWithdraw, TransactionType, TriggerType, core, sendTransaction };
