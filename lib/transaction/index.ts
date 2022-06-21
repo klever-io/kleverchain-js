@@ -6,7 +6,8 @@ import { IBroadcastResponse, ITransactionResponse } from "../types/dtos";
 const sendTransaction = async (
   type: TransactionType,
   payload: IBasePayload,
-  autobroadcast: boolean = true
+  autobroadcast: boolean = true,
+  previousTX?: ITransactionResponse
 ): Promise<ITransactionResponse | IBroadcastResponse> => {
   if (!(await core.isSDKLoaded())) {
     throw ErrLoadSdk;
@@ -90,12 +91,18 @@ const sendTransaction = async (
   }
 
   if (autobroadcast) {
-    const response = await method(JSON.stringify(payload));
+    const response = await method(
+      JSON.stringify(payload),
+      previousTX ? JSON.stringify(previousTX) : undefined
+    );
 
     return globalThis.broadcast(JSON.stringify(response));
   }
 
-  return method(JSON.stringify(payload));
+  return method(
+    JSON.stringify(payload),
+    previousTX ? JSON.stringify(previousTX) : undefined
+  );
 };
 
 export { sendTransaction };

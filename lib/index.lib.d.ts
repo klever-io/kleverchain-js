@@ -4,36 +4,97 @@ declare module globalThis {
   function parsePemFileData(pemData: string): Promise<IPemResponse>;
   function createAccount(): Promise<IPemResponse>;
 
-  function sendTransfer(payload: string): Promise<ITransactionResponse>;
+  function sendTransfer(
+    payload: string,
+    previousTX?: string
+  ): Promise<ITransactionResponse>;
   function sendCreateMarketplace(
-    payload: string
+    payload: string,
+    previousTX?: string
   ): Promise<ITransactionResponse>;
-  function sendFreeze(payload: string): Promise<ITransactionResponse>;
-  function sendUnfreeze(payload: string): Promise<ITransactionResponse>;
-  function sendWithdraw(payload: string): Promise<ITransactionResponse>;
-  function sendUndelegate(payload: string): Promise<ITransactionResponse>;
-  function sendDelegate(payload: string): Promise<ITransactionResponse>;
-  function setAccountName(payload: string): Promise<ITransactionResponse>;
-  function sendVotes(payload: string): Promise<ITransactionResponse>;
-  function sendClaim(payload: string): Promise<ITransactionResponse>;
-  function sendUnjail(payload: string): Promise<ITransactionResponse>;
+  function sendFreeze(
+    payload: string,
+    previousTX?: string
+  ): Promise<ITransactionResponse>;
+  function sendUnfreeze(
+    payload: string,
+    previousTX?: string
+  ): Promise<ITransactionResponse>;
+  function sendWithdraw(
+    payload: string,
+    previousTX?: string
+  ): Promise<ITransactionResponse>;
+  function sendUndelegate(
+    payload: string,
+    previousTX?: string
+  ): Promise<ITransactionResponse>;
+  function sendDelegate(
+    payload: string,
+    previousTX?: string
+  ): Promise<ITransactionResponse>;
+  function setAccountName(
+    payload: string,
+    previousTX?: string
+  ): Promise<ITransactionResponse>;
+  function sendVotes(
+    payload: string,
+    previousTX?: string
+  ): Promise<ITransactionResponse>;
+  function sendClaim(
+    payload: string,
+    previousTX?: string
+  ): Promise<ITransactionResponse>;
+  function sendUnjail(
+    payload: string,
+    previousTX?: string
+  ): Promise<ITransactionResponse>;
   function sendCancelMarketOrder(
-    payload: string
+    payload: string,
+    previousTX?: string
   ): Promise<ITransactionResponse>;
-  function sendSellOrder(payload: string): Promise<ITransactionResponse>;
-  function sendBuyOrder(payload: string): Promise<ITransactionResponse>;
-  function sendCreateAsset(payload: string): Promise<ITransactionResponse>;
-  function sendProposal(payload: string): Promise<ITransactionResponse>;
+  function sendSellOrder(
+    payload: string,
+    previousTX?: string
+  ): Promise<ITransactionResponse>;
+  function sendBuyOrder(
+    payload: string,
+    previousTX?: string
+  ): Promise<ITransactionResponse>;
+  function sendCreateAsset(
+    payload: string,
+    previousTX?: string
+  ): Promise<ITransactionResponse>;
+  function sendProposal(
+    payload: string,
+    previousTX?: string
+  ): Promise<ITransactionResponse>;
   function sendConfigMarketplace(
-    payload: string
+    payload: string,
+    previousTX?: string
   ): Promise<ITransactionResponse>;
-  function sendCreateValidator(payload: string): Promise<ITransactionResponse>;
-  function sendConfigValidator(payload: string): Promise<ITransactionResponse>;
-  function sendConfigITO(payload: string): Promise<ITransactionResponse>;
-  function sendAssetTrigger(payload: string): Promise<ITransactionResponse>;
+  function sendCreateValidator(
+    payload: string,
+    previousTX?: string
+  ): Promise<ITransactionResponse>;
+  function sendConfigValidator(
+    payload: string,
+    previousTX?: string
+  ): Promise<ITransactionResponse>;
+  function sendConfigITO(
+    payload: string,
+    previousTX?: string
+  ): Promise<ITransactionResponse>;
+  function sendAssetTrigger(
+    payload: string,
+    previousTX?: string
+  ): Promise<ITransactionResponse>;
   function sendUpdateAccountPermission(
-    payload: string
+    payload: string,
+    previousTX?: string
   ): Promise<ITransactionResponse>;
-  function sendSetITOPrices(payload: string): Promise<ITransactionResponse>;
+  function sendSetITOPrices(
+    payload: string,
+    previousTX?: string
+  ): Promise<ITransactionResponse>;
   function broadcast(payload: string): Promise<IBroadcastResponse>;
 }

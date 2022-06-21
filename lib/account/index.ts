@@ -30,6 +30,7 @@ import {
   IUpdateAccountPermission,
   ISetITOPrices,
 } from "../types/contract";
+import { ITransactionResponse } from "../types/dtos";
 
 class Account {
   private address: string;
@@ -98,7 +99,11 @@ class Account {
     return basePayload;
   }
 
-  async sendTransfer(payload: ITransfer, autobroadcast?: boolean) {
+  async sendTransfer(
+    payload: ITransfer,
+    autobroadcast?: boolean,
+    previousTX?: ITransactionResponse
+  ) {
     const basePayload = await this.getBasePayload();
     return sendTransaction(
       TransactionType.Transfer,
@@ -106,11 +111,16 @@ class Account {
         ...basePayload,
         ...payload,
       },
-      autobroadcast
+      autobroadcast,
+      previousTX
     );
   }
 
-  async sendCreateMarketplace(payload: ICreateMarket, autobroadcast?: boolean) {
+  async sendCreateMarketplace(
+    payload: ICreateMarket,
+    autobroadcast?: boolean,
+    previousTX?: ITransactionResponse
+  ) {
     const basePayload = await this.getBasePayload();
     return sendTransaction(
       TransactionType.CreateMarketplace,
@@ -122,7 +132,11 @@ class Account {
     );
   }
 
-  async sendConfigMarketplace(payload: IConfigMarket, autobroadcast?: boolean) {
+  async sendConfigMarketplace(
+    payload: IConfigMarket,
+    autobroadcast?: boolean,
+    previousTX?: ITransactionResponse
+  ) {
     const basePayload = await this.getBasePayload();
     return sendTransaction(
       TransactionType.ConfigMarketplace,
@@ -134,7 +148,11 @@ class Account {
     );
   }
 
-  async sendFreeze(payload: IFreeze, autobroadcast?: boolean) {
+  async sendFreeze(
+    payload: IFreeze,
+    autobroadcast?: boolean,
+    previousTX?: ITransactionResponse
+  ) {
     const basePayload = await this.getBasePayload();
     return sendTransaction(
       TransactionType.Freeze,
@@ -146,7 +164,11 @@ class Account {
     );
   }
 
-  async sendUnfreeze(payload: IUnfreeze, autobroadcast?: boolean) {
+  async sendUnfreeze(
+    payload: IUnfreeze,
+    autobroadcast?: boolean,
+    previousTX?: ITransactionResponse
+  ) {
     const basePayload = await this.getBasePayload();
     return sendTransaction(
       TransactionType.Unfreeze,
@@ -158,7 +180,11 @@ class Account {
     );
   }
 
-  async sendWithdraw(payload: IWithdraw, autobroadcast?: boolean) {
+  async sendWithdraw(
+    payload: IWithdraw,
+    autobroadcast?: boolean,
+    previousTX?: ITransactionResponse
+  ) {
     const basePayload = await this.getBasePayload();
     return sendTransaction(
       TransactionType.Withdraw,
@@ -170,7 +196,11 @@ class Account {
     );
   }
 
-  async sendUndelegate(payload: IUndelegate, autobroadcast?: boolean) {
+  async sendUndelegate(
+    payload: IUndelegate,
+    autobroadcast?: boolean,
+    previousTX?: ITransactionResponse
+  ) {
     const basePayload = await this.getBasePayload();
     return sendTransaction(
       TransactionType.Undelegate,
@@ -182,7 +212,11 @@ class Account {
     );
   }
 
-  async sendDelegate(payload: IDelegate, autobroadcast?: boolean) {
+  async sendDelegate(
+    payload: IDelegate,
+    autobroadcast?: boolean,
+    previousTX?: ITransactionResponse
+  ) {
     const basePayload = await this.getBasePayload();
     return sendTransaction(
       TransactionType.Delegate,
@@ -194,7 +228,11 @@ class Account {
     );
   }
 
-  async setAccountName(payload: ISetAccountName, autobroadcast?: boolean) {
+  async setAccountName(
+    payload: ISetAccountName,
+    autobroadcast?: boolean,
+    previousTX?: ITransactionResponse
+  ) {
     const basePayload = await this.getBasePayload();
     return sendTransaction(
       TransactionType.SetAccountName,
@@ -206,7 +244,11 @@ class Account {
     );
   }
 
-  async sendVotes(payload: IVotes, autobroadcast?: boolean) {
+  async sendVotes(
+    payload: IVotes,
+    autobroadcast?: boolean,
+    previousTX?: ITransactionResponse
+  ) {
     const basePayload = await this.getBasePayload();
     return sendTransaction(
       TransactionType.Votes,
@@ -218,7 +260,11 @@ class Account {
     );
   }
 
-  async sendClaim(payload: IClaim, autobroadcast?: boolean) {
+  async sendClaim(
+    payload: IClaim,
+    autobroadcast?: boolean,
+    previousTX?: ITransactionResponse
+  ) {
     const basePayload = await this.getBasePayload();
     return sendTransaction(
       TransactionType.Claim,
@@ -239,7 +285,8 @@ class Account {
 
   async sendCancelMarketOrder(
     payload: ICancelMarketOrder,
-    autobroadcast?: boolean
+    autobroadcast?: boolean,
+    previousTX?: ITransactionResponse
   ) {
     const basePayload = await this.getBasePayload();
     return sendTransaction(
@@ -252,7 +299,11 @@ class Account {
     );
   }
 
-  async sendSellOrder(payload: ISellOrder, autobroadcast?: boolean) {
+  async sendSellOrder(
+    payload: ISellOrder,
+    autobroadcast?: boolean,
+    previousTX?: ITransactionResponse
+  ) {
     const basePayload = await this.getBasePayload();
     return sendTransaction(
       TransactionType.SellOrder,
@@ -264,7 +315,11 @@ class Account {
     );
   }
 
-  async sendBuyOrder(payload: IBuyOrder, autobroadcast?: boolean) {
+  async sendBuyOrder(
+    payload: IBuyOrder,
+    autobroadcast?: boolean,
+    previousTX?: ITransactionResponse
+  ) {
     const basePayload = await this.getBasePayload();
     return sendTransaction(
       TransactionType.BuyOrder,
@@ -276,7 +331,11 @@ class Account {
     );
   }
 
-  async sendCreateAsset(payload: ICreateAsset, autobroadcast?: boolean) {
+  async sendCreateAsset(
+    payload: ICreateAsset,
+    autobroadcast?: boolean,
+    previousTX?: ITransactionResponse
+  ) {
     const basePayload = await this.getBasePayload();
     return sendTransaction(
       TransactionType.CreateAsset,
@@ -288,7 +347,11 @@ class Account {
     );
   }
 
-  async sendProposal(payload: IProposal, autobroadcast?: boolean) {
+  async sendProposal(
+    payload: IProposal,
+    autobroadcast?: boolean,
+    previousTX?: ITransactionResponse
+  ) {
     const basePayload = await this.getBasePayload();
     return sendTransaction(
       TransactionType.Proposal,
@@ -302,7 +365,8 @@ class Account {
 
   async sendCreateValidator(
     payload: ICreateValidator,
-    autobroadcast?: boolean
+    autobroadcast?: boolean,
+    previousTX?: ITransactionResponse
   ) {
     const basePayload = await this.getBasePayload();
     return sendTransaction(
@@ -317,7 +381,8 @@ class Account {
 
   async sendConfigValidator(
     payload: ICreateValidator,
-    autobroadcast?: boolean
+    autobroadcast?: boolean,
+    previousTX?: ITransactionResponse
   ) {
     const basePayload = await this.getBasePayload();
     return sendTransaction(
@@ -330,7 +395,11 @@ class Account {
     );
   }
 
-  async sendConfigITO(payload: IConfigITO, autobroadcast?: boolean) {
+  async sendConfigITO(
+    payload: IConfigITO,
+    autobroadcast?: boolean,
+    previousTX?: ITransactionResponse
+  ) {
     const basePayload = await this.getBasePayload();
     return sendTransaction(
       TransactionType.ConfigITO,
@@ -342,7 +411,11 @@ class Account {
     );
   }
 
-  async sendAssetTrigger(payload: IAssetTrigger, autobroadcast?: boolean) {
+  async sendAssetTrigger(
+    payload: IAssetTrigger,
+    autobroadcast?: boolean,
+    previousTX?: ITransactionResponse
+  ) {
     const basePayload = await this.getBasePayload();
     return sendTransaction(
       TransactionType.AssetTrigger,
@@ -355,7 +428,8 @@ class Account {
   }
   async sendUpdateAccountPermission(
     payload: IUpdateAccountPermission,
-    autobroadcast?: boolean
+    autobroadcast?: boolean,
+    previousTX?: ITransactionResponse
   ) {
     const basePayload = await this.getBasePayload();
     return sendTransaction(
@@ -368,7 +442,11 @@ class Account {
     );
   }
 
-  async sendSetITOPrices(payload: ISetITOPrices, autobroadcast?: boolean) {
+  async sendSetITOPrices(
+    payload: ISetITOPrices,
+    autobroadcast?: boolean,
+    previousTX?: ITransactionResponse
+  ) {
     const basePayload = await this.getBasePayload();
     return sendTransaction(
       TransactionType.SetITOPrices,
