@@ -7,7 +7,7 @@ const sendTransaction = async (
   type: TransactionType,
   payload: IBasePayload,
   autobroadcast: boolean = true,
-  previousTX?: ITransactionResponse
+  props?: IContractProps
 ): Promise<ITransactionResponse | IBroadcastResponse> => {
   if (!(await core.isSDKLoaded())) {
     throw ErrLoadSdk;
@@ -93,16 +93,13 @@ const sendTransaction = async (
   if (autobroadcast) {
     const response = await method(
       JSON.stringify(payload),
-      previousTX ? JSON.stringify(previousTX) : undefined
+      JSON.stringify(props ? props : {})
     );
 
     return globalThis.broadcast(JSON.stringify(response));
   }
 
-  return method(
-    JSON.stringify(payload),
-    previousTX ? JSON.stringify(previousTX) : undefined
-  );
+  return method(JSON.stringify(payload), JSON.stringify(props ? props : {}));
 };
 
 export { sendTransaction };

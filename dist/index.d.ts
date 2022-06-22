@@ -282,37 +282,38 @@ declare class Account {
     getBalance(): Promise<number>;
     getNonce(): Promise<number>;
     getBasePayload(): Promise<IBasePayload>;
-    sendTransfer(payload: ITransfer, autobroadcast?: boolean): Promise<ITransactionResponse | IBroadcastResponse>;
-    sendCreateMarketplace(payload: ICreateMarket, autobroadcast?: boolean): Promise<ITransactionResponse | IBroadcastResponse>;
-    sendConfigMarketplace(payload: IConfigMarket, autobroadcast?: boolean): Promise<ITransactionResponse | IBroadcastResponse>;
-    sendFreeze(payload: IFreeze, autobroadcast?: boolean): Promise<ITransactionResponse | IBroadcastResponse>;
-    sendUnfreeze(payload: IUnfreeze, autobroadcast?: boolean): Promise<ITransactionResponse | IBroadcastResponse>;
-    sendWithdraw(payload: IWithdraw, autobroadcast?: boolean): Promise<ITransactionResponse | IBroadcastResponse>;
-    sendUndelegate(payload: IUndelegate, autobroadcast?: boolean): Promise<ITransactionResponse | IBroadcastResponse>;
-    sendDelegate(payload: IDelegate, autobroadcast?: boolean): Promise<ITransactionResponse | IBroadcastResponse>;
-    setAccountName(payload: ISetAccountName, autobroadcast?: boolean): Promise<ITransactionResponse | IBroadcastResponse>;
-    sendVotes(payload: IVotes, autobroadcast?: boolean): Promise<ITransactionResponse | IBroadcastResponse>;
-    sendClaim(payload: IClaim, autobroadcast?: boolean): Promise<ITransactionResponse | IBroadcastResponse>;
+    sendTransfer(payload: ITransfer, autobroadcast?: boolean, props?: IContractProps): Promise<ITransactionResponse | IBroadcastResponse>;
+    sendCreateMarketplace(payload: ICreateMarket, autobroadcast?: boolean, props?: IContractProps): Promise<ITransactionResponse | IBroadcastResponse>;
+    sendConfigMarketplace(payload: IConfigMarket, autobroadcast?: boolean, props?: IContractProps): Promise<ITransactionResponse | IBroadcastResponse>;
+    sendFreeze(payload: IFreeze, autobroadcast?: boolean, props?: IContractProps): Promise<ITransactionResponse | IBroadcastResponse>;
+    sendUnfreeze(payload: IUnfreeze, autobroadcast?: boolean, props?: IContractProps): Promise<ITransactionResponse | IBroadcastResponse>;
+    sendWithdraw(payload: IWithdraw, autobroadcast?: boolean, props?: IContractProps): Promise<ITransactionResponse | IBroadcastResponse>;
+    sendUndelegate(payload: IUndelegate, autobroadcast?: boolean, props?: IContractProps): Promise<ITransactionResponse | IBroadcastResponse>;
+    sendDelegate(payload: IDelegate, autobroadcast?: boolean, props?: IContractProps): Promise<ITransactionResponse | IBroadcastResponse>;
+    setAccountName(payload: ISetAccountName, autobroadcast?: boolean, props?: IContractProps): Promise<ITransactionResponse | IBroadcastResponse>;
+    sendVotes(payload: IVotes, autobroadcast?: boolean, props?: IContractProps): Promise<ITransactionResponse | IBroadcastResponse>;
+    sendClaim(payload: IClaim, autobroadcast?: boolean, props?: IContractProps): Promise<ITransactionResponse | IBroadcastResponse>;
     sendUnjail(): Promise<ITransactionResponse | IBroadcastResponse>;
-    sendCancelMarketOrder(payload: ICancelMarketOrder, autobroadcast?: boolean): Promise<ITransactionResponse | IBroadcastResponse>;
-    sendSellOrder(payload: ISellOrder, autobroadcast?: boolean): Promise<ITransactionResponse | IBroadcastResponse>;
-    sendBuyOrder(payload: IBuyOrder, autobroadcast?: boolean): Promise<ITransactionResponse | IBroadcastResponse>;
-    sendCreateAsset(payload: ICreateAsset, autobroadcast?: boolean): Promise<ITransactionResponse | IBroadcastResponse>;
-    sendProposal(payload: IProposal, autobroadcast?: boolean): Promise<ITransactionResponse | IBroadcastResponse>;
-    sendCreateValidator(payload: ICreateValidator, autobroadcast?: boolean): Promise<ITransactionResponse | IBroadcastResponse>;
-    sendConfigValidator(payload: ICreateValidator, autobroadcast?: boolean): Promise<ITransactionResponse | IBroadcastResponse>;
-    sendConfigITO(payload: IConfigITO, autobroadcast?: boolean): Promise<ITransactionResponse | IBroadcastResponse>;
-    sendAssetTrigger(payload: IAssetTrigger, autobroadcast?: boolean): Promise<ITransactionResponse | IBroadcastResponse>;
-    sendUpdateAccountPermission(payload: IUpdateAccountPermission, autobroadcast?: boolean): Promise<ITransactionResponse | IBroadcastResponse>;
-    sendSetITOPrices(payload: ISetITOPrices, autobroadcast?: boolean): Promise<ITransactionResponse | IBroadcastResponse>;
+    sendCancelMarketOrder(payload: ICancelMarketOrder, autobroadcast?: boolean, props?: IContractProps): Promise<ITransactionResponse | IBroadcastResponse>;
+    sendSellOrder(payload: ISellOrder, autobroadcast?: boolean, props?: IContractProps): Promise<ITransactionResponse | IBroadcastResponse>;
+    sendBuyOrder(payload: IBuyOrder, autobroadcast?: boolean, props?: IContractProps): Promise<ITransactionResponse | IBroadcastResponse>;
+    sendCreateAsset(payload: ICreateAsset, autobroadcast?: boolean, props?: IContractProps): Promise<ITransactionResponse | IBroadcastResponse>;
+    sendProposal(payload: IProposal, autobroadcast?: boolean, props?: IContractProps): Promise<ITransactionResponse | IBroadcastResponse>;
+    sendCreateValidator(payload: ICreateValidator, autobroadcast?: boolean, props?: IContractProps): Promise<ITransactionResponse | IBroadcastResponse>;
+    sendConfigValidator(payload: ICreateValidator, autobroadcast?: boolean, props?: IContractProps): Promise<ITransactionResponse | IBroadcastResponse>;
+    sendConfigITO(payload: IConfigITO, autobroadcast?: boolean, props?: IContractProps): Promise<ITransactionResponse | IBroadcastResponse>;
+    sendAssetTrigger(payload: IAssetTrigger, autobroadcast?: boolean, props?: IContractProps): Promise<ITransactionResponse | IBroadcastResponse>;
+    sendUpdateAccountPermission(payload: IUpdateAccountPermission, autobroadcast?: boolean, props?: IContractProps): Promise<ITransactionResponse | IBroadcastResponse>;
+    sendSetITOPrices(payload: ISetITOPrices, autobroadcast?: boolean, props?: IContractProps): Promise<ITransactionResponse | IBroadcastResponse>;
 }
 
 declare const core: {
     getAccountByPem: (pemData: string) => Promise<Account>;
     createAccount: () => Promise<IPemResponse>;
     isSDKLoaded: () => Promise<boolean>;
+    broadcastTransactions: (transactions: string) => Promise<IBroadcastResponse>;
 };
 
-declare const sendTransaction: (type: TransactionType, payload: IBasePayload, autobroadcast?: boolean) => Promise<ITransactionResponse | IBroadcastResponse>;
+declare const sendTransaction: (type: TransactionType, payload: IBasePayload, autobroadcast?: boolean, props?: IContractProps | undefined) => Promise<ITransactionResponse | IBroadcastResponse>;
 
 export { Account, IAccount, IAssetTrigger, IBasePayload, IBuyOrder, ICancelMarketOrder, IClaim, IConfigITO, IConfigMarket, ICreateAsset, ICreateMarket, ICreateValidator, IDelegate, IFreeze, IPemResponse, IProposal, ISellOrder, ISetAccountName, ISetITOPrices, ITransactionResponse, ITransfer, IUndelegate, IUnfreeze, IUpdateAccountPermission, IVotes, IWithdraw, TransactionType, TriggerType, core, sendTransaction };

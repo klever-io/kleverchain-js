@@ -4,97 +4,102 @@ declare module globalThis {
   function parsePemFileData(pemData: string): Promise<IPemResponse>;
   function createAccount(): Promise<IPemResponse>;
 
+  interface IContractProps {
+    previousTX?: string;
+    metadata?: string;
+  }
+
   function sendTransfer(
     payload: string,
-    previousTX?: string
+    props: string
   ): Promise<ITransactionResponse>;
   function sendCreateMarketplace(
     payload: string,
-    previousTX?: string
+    props: string
   ): Promise<ITransactionResponse>;
   function sendFreeze(
     payload: string,
-    previousTX?: string
+    props: string
   ): Promise<ITransactionResponse>;
   function sendUnfreeze(
     payload: string,
-    previousTX?: string
+    props: string
   ): Promise<ITransactionResponse>;
   function sendWithdraw(
     payload: string,
-    previousTX?: string
+    props: string
   ): Promise<ITransactionResponse>;
   function sendUndelegate(
     payload: string,
-    previousTX?: string
+    props: string
   ): Promise<ITransactionResponse>;
   function sendDelegate(
     payload: string,
-    previousTX?: string
+    props: string
   ): Promise<ITransactionResponse>;
   function setAccountName(
     payload: string,
-    previousTX?: string
+    props: string
   ): Promise<ITransactionResponse>;
   function sendVotes(
     payload: string,
-    previousTX?: string
+    props: string
   ): Promise<ITransactionResponse>;
   function sendClaim(
     payload: string,
-    previousTX?: string
+    props: string
   ): Promise<ITransactionResponse>;
   function sendUnjail(
     payload: string,
-    previousTX?: string
+    props: string
   ): Promise<ITransactionResponse>;
   function sendCancelMarketOrder(
     payload: string,
-    previousTX?: string
+    props: string
   ): Promise<ITransactionResponse>;
   function sendSellOrder(
     payload: string,
-    previousTX?: string
+    props: string
   ): Promise<ITransactionResponse>;
   function sendBuyOrder(
     payload: string,
-    previousTX?: string
+    props: string
   ): Promise<ITransactionResponse>;
   function sendCreateAsset(
     payload: string,
-    previousTX?: string
+    props: string
   ): Promise<ITransactionResponse>;
   function sendProposal(
     payload: string,
-    previousTX?: string
+    props: string
   ): Promise<ITransactionResponse>;
   function sendConfigMarketplace(
     payload: string,
-    previousTX?: string
+    props: string
   ): Promise<ITransactionResponse>;
   function sendCreateValidator(
     payload: string,
-    previousTX?: string
+    props: string
   ): Promise<ITransactionResponse>;
   function sendConfigValidator(
     payload: string,
-    previousTX?: string
+    props: string
   ): Promise<ITransactionResponse>;
   function sendConfigITO(
     payload: string,
-    previousTX?: string
+    props: string
   ): Promise<ITransactionResponse>;
   function sendAssetTrigger(
     payload: string,
-    previousTX?: string
+    props: string
   ): Promise<ITransactionResponse>;
   function sendUpdateAccountPermission(
     payload: string,
-    previousTX?: string
+    props: string
   ): Promise<ITransactionResponse>;
   function sendSetITOPrices(
     payload: string,
-    previousTX?: string
+    props: string
   ): Promise<ITransactionResponse>;
   function broadcast(payload: string): Promise<IBroadcastResponse>;
 }
