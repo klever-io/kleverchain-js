@@ -6,9 +6,7 @@ import { IBroadcastResponse, ITransactionResponse } from "../types/dtos";
 const sendTransaction = async (
   type: TransactionType,
   payload: IBasePayload,
-  props: ITransactionProps = {
-    autobroadcast: true,
-  }
+  props?: ITransactionProps
 ): Promise<ITransactionResponse | IBroadcastResponse> => {
   if (!(await core.isSDKLoaded())) {
     throw ErrLoadSdk;
@@ -91,7 +89,11 @@ const sendTransaction = async (
       break;
   }
 
-  if (props.autobroadcast) {
+  const autobroadcast = props?.autobroadcast ?? true;
+
+  delete props?.autobroadcast;
+
+  if (autobroadcast) {
     const response = await method(
       JSON.stringify(payload),
       JSON.stringify(props ? props : {})
