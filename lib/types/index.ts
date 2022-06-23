@@ -1,4 +1,5 @@
 import Account from "../account";
+import { ITransactionResponse } from "./dtos";
 
 export interface IAccount {
   data: {
@@ -44,6 +45,11 @@ export interface ISdkContext {
 export interface ITransactionProps {
   metadata?: string;
   autobroadcast?: boolean;
+  previousTX?: ITransactionResponse | ITransactionResponse[];
+}
+
+export interface IContractProps {
+  metadata?: string;
   previousTX?: string;
 }
 
