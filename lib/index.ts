@@ -3,7 +3,13 @@
 import Account from "./account";
 import core from "./core";
 import { sendTransaction } from "./transaction";
-import { IAccount, IBasePayload, TransactionType, TriggerType } from "./types";
+import {
+  IAccount,
+  IBasePayload,
+  TransactionType,
+  TriggerType,
+  ITransactionProps,
+} from "./types";
 import { ITransactionResponse, IPemResponse } from "./types/dtos";
 import {
   ITransfer,
@@ -58,4 +64,5 @@ export {
   IAssetTrigger,
   IUpdateAccountPermission,
   ISetITOPrices,
+  ITransactionProps,
 };

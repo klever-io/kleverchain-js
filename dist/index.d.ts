@@ -42,6 +42,10 @@ interface IBasePayload {
     privateKey: string;
     nonce: number;
 }
+interface IContractProps {
+    previousTX?: string;
+    metadata?: string;
+}
 declare enum TransactionType {
     Transfer = 0,
     CreateMarketplace = 1,
@@ -316,4 +320,4 @@ declare const core: {
 
 declare const sendTransaction: (type: TransactionType, payload: IBasePayload, autobroadcast?: boolean, props?: IContractProps | undefined) => Promise<ITransactionResponse | IBroadcastResponse>;
 
-export { Account, IAccount, IAssetTrigger, IBasePayload, IBuyOrder, ICancelMarketOrder, IClaim, IConfigITO, IConfigMarket, ICreateAsset, ICreateMarket, ICreateValidator, IDelegate, IFreeze, IPemResponse, IProposal, ISellOrder, ISetAccountName, ISetITOPrices, ITransactionResponse, ITransfer, IUndelegate, IUnfreeze, IUpdateAccountPermission, IVotes, IWithdraw, TransactionType, TriggerType, core, sendTransaction };
+export { Account, IAccount, IAssetTrigger, IBasePayload, IBuyOrder, ICancelMarketOrder, IClaim, IConfigITO, IConfigMarket, IContractProps, ICreateAsset, ICreateMarket, ICreateValidator, IDelegate, IFreeze, IPemResponse, IProposal, ISellOrder, ISetAccountName, ISetITOPrices, ITransactionResponse, ITransfer, IUndelegate, IUnfreeze, IUpdateAccountPermission, IVotes, IWithdraw, TransactionType, TriggerType, core, sendTransaction };

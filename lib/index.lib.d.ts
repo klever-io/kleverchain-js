@@ -4,11 +4,6 @@ declare module globalThis {
   function parsePemFileData(pemData: string): Promise<IPemResponse>;
   function createAccount(): Promise<IPemResponse>;
 
-  interface IContractProps {
-    previousTX?: string;
-    metadata?: string;
-  }
-
   function sendTransfer(
     payload: string,
     props: string

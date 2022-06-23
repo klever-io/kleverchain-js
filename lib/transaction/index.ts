@@ -1,13 +1,14 @@
 import core from "../core";
 import { ErrLoadSdk } from "../core/errors";
-import { TransactionType, IBasePayload } from "../types";
+import { TransactionType, IBasePayload, ITransactionProps } from "../types";
 import { IBroadcastResponse, ITransactionResponse } from "../types/dtos";
 
 const sendTransaction = async (
   type: TransactionType,
   payload: IBasePayload,
-  autobroadcast: boolean = true,
-  props?: IContractProps
+  props: ITransactionProps = {
+    autobroadcast: true,
+  }
 ): Promise<ITransactionResponse | IBroadcastResponse> => {
   if (!(await core.isSDKLoaded())) {
     throw ErrLoadSdk;
@@ -90,7 +91,7 @@ const sendTransaction = async (
       break;
   }
 
-  if (autobroadcast) {
+  if (props.autobroadcast) {
     const response = await method(
       JSON.stringify(payload),
       JSON.stringify(props ? props : {})

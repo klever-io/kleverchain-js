@@ -5,6 +5,7 @@ import {
   IAccount,
   IBasePayload,
   INodeAccount,
+  ITransactionProps,
   TransactionType,
 } from "../types";
 import {
@@ -22,15 +23,14 @@ import {
   IProposal,
   ISellOrder,
   ISetAccountName,
+  ISetITOPrices,
   ITransfer,
   IUndelegate,
   IUnfreeze,
+  IUpdateAccountPermission,
   IVotes,
   IWithdraw,
-  IUpdateAccountPermission,
-  ISetITOPrices,
 } from "../types/contract";
-import { ITransactionResponse } from "../types/dtos";
 
 class Account {
   private address: string;
@@ -99,11 +99,7 @@ class Account {
     return basePayload;
   }
 
-  async sendTransfer(
-    payload: ITransfer,
-    autobroadcast?: boolean,
-    props?: IContractProps
-  ) {
+  async sendTransfer(payload: ITransfer, props?: ITransactionProps) {
     const basePayload = await this.getBasePayload();
     return sendTransaction(
       TransactionType.Transfer,
@@ -111,15 +107,13 @@ class Account {
         ...basePayload,
         ...payload,
       },
-      autobroadcast,
       props
     );
   }
 
   async sendCreateMarketplace(
     payload: ICreateMarket,
-    autobroadcast?: boolean,
-    props?: IContractProps
+    props?: ITransactionProps
   ) {
     const basePayload = await this.getBasePayload();
     return sendTransaction(
@@ -128,15 +122,13 @@ class Account {
         ...basePayload,
         ...payload,
       },
-      autobroadcast,
       props
     );
   }
 
   async sendConfigMarketplace(
     payload: IConfigMarket,
-    autobroadcast?: boolean,
-    props?: IContractProps
+    props?: ITransactionProps
   ) {
     const basePayload = await this.getBasePayload();
     return sendTransaction(
@@ -145,16 +137,11 @@ class Account {
         ...basePayload,
         ...payload,
       },
-      autobroadcast,
       props
     );
   }
 
-  async sendFreeze(
-    payload: IFreeze,
-    autobroadcast?: boolean,
-    props?: IContractProps
-  ) {
+  async sendFreeze(payload: IFreeze, props?: ITransactionProps) {
     const basePayload = await this.getBasePayload();
     return sendTransaction(
       TransactionType.Freeze,
@@ -162,16 +149,11 @@ class Account {
         ...basePayload,
         ...payload,
       },
-      autobroadcast,
       props
     );
   }
 
-  async sendUnfreeze(
-    payload: IUnfreeze,
-    autobroadcast?: boolean,
-    props?: IContractProps
-  ) {
+  async sendUnfreeze(payload: IUnfreeze, props?: ITransactionProps) {
     const basePayload = await this.getBasePayload();
     return sendTransaction(
       TransactionType.Unfreeze,
@@ -179,16 +161,11 @@ class Account {
         ...basePayload,
         ...payload,
       },
-      autobroadcast,
       props
     );
   }
 
-  async sendWithdraw(
-    payload: IWithdraw,
-    autobroadcast?: boolean,
-    props?: IContractProps
-  ) {
+  async sendWithdraw(payload: IWithdraw, props?: ITransactionProps) {
     const basePayload = await this.getBasePayload();
     return sendTransaction(
       TransactionType.Withdraw,
@@ -196,16 +173,11 @@ class Account {
         ...basePayload,
         ...payload,
       },
-      autobroadcast,
       props
     );
   }
 
-  async sendUndelegate(
-    payload: IUndelegate,
-    autobroadcast?: boolean,
-    props?: IContractProps
-  ) {
+  async sendUndelegate(payload: IUndelegate, props?: ITransactionProps) {
     const basePayload = await this.getBasePayload();
     return sendTransaction(
       TransactionType.Undelegate,
@@ -213,16 +185,11 @@ class Account {
         ...basePayload,
         ...payload,
       },
-      autobroadcast,
       props
     );
   }
 
-  async sendDelegate(
-    payload: IDelegate,
-    autobroadcast?: boolean,
-    props?: IContractProps
-  ) {
+  async sendDelegate(payload: IDelegate, props?: ITransactionProps) {
     const basePayload = await this.getBasePayload();
     return sendTransaction(
       TransactionType.Delegate,
@@ -230,16 +197,11 @@ class Account {
         ...basePayload,
         ...payload,
       },
-      autobroadcast,
       props
     );
   }
 
-  async setAccountName(
-    payload: ISetAccountName,
-    autobroadcast?: boolean,
-    props?: IContractProps
-  ) {
+  async setAccountName(payload: ISetAccountName, props?: ITransactionProps) {
     const basePayload = await this.getBasePayload();
     return sendTransaction(
       TransactionType.SetAccountName,
@@ -247,16 +209,11 @@ class Account {
         ...basePayload,
         ...payload,
       },
-      autobroadcast,
       props
     );
   }
 
-  async sendVotes(
-    payload: IVotes,
-    autobroadcast?: boolean,
-    props?: IContractProps
-  ) {
+  async sendVotes(payload: IVotes, props?: ITransactionProps) {
     const basePayload = await this.getBasePayload();
     return sendTransaction(
       TransactionType.Votes,
@@ -264,16 +221,11 @@ class Account {
         ...basePayload,
         ...payload,
       },
-      autobroadcast,
       props
     );
   }
 
-  async sendClaim(
-    payload: IClaim,
-    autobroadcast?: boolean,
-    props?: IContractProps
-  ) {
+  async sendClaim(payload: IClaim, props?: ITransactionProps) {
     const basePayload = await this.getBasePayload();
     return sendTransaction(
       TransactionType.Claim,
@@ -281,7 +233,6 @@ class Account {
         ...basePayload,
         ...payload,
       },
-      autobroadcast,
       props
     );
   }
@@ -295,8 +246,7 @@ class Account {
 
   async sendCancelMarketOrder(
     payload: ICancelMarketOrder,
-    autobroadcast?: boolean,
-    props?: IContractProps
+    props?: ITransactionProps
   ) {
     const basePayload = await this.getBasePayload();
     return sendTransaction(
@@ -305,16 +255,11 @@ class Account {
         ...basePayload,
         ...payload,
       },
-      autobroadcast,
       props
     );
   }
 
-  async sendSellOrder(
-    payload: ISellOrder,
-    autobroadcast?: boolean,
-    props?: IContractProps
-  ) {
+  async sendSellOrder(payload: ISellOrder, props?: ITransactionProps) {
     const basePayload = await this.getBasePayload();
     return sendTransaction(
       TransactionType.SellOrder,
@@ -322,16 +267,11 @@ class Account {
         ...basePayload,
         ...payload,
       },
-      autobroadcast,
       props
     );
   }
 
-  async sendBuyOrder(
-    payload: IBuyOrder,
-    autobroadcast?: boolean,
-    props?: IContractProps
-  ) {
+  async sendBuyOrder(payload: IBuyOrder, props?: ITransactionProps) {
     const basePayload = await this.getBasePayload();
     return sendTransaction(
       TransactionType.BuyOrder,
@@ -339,16 +279,11 @@ class Account {
         ...basePayload,
         ...payload,
       },
-      autobroadcast,
       props
     );
   }
 
-  async sendCreateAsset(
-    payload: ICreateAsset,
-    autobroadcast?: boolean,
-    props?: IContractProps
-  ) {
+  async sendCreateAsset(payload: ICreateAsset, props?: ITransactionProps) {
     const basePayload = await this.getBasePayload();
     return sendTransaction(
       TransactionType.CreateAsset,
@@ -356,16 +291,11 @@ class Account {
         ...basePayload,
         ...payload,
       },
-      autobroadcast,
       props
     );
   }
 
-  async sendProposal(
-    payload: IProposal,
-    autobroadcast?: boolean,
-    props?: IContractProps
-  ) {
+  async sendProposal(payload: IProposal, props?: ITransactionProps) {
     const basePayload = await this.getBasePayload();
     return sendTransaction(
       TransactionType.Proposal,
@@ -373,15 +303,13 @@ class Account {
         ...basePayload,
         ...payload,
       },
-      autobroadcast,
       props
     );
   }
 
   async sendCreateValidator(
     payload: ICreateValidator,
-    autobroadcast?: boolean,
-    props?: IContractProps
+    props?: ITransactionProps
   ) {
     const basePayload = await this.getBasePayload();
     return sendTransaction(
@@ -390,15 +318,13 @@ class Account {
         ...basePayload,
         ...payload,
       },
-      autobroadcast,
       props
     );
   }
 
   async sendConfigValidator(
     payload: ICreateValidator,
-    autobroadcast?: boolean,
-    props?: IContractProps
+    props?: ITransactionProps
   ) {
     const basePayload = await this.getBasePayload();
     return sendTransaction(
@@ -407,16 +333,11 @@ class Account {
         ...basePayload,
         ...payload,
       },
-      autobroadcast,
       props
     );
   }
 
-  async sendConfigITO(
-    payload: IConfigITO,
-    autobroadcast?: boolean,
-    props?: IContractProps
-  ) {
+  async sendConfigITO(payload: IConfigITO, props?: ITransactionProps) {
     const basePayload = await this.getBasePayload();
     return sendTransaction(
       TransactionType.ConfigITO,
@@ -424,16 +345,11 @@ class Account {
         ...basePayload,
         ...payload,
       },
-      autobroadcast,
       props
     );
   }
 
-  async sendAssetTrigger(
-    payload: IAssetTrigger,
-    autobroadcast?: boolean,
-    props?: IContractProps
-  ) {
+  async sendAssetTrigger(payload: IAssetTrigger, props?: ITransactionProps) {
     const basePayload = await this.getBasePayload();
     return sendTransaction(
       TransactionType.AssetTrigger,
@@ -441,14 +357,12 @@ class Account {
         ...basePayload,
         ...payload,
       },
-      autobroadcast,
       props
     );
   }
   async sendUpdateAccountPermission(
     payload: IUpdateAccountPermission,
-    autobroadcast?: boolean,
-    props?: IContractProps
+    props?: ITransactionProps
   ) {
     const basePayload = await this.getBasePayload();
     return sendTransaction(
@@ -457,16 +371,11 @@ class Account {
         ...basePayload,
         ...payload,
       },
-      autobroadcast,
       props
     );
   }
 
-  async sendSetITOPrices(
-    payload: ISetITOPrices,
-    autobroadcast?: boolean,
-    props?: IContractProps
-  ) {
+  async sendSetITOPrices(payload: ISetITOPrices, props?: ITransactionProps) {
     const basePayload = await this.getBasePayload();
     return sendTransaction(
       TransactionType.SetITOPrices,
@@ -474,7 +383,6 @@ class Account {
         ...basePayload,
         ...payload,
       },
-      autobroadcast,
       props
     );
   }

@@ -41,6 +41,12 @@ export interface ISdkContext {
   setAccount(account: Account): void;
 }
 
+export interface ITransactionProps {
+  metadata?: string;
+  autobroadcast?: boolean;
+  previousTX?: string;
+}
+
 export enum TransactionType {
   Transfer,
   CreateMarketplace,
