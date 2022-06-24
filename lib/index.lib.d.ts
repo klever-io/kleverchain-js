@@ -4,35 +4,97 @@ declare module globalThis {
   function parsePemFileData(pemData: string): Promise<IPemResponse>;
   function createAccount(): Promise<IPemResponse>;
 
-  function sendTransfer(payload: string): Promise<ITransactionResponse>;
+  function sendTransfer(
+    payload: string,
+    props: string
+  ): Promise<ITransactionResponse>;
   function sendCreateMarketplace(
-    payload: string
+    payload: string,
+    props: string
   ): Promise<ITransactionResponse>;
-  function sendFreeze(payload: string): Promise<ITransactionResponse>;
-  function sendUnfreeze(payload: string): Promise<ITransactionResponse>;
-  function sendWithdraw(payload: string): Promise<ITransactionResponse>;
-  function sendUndelegate(payload: string): Promise<ITransactionResponse>;
-  function sendDelegate(payload: string): Promise<ITransactionResponse>;
-  function setAccountName(payload: string): Promise<ITransactionResponse>;
-  function sendVotes(payload: string): Promise<ITransactionResponse>;
-  function sendClaim(payload: string): Promise<ITransactionResponse>;
-  function sendUnjail(payload: string): Promise<ITransactionResponse>;
+  function sendFreeze(
+    payload: string,
+    props: string
+  ): Promise<ITransactionResponse>;
+  function sendUnfreeze(
+    payload: string,
+    props: string
+  ): Promise<ITransactionResponse>;
+  function sendWithdraw(
+    payload: string,
+    props: string
+  ): Promise<ITransactionResponse>;
+  function sendUndelegate(
+    payload: string,
+    props: string
+  ): Promise<ITransactionResponse>;
+  function sendDelegate(
+    payload: string,
+    props: string
+  ): Promise<ITransactionResponse>;
+  function setAccountName(
+    payload: string,
+    props: string
+  ): Promise<ITransactionResponse>;
+  function sendVotes(
+    payload: string,
+    props: string
+  ): Promise<ITransactionResponse>;
+  function sendClaim(
+    payload: string,
+    props: string
+  ): Promise<ITransactionResponse>;
+  function sendUnjail(
+    payload: string,
+    props: string
+  ): Promise<ITransactionResponse>;
   function sendCancelMarketOrder(
-    payload: string
+    payload: string,
+    props: string
   ): Promise<ITransactionResponse>;
-  function sendSellOrder(payload: string): Promise<ITransactionResponse>;
-  function sendBuyOrder(payload: string): Promise<ITransactionResponse>;
-  function sendCreateAsset(payload: string): Promise<ITransactionResponse>;
-  function sendProposal(payload: string): Promise<ITransactionResponse>;
+  function sendSellOrder(
+    payload: string,
+    props: string
+  ): Promise<ITransactionResponse>;
+  function sendBuyOrder(
+    payload: string,
+    props: string
+  ): Promise<ITransactionResponse>;
+  function sendCreateAsset(
+    payload: string,
+    props: string
+  ): Promise<ITransactionResponse>;
+  function sendProposal(
+    payload: string,
+    props: string
+  ): Promise<ITransactionResponse>;
   function sendConfigMarketplace(
-    payload: string
+    payload: string,
+    props: string
   ): Promise<ITransactionResponse>;
-  function sendCreateValidator(payload: string): Promise<ITransactionResponse>;
-  function sendConfigValidator(payload: string): Promise<ITransactionResponse>;
-  function sendConfigITO(payload: string): Promise<ITransactionResponse>;
-  function sendAssetTrigger(payload: string): Promise<ITransactionResponse>;
+  function sendCreateValidator(
+    payload: string,
+    props: string
+  ): Promise<ITransactionResponse>;
+  function sendConfigValidator(
+    payload: string,
+    props: string
+  ): Promise<ITransactionResponse>;
+  function sendConfigITO(
+    payload: string,
+    props: string
+  ): Promise<ITransactionResponse>;
+  function sendAssetTrigger(
+    payload: string,
+    props: string
+  ): Promise<ITransactionResponse>;
   function sendUpdateAccountPermission(
-    payload: string
+    payload: string,
+    props: string
   ): Promise<ITransactionResponse>;
-  function sendSetITOPrices(payload: string): Promise<ITransactionResponse>;
+  function sendSetITOPrices(
+    payload: string,
+    props: string
+  ): Promise<ITransactionResponse>;
+  function broadcast(payload: string): Promise<IBroadcastResponse>;
 }

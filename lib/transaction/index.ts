@@ -1,12 +1,13 @@
 import core from "../core";
 import { ErrLoadSdk } from "../core/errors";
-import { TransactionType, IBasePayload } from "../types";
-import { ITransactionResponse } from "../types/dtos";
+import { TransactionType, IBasePayload, ITransactionProps } from "../types";
+import { IBroadcastResponse, ITransactionResponse } from "../types/dtos";
 
 const sendTransaction = async (
   type: TransactionType,
-  payload: IBasePayload
-): Promise<ITransactionResponse> => {
+  payload: IBasePayload,
+  props?: ITransactionProps
+): Promise<ITransactionResponse[] | IBroadcastResponse> => {
   if (!(await core.isSDKLoaded())) {
     throw ErrLoadSdk;
   }
@@ -88,7 +89,29 @@ const sendTransaction = async (
       break;
   }
 
-  return method(JSON.stringify(payload));
+  const autobroadcast = props?.autobroadcast ?? true;
+
+  delete props?.autobroadcast;
+
+  if (props && Array.isArray(props?.previousTX)) {
+    props.previousTX = props?.previousTX[0];
+  }
+
+  if (autobroadcast) {
+    const response = await method(
+      JSON.stringify(payload),
+      JSON.stringify(props ? props : {})
+    );
+
+    return globalThis.broadcast(
+      JSON.stringify(response)
+    ) as Promise<IBroadcastResponse>;
+  }
+
+  return method(
+    JSON.stringify(payload),
+    JSON.stringify(props ? props : {})
+  ) as Promise<ITransactionResponse[]>;
 };
 
 export { sendTransaction };

@@ -5,6 +5,7 @@ import {
   IAccount,
   IBasePayload,
   INodeAccount,
+  ITransactionProps,
   TransactionType,
 } from "../types";
 import {
@@ -22,13 +23,13 @@ import {
   IProposal,
   ISellOrder,
   ISetAccountName,
+  ISetITOPrices,
   ITransfer,
   IUndelegate,
   IUnfreeze,
+  IUpdateAccountPermission,
   IVotes,
   IWithdraw,
-  IUpdateAccountPermission,
-  ISetITOPrices,
 } from "../types/contract";
 
 class Account {
@@ -98,92 +99,142 @@ class Account {
     return basePayload;
   }
 
-  async sendTransfer(payload: ITransfer) {
+  async sendTransfer(payload: ITransfer, props?: ITransactionProps) {
     const basePayload = await this.getBasePayload();
-    return sendTransaction(TransactionType.Transfer, {
-      ...basePayload,
-      ...payload,
-    });
+    return sendTransaction(
+      TransactionType.Transfer,
+      {
+        ...basePayload,
+        ...payload,
+      },
+      props
+    );
   }
 
-  async sendCreateMarketplace(payload: ICreateMarket) {
+  async sendCreateMarketplace(
+    payload: ICreateMarket,
+    props?: ITransactionProps
+  ) {
     const basePayload = await this.getBasePayload();
-    return sendTransaction(TransactionType.CreateMarketplace, {
-      ...basePayload,
-      ...payload,
-    });
+    return sendTransaction(
+      TransactionType.CreateMarketplace,
+      {
+        ...basePayload,
+        ...payload,
+      },
+      props
+    );
   }
 
-  async sendConfigMarketplace(payload: IConfigMarket) {
+  async sendConfigMarketplace(
+    payload: IConfigMarket,
+    props?: ITransactionProps
+  ) {
     const basePayload = await this.getBasePayload();
-    return sendTransaction(TransactionType.ConfigMarketplace, {
-      ...basePayload,
-      ...payload,
-    });
+    return sendTransaction(
+      TransactionType.ConfigMarketplace,
+      {
+        ...basePayload,
+        ...payload,
+      },
+      props
+    );
   }
 
-  async sendFreeze(payload: IFreeze) {
+  async sendFreeze(payload: IFreeze, props?: ITransactionProps) {
     const basePayload = await this.getBasePayload();
-    return sendTransaction(TransactionType.Freeze, {
-      ...basePayload,
-      ...payload,
-    });
+    return sendTransaction(
+      TransactionType.Freeze,
+      {
+        ...basePayload,
+        ...payload,
+      },
+      props
+    );
   }
 
-  async sendUnfreeze(payload: IUnfreeze) {
+  async sendUnfreeze(payload: IUnfreeze, props?: ITransactionProps) {
     const basePayload = await this.getBasePayload();
-    return sendTransaction(TransactionType.Unfreeze, {
-      ...basePayload,
-      ...payload,
-    });
+    return sendTransaction(
+      TransactionType.Unfreeze,
+      {
+        ...basePayload,
+        ...payload,
+      },
+      props
+    );
   }
 
-  async sendWithdraw(payload: IWithdraw) {
+  async sendWithdraw(payload: IWithdraw, props?: ITransactionProps) {
     const basePayload = await this.getBasePayload();
-    return sendTransaction(TransactionType.Withdraw, {
-      ...basePayload,
-      ...payload,
-    });
+    return sendTransaction(
+      TransactionType.Withdraw,
+      {
+        ...basePayload,
+        ...payload,
+      },
+      props
+    );
   }
 
-  async sendUndelegate(payload: IUndelegate) {
+  async sendUndelegate(payload: IUndelegate, props?: ITransactionProps) {
     const basePayload = await this.getBasePayload();
-    return sendTransaction(TransactionType.Undelegate, {
-      ...basePayload,
-      ...payload,
-    });
+    return sendTransaction(
+      TransactionType.Undelegate,
+      {
+        ...basePayload,
+        ...payload,
+      },
+      props
+    );
   }
 
-  async sendDelegate(payload: IDelegate) {
+  async sendDelegate(payload: IDelegate, props?: ITransactionProps) {
     const basePayload = await this.getBasePayload();
-    return sendTransaction(TransactionType.Delegate, {
-      ...basePayload,
-      ...payload,
-    });
+    return sendTransaction(
+      TransactionType.Delegate,
+      {
+        ...basePayload,
+        ...payload,
+      },
+      props
+    );
   }
 
-  async setAccountName(payload: ISetAccountName) {
+  async setAccountName(payload: ISetAccountName, props?: ITransactionProps) {
     const basePayload = await this.getBasePayload();
-    return sendTransaction(TransactionType.SetAccountName, {
-      ...basePayload,
-      ...payload,
-    });
+    return sendTransaction(
+      TransactionType.SetAccountName,
+      {
+        ...basePayload,
+        ...payload,
+      },
+      props
+    );
   }
 
-  async sendVotes(payload: IVotes) {
+  async sendVotes(payload: IVotes, props?: ITransactionProps) {
     const basePayload = await this.getBasePayload();
-    return sendTransaction(TransactionType.Votes, {
-      ...basePayload,
-      ...payload,
-    });
+    return sendTransaction(
+      TransactionType.Votes,
+      {
+        ...basePayload,
+        ...payload,
+      },
+      props
+    );
   }
 
-  async sendClaim(payload: IClaim) {
+  async sendClaim(payload: IClaim, props?: ITransactionProps) {
     const basePayload = await this.getBasePayload();
-    return sendTransaction(TransactionType.Claim, {
-      ...basePayload,
-      ...payload,
-    });
+    return sendTransaction(
+      TransactionType.Claim,
+      {
+        ...basePayload,
+        ...payload,
+      },
+      props
+    );
   }
 
   async sendUnjail() {
@@ -193,91 +244,147 @@ class Account {
     });
   }
 
-  async sendCancelMarketOrder(payload: ICancelMarketOrder) {
+  async sendCancelMarketOrder(
+    payload: ICancelMarketOrder,
+    props?: ITransactionProps
+  ) {
     const basePayload = await this.getBasePayload();
-    return sendTransaction(TransactionType.CancelMarketOrder, {
-      ...basePayload,
-      ...payload,
-    });
+    return sendTransaction(
+      TransactionType.CancelMarketOrder,
+      {
+        ...basePayload,
+        ...payload,
+      },
+      props
+    );
   }
 
-  async sendSellOrder(payload: ISellOrder) {
+  async sendSellOrder(payload: ISellOrder, props?: ITransactionProps) {
     const basePayload = await this.getBasePayload();
-    return sendTransaction(TransactionType.SellOrder, {
-      ...basePayload,
-      ...payload,
-    });
+    return sendTransaction(
+      TransactionType.SellOrder,
+      {
+        ...basePayload,
+        ...payload,
+      },
+      props
+    );
   }
 
-  async sendBuyOrder(payload: IBuyOrder) {
+  async sendBuyOrder(payload: IBuyOrder, props?: ITransactionProps) {
     const basePayload = await this.getBasePayload();
-    return sendTransaction(TransactionType.BuyOrder, {
-      ...basePayload,
-      ...payload,
-    });
+    return sendTransaction(
+      TransactionType.BuyOrder,
+      {
+        ...basePayload,
+        ...payload,
+      },
+      props
+    );
   }
 
-  async sendCreateAsset(payload: ICreateAsset) {
+  async sendCreateAsset(payload: ICreateAsset, props?: ITransactionProps) {
     const basePayload = await this.getBasePayload();
-    return sendTransaction(TransactionType.CreateAsset, {
-      ...basePayload,
-      ...payload,
-    });
+    return sendTransaction(
+      TransactionType.CreateAsset,
+      {
+        ...basePayload,
+        ...payload,
+      },
+      props
+    );
   }
 
-  async sendProposal(payload: IProposal) {
+  async sendProposal(payload: IProposal, props?: ITransactionProps) {
     const basePayload = await this.getBasePayload();
-    return sendTransaction(TransactionType.Proposal, {
-      ...basePayload,
-      ...payload,
-    });
+    return sendTransaction(
+      TransactionType.Proposal,
+      {
+        ...basePayload,
+        ...payload,
+      },
+      props
+    );
   }
 
-  async sendCreateValidator(payload: ICreateValidator) {
+  async sendCreateValidator(
+    payload: ICreateValidator,
+    props?: ITransactionProps
+  ) {
     const basePayload = await this.getBasePayload();
-    return sendTransaction(TransactionType.CreateValidator, {
-      ...basePayload,
-      ...payload,
-    });
+    return sendTransaction(
+      TransactionType.CreateValidator,
+      {
+        ...basePayload,
+        ...payload,
+      },
+      props
+    );
   }
 
-  async sendConfigValidator(payload: ICreateValidator) {
+  async sendConfigValidator(
+    payload: ICreateValidator,
+    props?: ITransactionProps
+  ) {
     const basePayload = await this.getBasePayload();
-    return sendTransaction(TransactionType.ConfigValidator, {
-      ...basePayload,
-      ...payload,
-    });
+    return sendTransaction(
+      TransactionType.ConfigValidator,
+      {
+        ...basePayload,
+        ...payload,
+      },
+      props
+    );
   }
 
-  async sendConfigITO(payload: IConfigITO) {
+  async sendConfigITO(payload: IConfigITO, props?: ITransactionProps) {
     const basePayload = await this.getBasePayload();
-    return sendTransaction(TransactionType.ConfigITO, {
-      ...basePayload,
-      ...payload,
-    });
+    return sendTransaction(
+      TransactionType.ConfigITO,
+      {
+        ...basePayload,
+        ...payload,
+      },
+      props
+    );
   }
 
-  async sendAssetTrigger(payload: IAssetTrigger) {
+  async sendAssetTrigger(payload: IAssetTrigger, props?: ITransactionProps) {
     const basePayload = await this.getBasePayload();
-    return sendTransaction(TransactionType.AssetTrigger, {
-      ...basePayload,
-      ...payload,
-    });
+    return sendTransaction(
+      TransactionType.AssetTrigger,
+      {
+        ...basePayload,
+        ...payload,
+      },
+      props
+    );
   }
-  async sendUpdateAccountPermission(payload: IUpdateAccountPermission) {
+  async sendUpdateAccountPermission(
+    payload: IUpdateAccountPermission,
+    props?: ITransactionProps
+  ) {
     const basePayload = await this.getBasePayload();
-    return sendTransaction(TransactionType.UpdateAccountPermission, {
-      ...basePayload,
-      ...payload,
-    });
+    return sendTransaction(
+      TransactionType.UpdateAccountPermission,
+      {
+        ...basePayload,
+        ...payload,
+      },
+      props
+    );
   }
 
-  async sendSetITOPrices(payload: ISetITOPrices) {
+  async sendSetITOPrices(payload: ISetITOPrices, props?: ITransactionProps) {
     const basePayload = await this.getBasePayload();
-    return sendTransaction(TransactionType.SetITOPrices, {
-      ...basePayload,
-      ...payload,
-    });
+    return sendTransaction(
+      TransactionType.SetITOPrices,
+      {
+        ...basePayload,
+        ...payload,
+      },
+      props
+    );
   }
 }
 

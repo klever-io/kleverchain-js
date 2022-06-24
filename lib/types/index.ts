@@ -1,4 +1,5 @@
 import Account from "../account";
+import { ITransactionResponse } from "./dtos";
 
 export interface IAccount {
   data: {
@@ -39,6 +40,17 @@ export interface ISdkContext {
   isLoaded(): boolean;
   getAccount(): Account | null;
   setAccount(account: Account): void;
+}
+
+export interface ITransactionProps {
+  metadata?: string;
+  autobroadcast?: boolean;
+  previousTX?: ITransactionResponse | ITransactionResponse[];
+}
+
+export interface IContractProps {
+  metadata?: string;
+  previousTX?: string;
 }
 
 export enum TransactionType {
