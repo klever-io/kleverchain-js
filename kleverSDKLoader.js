@@ -124,13 +124,14 @@ async function browserLoadKleverSDK() {
 
   const module = await WebAssembly.compile(buffer);
 
-  const instantiate = (async function () {
+  (async function () {
     const instance = await WebAssembly.instantiate(module, go.importObject);
     go.run(instance);
   })();
 
   window.onload = async function () {
-    instantiate();
+    const instance = await WebAssembly.instantiate(module, go.importObject);
+    go.run(instance);
   };
 }
 
