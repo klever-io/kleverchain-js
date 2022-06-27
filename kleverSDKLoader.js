@@ -21,16 +21,16 @@ async function nodeLoadKleverSDK() {
     }
   } else {
     const nodeFallbackPaths = [
-      "kleverSDK/kleverSDK.wasm",
-      "kleverSDK.wasm",
-      "src/kleverSDK.wasm",
-      "src/kleverSDK/kleverSDK.wasm",
-      "assets/kleverSDK/kleverSDK.wasm",
-      "assets/kleverSDK.wasm",
-      "public/kleverSDK/kleverSDK.wasm",
-      "static/kleverSDK/kleverSDK.wasm",
-      "public/kleverSDK.wasm",
-      "static/kleverSDK.wasm",
+      "/kleverSDK/kleverSDK.wasm",
+      "/kleverSDK.wasm",
+      "/src/kleverSDK.wasm",
+      "/src/kleverSDK/kleverSDK.wasm",
+      "/assets/kleverSDK/kleverSDK.wasm",
+      "/assets/kleverSDK.wasm",
+      "/public/kleverSDK/kleverSDK.wasm",
+      "/static/kleverSDK/kleverSDK.wasm",
+      "/public/kleverSDK.wasm",
+      "/static/kleverSDK.wasm",
     ];
 
     for (let i = 0; i < nodeFallbackPaths.length; i++) {
@@ -74,16 +74,16 @@ async function browserLoadKleverSDK() {
       file.headers.get("Content-Type") !== "application/wasm"
     ) {
       const browserFallbackPaths = [
-        "assets/kleverSDK/kleverSDK.wasm",
-        "kleverSDK.wasm",
-        "assets/kleverSDK.wasm",
-        "public/kleverSDK/kleverSDK.wasm",
-        "static/kleverSDK/kleverSDK.wasm",
-        "public/kleverSDK.wasm",
-        "static/kleverSDK.wasm",
-        "src/kleverSDK/kleverSDK.wasm",
-        "src/kleverSDK.wasm",
-        "kleverSDK/kleverSDK.wasm",
+        "/assets/kleverSDK/kleverSDK.wasm",
+        "/kleverSDK.wasm",
+        "/assets/kleverSDK.wasm",
+        "/public/kleverSDK/kleverSDK.wasm",
+        "/static/kleverSDK/kleverSDK.wasm",
+        "/public/kleverSDK.wasm",
+        "/static/kleverSDK.wasm",
+        "/src/kleverSDK/kleverSDK.wasm",
+        "/src/kleverSDK.wasm",
+        "/kleverSDK/kleverSDK.wasm",
       ];
 
       for (let i = 0; i < browserFallbackPaths.length; i++) {
