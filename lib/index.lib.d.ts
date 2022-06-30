@@ -1,5 +1,6 @@
 declare module globalThis {
   var Go: any;
+  var kleverchainUrls: any;
   function getAccount(address: string): Promise<IAccount>;
   function parsePemFileData(pemData: string): Promise<IPemResponse>;
   function createAccount(): Promise<IPemResponse>;
