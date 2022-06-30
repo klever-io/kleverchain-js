@@ -9,6 +9,7 @@ import {
   TransactionType,
   TriggerType,
   ITransactionProps,
+  IURLs,
 } from "./types";
 import { ITransactionResponse, IPemResponse } from "./types/dtos";
 import {
@@ -65,4 +66,5 @@ export {
   IUpdateAccountPermission,
   ISetITOPrices,
   ITransactionProps,
+  IURLs,
 };

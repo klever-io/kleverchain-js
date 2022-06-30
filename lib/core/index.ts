@@ -1,4 +1,5 @@
 import Account from "../account";
+import { IURLs } from "../types";
 import { IBroadcastResponse, IPemResponse } from "../types/dtos";
 import { ErrLoadSdk } from "./errors";
 
@@ -48,11 +49,16 @@ const broadcastTransactions = async (
   return response;
 };
 
+const setURLs = (url: IURLs) => {
+  globalThis.kleverchainUrls = url;
+};
+
 const core = {
   getAccountByPem,
   createAccount,
   isSDKLoaded,
   broadcastTransactions,
+  setURLs,
 };
 
 export default core;

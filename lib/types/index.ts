@@ -95,3 +95,8 @@ export enum TriggerType {
   ChangeRoyaltiesReceiver,
   UpdateStaking,
 }
+
+export interface IURLs {
+  api: string;
+  node: string;
+}

@@ -88,6 +88,10 @@ declare enum TriggerType {
     ChangeRoyaltiesReceiver = 12,
     UpdateStaking = 13
 }
+interface IURLs {
+    api: string;
+    node: string;
+}
 
 interface ITransfer {
     receiver: string;
@@ -317,8 +321,9 @@ declare const core: {
     createAccount: () => Promise<IPemResponse>;
     isSDKLoaded: () => Promise<boolean>;
     broadcastTransactions: (transactions: string) => Promise<IBroadcastResponse>;
+    setURLs: (url: IURLs) => void;
 };
 
 declare const sendTransaction: (type: TransactionType, payload: IBasePayload, props?: ITransactionProps | undefined) => Promise<ITransactionResponse[] | IBroadcastResponse>;
 
-export { Account, IAccount, IAssetTrigger, IBasePayload, IBuyOrder, ICancelMarketOrder, IClaim, IConfigITO, IConfigMarket, ICreateAsset, ICreateMarket, ICreateValidator, IDelegate, IFreeze, IPemResponse, IProposal, ISellOrder, ISetAccountName, ISetITOPrices, ITransactionProps, ITransactionResponse, ITransfer, IUndelegate, IUnfreeze, IUpdateAccountPermission, IVotes, IWithdraw, TransactionType, TriggerType, core, sendTransaction };
+export { Account, IAccount, IAssetTrigger, IBasePayload, IBuyOrder, ICancelMarketOrder, IClaim, IConfigITO, IConfigMarket, ICreateAsset, ICreateMarket, ICreateValidator, IDelegate, IFreeze, IPemResponse, IProposal, ISellOrder, ISetAccountName, ISetITOPrices, ITransactionProps, ITransactionResponse, ITransfer, IURLs, IUndelegate, IUnfreeze, IUpdateAccountPermission, IVotes, IWithdraw, TransactionType, TriggerType, core, sendTransaction };
