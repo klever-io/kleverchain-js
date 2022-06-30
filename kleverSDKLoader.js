@@ -21,16 +21,16 @@ async function nodeLoadKleverSDK() {
     }
   } else {
     const nodeFallbackPaths = [
-      "/kleverSDK/kleverSDK.wasm",
-      "/kleverSDK.wasm",
-      "/src/kleverSDK.wasm",
-      "/src/kleverSDK/kleverSDK.wasm",
-      "/assets/kleverSDK/kleverSDK.wasm",
-      "/assets/kleverSDK.wasm",
-      "/public/kleverSDK/kleverSDK.wasm",
-      "/static/kleverSDK/kleverSDK.wasm",
-      "/public/kleverSDK.wasm",
-      "/static/kleverSDK.wasm",
+      "kleverSDK/kleverSDK.wasm",
+      "kleverSDK.wasm",
+      "src/kleverSDK.wasm",
+      "src/kleverSDK/kleverSDK.wasm",
+      "assets/kleverSDK/kleverSDK.wasm",
+      "assets/kleverSDK.wasm",
+      "public/kleverSDK/kleverSDK.wasm",
+      "static/kleverSDK/kleverSDK.wasm",
+      "public/kleverSDK.wasm",
+      "static/kleverSDK.wasm",
     ];
 
     for (let i = 0; i < nodeFallbackPaths.length; i++) {
