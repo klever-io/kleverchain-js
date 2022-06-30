@@ -101,18 +101,16 @@ const sendTransaction = async (
     JSON.stringify(props ? props : {})
   )) as ITransactionResponse[];
 
-  console.log(rawTx);
-
   if (payload.privateKey) {
-    rawTx = [
+    const signatures: string[] = [
       (
         await globalThis.signTx(
           JSON.stringify({ tx: rawTx[0], privateKey: payload.privateKey })
         )
-      ).signedTX,
+      ).signature as string,
     ];
 
-    console.log(rawTx);
+    rawTx[0].Signature = signatures;
   }
 
   if (autobroadcast) {
