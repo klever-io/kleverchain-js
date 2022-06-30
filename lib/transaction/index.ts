@@ -90,28 +90,38 @@ const sendTransaction = async (
   }
 
   const autobroadcast = props?.autobroadcast ?? true;
-
   delete props?.autobroadcast;
 
   if (props && Array.isArray(props?.previousTX)) {
     props.previousTX = props?.previousTX[0];
   }
 
-  if (autobroadcast) {
-    const response = await method(
-      JSON.stringify(payload),
-      JSON.stringify(props ? props : {})
-    );
+  let rawTx = (await method(
+    JSON.stringify(payload),
+    JSON.stringify(props ? props : {})
+  )) as ITransactionResponse[];
 
+  console.log(rawTx);
+
+  if (payload.privateKey) {
+    rawTx = [
+      (
+        await globalThis.signTx(
+          JSON.stringify({ tx: rawTx[0], privateKey: payload.privateKey })
+        )
+      ).signedTX,
+    ];
+
+    console.log(rawTx);
+  }
+
+  if (autobroadcast) {
     return globalThis.broadcast(
-      JSON.stringify(response)
+      JSON.stringify(rawTx)
     ) as Promise<IBroadcastResponse>;
   }
 
-  return method(
-    JSON.stringify(payload),
-    JSON.stringify(props ? props : {})
-  ) as Promise<ITransactionResponse[]>;
+  return rawTx;
 };
 
 export { sendTransaction };

@@ -32,7 +32,7 @@ export interface INodeAccount {
 
 export interface IBasePayload {
   sender: string;
-  privateKey: string;
+  privateKey?: string;
   nonce: number;
 }
 

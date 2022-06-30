@@ -98,4 +98,5 @@ declare module globalThis {
     props: string
   ): Promise<ITransactionResponse>;
   function broadcast(payload: string): Promise<IBroadcastResponse>;
+  function signTx(payload: string): Promise<ITransactionResponse>;
 }
