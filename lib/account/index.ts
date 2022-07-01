@@ -35,10 +35,19 @@ import {
 class Account {
   private address: string;
   private privateKey: string;
+  private host: string;
 
-  constructor(address: string, privateKey: string) {
+  constructor(address: string, privateKey: string, host?: string) {
     this.address = address;
     this.privateKey = privateKey;
+    if (host) {
+      if (host[host.length - 1] === "/") {
+        this.host = host.slice(0, -1);
+      }
+      this.host = host;
+    } else {
+      this.host = "https://node.testnet.klever.finance";
+    }
   }
 
   getAddress() {
@@ -69,18 +78,12 @@ class Account {
   }
 
   async getNonce() {
-    const request = await fetch(
-      `${
-        process?.env?.REACT_APP_DEFAULT_NODE_HOST ||
-        "https://node.testnet.klever.finance"
-      }/address/${this.address}`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    const request = await fetch(`${this.host}/address/${this.address}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
 
     const response: INodeAccount = await request.json();
 
