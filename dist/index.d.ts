@@ -285,7 +285,8 @@ interface ISetITOPrices {
 declare class Account {
     private address;
     private privateKey;
-    constructor(address: string, privateKey: string);
+    private host;
+    constructor(address: string, privateKey: string, host?: string);
     getAddress(): string;
     getPrivateKey(): string;
     getBalance(): Promise<number>;
