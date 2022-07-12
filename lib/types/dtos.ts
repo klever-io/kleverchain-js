@@ -21,6 +21,9 @@ export interface IBroadcastResponse {
   txCount: number;
 }
 
+export interface ISignatureResponse {
+  signature: string;
+}
 export interface IPemResponse {
   address: string;
   privateKey: string;
