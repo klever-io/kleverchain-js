@@ -1,6 +1,10 @@
 import Account from "../account";
 import { IURLs } from "../types";
-import { IBroadcastResponse, IPemResponse } from "../types/dtos";
+import {
+  IBroadcastResponse,
+  IPemResponse,
+  ISignatureResponse,
+} from "../types/dtos";
 import { ErrLoadSdk } from "./errors";
 
 const isSDKLoaded = async () => {
@@ -55,12 +59,52 @@ const setURLs = (url: IURLs) => {
   globalThis.kleverchainUrls = url;
 };
 
+const signMessage = async (
+  message: string,
+  privateKey: string
+): Promise<ISignatureResponse> => {
+  if (!(await isSDKLoaded())) {
+    throw ErrLoadSdk;
+  }
+
+  const payload = JSON.stringify({
+    message,
+    privateKey,
+  });
+
+  const response = await globalThis.kleverWeb.signMessage(payload);
+
+  return response;
+};
+
+const verifySignature = async (
+  message: string,
+  signature: string,
+  publicKey: string
+): Promise<ISignatureResponse> => {
+  if (!(await isSDKLoaded())) {
+    throw ErrLoadSdk;
+  }
+
+  const payload = JSON.stringify({
+    message,
+    signature,
+    publicKey,
+  });
+
+  const response = await globalThis.kleverWeb.verifySignature(payload);
+
+  return response;
+};
+
 const core = {
   getAccountByPem,
   createAccount,
   isSDKLoaded,
   broadcastTransactions,
   setURLs,
+  signMessage,
+  verifySignature,
 };
 
 export default core;

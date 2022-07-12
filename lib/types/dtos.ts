@@ -24,6 +24,9 @@ export interface IBroadcastResponse {
 export interface ISignatureResponse {
   signature: string;
 }
+export interface IVerifyResponse {
+  valid: boolean;
+}
 export interface IPemResponse {
   address: string;
   privateKey: string;

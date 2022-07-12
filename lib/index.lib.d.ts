@@ -13,6 +13,8 @@ interface kleverWeb {
   broadcast(payload: string): Promise<IBroadcastResponse>;
   signTx(payload: string): Promise<ISignatureResponse>;
 
+  signMessage(payload: string): Promise<ISignatureResponse>;
+  verifySignature(payload: string): Promise<IVerifyResponse>;
   sendTransaction(
     type: string | number,
     payload: string,
