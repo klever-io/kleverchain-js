@@ -67,7 +67,7 @@ class Account {
       throw ErrEmptyAddress;
     }
 
-    const response = await globalThis.getAccount(this.address);
+    const response = await globalThis.kleverWeb.getAccount(this.address);
 
     const account: IAccount = JSON.parse(response);
     if (account.error.length !== 0) {

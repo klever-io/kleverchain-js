@@ -1,102 +1,19 @@
 declare module globalThis {
   var Go: any;
   var kleverchainUrls: any;
-  function getAccount(address: string): Promise<IAccount>;
-  function parsePemFileData(pemData: string): Promise<IPemResponse>;
-  function createAccount(): Promise<IPemResponse>;
+  var kleverWeb: kleverWeb;
+}
 
-  function sendTransfer(
+interface kleverWeb {
+  getAccount(address: string): Promise<IAccount>;
+  parsePemFileData(pemData: string): Promise<IPemResponse>;
+  createAccount(): Promise<IPemResponse>;
+
+  sendTransaction(
+    type: string | number,
     payload: string,
     props: string
   ): Promise<ITransactionResponse>;
-  function sendCreateMarketplace(
-    payload: string,
-    props: string
-  ): Promise<ITransactionResponse>;
-  function sendFreeze(
-    payload: string,
-    props: string
-  ): Promise<ITransactionResponse>;
-  function sendUnfreeze(
-    payload: string,
-    props: string
-  ): Promise<ITransactionResponse>;
-  function sendWithdraw(
-    payload: string,
-    props: string
-  ): Promise<ITransactionResponse>;
-  function sendUndelegate(
-    payload: string,
-    props: string
-  ): Promise<ITransactionResponse>;
-  function sendDelegate(
-    payload: string,
-    props: string
-  ): Promise<ITransactionResponse>;
-  function setAccountName(
-    payload: string,
-    props: string
-  ): Promise<ITransactionResponse>;
-  function sendVotes(
-    payload: string,
-    props: string
-  ): Promise<ITransactionResponse>;
-  function sendClaim(
-    payload: string,
-    props: string
-  ): Promise<ITransactionResponse>;
-  function sendUnjail(
-    payload: string,
-    props: string
-  ): Promise<ITransactionResponse>;
-  function sendCancelMarketOrder(
-    payload: string,
-    props: string
-  ): Promise<ITransactionResponse>;
-  function sendSellOrder(
-    payload: string,
-    props: string
-  ): Promise<ITransactionResponse>;
-  function sendBuyOrder(
-    payload: string,
-    props: string
-  ): Promise<ITransactionResponse>;
-  function sendCreateAsset(
-    payload: string,
-    props: string
-  ): Promise<ITransactionResponse>;
-  function sendProposal(
-    payload: string,
-    props: string
-  ): Promise<ITransactionResponse>;
-  function sendConfigMarketplace(
-    payload: string,
-    props: string
-  ): Promise<ITransactionResponse>;
-  function sendCreateValidator(
-    payload: string,
-    props: string
-  ): Promise<ITransactionResponse>;
-  function sendConfigValidator(
-    payload: string,
-    props: string
-  ): Promise<ITransactionResponse>;
-  function sendConfigITO(
-    payload: string,
-    props: string
-  ): Promise<ITransactionResponse>;
-  function sendAssetTrigger(
-    payload: string,
-    props: string
-  ): Promise<ITransactionResponse>;
-  function sendUpdateAccountPermission(
-    payload: string,
-    props: string
-  ): Promise<ITransactionResponse>;
-  function sendSetITOPrices(
-    payload: string,
-    props: string
-  ): Promise<ITransactionResponse>;
-  function broadcast(payload: string): Promise<IBroadcastResponse>;
-  function signTx(payload: string): Promise<ITransactionResponse>;
+  broadcast(payload: string): Promise<IBroadcastResponse>;
+  signTx(payload: string): Promise<ITransactionResponse>;
 }

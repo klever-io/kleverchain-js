@@ -4,11 +4,11 @@ import { IBroadcastResponse, IPemResponse } from "../types/dtos";
 import { ErrLoadSdk } from "./errors";
 
 const isSDKLoaded = async () => {
-  if (!!globalThis.getAccount) return true;
+  if (!!globalThis.kleverWeb.getAccount) return true;
 
   for (let i = 0; i < 100; i++) {
     const isLoaded = await new Promise((resolve) =>
-      setTimeout(() => resolve(!!globalThis.getAccount), 50)
+      setTimeout(() => resolve(!!globalThis.kleverWeb.getAccount), 50)
     );
 
     if (isLoaded) return true;
@@ -22,7 +22,9 @@ const getAccountByPem = async (pemData: string): Promise<Account> => {
     throw ErrLoadSdk;
   }
 
-  const { address, privateKey } = await globalThis.parsePemFileData(pemData);
+  const { address, privateKey } = await globalThis.kleverWeb.parsePemFileData(
+    pemData
+  );
 
   return new Account(address, privateKey);
 };
@@ -32,7 +34,7 @@ const createAccount = async (): Promise<IPemResponse> => {
     throw ErrLoadSdk;
   }
 
-  const account = await globalThis.createAccount();
+  const account = await globalThis.kleverWeb.createAccount();
 
   return account;
 };
@@ -44,7 +46,7 @@ const broadcastTransactions = async (
     throw ErrLoadSdk;
   }
 
-  const response = await globalThis.broadcast(transactions);
+  const response = await globalThis.kleverWeb.broadcast(transactions);
 
   return response;
 };
