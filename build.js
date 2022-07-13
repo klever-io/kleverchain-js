@@ -8,7 +8,7 @@ const fs = require("fs");
   const fileName = "kleverSDK";
   const fileExtension = "wasm";
   const bin = fileName + "." + fileExtension;
-  const version = "2.0";
+  const version = "2.3";
   const url = `https://kleverchain-wasm.s3.eu-central-1.amazonaws.com/${
     fileName + version
   }.${fileExtension}`;

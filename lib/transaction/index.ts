@@ -12,80 +12,80 @@ const sendTransaction = async (
     throw ErrLoadSdk;
   }
 
-  let method;
+  let transactionType;
 
   switch (type) {
     case TransactionType.Transfer:
-      method = globalThis.sendTransfer;
-      break;
-    case TransactionType.CreateMarketplace:
-      method = globalThis.sendCreateMarketplace;
-      break;
-    case TransactionType.ConfigMarketplace:
-      method = globalThis.sendConfigMarketplace;
-      break;
-    case TransactionType.Freeze:
-      method = globalThis.sendFreeze;
-      break;
-    case TransactionType.Unfreeze:
-      method = globalThis.sendUnfreeze;
-      break;
-    case TransactionType.Withdraw:
-      method = globalThis.sendWithdraw;
-      break;
-    case TransactionType.Undelegate:
-      method = globalThis.sendUndelegate;
-      break;
-    case TransactionType.Delegate:
-      method = globalThis.sendDelegate;
-      break;
-    case TransactionType.SetAccountName:
-      method = globalThis.setAccountName;
-      break;
-    case TransactionType.Votes:
-      method = globalThis.sendVotes;
-      break;
-    case TransactionType.Claim:
-      method = globalThis.sendClaim;
-      break;
-    case TransactionType.Unjail:
-      method = globalThis.sendUnjail;
-      break;
-    case TransactionType.CancelMarketOrder:
-      method = globalThis.sendCancelMarketOrder;
-      break;
-    case TransactionType.SellOrder:
-      method = globalThis.sendSellOrder;
-      break;
-    case TransactionType.BuyOrder:
-      method = globalThis.sendBuyOrder;
+      transactionType = "0";
       break;
     case TransactionType.CreateAsset:
-      method = globalThis.sendCreateAsset;
-      break;
-    case TransactionType.Proposal:
-      method = globalThis.sendProposal;
+      transactionType = "1";
       break;
     case TransactionType.CreateValidator:
-      method = globalThis.sendCreateValidator;
+      transactionType = "2";
       break;
     case TransactionType.ConfigValidator:
-      method = globalThis.sendConfigValidator;
+      transactionType = "3";
       break;
-    case TransactionType.ConfigITO:
-      method = globalThis.sendConfigITO;
+    case TransactionType.Freeze:
+      transactionType = "4";
+      break;
+    case TransactionType.Unfreeze:
+      transactionType = "5";
+      break;
+    case TransactionType.Delegate:
+      transactionType = "6";
+      break;
+    case TransactionType.Undelegate:
+      transactionType = "7";
+      break;
+    case TransactionType.Withdraw:
+      transactionType = "8";
+      break;
+    case TransactionType.Claim:
+      transactionType = "9";
+      break;
+    case TransactionType.Unjail:
+      transactionType = "10";
       break;
     case TransactionType.AssetTrigger:
-      method = globalThis.sendAssetTrigger;
+      transactionType = "11";
       break;
-    case TransactionType.UpdateAccountPermission:
-      method = globalThis.sendUpdateAccountPermission;
+    case TransactionType.SetAccountName:
+      transactionType = "12";
+      break;
+    case TransactionType.Proposal:
+      transactionType = "13";
+      break;
+    case TransactionType.Votes:
+      transactionType = "14";
+      break;
+    case TransactionType.ConfigITO:
+      transactionType = "15";
       break;
     case TransactionType.SetITOPrices:
-      method = globalThis.sendSetITOPrices;
+      transactionType = "16";
+      break;
+    case TransactionType.BuyOrder:
+      transactionType = "17";
+      break;
+    case TransactionType.SellOrder:
+      transactionType = "18";
+      break;
+    case TransactionType.CancelMarketOrder:
+      transactionType = "19";
+      break;
+    case TransactionType.CreateMarketplace:
+      transactionType = "20";
+      break;
+    case TransactionType.ConfigMarketplace:
+      transactionType = "21";
+      break;
+    case TransactionType.UpdateAccountPermission:
+      transactionType = "22";
       break;
     default:
-      method = globalThis.sendTransfer;
+      transactionType = "0";
       break;
   }
 
@@ -96,7 +96,8 @@ const sendTransaction = async (
     props.previousTX = props?.previousTX[0];
   }
 
-  let rawTx = (await method(
+  let rawTx = (await globalThis.kleverWeb.sendTransaction(
+    transactionType,
     JSON.stringify(payload),
     JSON.stringify(props ? props : {})
   )) as ITransactionResponse[];
@@ -104,7 +105,7 @@ const sendTransaction = async (
   if (payload.privateKey) {
     const signatures: string[] = [
       (
-        await globalThis.signTx(
+        await globalThis.kleverWeb.signTx(
           JSON.stringify({ tx: rawTx[0], privateKey: payload.privateKey })
         )
       ).signature as string,
@@ -114,7 +115,7 @@ const sendTransaction = async (
   }
 
   if (autobroadcast) {
-    return globalThis.broadcast(
+    return globalThis.kleverWeb.broadcast(
       JSON.stringify(rawTx)
     ) as Promise<IBroadcastResponse>;
   }

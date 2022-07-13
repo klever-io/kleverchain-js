@@ -18,6 +18,12 @@ interface IBroadcastResponse {
     txHashes: string[];
     txCount: number;
 }
+interface ISignatureResponse {
+    signature: string;
+}
+interface IVerifyResponse {
+    valid: boolean;
+}
 interface IPemResponse {
     address: string;
     privateKey: string;
@@ -49,28 +55,28 @@ interface ITransactionProps {
 }
 declare enum TransactionType {
     Transfer = 0,
-    CreateMarketplace = 1,
-    ConfigMarketplace = 2,
-    Freeze = 3,
-    Unfreeze = 4,
-    Withdraw = 5,
-    Undelegate = 6,
-    Delegate = 7,
-    SetAccountName = 8,
-    Votes = 9,
-    Claim = 10,
-    Unjail = 11,
-    CancelMarketOrder = 12,
-    SellOrder = 13,
-    BuyOrder = 14,
-    CreateAsset = 15,
-    Proposal = 16,
-    CreateValidator = 17,
-    ConfigValidator = 18,
-    ConfigITO = 19,
-    AssetTrigger = 20,
-    UpdateAccountPermission = 21,
-    SetITOPrices = 22
+    CreateAsset = 1,
+    CreateValidator = 2,
+    ConfigValidator = 3,
+    Freeze = 4,
+    Unfreeze = 5,
+    Delegate = 6,
+    Undelegate = 7,
+    Withdraw = 8,
+    Claim = 9,
+    Unjail = 10,
+    AssetTrigger = 11,
+    SetAccountName = 12,
+    Proposal = 13,
+    Votes = 14,
+    ConfigITO = 15,
+    SetITOPrices = 16,
+    BuyOrder = 17,
+    SellOrder = 18,
+    CancelMarketOrder = 19,
+    CreateMarketplace = 20,
+    ConfigMarketplace = 21,
+    UpdateAccountPermission = 22
 }
 declare enum TriggerType {
     Mint = 0,
@@ -323,6 +329,8 @@ declare const core: {
     isSDKLoaded: () => Promise<boolean>;
     broadcastTransactions: (transactions: string) => Promise<IBroadcastResponse>;
     setURLs: (url: IURLs) => void;
+    signMessage: (message: string, privateKey: string) => Promise<ISignatureResponse>;
+    verifySignature: (message: string, signature: string, publicKey: string) => Promise<IVerifyResponse>;
 };
 
 declare const sendTransaction: (type: TransactionType, payload: IBasePayload, props?: ITransactionProps | undefined) => Promise<ITransactionResponse[] | IBroadcastResponse>;
