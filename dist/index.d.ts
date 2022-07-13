@@ -18,6 +18,12 @@ interface IBroadcastResponse {
     txHashes: string[];
     txCount: number;
 }
+interface ISignatureResponse {
+    signature: string;
+}
+interface IVerifyResponse {
+    valid: boolean;
+}
 interface IPemResponse {
     address: string;
     privateKey: string;
@@ -323,6 +329,8 @@ declare const core: {
     isSDKLoaded: () => Promise<boolean>;
     broadcastTransactions: (transactions: string) => Promise<IBroadcastResponse>;
     setURLs: (url: IURLs) => void;
+    signMessage: (message: string, privateKey: string) => Promise<ISignatureResponse>;
+    verifySignature: (message: string, signature: string, publicKey: string) => Promise<IVerifyResponse>;
 };
 
 declare const sendTransaction: (type: TransactionType, payload: IBasePayload, props?: ITransactionProps | undefined) => Promise<ITransactionResponse[] | IBroadcastResponse>;

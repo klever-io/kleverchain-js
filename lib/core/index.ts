@@ -4,6 +4,7 @@ import {
   IBroadcastResponse,
   IPemResponse,
   ISignatureResponse,
+  IVerifyResponse,
 } from "../types/dtos";
 import { ErrLoadSdk } from "./errors";
 
@@ -81,7 +82,7 @@ const verifySignature = async (
   message: string,
   signature: string,
   publicKey: string
-): Promise<ISignatureResponse> => {
+): Promise<IVerifyResponse> => {
   if (!(await isSDKLoaded())) {
     throw ErrLoadSdk;
   }
