@@ -57,7 +57,10 @@ const broadcastTransactions = async (
 };
 
 const setURLs = (url: IURLs) => {
-  globalThis.kleverchainUrls = url;
+  globalThis.kleverWeb = {
+    ...globalThis.kleverWeb,
+    provider: url,
+  };
 };
 
 const signMessage = async (

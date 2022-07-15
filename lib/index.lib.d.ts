@@ -1,10 +1,11 @@
 declare module globalThis {
   var Go: any;
-  var kleverchainUrls: any;
   var kleverWeb: kleverWeb;
 }
 
 interface kleverWeb {
+  provider: any;
+
   createAccount(): Promise<IPemResponse>;
   getAccount(address: string): Promise<IAccount>;
 
