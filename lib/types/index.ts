@@ -100,3 +100,29 @@ export interface IURLs {
   api: string;
   node: string;
 }
+
+export interface ISentContract {
+  Type: TransactionType;
+  Params: string;
+}
+
+export interface IRawData {
+  Nonce: number;
+  Sender: string;
+  Contract: ISentContract[];
+  PermissionID?: number;
+  Data: string[];
+  KAppFee: number;
+  BandwidthFee: number;
+  Version: number;
+  ChainID: string;
+}
+
+export interface ISentTransaction {
+  RawData: IRawData;
+}
+
+export interface ISignedTransaction {
+  RawData: IRawData;
+  Signature: string;
+}

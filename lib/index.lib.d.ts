@@ -5,6 +5,7 @@ declare module globalThis {
 
 interface kleverWeb {
   provider: any;
+  active: boolean;
 
   createAccount(): Promise<IPemResponse>;
   getAccount(address: string): Promise<IAccount>;
@@ -21,4 +22,7 @@ interface kleverWeb {
     payload: string,
     props: string
   ): Promise<ITransactionResponse>;
+
+  getWalletAddress(): Promise<string>;
+  setWalletAddress(): Promise<void>;
 }
