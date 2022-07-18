@@ -6,9 +6,9 @@ const fs = require("fs");
   const folder = "kleverSDK";
   const loader = "kleverSDKLoader.js";
   const fileName = "kleverSDK";
-  const fileExtension = "wasm";
+  const fileExtension = "wasm.gz";
   const bin = fileName + "." + fileExtension;
-  const version = "2.3";
+  const version = "";
   const url = `https://kleverchain-wasm.s3.eu-central-1.amazonaws.com/${
     fileName + version
   }.${fileExtension}`;
