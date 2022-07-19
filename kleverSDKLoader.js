@@ -3032,16 +3032,21 @@ async function browserLoadKleverSDK() {
     throw `Could parse arrayBuffer`;
   }
 
+  let instanceRunning = false;
+
   const module = await WebAssembly.compile(buffer);
 
   (async function () {
     const instance = await WebAssembly.instantiate(module, go.importObject);
     go.run(instance);
+    instanceRunning = true;
   })();
 
   window.onload = async function () {
-    const instance = await WebAssembly.instantiate(module, go.importObject);
-    go.run(instance);
+    if (!instanceRunning) {
+      const instance = await WebAssembly.instantiate(module, go.importObject);
+      go.run(instance);
+    }
   };
 }
 
