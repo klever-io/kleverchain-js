@@ -3021,7 +3021,7 @@ async function browserLoadKleverSDK() {
 
   const compressedBuffer = await file.arrayBuffer();
 
-  const buffer = pako.ungzip(compressedBuffer).buffer;
+  let buffer = pako.ungzip(compressedBuffer).buffer;
   // A fetched response might be decompressed twice on Firefox.
   // See https://bugzilla.mozilla.org/show_bug.cgi?id=610679
   if (buffer[0] === 0x1f && buffer[1] === 0x8b) {
