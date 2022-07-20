@@ -57,14 +57,19 @@ const broadcastTransactions = async (
 };
 
 const setURLs = async (url: IURLs) => {
-  if (!(await isSDKLoaded())) {
-    throw ErrLoadSdk;
-  }
-
   globalThis.kleverWeb = {
     ...globalThis.kleverWeb,
     provider: url,
   };
+  if (!(await isSDKLoaded())) {
+    return;
+  }
+  if (url.api) {
+    await globalThis.kleverWeb.setApiUrl(url.api);
+  }
+  if (url.node) {
+    await globalThis.kleverWeb.setNodeUrl(url.node);
+  }
 };
 
 const signMessage = async (

@@ -10,6 +10,8 @@ interface kleverWeb {
   getAccount(address: string): Promise<IAccount>;
 
   parsePemFileData(pemData: string): Promise<IPemResponse>;
+  setApiUrl(url: string): Promise<void>;
+  setNodeUrl(url: string): Promise<void>;
 
   broadcast(payload: string): Promise<IBroadcastResponse>;
   signTx(payload: string): Promise<ISignatureResponse>;
