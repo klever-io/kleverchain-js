@@ -9,11 +9,11 @@ import {
 import { ErrLoadSdk } from "./errors";
 
 const isSDKLoaded = async () => {
-  if (!!globalThis.kleverWeb.getAccount) return true;
+  if (!!globalThis?.kleverWeb?.getAccount) return true;
 
   for (let i = 0; i < 100; i++) {
     const isLoaded = await new Promise((resolve) =>
-      setTimeout(() => resolve(!!globalThis.kleverWeb.getAccount), 50)
+      setTimeout(() => resolve(!!globalThis?.kleverWeb?.getAccount), 50)
     );
 
     if (isLoaded) return true;
@@ -56,7 +56,11 @@ const broadcastTransactions = async (
   return response;
 };
 
-const setURLs = (url: IURLs) => {
+const setURLs = async (url: IURLs) => {
+  if (!(await isSDKLoaded())) {
+    throw ErrLoadSdk;
+  }
+
   globalThis.kleverWeb = {
     ...globalThis.kleverWeb,
     provider: url,

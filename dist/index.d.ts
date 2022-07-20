@@ -328,7 +328,7 @@ declare const core: {
     createAccount: () => Promise<IPemResponse>;
     isSDKLoaded: () => Promise<boolean>;
     broadcastTransactions: (transactions: string) => Promise<IBroadcastResponse>;
-    setURLs: (url: IURLs) => void;
+    setURLs: (url: IURLs) => Promise<void>;
     signMessage: (message: string, privateKey: string) => Promise<ISignatureResponse>;
     verifySignature: (message: string, signature: string, publicKey: string) => Promise<IVerifyResponse>;
 };
