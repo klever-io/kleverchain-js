@@ -327,7 +327,7 @@ declare const core: {
     getAccountByPem: (pemData: string) => Promise<Account>;
     createAccount: () => Promise<IPemResponse>;
     isSDKLoaded: () => Promise<boolean>;
-    broadcastTransactions: (transactions: string) => Promise<IBroadcastResponse>;
+    broadcastTransaction: (transactions: ITransactionResponse | ITransactionResponse[]) => Promise<IBroadcastResponse>;
     setURLs: (url: IURLs) => Promise<void>;
     signMessage: (message: string, privateKey: string) => Promise<ISignatureResponse>;
     signTransaction: (tx: ITransactionResponse, privateKey: string) => Promise<ISignatureResponse>;
