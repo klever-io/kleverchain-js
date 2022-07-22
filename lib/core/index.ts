@@ -91,7 +91,7 @@ const signMessage = async (
   return response;
 };
 
-const signTransation = async (
+const signTransaction = async (
   tx: ITransactionResponse,
   privateKey: string
 ): Promise<ISignatureResponse> => {
@@ -136,7 +136,7 @@ const core = {
   broadcastTransactions,
   setURLs,
   signMessage,
-  signTransation,
+  signTransaction,
   verifySignature,
 };
 
