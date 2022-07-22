@@ -12,7 +12,7 @@ interface ITransactionResponse {
         KAppFee: number;
         BandwidthFee: number;
     };
-    Signature: string[];
+    Signature?: string[];
 }
 interface IBroadcastResponse {
     txHashes: string[];
@@ -330,6 +330,7 @@ declare const core: {
     broadcastTransactions: (transactions: string) => Promise<IBroadcastResponse>;
     setURLs: (url: IURLs) => Promise<void>;
     signMessage: (message: string, privateKey: string) => Promise<ISignatureResponse>;
+    signTransation: (tx: ITransactionResponse, privateKey: string) => Promise<ISignatureResponse>;
     verifySignature: (message: string, signature: string, publicKey: string) => Promise<IVerifyResponse>;
 };
 
