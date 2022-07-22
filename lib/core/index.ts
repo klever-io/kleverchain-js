@@ -4,6 +4,7 @@ import {
   IBroadcastResponse,
   IPemResponse,
   ISignatureResponse,
+  ITransactionResponse,
   IVerifyResponse,
 } from "../types/dtos";
 import { ErrLoadSdk } from "./errors";
@@ -90,6 +91,24 @@ const signMessage = async (
   return response;
 };
 
+const signTransation = async (
+  tx: ITransactionResponse,
+  privateKey: string
+): Promise<ISignatureResponse> => {
+  if (!(await isSDKLoaded())) {
+    throw ErrLoadSdk;
+  }
+
+  const payload = JSON.stringify({
+    tx,
+    privateKey,
+  });
+
+  const response = await globalThis.kleverWeb.signTx(payload);
+
+  return response;
+};
+
 const verifySignature = async (
   message: string,
   signature: string,
@@ -117,6 +136,7 @@ const core = {
   broadcastTransactions,
   setURLs,
   signMessage,
+  signTransation,
   verifySignature,
 };
 
