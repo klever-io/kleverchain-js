@@ -12,7 +12,7 @@ interface ITransactionResponse {
         KAppFee: number;
         BandwidthFee: number;
     };
-    Signature: string[];
+    Signature?: string[];
 }
 interface IBroadcastResponse {
     txHashes: string[];
@@ -327,9 +327,10 @@ declare const core: {
     getAccountByPem: (pemData: string) => Promise<Account>;
     createAccount: () => Promise<IPemResponse>;
     isSDKLoaded: () => Promise<boolean>;
-    broadcastTransactions: (transactions: string) => Promise<IBroadcastResponse>;
-    setURLs: (url: IURLs) => void;
+    broadcastTransaction: (transactions: ITransactionResponse | ITransactionResponse[]) => Promise<IBroadcastResponse>;
+    setURLs: (url: IURLs) => Promise<void>;
     signMessage: (message: string, privateKey: string) => Promise<ISignatureResponse>;
+    signTransaction: (tx: ITransactionResponse, privateKey: string) => Promise<ISignatureResponse>;
     verifySignature: (message: string, signature: string, publicKey: string) => Promise<IVerifyResponse>;
 };
 

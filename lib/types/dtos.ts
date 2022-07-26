@@ -13,7 +13,7 @@ export interface ITransactionResponse {
     KAppFee: number;
     BandwidthFee: number;
   };
-  Signature: string[];
+  Signature?: string[];
 }
 
 export interface IBroadcastResponse {

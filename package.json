@@ -1,6 +1,6 @@
 {
   "name": "@klever/sdk",
-  "version": "2.2.0",
+  "version": "2.4.8",
   "description": "Kleverchain SDK integration with JS",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",

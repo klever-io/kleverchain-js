@@ -51,7 +51,7 @@ const config = [
         format: "cjs",
       },
     ],
-    plugins: [terser()],
+    plugins: [],
   },
 ];
 

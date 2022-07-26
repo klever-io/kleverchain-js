@@ -103,15 +103,9 @@ const sendTransaction = async (
   )) as ITransactionResponse[];
 
   if (payload.privateKey) {
-    const signatures: string[] = [
-      (
-        await globalThis.kleverWeb.signTx(
-          JSON.stringify({ tx: rawTx[0], privateKey: payload.privateKey })
-        )
-      ).signature as string,
-    ];
-
-    rawTx[0].Signature = signatures;
+    rawTx[0] = await globalThis.kleverWeb.signTx(
+      JSON.stringify({ tx: rawTx[0], privateKey: payload.privateKey })
+    );
   }
 
   if (autobroadcast) {
