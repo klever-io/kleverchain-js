@@ -4,13 +4,15 @@ import {
   IBroadcastResponse,
   IPemResponse,
   ISignatureResponse,
-  ITransactionResponse,
+  ITransaction,
+  IRawData,
   IVerifyResponse,
 } from "../types/dtos";
 import { ErrLoadSdk } from "./errors";
 
 const isSDKLoaded = async () => {
   if (!!globalThis?.kleverWeb?.getAccount) return true;
+  if (!!globalThis?.kleverWeb?.active) return true;
 
   for (let i = 0; i < 100; i++) {
     const isLoaded = await new Promise((resolve) =>
@@ -45,20 +47,16 @@ const createAccount = async (): Promise<IPemResponse> => {
   return account;
 };
 
-const broadcastTransaction = async (
-  transactions: ITransactionResponse | ITransactionResponse[]
+const broadcastTransactions = async (
+  transactions: ITransaction[]
 ): Promise<IBroadcastResponse> => {
   if (!(await isSDKLoaded())) {
     throw ErrLoadSdk;
   }
 
-  if (!(transactions instanceof Array)) {
-    transactions = [transactions];
-  }
-
-  const payload = JSON.stringify(transactions);
-
-  const response = await globalThis.kleverWeb.broadcast(payload);
+  const response = await globalThis.kleverWeb.broadcastTransactions(
+    transactions
+  );
 
   return response;
 };
@@ -98,19 +96,13 @@ const signMessage = async (
 };
 
 const signTransaction = async (
-  tx: ITransactionResponse,
-  privateKey: string
+  tx: ITransaction
 ): Promise<ISignatureResponse> => {
   if (!(await isSDKLoaded())) {
     throw ErrLoadSdk;
   }
 
-  const payload = JSON.stringify({
-    tx,
-    privateKey,
-  });
-
-  const response = await globalThis.kleverWeb.signTx(payload);
+  const response = await globalThis.kleverWeb.signTransaction(tx);
 
   return response;
 };
@@ -130,7 +122,7 @@ const verifySignature = async (
     publicKey,
   });
 
-  const response = await globalThis.kleverWeb.verifySignature(payload);
+  const response = await globalThis.kleverWeb.validateSignature(payload);
 
   return response;
 };
@@ -139,7 +131,7 @@ const core = {
   getAccountByPem,
   createAccount,
   isSDKLoaded,
-  broadcastTransaction,
+  broadcastTransactions,
   setURLs,
   signMessage,
   signTransaction,

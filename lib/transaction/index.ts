@@ -1,13 +1,23 @@
 import core from "../core";
 import { ErrLoadSdk } from "../core/errors";
-import { TransactionType, IBasePayload, ITransactionProps } from "../types";
-import { IBroadcastResponse, ITransactionResponse } from "../types/dtos";
+import {
+  TransactionType,
+  IBasePayload,
+  ITransactionProps,
+  IContractProps,
+} from "../types";
+import {
+  IBroadcastResponse,
+  IContractRequest,
+  ITransaction,
+  IRawData,
+} from "../types/dtos";
 
 const sendTransaction = async (
   type: TransactionType,
   payload: IBasePayload,
   props?: ITransactionProps
-): Promise<ITransactionResponse[] | IBroadcastResponse> => {
+): Promise<ITransaction | IBroadcastResponse> => {
   if (!(await core.isSDKLoaded())) {
     throw ErrLoadSdk;
   }
@@ -96,25 +106,43 @@ const sendTransaction = async (
     props.previousTX = props?.previousTX[0];
   }
 
-  let rawTx = (await globalThis.kleverWeb.sendTransaction(
-    transactionType,
-    JSON.stringify(payload),
-    JSON.stringify(props ? props : {})
-  )) as ITransactionResponse[];
+  const { sender, privateKey, nonce } = payload;
 
-  if (payload.privateKey) {
-    rawTx[0] = await globalThis.kleverWeb.signTx(
-      JSON.stringify({ tx: rawTx[0], privateKey: payload.privateKey })
+  delete payload.sender;
+  delete payload.privateKey;
+  delete payload.nonce;
+
+  const parsedPayload: IContractRequest = {
+    type: Number(transactionType),
+    payload: payload as any,
+  };
+
+  let data: string[] | undefined;
+
+  if (props?.metadata) {
+    data = [Buffer.from(props?.metadata).toString("base64")];
+  }
+
+  try {
+    let rawTx = await globalThis.kleverWeb.buildTransaction(
+      [parsedPayload],
+      data
     );
-  }
 
-  if (autobroadcast) {
-    return globalThis.kleverWeb.broadcast(
-      JSON.stringify(rawTx)
-    ) as Promise<IBroadcastResponse>;
-  }
+    if (privateKey) {
+      rawTx = await globalThis.kleverWeb.signTransaction(rawTx);
+    }
 
-  return rawTx;
+    if (autobroadcast) {
+      return globalThis.kleverWeb.broadcastTransactions([
+        rawTx,
+      ]) as Promise<IBroadcastResponse>;
+    }
+
+    return rawTx;
+  } catch (e) {
+    throw e;
+  }
 };
 
 export { sendTransaction };

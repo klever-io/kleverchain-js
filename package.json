@@ -1,6 +1,6 @@
 {
   "name": "@klever/sdk",
-  "version": "2.4.8",
+  "version": "3.0.0",
   "description": "Kleverchain SDK integration with JS",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -14,7 +14,6 @@
   },
   "scripts": {
     "prepublish": "yarn build",
-    "postinstall": "node ./dist/build.js",
     "build": "rollup -c",
     "test": "yarn build && node ./dist/index.js"
   },

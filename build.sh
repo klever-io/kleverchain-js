@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PROJECT_NAME="kapps-demo"
+PROJECT_NAME="klever-explorer"
 
 yarn build
 mkdir -p ../${PROJECT_NAME}/node_modules/@klever/sdk/dist
