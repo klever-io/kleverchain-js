@@ -14,7 +14,6 @@
   },
   "scripts": {
     "prepublish": "yarn build",
-    "postinstall": "node ./dist/build.js",
     "build": "rollup -c",
     "test": "yarn build && node ./dist/index.js"
   },

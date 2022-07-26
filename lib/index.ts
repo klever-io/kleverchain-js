@@ -11,10 +11,10 @@ import {
   ITransactionProps,
   IURLs,
 } from "./types";
-import { ITransactionResponse, IPemResponse } from "./types/dtos";
+import { IRawData, ITransaction, IPemResponse } from "./types/dtos";
 import {
   ITransfer,
-  ICreateMarket,
+  ICreateMarketplace,
   IFreeze,
   IUnfreeze,
   IWithdraw,
@@ -28,12 +28,14 @@ import {
   IBuyOrder,
   ICreateAsset,
   IProposal,
-  IConfigMarket,
+  IConfigMarketplace,
   ICreateValidator,
+  IConfigValidator,
   IConfigITO,
   IAssetTrigger,
   IUpdateAccountPermission,
   ISetITOPrices,
+  IUnjail,
 } from "./types/contract";
 
 export { Account, core, sendTransaction };
@@ -42,10 +44,11 @@ export {
   IBasePayload,
   TransactionType,
   TriggerType,
-  ITransactionResponse,
+  IRawData,
+  ITransaction,
   IPemResponse,
   ITransfer,
-  ICreateMarket,
+  ICreateMarketplace,
   IFreeze,
   IUnfreeze,
   IWithdraw,
@@ -59,12 +62,14 @@ export {
   IBuyOrder,
   ICreateAsset,
   IProposal,
-  IConfigMarket,
+  IConfigMarketplace,
   ICreateValidator,
+  IConfigValidator,
   IConfigITO,
   IAssetTrigger,
   IUpdateAccountPermission,
   ISetITOPrices,
   ITransactionProps,
   IURLs,
+  IUnjail,
 };

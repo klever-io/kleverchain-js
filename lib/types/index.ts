@@ -1,5 +1,5 @@
 import Account from "../account";
-import { ITransactionResponse } from "./dtos";
+import { ITransaction } from "./dtos";
 
 export interface IAccount {
   data: {
@@ -31,9 +31,9 @@ export interface INodeAccount {
 }
 
 export interface IBasePayload {
-  sender: string;
+  sender?: string;
   privateKey?: string;
-  nonce: number;
+  nonce?: number;
 }
 
 export interface ISdkContext {
@@ -45,7 +45,7 @@ export interface ISdkContext {
 export interface ITransactionProps {
   metadata?: string;
   autobroadcast?: boolean;
-  previousTX?: ITransactionResponse | ITransactionResponse[];
+  previousTX?: ITransaction | ITransaction[];
 }
 
 export interface IContractProps {

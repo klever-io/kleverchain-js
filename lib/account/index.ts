@@ -14,9 +14,9 @@ import {
   ICancelMarketOrder,
   IClaim,
   IConfigITO,
-  IConfigMarket,
+  IConfigMarketplace,
   ICreateAsset,
-  ICreateMarket,
+  ICreateMarketplace,
   ICreateValidator,
   IDelegate,
   IFreeze,
@@ -40,6 +40,9 @@ class Account {
   constructor(address: string, privateKey: string, host?: string) {
     this.address = address;
     this.privateKey = privateKey;
+
+    window.kleverWeb.setWalletAddress(address);
+    window.kleverWeb.setPrivateKey(privateKey);
     if (host) {
       if (host[host.length - 1] === "/") {
         this.host = host.slice(0, -1);
@@ -52,10 +55,6 @@ class Account {
 
   getAddress() {
     return this.address;
-  }
-
-  getPrivateKey() {
-    return this.privateKey;
   }
 
   async getBalance() {
@@ -115,7 +114,7 @@ class Account {
   }
 
   async sendCreateMarketplace(
-    payload: ICreateMarket,
+    payload: ICreateMarketplace,
     props?: ITransactionProps
   ) {
     const basePayload = await this.getBasePayload();
@@ -130,7 +129,7 @@ class Account {
   }
 
   async sendConfigMarketplace(
-    payload: IConfigMarket,
+    payload: IConfigMarketplace,
     props?: ITransactionProps
   ) {
     const basePayload = await this.getBasePayload();
