@@ -22,8 +22,11 @@ export interface ITransaction {
 }
 
 export interface IBroadcastResponse {
-  txHash: string;
-  txCount: number;
+  data: {
+    txsHashes: string[];
+  };
+  error: string;
+  code: string;
 }
 
 export interface ISignatureResponse extends ITransaction {

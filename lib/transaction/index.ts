@@ -134,9 +134,9 @@ const sendTransaction = async (
     }
 
     if (autobroadcast) {
-      return globalThis.kleverWeb.broadcastTransaction(
-        rawTx
-      ) as Promise<IBroadcastResponse>;
+      return globalThis.kleverWeb.broadcastTransactions([
+        rawTx,
+      ]) as Promise<IBroadcastResponse>;
     }
 
     return rawTx;

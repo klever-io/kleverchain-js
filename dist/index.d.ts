@@ -279,8 +279,11 @@ interface ITransaction {
     Signature?: string[];
 }
 interface IBroadcastResponse {
-    txHash: string;
-    txCount: number;
+    data: {
+        txsHashes: string[];
+    };
+    error: string;
+    code: string;
 }
 interface ISignatureResponse extends ITransaction {
     Signature: string[];
@@ -331,7 +334,7 @@ declare const core: {
     getAccountByPem: (pemData: string) => Promise<Account>;
     createAccount: () => Promise<IPemResponse>;
     isSDKLoaded: () => Promise<boolean>;
-    broadcastTransaction: (transaction: ITransaction) => Promise<IBroadcastResponse>;
+    broadcastTransactions: (transactions: ITransaction[]) => Promise<IBroadcastResponse>;
     setURLs: (url: IURLs) => Promise<void>;
     signMessage: (message: string, privateKey: string) => Promise<ISignatureResponse>;
     signTransaction: (tx: ITransaction) => Promise<ISignatureResponse>;

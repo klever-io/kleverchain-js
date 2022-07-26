@@ -21,7 +21,7 @@ interface kleverWeb {
   setApiUrl(url: string): Promise<void>;
   setNodeUrl(url: string): Promise<void>;
 
-  broadcastTransaction(payload: ITransaction): Promise<IBroadcastResponse>;
+  broadcastTransactions(payload: ITransaction[]): Promise<IBroadcastResponse>;
   signTransaction(payload: ITransaction): Promise<ISignatureResponse>;
 
   setWalletAddress(payload: string): Promise<void>;

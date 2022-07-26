@@ -47,14 +47,16 @@ const createAccount = async (): Promise<IPemResponse> => {
   return account;
 };
 
-const broadcastTransaction = async (
-  transaction: ITransaction
+const broadcastTransactions = async (
+  transactions: ITransaction[]
 ): Promise<IBroadcastResponse> => {
   if (!(await isSDKLoaded())) {
     throw ErrLoadSdk;
   }
 
-  const response = await globalThis.kleverWeb.broadcastTransaction(transaction);
+  const response = await globalThis.kleverWeb.broadcastTransactions(
+    transactions
+  );
 
   return response;
 };
@@ -129,7 +131,7 @@ const core = {
   getAccountByPem,
   createAccount,
   isSDKLoaded,
-  broadcastTransaction,
+  broadcastTransactions,
   setURLs,
   signMessage,
   signTransaction,
