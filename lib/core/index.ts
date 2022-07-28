@@ -1,5 +1,5 @@
 import Account from "../account";
-import { IURLs } from "../types";
+import { IProvider } from "../types";
 import {
   IBroadcastResponse,
   IPemResponse,
@@ -61,7 +61,7 @@ const broadcastTransactions = async (
   return response;
 };
 
-const setURLs = async (url: IURLs) => {
+const setURLs = async (url: IProvider) => {
   globalThis.kleverWeb = {
     ...globalThis.kleverWeb,
     provider: url,
@@ -80,7 +80,7 @@ const setURLs = async (url: IURLs) => {
 const signMessage = async (
   message: string,
   privateKey: string
-): Promise<ISignatureResponse> => {
+): Promise<string> => {
   if (!(await isSDKLoaded())) {
     throw ErrLoadSdk;
   }

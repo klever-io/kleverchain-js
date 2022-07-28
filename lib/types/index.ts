@@ -96,7 +96,7 @@ export enum TriggerType {
   UpdateStaking,
 }
 
-export interface IURLs {
+export interface IProvider {
   api: string;
   node: string;
 }
