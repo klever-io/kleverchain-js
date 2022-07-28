@@ -1,57 +1,21 @@
-import Account from "../account";
-import { IProvider } from "../types";
+import KleverWeb from "@klever/kleverweb";
 import {
   IBroadcastResponse,
-  IPemResponse,
-  ISignatureResponse,
-  ITransaction,
-  IRawData,
-  IVerifyResponse,
-} from "../types/dtos";
-import { ErrLoadSdk } from "./errors";
+  IContractRequest,
+  ITxOptionsRequest,
+} from "@klever/kleverweb/dist/types/dtos";
+import { IProvider, ITransaction } from "..";
+import { ErrLoadKleverWeb } from "./errors";
 
-const isSDKLoaded = async () => {
-  if (!!globalThis?.kleverWeb?.getAccount) return true;
-  if (!!globalThis?.kleverWeb?.active) return true;
-
-  for (let i = 0; i < 100; i++) {
-    const isLoaded = await new Promise((resolve) =>
-      setTimeout(() => resolve(!!globalThis?.kleverWeb?.getAccount), 50)
-    );
-
-    if (isLoaded) return true;
-  }
-
-  return false;
-};
-
-const getAccountByPem = async (pemData: string): Promise<Account> => {
-  if (!(await isSDKLoaded())) {
-    throw ErrLoadSdk;
-  }
-
-  const { address, privateKey } = await globalThis.kleverWeb.parsePemFileData(
-    pemData
-  );
-
-  return new Account(address, privateKey);
-};
-
-const createAccount = async (): Promise<IPemResponse> => {
-  if (!(await isSDKLoaded())) {
-    throw ErrLoadSdk;
-  }
-
-  const account = await globalThis.kleverWeb.createAccount();
-
-  return account;
+const isKleverWebLoaded = () => {
+  return !!globalThis?.kleverWeb?.active;
 };
 
 const broadcastTransactions = async (
   transactions: ITransaction[]
 ): Promise<IBroadcastResponse> => {
-  if (!(await isSDKLoaded())) {
-    throw ErrLoadSdk;
+  if (!isKleverWebLoaded()) {
+    throw ErrLoadKleverWeb;
   }
 
   const response = await globalThis.kleverWeb.broadcastTransactions(
@@ -61,28 +25,19 @@ const broadcastTransactions = async (
   return response;
 };
 
-const setURLs = async (url: IProvider) => {
+const setProvider = async (provider: IProvider) => {
   globalThis.kleverWeb = {
-    ...globalThis.kleverWeb,
-    provider: url,
+    ...globalThis?.kleverWeb,
+    provider,
   };
-  if (!(await isSDKLoaded())) {
-    return;
-  }
-  if (url.api) {
-    await globalThis.kleverWeb.setApiUrl(url.api);
-  }
-  if (url.node) {
-    await globalThis.kleverWeb.setNodeUrl(url.node);
-  }
 };
 
 const signMessage = async (
   message: string,
   privateKey: string
 ): Promise<string> => {
-  if (!(await isSDKLoaded())) {
-    throw ErrLoadSdk;
+  if (!isKleverWebLoaded()) {
+    throw ErrLoadKleverWeb;
   }
 
   const payload = JSON.stringify({
@@ -95,11 +50,9 @@ const signMessage = async (
   return response;
 };
 
-const signTransaction = async (
-  tx: ITransaction
-): Promise<ISignatureResponse> => {
-  if (!(await isSDKLoaded())) {
-    throw ErrLoadSdk;
+const signTransaction = async (tx: ITransaction): Promise<ITransaction> => {
+  if (!isKleverWebLoaded()) {
+    throw ErrLoadKleverWeb;
   }
 
   const response = await globalThis.kleverWeb.signTransaction(tx);
@@ -107,13 +60,13 @@ const signTransaction = async (
   return response;
 };
 
-const verifySignature = async (
+const validateSignature = async (
   message: string,
   signature: string,
   publicKey: string
-): Promise<IVerifyResponse> => {
-  if (!(await isSDKLoaded())) {
-    throw ErrLoadSdk;
+): Promise<boolean> => {
+  if (!isKleverWebLoaded()) {
+    throw ErrLoadKleverWeb;
   }
 
   const payload = JSON.stringify({
@@ -127,15 +80,22 @@ const verifySignature = async (
   return response;
 };
 
+const buildTransaction = async (
+  contracts: IContractRequest[],
+  txData?: string[],
+  options?: ITxOptionsRequest
+): Promise<ITransaction> => {
+  return globalThis.kleverWeb.buildTransaction(contracts, txData, options);
+};
+
 const core = {
-  getAccountByPem,
-  createAccount,
-  isSDKLoaded,
+  isKleverWebLoaded,
   broadcastTransactions,
-  setURLs,
+  setProvider,
   signMessage,
   signTransaction,
-  verifySignature,
+  validateSignature,
+  buildTransaction,
 };
 
 export default core;

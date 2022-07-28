@@ -1,393 +1,114 @@
+import KleverWeb from "@klever/kleverweb";
+import {
+  IContractRequest,
+  ITransaction,
+  ITxOptionsRequest,
+} from "@klever/kleverweb/dist/types/dtos";
 import core from "../core";
-import { ErrEmptyAddress, ErrLoadSdk } from "../core/errors";
-import { sendTransaction } from "../transaction";
 import {
-  IAccount,
-  IBasePayload,
-  INodeAccount,
-  ITransactionProps,
-  TransactionType,
-} from "../types";
-import {
-  IAssetTrigger,
-  IBuyOrder,
-  ICancelMarketOrder,
-  IClaim,
-  IConfigITO,
-  IConfigMarketplace,
-  ICreateAsset,
-  ICreateMarketplace,
-  ICreateValidator,
-  IDelegate,
-  IFreeze,
-  IProposal,
-  ISellOrder,
-  ISetAccountName,
-  ISetITOPrices,
-  ITransfer,
-  IUndelegate,
-  IUnfreeze,
-  IUpdateAccountPermission,
-  IVotes,
-  IWithdraw,
-} from "../types/contract";
+  ErrEmptyAddress,
+  ErrInvalidAddress,
+  ErrLoadKleverWeb,
+} from "../core/errors";
+import { IAccountNonce, INodeAccount } from "../types";
 
 class Account {
-  private address: string;
-  private privateKey: string;
-  private host: string;
-
-  constructor(address: string, privateKey: string, host?: string) {
-    this.address = address;
-    this.privateKey = privateKey;
-
-    window.kleverWeb.setWalletAddress(address);
-    window.kleverWeb.setPrivateKey(privateKey);
-    if (host) {
-      if (host[host.length - 1] === "/") {
-        this.host = host.slice(0, -1);
-      }
-      this.host = host;
-    } else {
-      this.host = "https://node.testnet.klever.finance";
-    }
-  }
-
-  getAddress() {
-    return this.address;
-  }
-
-  async getBalance() {
-    if (!(await core.isSDKLoaded())) {
-      throw ErrLoadSdk;
-    }
-
-    if (this.address.length === 0) {
+  constructor(
+    address: string,
+    nodeUrl?: string,
+    apiUrl?: string,
+    privateKey?: string
+  ) {
+    if (address.length === 0) {
       throw ErrEmptyAddress;
     }
 
-    const response = await globalThis.kleverWeb.getAccount(this.address);
+    if (address.length !== 62) {
+      throw ErrInvalidAddress;
+    }
 
-    const account: IAccount = JSON.parse(response);
-    if (account.error.length !== 0) {
+    if (!globalThis?.kleverWeb) {
+      const kleverWeb = new KleverWeb(
+        address,
+        nodeUrl || "https://node.testnet.klever.finance",
+        apiUrl || "https://api.testnet.klever.finance"
+      );
+
+      globalThis.kleverWeb = {
+        ...globalThis?.kleverWeb,
+        ...kleverWeb,
+      };
+    }
+
+    globalThis.kleverWeb.setWalletAddress(address);
+    privateKey && globalThis.kleverWeb.setPrivateKey(privateKey);
+
+    core.setProvider({
+      node: nodeUrl || "https://node.testnet.klever.finance",
+      api: apiUrl || "https://api.testnet.klever.finance",
+    });
+  }
+
+  getAddress() {
+    return globalThis.kleverWeb.getWalletAddress();
+  }
+
+  async getAccount() {
+    if (!core.isKleverWebLoaded()) {
+      throw ErrLoadKleverWeb;
+    }
+
+    if (globalThis.kleverWeb.getWalletAddress().length === 0) {
+      throw ErrEmptyAddress;
+    }
+
+    const request = await fetch(
+      `${
+        globalThis.kleverWeb.provider.node
+      }/address/${globalThis.kleverWeb.getWalletAddress()}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    const response: INodeAccount = await request.json();
+    if (response.error.length !== 0) {
       return 0;
     }
 
-    return account.data.account.balance;
+    return response.data.account;
   }
 
   async getNonce() {
-    const request = await fetch(`${this.host}/address/${this.address}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-
-    const response: INodeAccount = await request.json();
-
-    return response.data.account.Nonce;
-  }
-
-  async getBasePayload() {
-    const nonce = await this.getNonce();
-
-    const basePayload: IBasePayload = {
-      sender: this.address,
-      privateKey: this.privateKey,
-      nonce,
-    };
-
-    return basePayload;
-  }
-
-  async sendTransfer(payload: ITransfer, props?: ITransactionProps) {
-    const basePayload = await this.getBasePayload();
-    return sendTransaction(
-      TransactionType.Transfer,
+    const request = await fetch(
+      `${
+        globalThis.kleverWeb.provider.node
+      }/address/${globalThis.kleverWeb.getWalletAddress()}/nonce`,
       {
-        ...basePayload,
-        ...payload,
-      },
-      props
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
     );
+
+    const response: IAccountNonce = await request.json();
+
+    return response.data;
   }
 
-  async sendCreateMarketplace(
-    payload: ICreateMarketplace,
-    props?: ITransactionProps
-  ) {
-    const basePayload = await this.getBasePayload();
-    return sendTransaction(
-      TransactionType.CreateMarketplace,
-      {
-        ...basePayload,
-        ...payload,
-      },
-      props
-    );
-  }
+  buildTransaction = core.buildTransaction;
 
-  async sendConfigMarketplace(
-    payload: IConfigMarketplace,
-    props?: ITransactionProps
-  ) {
-    const basePayload = await this.getBasePayload();
-    return sendTransaction(
-      TransactionType.ConfigMarketplace,
-      {
-        ...basePayload,
-        ...payload,
-      },
-      props
-    );
-  }
+  signTransaction = core.signTransaction;
 
-  async sendFreeze(payload: IFreeze, props?: ITransactionProps) {
-    const basePayload = await this.getBasePayload();
-    return sendTransaction(
-      TransactionType.Freeze,
-      {
-        ...basePayload,
-        ...payload,
-      },
-      props
-    );
-  }
+  validateSignature = core.validateSignature;
 
-  async sendUnfreeze(payload: IUnfreeze, props?: ITransactionProps) {
-    const basePayload = await this.getBasePayload();
-    return sendTransaction(
-      TransactionType.Unfreeze,
-      {
-        ...basePayload,
-        ...payload,
-      },
-      props
-    );
-  }
+  signMessage = core.signMessage;
 
-  async sendWithdraw(payload: IWithdraw, props?: ITransactionProps) {
-    const basePayload = await this.getBasePayload();
-    return sendTransaction(
-      TransactionType.Withdraw,
-      {
-        ...basePayload,
-        ...payload,
-      },
-      props
-    );
-  }
-
-  async sendUndelegate(payload: IUndelegate, props?: ITransactionProps) {
-    const basePayload = await this.getBasePayload();
-    return sendTransaction(
-      TransactionType.Undelegate,
-      {
-        ...basePayload,
-        ...payload,
-      },
-      props
-    );
-  }
-
-  async sendDelegate(payload: IDelegate, props?: ITransactionProps) {
-    const basePayload = await this.getBasePayload();
-    return sendTransaction(
-      TransactionType.Delegate,
-      {
-        ...basePayload,
-        ...payload,
-      },
-      props
-    );
-  }
-
-  async setAccountName(payload: ISetAccountName, props?: ITransactionProps) {
-    const basePayload = await this.getBasePayload();
-    return sendTransaction(
-      TransactionType.SetAccountName,
-      {
-        ...basePayload,
-        ...payload,
-      },
-      props
-    );
-  }
-
-  async sendVotes(payload: IVotes, props?: ITransactionProps) {
-    const basePayload = await this.getBasePayload();
-    return sendTransaction(
-      TransactionType.Votes,
-      {
-        ...basePayload,
-        ...payload,
-      },
-      props
-    );
-  }
-
-  async sendClaim(payload: IClaim, props?: ITransactionProps) {
-    const basePayload = await this.getBasePayload();
-    return sendTransaction(
-      TransactionType.Claim,
-      {
-        ...basePayload,
-        ...payload,
-      },
-      props
-    );
-  }
-
-  async sendUnjail() {
-    const basePayload = await this.getBasePayload();
-    return sendTransaction(TransactionType.Unjail, {
-      ...basePayload,
-    });
-  }
-
-  async sendCancelMarketOrder(
-    payload: ICancelMarketOrder,
-    props?: ITransactionProps
-  ) {
-    const basePayload = await this.getBasePayload();
-    return sendTransaction(
-      TransactionType.CancelMarketOrder,
-      {
-        ...basePayload,
-        ...payload,
-      },
-      props
-    );
-  }
-
-  async sendSellOrder(payload: ISellOrder, props?: ITransactionProps) {
-    const basePayload = await this.getBasePayload();
-    return sendTransaction(
-      TransactionType.SellOrder,
-      {
-        ...basePayload,
-        ...payload,
-      },
-      props
-    );
-  }
-
-  async sendBuyOrder(payload: IBuyOrder, props?: ITransactionProps) {
-    const basePayload = await this.getBasePayload();
-    return sendTransaction(
-      TransactionType.BuyOrder,
-      {
-        ...basePayload,
-        ...payload,
-      },
-      props
-    );
-  }
-
-  async sendCreateAsset(payload: ICreateAsset, props?: ITransactionProps) {
-    const basePayload = await this.getBasePayload();
-    return sendTransaction(
-      TransactionType.CreateAsset,
-      {
-        ...basePayload,
-        ...payload,
-      },
-      props
-    );
-  }
-
-  async sendProposal(payload: IProposal, props?: ITransactionProps) {
-    const basePayload = await this.getBasePayload();
-    return sendTransaction(
-      TransactionType.Proposal,
-      {
-        ...basePayload,
-        ...payload,
-      },
-      props
-    );
-  }
-
-  async sendCreateValidator(
-    payload: ICreateValidator,
-    props?: ITransactionProps
-  ) {
-    const basePayload = await this.getBasePayload();
-    return sendTransaction(
-      TransactionType.CreateValidator,
-      {
-        ...basePayload,
-        ...payload,
-      },
-      props
-    );
-  }
-
-  async sendConfigValidator(
-    payload: ICreateValidator,
-    props?: ITransactionProps
-  ) {
-    const basePayload = await this.getBasePayload();
-    return sendTransaction(
-      TransactionType.ConfigValidator,
-      {
-        ...basePayload,
-        ...payload,
-      },
-      props
-    );
-  }
-
-  async sendConfigITO(payload: IConfigITO, props?: ITransactionProps) {
-    const basePayload = await this.getBasePayload();
-    return sendTransaction(
-      TransactionType.ConfigITO,
-      {
-        ...basePayload,
-        ...payload,
-      },
-      props
-    );
-  }
-
-  async sendAssetTrigger(payload: IAssetTrigger, props?: ITransactionProps) {
-    const basePayload = await this.getBasePayload();
-    return sendTransaction(
-      TransactionType.AssetTrigger,
-      {
-        ...basePayload,
-        ...payload,
-      },
-      props
-    );
-  }
-  async sendUpdateAccountPermission(
-    payload: IUpdateAccountPermission,
-    props?: ITransactionProps
-  ) {
-    const basePayload = await this.getBasePayload();
-    return sendTransaction(
-      TransactionType.UpdateAccountPermission,
-      {
-        ...basePayload,
-        ...payload,
-      },
-      props
-    );
-  }
-
-  async sendSetITOPrices(payload: ISetITOPrices, props?: ITransactionProps) {
-    const basePayload = await this.getBasePayload();
-    return sendTransaction(
-      TransactionType.SetITOPrices,
-      {
-        ...basePayload,
-        ...payload,
-      },
-      props
-    );
-  }
+  broadcastTransactions = core.broadcastTransactions;
 }
 
 export default Account;
