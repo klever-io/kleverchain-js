@@ -3,7 +3,11 @@ import { IPayload } from "./contract";
 
 interface Contract {
   Type: number;
-  Parameter: any;
+  Parameter: IContractParameter;
+}
+export interface IContractParameter {
+  type_url: string;
+  value: string;
 }
 
 export interface IRawData {
@@ -47,5 +51,13 @@ export interface IContractRequest {
 
 export interface ITxOptionsRequest {
   nonce?: number;
+  permID?: number;
+}
+export interface ITxRequest {
+  type: TransactionType;
+  sender: string;
+  nonce: number;
+  contracts: IPayload[];
+  data?: string[];
   permID?: number;
 }

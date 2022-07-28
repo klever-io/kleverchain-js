@@ -27,7 +27,7 @@ interface kleverWeb {
   setWalletAddress(payload: string): Promise<void>;
   setPrivateKey(payload: string): Promise<void>;
 
-  signMessage(payload: string): Promise<ISignatureResponse>;
+  signMessage(payload: string): Promise<string>;
   validateSignature(payload: string): Promise<IVerifyResponse>;
   buildTransaction(
     contracts: IContractRequest[],
