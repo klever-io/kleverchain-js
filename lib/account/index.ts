@@ -49,12 +49,12 @@ class Account {
     });
   }
 
-  getAddress() {
+  getWalletAddress() {
     return globalThis.kleverWeb.getWalletAddress();
   }
 
   async getAccount() {
-    if (!core.isKleverWebLoaded()) {
+    if (!core.isKleverWebActive()) {
       throw ErrLoadKleverWeb;
     }
 

@@ -8,13 +8,25 @@ import { IProvider, ITransaction } from "..";
 import { ErrLoadKleverWeb } from "./errors";
 
 const isKleverWebLoaded = () => {
+  return !!globalThis?.kleverWeb;
+};
+
+const isKleverWebActive = () => {
   return !!globalThis?.kleverWeb?.active;
+};
+
+const initialize = async () => {
+  await globalThis?.kleverWeb?.initialize();
+};
+
+const getWalletAddress = (): string => {
+  return globalThis?.kleverWeb?.getWalletAddress();
 };
 
 const broadcastTransactions = async (
   transactions: ITransaction[]
 ): Promise<IBroadcastResponse> => {
-  if (!isKleverWebLoaded()) {
+  if (!isKleverWebActive()) {
     throw ErrLoadKleverWeb;
   }
 
@@ -36,7 +48,7 @@ const signMessage = async (
   message: string,
   privateKey: string
 ): Promise<string> => {
-  if (!isKleverWebLoaded()) {
+  if (!isKleverWebActive()) {
     throw ErrLoadKleverWeb;
   }
 
@@ -51,7 +63,7 @@ const signMessage = async (
 };
 
 const signTransaction = async (tx: ITransaction): Promise<ITransaction> => {
-  if (!isKleverWebLoaded()) {
+  if (!isKleverWebActive()) {
     throw ErrLoadKleverWeb;
   }
 
@@ -65,7 +77,7 @@ const validateSignature = async (
   signature: string,
   publicKey: string
 ): Promise<boolean> => {
-  if (!isKleverWebLoaded()) {
+  if (!isKleverWebActive()) {
     throw ErrLoadKleverWeb;
   }
 
@@ -90,12 +102,15 @@ const buildTransaction = async (
 
 const core = {
   isKleverWebLoaded,
+  isKleverWebActive,
   broadcastTransactions,
   setProvider,
   signMessage,
   signTransaction,
   validateSignature,
   buildTransaction,
+  initialize,
+  getWalletAddress,
 };
 
 export default core;
