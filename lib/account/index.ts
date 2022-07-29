@@ -49,7 +49,7 @@ class Account {
     });
   }
 
-  getWalletAddress() {
+  getWalletAddress(): string {
     return globalThis.kleverWeb.getWalletAddress();
   }
 
