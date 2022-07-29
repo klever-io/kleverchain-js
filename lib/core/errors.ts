@@ -1,6 +1,5 @@
-const ErrFetchFile = new Error("cannot fetch wasm file");
-const ErrFetchBuffer = new Error("cannot get buffer from file");
-const ErrLoadSdk = new Error("sdk is not loaded yet");
+const ErrLoadKleverWeb = new Error("No kleverWeb instance found");
 const ErrEmptyAddress = new Error("account address is empty");
+const ErrInvalidAddress = new Error("account address is invalid");
 
-export { ErrFetchFile, ErrFetchBuffer, ErrLoadSdk, ErrEmptyAddress };
+export { ErrLoadKleverWeb, ErrEmptyAddress, ErrInvalidAddress };

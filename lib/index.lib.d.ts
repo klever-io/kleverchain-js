@@ -10,7 +10,7 @@ declare global {
   var kleverWeb: kleverWeb;
 }
 
-interface kleverWeb {
+interface IKleverWeb {
   provider: any;
   active: boolean;
 
@@ -27,7 +27,9 @@ interface kleverWeb {
   setWalletAddress(payload: string): Promise<void>;
   setPrivateKey(payload: string): Promise<void>;
 
-  signMessage(payload: string): Promise<ISignatureResponse>;
+  getWalletAddress(): string;
+
+  signMessage(payload: string): Promise<string>;
   validateSignature(payload: string): Promise<IVerifyResponse>;
   buildTransaction(
     contracts: IContractRequest[],
