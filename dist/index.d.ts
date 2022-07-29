@@ -6,7 +6,7 @@ export { TransactionType, TriggerType } from '@klever/kleverweb/dist/types/enums
 
 declare class Account {
     constructor(address: string, nodeUrl?: string, apiUrl?: string, privateKey?: string);
-    getAddress(): any;
+    getWalletAddress(): string;
     getAccount(): Promise<{
         Address: string;
         RootHash: string;
@@ -28,12 +28,15 @@ declare class Account {
 
 declare const core: {
     isKleverWebLoaded: () => boolean;
+    isKleverWebActive: () => boolean;
     broadcastTransactions: (transactions: ITransaction[]) => Promise<IBroadcastResponse>;
     setProvider: (provider: IProvider) => Promise<void>;
     signMessage: (message: string, privateKey: string) => Promise<string>;
     signTransaction: (tx: ITransaction) => Promise<ITransaction>;
     validateSignature: (message: string, signature: string, publicKey: string) => Promise<boolean>;
     buildTransaction: (contracts: IContractRequest[], txData?: string[] | undefined, options?: ITxOptionsRequest | undefined) => Promise<ITransaction>;
+    initialize: () => Promise<void>;
+    getWalletAddress: () => string;
 };
 
 interface IAccount {
