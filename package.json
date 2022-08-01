@@ -33,6 +33,6 @@
   },
   "peerDependencies": {},
   "dependencies": {
-    "@klever/kleverweb": "^1.0.0"
+    "@klever/kleverweb": "^1.0.2"
   }
 }
