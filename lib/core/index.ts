@@ -12,7 +12,7 @@ const isKleverWebLoaded = () => {
 };
 
 const isKleverWebActive = () => {
-  return !!globalThis?.kleverWeb?.active;
+  return !!globalThis?.kleverWeb?.address;
 };
 
 const initialize = async () => {
@@ -21,6 +21,10 @@ const initialize = async () => {
 
 const getWalletAddress = (): string => {
   return globalThis?.kleverWeb?.getWalletAddress();
+};
+
+const getProvider = (): IProvider => {
+  return globalThis?.kleverWeb?.getProvider();
 };
 
 const broadcastTransactions = async (
@@ -37,13 +41,6 @@ const broadcastTransactions = async (
   return response;
 };
 
-const setProvider = async (provider: IProvider) => {
-  globalThis.kleverWeb = {
-    ...globalThis?.kleverWeb,
-    provider,
-  };
-};
-
 const signMessage = async (
   message: string,
   privateKey: string
@@ -57,7 +54,7 @@ const signMessage = async (
     privateKey,
   });
 
-  const response = await globalThis.kleverWeb.signMessage(payload);
+  const response = await globalThis?.kleverWeb?.signMessage(payload);
 
   return response;
 };
@@ -67,7 +64,7 @@ const signTransaction = async (tx: ITransaction): Promise<ITransaction> => {
     throw ErrLoadKleverWeb;
   }
 
-  const response = await globalThis.kleverWeb.signTransaction(tx);
+  const response = await globalThis?.kleverWeb?.signTransaction(tx);
 
   return response;
 };
@@ -87,7 +84,7 @@ const validateSignature = async (
     publicKey,
   });
 
-  const response = await globalThis.kleverWeb.validateSignature(payload);
+  const response = await globalThis?.kleverWeb?.validateSignature(payload);
 
   return response;
 };
@@ -97,20 +94,20 @@ const buildTransaction = async (
   txData?: string[],
   options?: ITxOptionsRequest
 ): Promise<ITransaction> => {
-  return globalThis.kleverWeb.buildTransaction(contracts, txData, options);
+  return globalThis?.kleverWeb?.buildTransaction(contracts, txData, options);
 };
 
 const core = {
   isKleverWebLoaded,
   isKleverWebActive,
   broadcastTransactions,
-  setProvider,
   signMessage,
   signTransaction,
   validateSignature,
   buildTransaction,
   initialize,
   getWalletAddress,
+  getProvider,
 };
 
 export default core;

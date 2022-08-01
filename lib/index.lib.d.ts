@@ -1,3 +1,4 @@
+import { IProvider } from "@klever/kleverweb/dist/types/dtos";
 import {
   IBroadcastResponse,
   IRawData,
@@ -11,8 +12,8 @@ declare global {
 }
 
 interface IKleverWeb {
-  provider: any;
-  active: boolean;
+  address: string;
+  provider: IProvider;
 
   createAccount(): Promise<IPemResponse>;
   getAccount(address: string): Promise<IAccount>;
@@ -28,6 +29,7 @@ interface IKleverWeb {
   setPrivateKey(payload: string): Promise<void>;
 
   getWalletAddress(): string;
+  getProvider(): IProvider;
 
   signMessage(payload: string): Promise<string>;
   validateSignature(payload: string): Promise<IVerifyResponse>;
