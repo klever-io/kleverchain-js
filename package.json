@@ -1,6 +1,6 @@
 {
   "name": "@klever/sdk",
-  "version": "3.1.2",
+  "version": "3.1.4",
   "description": "Kleverchain SDK integration with JS",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -33,6 +33,6 @@
   },
   "peerDependencies": {},
   "dependencies": {
-    "@klever/kleverweb": "^1.0.0"
+    "@klever/kleverweb": "^1.0.2"
   }
 }

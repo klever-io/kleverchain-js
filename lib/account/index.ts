@@ -1,6 +1,7 @@
 import KleverWeb from "@klever/kleverweb";
 import {
   IContractRequest,
+  IProvider,
   ITransaction,
   ITxOptionsRequest,
 } from "@klever/kleverweb/dist/types/dtos";
@@ -13,59 +14,35 @@ import {
 import { IAccountNonce, INodeAccount } from "../types";
 
 class Account {
-  constructor(
-    address: string,
-    nodeUrl?: string,
-    apiUrl?: string,
-    privateKey?: string
-  ) {
-    if (address.length === 0) {
-      throw ErrEmptyAddress;
-    }
-
-    if (address.length !== 62) {
-      throw ErrInvalidAddress;
-    }
-
+  constructor(privateKey?: string) {
     if (!globalThis?.kleverWeb) {
-      const kleverWeb = new KleverWeb(
-        address,
-        nodeUrl || "https://node.testnet.klever.finance",
-        apiUrl || "https://api.testnet.klever.finance"
-      );
-
       globalThis.kleverWeb = {
         ...globalThis?.kleverWeb,
-        ...kleverWeb,
       };
     }
-
-    globalThis.kleverWeb.setWalletAddress(address);
     privateKey && globalThis.kleverWeb.setPrivateKey(privateKey);
-
-    core.setProvider({
-      node: nodeUrl || "https://node.testnet.klever.finance",
-      api: apiUrl || "https://api.testnet.klever.finance",
-    });
   }
-
   getWalletAddress(): string {
-    return globalThis.kleverWeb.getWalletAddress();
+    return globalThis?.kleverWeb?.getWalletAddress();
   }
+
+  getProvider = (): IProvider => {
+    return globalThis?.kleverWeb?.getProvider();
+  };
 
   async getAccount() {
     if (!core.isKleverWebActive()) {
       throw ErrLoadKleverWeb;
     }
 
-    if (globalThis.kleverWeb.getWalletAddress().length === 0) {
+    if (globalThis?.kleverWeb?.getWalletAddress()?.length === 0) {
       throw ErrEmptyAddress;
     }
 
     const request = await fetch(
       `${
-        globalThis.kleverWeb.provider.node
-      }/address/${globalThis.kleverWeb.getWalletAddress()}`,
+        globalThis?.kleverWeb?.provider?.node
+      }/address/${globalThis?.kleverWeb?.getWalletAddress()}`,
       {
         method: "GET",
         headers: {
@@ -76,17 +53,17 @@ class Account {
 
     const response: INodeAccount = await request.json();
     if (response.error.length !== 0) {
-      return 0;
+      throw response.error;
     }
 
-    return response.data.account;
+    return response?.data?.account;
   }
 
   async getNonce() {
     const request = await fetch(
       `${
-        globalThis.kleverWeb.provider.node
-      }/address/${globalThis.kleverWeb.getWalletAddress()}/nonce`,
+        globalThis?.kleverWeb?.provider?.node
+      }/address/${globalThis?.kleverWeb?.getWalletAddress()}/nonce`,
       {
         method: "GET",
         headers: {
