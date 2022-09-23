@@ -27,6 +27,10 @@ const getProvider = (): IProvider => {
   return globalThis?.kleverWeb?.getProvider();
 };
 
+const setProvider = (pvd: IProvider) => {
+  return globalThis?.kleverWeb?.setProvider(pvd);
+};
+
 const broadcastTransactions = async (
   transactions: ITransaction[]
 ): Promise<IBroadcastResponse> => {
@@ -108,6 +112,7 @@ const core = {
   initialize,
   getWalletAddress,
   getProvider,
+  setProvider,
 };
 
 export default core;
