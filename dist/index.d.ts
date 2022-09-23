@@ -8,6 +8,7 @@ declare class Account {
     constructor(privateKey?: string);
     getWalletAddress(): string;
     getProvider: () => IProvider;
+    setProvider: (pvd: IProvider) => any;
     getAccount(): Promise<{
         Address: string;
         RootHash: string;
@@ -38,6 +39,7 @@ declare const core: {
     initialize: () => Promise<void>;
     getWalletAddress: () => string;
     getProvider: () => IProvider;
+    setProvider: (pvd: IProvider) => any;
 };
 
 interface IAccount {
