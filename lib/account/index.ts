@@ -30,6 +30,10 @@ class Account {
     return globalThis?.kleverWeb?.getProvider();
   };
 
+  setProvider = (pvd: IProvider) => {
+    return globalThis?.kleverWeb?.setProvider(pvd);
+  };
+
   async getAccount() {
     if (!core.isKleverWebActive()) {
       throw ErrLoadKleverWeb;
