@@ -26,8 +26,8 @@ declare class Account {
     validateSignature: (message: string, signature: string, publicKey: string) => Promise<boolean>;
     signMessage: (message: string, privateKey: string) => Promise<string>;
     broadcastTransactions: (transactions: ITransaction[]) => Promise<_klever_kleverweb_dist_types_dtos.IBroadcastResponse>;
-    unsafeSignTransaction: (tx: ITransaction, privateKey: string) => Promise<ITransaction>;
-    unsafeSignMessage: (message: string, privateKey: string) => Promise<string>;
+    localSignTransaction: (tx: ITransaction, privateKey: string) => Promise<ITransaction>;
+    localSignMessage: (message: string, privateKey: string) => Promise<string>;
 }
 
 declare const core: {
@@ -42,8 +42,8 @@ declare const core: {
     getWalletAddress: () => string;
     getProvider: () => IProvider;
     setProvider: (pvd: IProvider) => any;
-    unsafeSignTransaction: (tx: ITransaction, privateKey: string) => Promise<ITransaction>;
-    unsafeSignMessage: (message: string, privateKey: string) => Promise<string>;
+    localSignTransaction: (tx: ITransaction, privateKey: string) => Promise<ITransaction>;
+    localSignMessage: (message: string, privateKey: string) => Promise<string>;
     nodeSetup: (address: string, providers?: IProvider | undefined) => void;
 };
 
