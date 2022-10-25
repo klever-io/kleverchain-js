@@ -1,4 +1,4 @@
-import KleverWeb from "@klever/kleverweb/dist/index";
+import KleverWeb from "@klever/kleverweb";
 import {
   IBroadcastResponse,
   IContractRequest,
@@ -96,7 +96,7 @@ const validateSignature = async (
   } else if (typeof global !== "undefined") {
     response = await ed.verify(signature, message, publicKey);
   } else {
-    throw new Error("cannot export Go (neither global, window is defined)");
+    throw new Error("neither global nor window is defined");
   }
 
   return response;
