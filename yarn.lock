@@ -23,10 +23,10 @@
     chalk "^2.0.0"
     js-tokens "^4.0.0"
 
-"@klever/kleverweb@^1.0.2":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@klever/kleverweb/-/kleverweb-1.0.2.tgz#82c38893188b368de0c74087e9336387e817e931"
-  integrity sha512-WVDD1J2YLCccojFp0FbMAh9bh+27xDcAZS5eE/04RfTU8lFkNWXdpgAH2IXPacMeM4CcxGrsrbNrFXEL2/yffg==
+"@klever/kleverweb@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@klever/kleverweb/-/kleverweb-1.0.3.tgz#f10e696384c493bf6727be93ee13fafa01780f86"
+  integrity sha512-j8mbqOW0kmfbL2cJQJ0lW1REwGRWAerPwBHpytoyett+J7zTIs33Ox2M0k8ibg9OiVKuHz6Qb5Mc/jXFp7Ybiw==
   dependencies:
     "@protobuf-ts/plugin" "^2.7.0"
 

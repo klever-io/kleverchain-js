@@ -132,14 +132,16 @@ const localSignTransaction = async (
   let hash;
 
   try {
-    const req = await fetch(`${getProvider().node}/transaction/decode`, {
-      method: "POST",
-      body: JSON.stringify(tx),
-    });
+    const req = await fetch(
+      `https://node.mainnet.klever.finance/transaction/decode`,
+      {
+        method: "POST",
+        body: JSON.stringify(tx),
+      }
+    );
 
     const res = await req.json();
     hash = res.data.tx.hash;
-    console.log(hash);
   } catch (e) {
     console.log(e);
   }
