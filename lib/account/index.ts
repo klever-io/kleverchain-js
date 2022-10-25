@@ -91,9 +91,9 @@ class Account {
 
   broadcastTransactions = core.broadcastTransactions;
 
-  unsafeSignTransaction = core.unsafeSignTransaction;
+  localSignTransaction = core.localSignTransaction;
 
-  unsafeSignMessage = core.unsafeSignMessage;
+  localSignMessage = core.localSignMessage;
 }
 
 export default Account;

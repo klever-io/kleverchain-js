@@ -110,7 +110,7 @@ const buildTransaction = async (
   return globalThis?.kleverWeb?.buildTransaction(contracts, txData, options);
 };
 
-const unsafeSignMessage = async (
+const localSignMessage = async (
   message: string,
   privateKey: string
 ): Promise<string> => {
@@ -121,7 +121,7 @@ const unsafeSignMessage = async (
   return parsedSignature;
 };
 
-const unsafeSignTransaction = async (
+const localSignTransaction = async (
   tx: ITransaction,
   privateKey: string
 ): Promise<ITransaction> => {
@@ -143,7 +143,7 @@ const unsafeSignTransaction = async (
   } catch (e) {
     console.log(e);
   }
-  const signature = await unsafeSignMessage(hash, privateKey);
+  const signature = await localSignMessage(hash, privateKey);
 
   const signedTx = {
     ...tx,
@@ -183,8 +183,8 @@ const core = {
   getWalletAddress,
   getProvider,
   setProvider,
-  unsafeSignTransaction,
-  unsafeSignMessage,
+  localSignTransaction,
+  localSignMessage,
   nodeSetup,
 };
 
