@@ -90,6 +90,10 @@ class Account {
   signMessage = core.signMessage;
 
   broadcastTransactions = core.broadcastTransactions;
+
+  unsafeSignTransaction = core.unsafeSignTransaction;
+
+  unsafeSignMessage = core.unsafeSignMessage;
 }
 
 export default Account;
