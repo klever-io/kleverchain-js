@@ -7,6 +7,8 @@ import {
 import { IProvider, ITransaction } from "..";
 import { ErrLoadKleverWeb } from "./errors";
 
+import * as ed from "@noble/ed25519";
+
 const isKleverWebLoaded = () => {
   return !!globalThis?.kleverWeb;
 };
@@ -82,13 +84,20 @@ const validateSignature = async (
     throw ErrLoadKleverWeb;
   }
 
-  const payload = JSON.stringify({
-    message,
-    signature,
-    publicKey,
-  });
+  let response;
+  if (typeof window !== "undefined") {
+    const payload = JSON.stringify({
+      message,
+      signature,
+      publicKey,
+    });
 
-  const response = await globalThis?.kleverWeb?.validateSignature(payload);
+    response = await globalThis?.kleverWeb?.validateSignature(payload);
+  } else if (typeof global !== "undefined") {
+    response = await ed.verify(signature, message, publicKey);
+  } else {
+    throw new Error("neither global nor window is defined");
+  }
 
   return response;
 };
@@ -99,6 +108,67 @@ const buildTransaction = async (
   options?: ITxOptionsRequest
 ): Promise<ITransaction> => {
   return globalThis?.kleverWeb?.buildTransaction(contracts, txData, options);
+};
+
+const localSignMessage = async (
+  message: string,
+  privateKey: string
+): Promise<string> => {
+  const signature = await ed.sign(message, privateKey);
+
+  const parsedSignature = Buffer.from(signature).toString("base64");
+
+  return parsedSignature;
+};
+
+const localSignTransaction = async (
+  tx: ITransaction,
+  privateKey: string
+): Promise<ITransaction> => {
+  if (!isKleverWebActive()) {
+    throw ErrLoadKleverWeb;
+  }
+
+  let hash;
+
+  try {
+    const req = await fetch(`${getProvider().node}/transaction/decode`, {
+      method: "POST",
+      body: JSON.stringify(tx),
+    });
+
+    const res = await req.json();
+    hash = res.data.tx.hash;
+    console.log(hash);
+  } catch (e) {
+    console.log(e);
+  }
+  const signature = await localSignMessage(hash, privateKey);
+
+  const signedTx = {
+    ...tx,
+    Signature: [signature],
+  };
+
+  return signedTx;
+};
+
+const nodeSetup = (address: string, providers?: IProvider) => {
+  if (!address) {
+    throw new Error("address is required");
+  }
+
+  const kleverWeb = new KleverWeb(
+    address,
+    providers || {
+      node: "https://node.mainnet.klever.finance",
+      api: "https://api.mainnet.klever.finance",
+    }
+  );
+  globalThis.kleverWeb = {
+    ...globalThis.kleverWeb,
+    ...kleverWeb,
+  };
 };
 
 const core = {
@@ -113,6 +183,9 @@ const core = {
   getWalletAddress,
   getProvider,
   setProvider,
+  localSignTransaction,
+  localSignMessage,
+  nodeSetup,
 };
 
 export default core;

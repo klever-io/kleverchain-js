@@ -90,6 +90,10 @@ class Account {
   signMessage = core.signMessage;
 
   broadcastTransactions = core.broadcastTransactions;
+
+  localSignTransaction = core.localSignTransaction;
+
+  localSignMessage = core.localSignMessage;
 }
 
 export default Account;
