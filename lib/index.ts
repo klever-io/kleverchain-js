@@ -22,6 +22,8 @@ import {
   IUpdateAccountPermission,
   IVotes,
   IWithdraw,
+  IDeposit,
+  IITOTrigger,
 } from "@klever/kleverweb/dist/types/contracts";
 import {
   IContract,
@@ -67,6 +69,8 @@ export {
   ISetITOPrices,
   IProvider,
   IUnjail,
+  IITOTrigger,
+  IDeposit,
 };
 
 export {
