@@ -7,9 +7,11 @@ import {
 import { IAccountInfo } from "./dtos";
 
 export interface IAccount {
-  // address: string; // private attributes and methods
+  //privateKey: string; // private attributes and methods
+  // address: string;
   // balance: number;
   // nonce: number;
+
   // init(): Promise<void>;
 
   ready: Promise<void>;
