@@ -9,6 +9,8 @@ import { ErrLoadKleverWeb } from "./errors";
 
 import * as ed from "@noble/ed25519";
 
+import { bech32 } from "bech32";
+
 const isKleverWebLoaded = () => {
   return !!globalThis?.kleverWeb;
 };
@@ -173,6 +175,30 @@ const nodeSetup = (address: string, providers?: IProvider) => {
   };
 };
 
+const getAddressFromPrivateKey = async (
+  privateKey: string
+): Promise<string> => {
+  const publicKey = await ed.getPublicKey(privateKey);
+  const address = bech32.encode("klv", bech32.toWords(publicKey));
+
+  return address;
+};
+
+const generateKeyPair = async (): Promise<{
+  privateKey: string;
+  address: string;
+}> => {
+  const privateKey = Buffer.from(ed.utils.randomPrivateKey()).toString("hex");
+  const publicKey = await ed.getPublicKey(privateKey);
+
+  const address = bech32.encode("klv", bech32.toWords(publicKey));
+
+  return {
+    privateKey,
+    address,
+  };
+};
+
 const core = {
   isKleverWebLoaded,
   isKleverWebActive,
@@ -188,6 +214,8 @@ const core = {
   localSignTransaction,
   localSignMessage,
   nodeSetup,
+  getAddressFromPrivateKey,
+  generateKeyPair,
 };
 
 export default core;

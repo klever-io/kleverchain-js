@@ -158,6 +158,35 @@ import { core, IProvider } from '@klever/sdk';
 ...
 ```
 
+## Generating and importing accounts
+
+Using the SDK you can generate and import accounts using the following methods from the `core` object:
+
+- generateKeyPair
+- getAddressFromPrivateKey
+
+Generating a key pair:
+
+```ts
+import { core } from '@klever/sdk';
+...
+
+  const { privateKey, address } = await core.generateKeyPair();
+
+...
+```
+
+Importing an account:
+
+```ts
+import { core } from '@klever/sdk';
+...
+  const privateKey; // your private key
+  const address = await core.getAddressFromPrivateKey(privateKey);
+
+...
+```
+
 ## Transactions
 
 All available transactions:
