@@ -13,9 +13,8 @@ import {
 } from "../types/dtos";
 
 import * as ed from "@noble/ed25519";
-import { IAccount } from "../types";
 
-class Account implements IAccount {
+class Account {
   private privateKey: string;
   private address!: string;
   private balance!: number;
