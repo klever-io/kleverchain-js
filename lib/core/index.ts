@@ -57,7 +57,6 @@ const broadcastTransactions = async (
 };
 
 const core = {
-  nodeSetup,
   getAddressFromPrivateKey,
   generateKeyPair,
   getProviders,
