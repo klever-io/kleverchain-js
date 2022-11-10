@@ -1,76 +1,52 @@
-import { core } from "..";
-import { ErrEmptyAddress, ErrLoadSdk } from "../core/errors";
-import { sendTransaction } from "../transaction";
+import KleverWeb from "@klever/kleverweb";
 import {
-  IAccount,
-  IBasePayload,
-  INodeAccount,
-  TransactionType,
-} from "../types";
+  IContractRequest,
+  IProvider,
+  ITransaction,
+  ITxOptionsRequest,
+} from "@klever/kleverweb/dist/types/dtos";
+import core from "../core";
 import {
-  IAssetTrigger,
-  IBuyOrder,
-  ICancelMarketOrder,
-  IClaim,
-  IConfigICO,
-  IConfigMarket,
-  ICreateAsset,
-  ICreateMarket,
-  ICreateValidator,
-  IDelegate,
-  IFreeze,
-  IProposal,
-  ISellOrder,
-  ISetAccountName,
-  ITransfer,
-  IUndelegate,
-  IUnfreeze,
-  IVotes,
-  IWithdraw,
-} from "../types/contract";
+  ErrEmptyAddress,
+  ErrInvalidAddress,
+  ErrLoadKleverWeb,
+} from "../core/errors";
+import { IAccountNonce, INodeAccount } from "../types";
 
 class Account {
-  private address: string;
-  private privateKey: string;
-
-  constructor(address: string, privateKey: string) {
-    this.address = address;
-    this.privateKey = privateKey;
+  constructor(privateKey?: string) {
+    if (!globalThis?.kleverWeb) {
+      globalThis.kleverWeb = {
+        ...globalThis?.kleverWeb,
+      };
+    }
+    privateKey && globalThis.kleverWeb.setPrivateKey(privateKey);
+  }
+  getWalletAddress(): string {
+    return globalThis?.kleverWeb?.getWalletAddress();
   }
 
-  getAddress() {
-    return this.address;
-  }
+  getProvider = (): IProvider => {
+    return globalThis?.kleverWeb?.getProvider();
+  };
 
-  getPrivateKey() {
-    return this.privateKey;
-  }
+  setProvider = (pvd: IProvider) => {
+    return globalThis?.kleverWeb?.setProvider(pvd);
+  };
 
-  async getBalance() {
-    if (!core.isLoaded()) {
-      throw ErrLoadSdk;
+  async getAccount() {
+    if (!core.isKleverWebActive()) {
+      throw ErrLoadKleverWeb;
     }
 
-    if (this.address.length === 0) {
+    if (globalThis?.kleverWeb?.getWalletAddress()?.length === 0) {
       throw ErrEmptyAddress;
     }
 
-    const response = await window.getAccount(this.address);
-
-    const account: IAccount = JSON.parse(response);
-    if (account.error.length !== 0) {
-      return 0;
-    }
-
-    return account.data.account.balance;
-  }
-
-  async getNonce() {
     const request = await fetch(
       `${
-        process.env.REACT_APP_DEFAULT_NODE_HOST ||
-        "https://node.testnet.klever.finance"
-      }/address/${this.address}`,
+        globalThis?.kleverWeb?.provider?.node
+      }/address/${globalThis?.kleverWeb?.getWalletAddress()}`,
       {
         method: "GET",
         headers: {
@@ -80,188 +56,44 @@ class Account {
     );
 
     const response: INodeAccount = await request.json();
+    if (response.error.length !== 0) {
+      throw response.error;
+    }
 
-    return response.data.account.Nonce;
+    return response?.data?.account;
   }
 
-  async getBasePayload() {
-    const nonce = await this.getNonce();
+  async getNonce() {
+    const request = await fetch(
+      `${
+        globalThis?.kleverWeb?.provider?.node
+      }/address/${globalThis?.kleverWeb?.getWalletAddress()}/nonce`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
 
-    const basePayload: IBasePayload = {
-      sender: this.address,
-      privateKey: this.privateKey,
-      nonce,
-    };
+    const response: IAccountNonce = await request.json();
 
-    return basePayload;
+    return response.data;
   }
 
-  async sendTransfer(payload: ITransfer) {
-    const basePayload = await this.getBasePayload();
-    return sendTransaction(TransactionType.Transfer, {
-      ...basePayload,
-      ...payload,
-    });
-  }
+  buildTransaction = core.buildTransaction;
 
-  async sendCreateMarketplace(payload: ICreateMarket) {
-    const basePayload = await this.getBasePayload();
-    return sendTransaction(TransactionType.CreateMarketplace, {
-      ...basePayload,
-      ...payload,
-    });
-  }
+  signTransaction = core.signTransaction;
 
-  async sendConfigMarketplace(payload: IConfigMarket) {
-    const basePayload = await this.getBasePayload();
-    return sendTransaction(TransactionType.ConfigMarketplace, {
-      ...basePayload,
-      ...payload,
-    });
-  }
+  validateSignature = core.validateSignature;
 
-  async sendFreeze(payload: IFreeze) {
-    const basePayload = await this.getBasePayload();
-    return sendTransaction(TransactionType.Freeze, {
-      ...basePayload,
-      ...payload,
-    });
-  }
+  signMessage = core.signMessage;
 
-  async sendUnfreeze(payload: IUnfreeze) {
-    const basePayload = await this.getBasePayload();
-    return sendTransaction(TransactionType.Unfreeze, {
-      ...basePayload,
-      ...payload,
-    });
-  }
+  broadcastTransactions = core.broadcastTransactions;
 
-  async sendWithdraw(payload: IWithdraw) {
-    const basePayload = await this.getBasePayload();
-    return sendTransaction(TransactionType.Withdraw, {
-      ...basePayload,
-      ...payload,
-    });
-  }
+  localSignTransaction = core.localSignTransaction;
 
-  async sendUndelegate(payload: IUndelegate) {
-    const basePayload = await this.getBasePayload();
-    return sendTransaction(TransactionType.Undelegate, {
-      ...basePayload,
-      ...payload,
-    });
-  }
-
-  async sendDelegate(payload: IDelegate) {
-    const basePayload = await this.getBasePayload();
-    return sendTransaction(TransactionType.Delegate, {
-      ...basePayload,
-      ...payload,
-    });
-  }
-
-  async setAccountName(payload: ISetAccountName) {
-    const basePayload = await this.getBasePayload();
-    return sendTransaction(TransactionType.SetAccountName, {
-      ...basePayload,
-      ...payload,
-    });
-  }
-
-  async sendVotes(payload: IVotes) {
-    const basePayload = await this.getBasePayload();
-    return sendTransaction(TransactionType.Votes, {
-      ...basePayload,
-      ...payload,
-    });
-  }
-
-  async sendClaim(payload: IClaim) {
-    const basePayload = await this.getBasePayload();
-    return sendTransaction(TransactionType.Claim, {
-      ...basePayload,
-      ...payload,
-    });
-  }
-
-  async sendUnjail() {
-    const basePayload = await this.getBasePayload();
-    return sendTransaction(TransactionType.Unjail, {
-      ...basePayload,
-    });
-  }
-
-  async sendCancelMarketOrder(payload: ICancelMarketOrder) {
-    const basePayload = await this.getBasePayload();
-    return sendTransaction(TransactionType.CancelMarketOrder, {
-      ...basePayload,
-      ...payload,
-    });
-  }
-
-  async sendSellOrder(payload: ISellOrder) {
-    const basePayload = await this.getBasePayload();
-    return sendTransaction(TransactionType.SellOrder, {
-      ...basePayload,
-      ...payload,
-    });
-  }
-
-  async sendBuyOrder(payload: IBuyOrder) {
-    const basePayload = await this.getBasePayload();
-    return sendTransaction(TransactionType.BuyOrder, {
-      ...basePayload,
-      ...payload,
-    });
-  }
-
-  async sendCreateAsset(payload: ICreateAsset) {
-    const basePayload = await this.getBasePayload();
-    return sendTransaction(TransactionType.CreateAsset, {
-      ...basePayload,
-      ...payload,
-    });
-  }
-
-  async sendProposal(payload: IProposal) {
-    const basePayload = await this.getBasePayload();
-    return sendTransaction(TransactionType.Proposal, {
-      ...basePayload,
-      ...payload,
-    });
-  }
-
-  async sendCreateValidator(payload: ICreateValidator) {
-    const basePayload = await this.getBasePayload();
-    return sendTransaction(TransactionType.CreateValidator, {
-      ...basePayload,
-      ...payload,
-    });
-  }
-
-  async sendConfigValidator(payload: ICreateValidator) {
-    const basePayload = await this.getBasePayload();
-    return sendTransaction(TransactionType.ConfigValidator, {
-      ...basePayload,
-      ...payload,
-    });
-  }
-
-  async sendConfigICO(payload: IConfigICO) {
-    const basePayload = await this.getBasePayload();
-    return sendTransaction(TransactionType.ConfigICO, {
-      ...basePayload,
-      ...payload,
-    });
-  }
-
-  async sendAssetTrigger(payload: IAssetTrigger) {
-    const basePayload = await this.getBasePayload();
-    return sendTransaction(TransactionType.AssetTrigger, {
-      ...basePayload,
-      ...payload,
-    });
-  }
+  localSignMessage = core.localSignMessage;
 }
 
 export default Account;

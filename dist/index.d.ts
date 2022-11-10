@@ -1,4 +1,51 @@
-import React from 'react';
+export { IAssetTrigger, IBuyOrder, ICancelMarketOrder, IClaim, IConfigITO, IConfigMarketplace, IConfigValidator, ICreateAsset, ICreateMarketplace, ICreateValidator, IDelegate, IFreeze, IProposal, ISellOrder, ISetAccountName, ISetITOPrices, ITransfer, IUndelegate, IUnfreeze, IUnjail, IUpdateAccountPermission, IVotes, IWithdraw } from '@klever/kleverweb/dist/types/contracts';
+import * as _klever_kleverweb_dist_types_dtos from '@klever/kleverweb/dist/types/dtos';
+import { IProvider, IContractRequest, ITxOptionsRequest, ITransaction, IBroadcastResponse } from '@klever/kleverweb/dist/types/dtos';
+export { IContract, IContractRequest, IProvider, ITransaction, ITxOptionsRequest } from '@klever/kleverweb/dist/types/dtos';
+export { TransactionType, TriggerType } from '@klever/kleverweb/dist/types/enums';
+
+declare class Account {
+    constructor(privateKey?: string);
+    getWalletAddress(): string;
+    getProvider: () => IProvider;
+    setProvider: (pvd: IProvider) => any;
+    getAccount(): Promise<{
+        Address: string;
+        RootHash: string;
+        Balance: number;
+        Nonce: number;
+        Allowance: number;
+    }>;
+    getNonce(): Promise<{
+        firstPendingNonce: number;
+        nonce: number;
+        txPending: number;
+    }>;
+    buildTransaction: (contracts: IContractRequest[], txData?: string[] | undefined, options?: ITxOptionsRequest | undefined) => Promise<ITransaction>;
+    signTransaction: (tx: ITransaction) => Promise<ITransaction>;
+    validateSignature: (message: string, signature: string, publicKey: string) => Promise<boolean>;
+    signMessage: (message: string, privateKey: string) => Promise<string>;
+    broadcastTransactions: (transactions: ITransaction[]) => Promise<_klever_kleverweb_dist_types_dtos.IBroadcastResponse>;
+    localSignTransaction: (tx: ITransaction, privateKey: string) => Promise<ITransaction>;
+    localSignMessage: (message: string, privateKey: string) => Promise<string>;
+}
+
+declare const core: {
+    isKleverWebLoaded: () => boolean;
+    isKleverWebActive: () => boolean;
+    broadcastTransactions: (transactions: ITransaction[]) => Promise<IBroadcastResponse>;
+    signMessage: (message: string, privateKey: string) => Promise<string>;
+    signTransaction: (tx: ITransaction) => Promise<ITransaction>;
+    validateSignature: (message: string, signature: string, publicKey: string) => Promise<boolean>;
+    buildTransaction: (contracts: IContractRequest[], txData?: string[] | undefined, options?: ITxOptionsRequest | undefined) => Promise<ITransaction>;
+    initialize: () => Promise<void>;
+    getWalletAddress: () => string;
+    getProvider: () => IProvider;
+    setProvider: (pvd: IProvider) => any;
+    localSignTransaction: (tx: ITransaction, privateKey: string) => Promise<ITransaction>;
+    localSignMessage: (message: string, privateKey: string) => Promise<string>;
+    nodeSetup: (address: string, providers?: IProvider | undefined) => void;
+};
 
 interface IAccount {
     data: {
@@ -14,271 +61,5 @@ interface IAccount {
     error: string;
     code: string;
 }
-interface IBasePayload {
-    sender: string;
-    privateKey: string;
-    nonce: number;
-}
-interface ISdkContext {
-    isLoaded(): boolean;
-    getAccount(): Account | null;
-    setAccount(account: Account): void;
-}
-declare enum TransactionType {
-    Transfer = 0,
-    CreateMarketplace = 1,
-    ConfigMarketplace = 2,
-    Freeze = 3,
-    Unfreeze = 4,
-    Withdraw = 5,
-    Undelegate = 6,
-    Delegate = 7,
-    SetAccountName = 8,
-    Votes = 9,
-    Claim = 10,
-    Unjail = 11,
-    CancelMarketOrder = 12,
-    SellOrder = 13,
-    BuyOrder = 14,
-    CreateAsset = 15,
-    Proposal = 16,
-    CreateValidator = 17,
-    ConfigValidator = 18,
-    ConfigICO = 19,
-    AssetTrigger = 20
-}
-declare enum TriggerType {
-    Mint = 0,
-    Burn = 1,
-    Wipe = 2,
-    Pause = 3,
-    Resume = 4,
-    ChangeOwner = 5,
-    AddRole = 6,
-    RemoveRole = 7,
-    UpdateMetadata = 8,
-    StopNFTMint = 9,
-    UpdateLogo = 10,
-    UpdateURIs = 11,
-    ChangeRoyaltiesReceiver = 12
-}
 
-interface ITransfer {
-    receiver: string;
-    amount: number;
-    asset?: string;
-}
-interface ICreateMarket {
-    name: string;
-    referralAddress?: string;
-    referralPercentage: number;
-}
-interface IFreeze {
-    amount: number;
-    asset?: string;
-}
-interface IUnfreeze {
-    bucketID: string;
-    asset?: string;
-}
-interface IWithdraw {
-    assetId: string;
-}
-interface IUndelegate {
-    bucketID: string;
-}
-interface IDelegate {
-    receiver: string;
-    bucketID: string;
-}
-interface ISetAccountName {
-    name: string;
-}
-interface IVotes {
-    amount: number;
-    proposalID: number;
-}
-interface IClaim {
-    claimType: number;
-    id: string;
-}
-interface ICancelMarketOrder {
-    orderId: string;
-}
-interface ISellOrder {
-    marketType: number;
-    marketplaceId: string;
-    assetId: string;
-    currencyId: string;
-    price: number;
-    reservePrice: number;
-    endTime: number;
-}
-interface IBuyOrder {
-    buyType: number;
-    id: string;
-    currencyId: string;
-    amount: number;
-}
-interface ICreateAsset {
-    name: string;
-    ticker: string;
-    owner: string;
-    precision: number;
-    uris: string;
-    logo: string;
-    initialSupply: number;
-    circulatingSupply: number;
-    maxSupply: number;
-    type?: number;
-    staking?: Staking;
-    royalties?: Royalties;
-    roles?: Roles[];
-    properties?: Properties;
-    attributes?: Attributes;
-}
-interface Staking {
-    type: number;
-    apr: number;
-    minEpochsToClaim: number;
-    minEpochsToUnstake: number;
-    minEpochsToWithdraw: number;
-}
-interface Royalties {
-    address?: string;
-    transferPercentage?: RoyaltyInfo[];
-    transferFixed?: number;
-    marketPercentage?: number;
-    marketFixed?: number;
-}
-interface RoyaltyInfo {
-    amount?: number;
-    percentage?: number;
-}
-interface Roles {
-    address: string;
-    hasRoleMint: boolean;
-    hasRoleSetICOPrices: boolean;
-}
-interface Properties {
-    canFreeze?: boolean;
-    canWipe?: boolean;
-    canPause?: boolean;
-    canMint?: boolean;
-    canBurn?: boolean;
-    canChangeOwner?: boolean;
-    canAddRoles?: boolean;
-}
-interface Attributes {
-    isPaused?: boolean;
-    isNFTMintStopped?: boolean;
-}
-interface IProposal {
-    parameter: number;
-    epochsDuration: number;
-    value: string;
-    description: string;
-}
-interface IConfigMarket {
-    name: string;
-    marketID: string;
-    referralAddress?: string;
-    referralPercentage: number;
-}
-interface ICreateValidator {
-    name: string;
-    address: string;
-    rewardAddress: string;
-    bls: string;
-    canDelegate: boolean;
-    maxDelegationAmount: number;
-    comission: number;
-    logo: string;
-    uris: {
-        [key: string]: string;
-    };
-}
-interface Pack {
-    amount: number;
-    price: number;
-}
-interface PackInfo {
-    [key: string]: {
-        packItems: Pack[];
-    };
-}
-interface IConfigICO {
-    receiverAddress: string;
-    assetID: string;
-    maxAmount: number;
-    status: number;
-    packInfo: PackInfo[];
-}
-interface IAssetTrigger {
-    triggerType: TriggerType;
-    assetId: string;
-    receiver: string;
-    amount: number;
-    uris: {
-        [key: string]: string;
-    };
-    logo: string;
-    mime: string;
-    role: Roles;
-}
-
-declare class Account {
-    private address;
-    private privateKey;
-    constructor(address: string, privateKey: string);
-    getAddress(): string;
-    getPrivateKey(): string;
-    getBalance(): Promise<number>;
-    getNonce(): Promise<number>;
-    getBasePayload(): Promise<IBasePayload>;
-    sendTransfer(payload: ITransfer): Promise<ITransactionResponse>;
-    sendCreateMarketplace(payload: ICreateMarket): Promise<ITransactionResponse>;
-    sendConfigMarketplace(payload: IConfigMarket): Promise<ITransactionResponse>;
-    sendFreeze(payload: IFreeze): Promise<ITransactionResponse>;
-    sendUnfreeze(payload: IUnfreeze): Promise<ITransactionResponse>;
-    sendWithdraw(payload: IWithdraw): Promise<ITransactionResponse>;
-    sendUndelegate(payload: IUndelegate): Promise<ITransactionResponse>;
-    sendDelegate(payload: IDelegate): Promise<ITransactionResponse>;
-    setAccountName(payload: ISetAccountName): Promise<ITransactionResponse>;
-    sendVotes(payload: IVotes): Promise<ITransactionResponse>;
-    sendClaim(payload: IClaim): Promise<ITransactionResponse>;
-    sendUnjail(): Promise<ITransactionResponse>;
-    sendCancelMarketOrder(payload: ICancelMarketOrder): Promise<ITransactionResponse>;
-    sendSellOrder(payload: ISellOrder): Promise<ITransactionResponse>;
-    sendBuyOrder(payload: IBuyOrder): Promise<ITransactionResponse>;
-    sendCreateAsset(payload: ICreateAsset): Promise<ITransactionResponse>;
-    sendProposal(payload: IProposal): Promise<ITransactionResponse>;
-    sendCreateValidator(payload: ICreateValidator): Promise<ITransactionResponse>;
-    sendConfigValidator(payload: ICreateValidator): Promise<ITransactionResponse>;
-    sendConfigICO(payload: IConfigICO): Promise<ITransactionResponse>;
-    sendAssetTrigger(payload: IAssetTrigger): Promise<ITransactionResponse>;
-}
-
-interface ITransactionResponse {
-    txHashes: string[];
-    txCount: number;
-}
-interface IPemResponse {
-    address: string;
-    privateKey: string;
-}
-
-declare const core: {
-    getAccountByPem: (pemData: string) => Promise<Account>;
-    createAccount: () => Promise<IPemResponse>;
-    handleLoad: () => void;
-    isLoaded: () => boolean;
-};
-
-declare const sendTransaction: (type: TransactionType, payload: IBasePayload) => Promise<ITransactionResponse>;
-
-declare const SdkContext: React.Context<ISdkContext>;
-declare const SdkProvider: React.FC;
-declare const useSdk: () => ISdkContext;
-
-export { Account, IAccount, IAssetTrigger, IBasePayload, IBuyOrder, ICancelMarketOrder, IClaim, IConfigICO, IConfigMarket, ICreateAsset, ICreateMarket, ICreateValidator, IDelegate, IFreeze, IPemResponse, IProposal, ISdkContext, ISellOrder, ISetAccountName, ITransactionResponse, ITransfer, IUndelegate, IUnfreeze, IVotes, IWithdraw, SdkContext, SdkProvider, TransactionType, TriggerType, core, sendTransaction, useSdk };
+export { Account, IAccount, core };
