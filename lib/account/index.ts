@@ -19,18 +19,11 @@ class Account {
   private address!: string;
   private balance!: number;
   private nonce!: number;
+  ready: Promise<void>;
 
   constructor(privateKey: string) {
     this.privateKey = privateKey;
-    try {
-      this.init();
-    } catch (e) {
-      this.address = "";
-      this.balance = 0;
-      this.nonce = 0;
-
-      throw e;
-    }
+    this.ready = this.init();
   }
 
   private async init() {
@@ -38,6 +31,9 @@ class Account {
       this.address = await core.getAddressFromPrivateKey(this.privateKey);
       this.Sync();
     } catch (e) {
+      this.address = "";
+      this.balance = 0;
+      this.nonce = 0;
       throw e;
     }
   }
@@ -177,6 +173,8 @@ class Account {
 
     return core.broadcastTransactions([signedTx]);
   };
+
+  broadcastTransactions = core.broadcastTransactions;
 }
 
 export default Account;
