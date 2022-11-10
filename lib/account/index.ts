@@ -1,99 +1,182 @@
-import KleverWeb from "@klever/kleverweb";
 import {
+  IBroadcastResponse,
   IContractRequest,
-  IProvider,
   ITransaction,
   ITxOptionsRequest,
+  ITxRequest,
 } from "@klever/kleverweb/dist/types/dtos";
 import core from "../core";
 import {
-  ErrEmptyAddress,
-  ErrInvalidAddress,
-  ErrLoadKleverWeb,
-} from "../core/errors";
-import { IAccountNonce, INodeAccount } from "../types";
+  IAccountInfo,
+  IAccountResponse,
+  INodeAccountResponse,
+} from "../types/dtos";
+
+import * as ed from "@noble/ed25519";
 
 class Account {
-  constructor(privateKey?: string) {
-    if (!globalThis?.kleverWeb) {
-      globalThis.kleverWeb = {
-        ...globalThis?.kleverWeb,
-      };
+  private privateKey: string;
+  private address!: string;
+  private balance!: number;
+  private nonce!: number;
+
+  constructor(privateKey: string) {
+    this.privateKey = privateKey;
+    try {
+      this.init();
+    } catch (e) {
+      this.address = "";
+      this.balance = 0;
+      this.nonce = 0;
+
+      throw e;
     }
-    privateKey && globalThis.kleverWeb.setPrivateKey(privateKey);
   }
-  getWalletAddress(): string {
-    return globalThis?.kleverWeb?.getWalletAddress();
+
+  private async init() {
+    try {
+      this.address = await core.getAddressFromPrivateKey(this.privateKey);
+      this.Sync();
+    } catch (e) {
+      throw e;
+    }
   }
 
-  getProvider = (): IProvider => {
-    return globalThis?.kleverWeb?.getProvider();
-  };
+  getBalance(): number {
+    return this.balance;
+  }
 
-  setProvider = (pvd: IProvider) => {
-    return globalThis?.kleverWeb?.setProvider(pvd);
-  };
+  getNonce(): number {
+    return this.nonce;
+  }
+  getAddress(): string {
+    return this.address;
+  }
 
-  async getAccount() {
-    if (!core.isKleverWebActive()) {
-      throw ErrLoadKleverWeb;
-    }
-
-    if (globalThis?.kleverWeb?.getWalletAddress()?.length === 0) {
-      throw ErrEmptyAddress;
-    }
-
-    const request = await fetch(
-      `${
-        globalThis?.kleverWeb?.provider?.node
-      }/address/${globalThis?.kleverWeb?.getWalletAddress()}`,
+  async Sync() {
+    const addressReq = await fetch(
+      `${core.getProviders().node}/address/${this.address}`,
       {
         method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
       }
     );
 
-    const response: INodeAccount = await request.json();
-    if (response.error.length !== 0) {
-      throw response.error;
+    const addressRes: INodeAccountResponse = await addressReq.json();
+
+    this.balance = addressRes.data.account.Balance;
+    this.nonce = addressRes.data.account.Nonce ?? 0;
+  }
+
+  async getInfo(): Promise<IAccountInfo> {
+    try {
+      const addressReq = await fetch(
+        `${core.getProviders().node}/address/${this.address}`,
+        {
+          method: "GET",
+        }
+      );
+
+      const addressRes: IAccountResponse = await addressReq.json();
+      return addressRes.data.account;
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  buildTransaction = async (
+    contracts: IContractRequest[],
+    txData?: string[],
+    options?: ITxOptionsRequest
+  ): Promise<ITransaction> => {
+    if (contracts?.length === 0) {
+      throw "empty contracts";
     }
 
-    return response?.data?.account;
-  }
-
-  async getNonce() {
-    const request = await fetch(
-      `${
-        globalThis?.kleverWeb?.provider?.node
-      }/address/${globalThis?.kleverWeb?.getWalletAddress()}/nonce`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
+    const fistContractType = contracts[0]?.type;
+    const payloads = contracts.map((contract) => {
+      if (contract.type != fistContractType) {
+        throw "Multiple contracts of different types are not supported yet";
       }
-    );
 
-    const response: IAccountNonce = await request.json();
+      return contract.payload;
+    });
 
-    return response.data;
-  }
+    const nonce = options?.nonce ? options.nonce : this.nonce;
+    const permID = options?.permID || 0;
 
-  buildTransaction = core.buildTransaction;
+    const txBody: ITxRequest = {
+      type: fistContractType,
+      nonce,
+      sender: this.address,
+      data: txData || [],
+      permID,
+      contracts: payloads,
+    };
 
-  signTransaction = core.signTransaction;
+    const req = await fetch(`${core.getProviders().node}/transaction/send`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(txBody),
+    });
 
-  validateSignature = core.validateSignature;
+    const res = await req.json();
+    if (res?.error) throw res?.error;
 
-  signMessage = core.signMessage;
+    if (!res?.data && !res?.data?.result) {
+      throw "failed to generate transaction";
+    }
 
-  broadcastTransactions = core.broadcastTransactions;
+    return res.data.result as ITransaction;
+  };
 
-  localSignTransaction = core.localSignTransaction;
+  signMessage = async (message: string): Promise<string> => {
+    const signature = await ed.sign(message, this.privateKey);
 
-  localSignMessage = core.localSignMessage;
+    const parsedSignature = Buffer.from(signature).toString("base64");
+
+    return parsedSignature;
+  };
+
+  signTransaction = async (tx: ITransaction): Promise<ITransaction> => {
+    let hash;
+
+    try {
+      const req = await fetch(
+        `https://node.mainnet.klever.finance/transaction/decode`, //needs to be mainnet, it is broken on other networks as of now
+        {
+          method: "POST",
+          body: JSON.stringify(tx),
+        }
+      );
+
+      const res = await req.json();
+      hash = res.data.tx.hash;
+    } catch (e) {
+      console.log(e);
+    }
+    const signature = await this.signMessage(hash);
+
+    const signedTx = {
+      ...tx,
+      Signature: [signature],
+    };
+
+    return signedTx;
+  };
+
+  quickSend = async (
+    contracts: IContractRequest[],
+    txData?: string[],
+    options?: ITxOptionsRequest
+  ): Promise<IBroadcastResponse> => {
+    const tx = await this.buildTransaction(contracts, txData, options);
+
+    const signedTx = await this.signTransaction(tx);
+
+    return core.broadcastTransactions([signedTx]);
+  };
 }
 
 export default Account;

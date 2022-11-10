@@ -37,11 +37,13 @@ import {
 
 import Account from "./account";
 import core from "./core";
-import { IAccount } from "./types";
+import web from "./web";
+import { IAccountResponse } from "./types/dtos";
 
-export { Account, core };
+export { Account, core, web };
+
 export {
-  IAccount,
+  IAccountResponse,
   ITransaction,
   ITransfer,
   ICreateMarketplace,
