@@ -17,20 +17,30 @@ import * as ed from "@noble/ed25519";
 import * as fs from "node:fs/promises";
 
 class Account {
-  private privateKey: string;
+  private privateKey!: string;
   private address!: string;
   private balance!: number;
   private nonce!: number;
   ready: Promise<void>;
 
-  constructor(privateKey: string) {
-    this.privateKey = privateKey;
-    this.ready = this.init();
+  constructor(privateKey?: string) {
+    if (privateKey) {
+      this.privateKey = privateKey;
+      this.ready = this.init(privateKey);
+    } else {
+      this.ready = this.init();
+    }
   }
 
-  private async init() {
+  private async init(privateKey?: string) {
     try {
-      this.address = await core.getAddressFromPrivateKey(this.privateKey);
+      if (privateKey) {
+        this.address = await core.getAddressFromPrivateKey(this.privateKey);
+      } else {
+        const keyPair = await core.generateKeyPair();
+        this.privateKey = keyPair.privateKey;
+        this.address = keyPair.address;
+      }
       await this.Sync();
     } catch (e) {
       this.address = "";

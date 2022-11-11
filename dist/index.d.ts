@@ -25,7 +25,7 @@ declare class Account {
     private balance;
     private nonce;
     ready: Promise<void>;
-    constructor(privateKey: string);
+    constructor(privateKey?: string);
     private init;
     getBalance(): number;
     getNonce(): number;
