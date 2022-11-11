@@ -31,7 +31,7 @@ const generateKeyPair = async (): Promise<{
 
 const getProviders = (): IProvider => {
   return (
-    globalThis?.kleverWeb?.provider || {
+    globalThis.kleverProviders || {
       node: "https://node.mainnet.klever.finance",
       api: "https://api.mainnet.klever.finance",
     }
@@ -39,7 +39,7 @@ const getProviders = (): IProvider => {
 };
 
 const setProviders = (providers: IProvider) => {
-  return (globalThis.kleverWeb.provider = providers);
+  return (globalThis.kleverProviders = providers);
 };
 
 const broadcastTransactions = async (

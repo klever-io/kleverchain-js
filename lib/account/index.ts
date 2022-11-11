@@ -31,11 +31,13 @@ class Account {
   private async init() {
     try {
       this.address = await core.getAddressFromPrivateKey(this.privateKey);
-      this.Sync();
+      await this.Sync();
     } catch (e) {
       this.address = "";
       this.balance = 0;
       this.nonce = 0;
+
+      console.log(e);
       throw e;
     }
   }
@@ -137,7 +139,10 @@ class Account {
     return parsedSignature;
   };
 
-  signTransaction = async (tx: ITransaction): Promise<ITransaction> => {
+  signTransaction = async (
+    tx: ITransaction,
+    autoSync = true
+  ): Promise<ITransaction> => {
     let hash;
 
     try {
@@ -160,6 +165,10 @@ class Account {
       ...tx,
       Signature: [signature],
     };
+
+    if (autoSync) {
+      await this.Sync();
+    }
 
     return signedTx;
   };
