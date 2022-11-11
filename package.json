@@ -1,6 +1,6 @@
 {
   "name": "@klever/sdk",
-  "version": "3.2.3",
+  "version": "3.2.4",
   "description": "Kleverchain SDK integration with JS",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -13,7 +13,7 @@
     "url": "git+https://github.com/klever-io/kleverchain-js.git"
   },
   "scripts": {
-    "prepublish": "yarn build",
+    "prepublishOnly": "yarn build",
     "build": "rollup -c",
     "test": "yarn build && node ./dist/index.js"
   },

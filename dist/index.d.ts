@@ -45,6 +45,11 @@ declare const core: {
     localSignTransaction: (tx: ITransaction, privateKey: string) => Promise<ITransaction>;
     localSignMessage: (message: string, privateKey: string) => Promise<string>;
     nodeSetup: (address: string, providers?: IProvider | undefined) => void;
+    getAddressFromPrivateKey: (privateKey: string) => Promise<string>;
+    generateKeyPair: () => Promise<{
+        privateKey: string;
+        address: string;
+    }>;
 };
 
 interface IAccount {
