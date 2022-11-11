@@ -14,6 +14,8 @@ import {
 
 import * as ed from "@noble/ed25519";
 
+import * as fs from "node:fs/promises";
+
 class Account {
   private privateKey: string;
   private address!: string;
@@ -172,6 +174,30 @@ class Account {
     const signedTx = await this.signTransaction(tx);
 
     return core.broadcastTransactions([signedTx]);
+  };
+
+  downloadAsPem = async (path?: string) => {
+    path = path || `./${this.address.slice(-5)}.pem`;
+
+    const publicKey = await ed.getPublicKey(this.privateKey);
+
+    const pemString = Buffer.from(
+      Buffer.from(this.privateKey).toString() +
+        Buffer.from(publicKey).toString("hex")
+    ).toString("base64");
+
+    const pemFormattedString =
+      pemString.slice(0, 64) +
+      "\n" +
+      pemString.slice(64, 128) +
+      "\n" +
+      pemString.slice(128);
+
+    const pem = `-----BEGIN PRIVATE KEY for ${this.address}-----
+${pemFormattedString}
+-----END PRIVATE KEY for ${this.address}-----`;
+
+    fs.writeFile(`${path}`, pem);
   };
 
   broadcastTransactions = core.broadcastTransactions;
