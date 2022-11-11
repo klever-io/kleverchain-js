@@ -13,7 +13,7 @@
     "url": "git+https://github.com/klever-io/kleverchain-js.git"
   },
   "scripts": {
-    "prepublish": "yarn build",
+    "prepublishOnly": "yarn build",
     "build": "rollup -c",
     "test": "yarn build && node ./dist/index.js"
   },
