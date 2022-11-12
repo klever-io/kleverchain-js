@@ -7,7 +7,7 @@ describe("Account", () => {
     expect(account).toBeInstanceOf(Account);
   });
 
-  it("should be able to create a new account that has a private key and address", async () => {
+  it("should be able to create a new account that has an address", async () => {
     const account = new Account();
     await account.ready;
 

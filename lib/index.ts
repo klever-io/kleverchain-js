@@ -36,11 +36,11 @@ import {
 } from "@klever/kleverweb/dist/types/enums";
 
 import Account from "./account";
-import core from "./core";
+import utils from "./utils";
 import web from "./web";
 import { IAccountResponse } from "./types/dtos";
 
-export { Account, core, web };
+export { Account, utils, web };
 
 export {
   IAccountResponse,

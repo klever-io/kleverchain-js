@@ -5,7 +5,7 @@ import {
   ITxOptionsRequest,
   ITxRequest,
 } from "@klever/kleverweb/dist/types/dtos";
-import core from "../core";
+import utils from "../utils";
 import {
   IAccountInfo,
   IAccountResponse,
@@ -35,9 +35,9 @@ class Account {
   private async init(privateKey?: string) {
     try {
       if (privateKey) {
-        this.address = await core.getAddressFromPrivateKey(this.privateKey);
+        this.address = await utils.getAddressFromPrivateKey(this.privateKey);
       } else {
-        const keyPair = await core.generateKeyPair();
+        const keyPair = await utils.generateKeyPair();
         this.privateKey = keyPair.privateKey;
         this.address = keyPair.address;
       }
@@ -65,7 +65,7 @@ class Account {
 
   async Sync() {
     const addressReq = await fetch(
-      `${core.getProviders().node}/address/${this.address}`,
+      `${utils.getProviders().node}/address/${this.address}`,
       {
         method: "GET",
       }
@@ -80,7 +80,7 @@ class Account {
   async getInfo(): Promise<IAccountInfo> {
     try {
       const addressReq = await fetch(
-        `${core.getProviders().node}/address/${this.address}`,
+        `${utils.getProviders().node}/address/${this.address}`,
         {
           method: "GET",
         }
@@ -123,7 +123,7 @@ class Account {
       contracts: payloads,
     };
 
-    const req = await fetch(`${core.getProviders().node}/transaction/send`, {
+    const req = await fetch(`${utils.getProviders().node}/transaction/send`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -192,7 +192,7 @@ class Account {
 
     const signedTx = await this.signTransaction(tx);
 
-    return core.broadcastTransactions([signedTx]);
+    return utils.broadcastTransactions([signedTx]);
   };
 
   downloadAsPem = async (path?: string) => {
@@ -219,7 +219,7 @@ ${pemFormattedString}
     fs.writeFile(`${path}`, pem);
   };
 
-  broadcastTransactions = core.broadcastTransactions;
+  broadcastTransactions = utils.broadcastTransactions;
 }
 
 export default Account;

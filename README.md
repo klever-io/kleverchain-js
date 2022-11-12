@@ -48,93 +48,64 @@ $ yarn add @klever/sdk
 There are two ways to make a contract call: you can call only one method passing the contract data or you can create an instance of an account.
 
 Both ways are very similar (as of v3), but with the account one you have additional methods for get the account info.
+
 With a simple call:
 
 ```ts
-import { core, ITransfer, TransactionType } from '@klever/sdk';
+import { web, ITransfer, TransactionType } from "@klever/sdk";
 
 const payload: ITransfer = {
-    amount: 100 * 10 **6,
-    receiver: "receiverAddress",
-    kda: "KLV",
-  };
-
-const unsignedTx = await core.buildTransaction([
-    {
-      payload,
-      type: TransactionType.Transfer,
-    },
-]);
-
-const signedTx = await core.signTransaction(unsignedTx);
-
-const response = await core.broadcastTransactions([signedTx]);
-With an account instance:
-import { Account, ITransfer, TransactionType } from '@klever/sdk';
-
-const account = new Account();
-
-const payload: ITransfer = {
-    amount: 100 * 10 **6,
-    receiver: "receiverAddress",
-    kda: "KLV",
-  };
-
-const unsignedTx = await account.buildTransaction([
-    {
-      payload,
-      type: TransactionType.Transfer,
-    },
-]);
-
-const signedTx = await account.signTransaction(unsignedTx);
-
-const response = await account.broadcastTransactions([signedTx]);
-```
-
-With an account instance you can call the following methods to get more info on the account:
-
-- getAccount
-- getNonce
-
-<hr/>
-
-## NodeJS
-
-If you are using NodeJS, before calling any methods, you must call
-core.nodeSetup(address, providers)
-
-You must also use the localSignTransaction and localSignMessage methods when signing.
-
-Ex:
-
-```javascript
-const payload = {
-  amount,
-  receiver,
-  kda,
+  amount: 100 * 10 ** 6,
+  receiver: "receiverAddress",
+  kda: "KLV",
 };
 
-core.nodeSetup(address, {
-  node: "https://node.mainnet.klever.finance",
-  api: "https://api.mainnet.klever.finance",
-});
-
-const unsignedTx = await core.buildTransaction([
+const unsignedTx = await web.buildTransaction([
   {
     payload,
     type: TransactionType.Transfer,
   },
 ]);
 
-const signedTx = await core.localSignTransaction(unsignedTx, privateKey);
+const signedTx = await web.signTransaction(unsignedTx);
 
-/*  If you are getting the private key from a pem file, remember to decode
-    from base 64 to hex, then get the first 32 bytes (64 characters)
-    Example of decoding:
-    privateKey = Buffer.from(encodedPK, "base64").toString().slice(0, 64)
-*/
-const broadcastRes = await core.broadcastTransactions([signedTx]);
+const response = await web.broadcastTransactions([signedTx]);
+```
+
+<hr/>
+
+## NodeJS
+
+If you are using NodeJS, before calling any methods, you must call
+utils.setProviders(providers)
+
+You must also use the localSignTransaction and localSignMessage methods when signing.
+
+Ex:
+
+```ts
+import { Account, TransactionType } from "@klever/sdk";
+
+const payload = {
+  amount,
+  receiver,
+  kda,
+};
+
+const privateKey = "yourPrivateKey";
+
+const account = new Account(privateKey);
+
+const unsignedTx = await account.buildTransaction([
+  {
+    payload,
+    type: TransactionType.Transfer,
+  },
+]);
+
+const signedTx = await account.localSignTransaction(unsignedTx);
+
+const broadcastRes = await account.broadcastTransactions([signedTx]);
 
 console.log(broadcastRes);
 ```
@@ -143,10 +114,10 @@ console.log(broadcastRes);
 
 The default network is the Kleverchain Mainnet, but if you want to use the Kleverchain Testnet or a local version of the Kleverchain, you can change the kleverWeb provider object by setting it before calling the initialize function.
 
-Ex:
+In web app:
 
 ```ts
-import { core, IProvider } from '@klever/sdk';
+import { web, IProvider } from '@klever/sdk';
 ...
   const provider:IProvider = {
       api: 'https://api.testnet.klever.finance',
@@ -154,13 +125,27 @@ import { core, IProvider } from '@klever/sdk';
   };
 
   window.kleverWeb.provider = provider;
-  core.initialize();
+  web.initialize();
+...
+```
+
+In NodeJS:
+
+```ts
+import { utils, IProvider } from "@klever/sdk";
+...
+  const provider: IProvider = {
+    api: "https://api.testnet.klever.finance",
+    node: "https://node.testnet.klever.finance",
+  };
+
+  utils.setProviders(provider);
 ...
 ```
 
 ## Generating and importing accounts
 
-Using the SDK you can generate and import accounts using the following methods from the `core` object:
+Using the SDK you can generate and import accounts using the following methods from the `utils` object:
 
 - generateKeyPair
 - getAddressFromPrivateKey
@@ -168,10 +153,10 @@ Using the SDK you can generate and import accounts using the following methods f
 Generating a key pair:
 
 ```ts
-import { core } from '@klever/sdk';
+import { utils } from '@klever/sdk';
 ...
 
-  const { privateKey, address } = await core.generateKeyPair();
+  const { privateKey, address } = await utils.generateKeyPair();
 
 ...
 ```
@@ -179,10 +164,10 @@ import { core } from '@klever/sdk';
 Importing an account:
 
 ```ts
-import { core } from '@klever/sdk';
+import { utils } from '@klever/sdk';
 ...
   const privateKey; // your private key
-  const address = await core.getAddressFromPrivateKey(privateKey);
+  const address = await utils.getAddressFromPrivateKey(privateKey);
 
 ...
 ```
@@ -221,7 +206,7 @@ Using React as an example, you can create a MyCustomHook.tsx file and create you
 
 ```ts
 import { useState, createContext, useContext } from "react";
-import { Account, core } from "@klever/sdk";
+import { Account, utils } from "@klever/sdk";
 
 interface ISdkContext {
   isLoaded(): Promise<boolean>;
@@ -235,7 +220,7 @@ const SdkProvider: React.FC = ({ children }) => {
   const [acc, setAcc] = useState<Account | null>(null);
 
   const values: ISdkContext = {
-    isLoaded: () => core.isKleverWebLoaded(),
+    isLoaded: () => utils.isKleverWebLoaded(),
     getAccount: () => acc,
     setAccount: (account) => setAcc(account),
   };

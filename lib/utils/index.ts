@@ -56,7 +56,7 @@ const broadcastTransactions = async (
   return await res.json();
 };
 
-const core = {
+const utils = {
   getAddressFromPrivateKey,
   generateKeyPair,
   getProviders,
@@ -64,4 +64,4 @@ const core = {
   broadcastTransactions,
 };
 
-export default core;
+export default utils;
