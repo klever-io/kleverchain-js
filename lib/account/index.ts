@@ -123,22 +123,26 @@ class Account {
       contracts: payloads,
     };
 
-    const req = await fetch(`${utils.getProviders().node}/transaction/send`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(txBody),
-    });
+    try {
+      const req = await fetch(`${utils.getProviders().node}/transaction/send`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(txBody),
+      });
 
-    const res = await req.json();
-    if (res?.error) throw res?.error;
+      const res = await req.json();
+      if (res?.error) throw res?.error;
 
-    if (!res?.data && !res?.data?.result) {
-      throw "failed to generate transaction";
+      if (!res?.data && !res?.data?.result) {
+        throw "failed to generate transaction";
+      }
+
+      return res.data.result as ITransaction;
+    } catch (e) {
+      throw e;
     }
-
-    return res.data.result as ITransaction;
   };
 
   signMessage = async (message: string): Promise<string> => {
