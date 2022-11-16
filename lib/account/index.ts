@@ -73,7 +73,7 @@ class Account {
 
     const addressRes: INodeAccountResponse = await addressReq.json();
 
-    this.balance = addressRes.data.account.Balance;
+    this.balance = addressRes.data.account.Balance ?? 0;
     this.nonce = addressRes.data.account.Nonce ?? 0;
   }
 
@@ -153,10 +153,7 @@ class Account {
     return parsedSignature;
   };
 
-  signTransaction = async (
-    tx: ITransaction,
-    autoSync = true
-  ): Promise<ITransaction> => {
+  signTransaction = async (tx: ITransaction): Promise<ITransaction> => {
     let hash;
 
     try {
@@ -180,10 +177,6 @@ class Account {
       Signature: [signature],
     };
 
-    if (autoSync) {
-      await this.Sync();
-    }
-
     return signedTx;
   };
 
@@ -196,7 +189,15 @@ class Account {
 
     const signedTx = await this.signTransaction(tx);
 
-    return utils.broadcastTransactions([signedTx]);
+    const res = await utils.broadcastTransactions([signedTx]);
+
+    if (res?.error) throw res?.error;
+
+    if (!options?.nonce) {
+      this.nonce = this.nonce + 1;
+    }
+
+    return res;
   };
 
   downloadAsPem = async (path?: string) => {
