@@ -1,4 +1,4 @@
-import { IProvider, ITransaction } from "..";
+import { Account, IProvider, ITransaction } from "..";
 
 import * as ed from "@noble/ed25519";
 
@@ -74,6 +74,53 @@ const decodeTransaction = async (
   return res.data;
 };
 
+const transactionsProcessed = async (
+  txs: Promise<IBroadcastResponse>[],
+  tries = 10
+): Promise<IDecodedTransaction[]> => {
+  const res = await Promise.all(txs);
+
+  const hashes: string[] = [];
+  res.forEach((tx) => {
+    hashes.push(...tx.data.txsHashes);
+  });
+
+  const processedRequest: Promise<IDecodedTransaction>[] = hashes.map(
+    async (hash) => {
+      const array = Array.from({ length: tries }, (_, i) => i);
+      let error = "";
+
+      for (const i of array) {
+        const fetchPromise = fetch(`${getProviders().api}/transaction/${hash}`);
+
+        const result = await fetchPromise;
+        const data = await result.json();
+
+        if (data && !data.error) {
+          return data.data;
+        } else if (data.error) {
+          error = data;
+        }
+
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+      }
+      throw error;
+    }
+  );
+
+  return await Promise.all(processedRequest);
+};
+
+const accountsReady = async (accounts: Account[]): Promise<void> => {
+  const promises: Promise<void>[] = [];
+
+  accounts.forEach((account) => {
+    promises.push(account.ready);
+  });
+
+  await Promise.all(promises);
+};
+
 const utils = {
   getAddressFromPrivateKey,
   generateKeyPair,
@@ -81,6 +128,8 @@ const utils = {
   setProviders,
   broadcastTransactions,
   decodeTransaction,
+  transactionsProcessed,
+  accountsReady,
 };
 
 export default utils;
