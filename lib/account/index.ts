@@ -158,7 +158,7 @@ class Account {
 
     try {
       const req = await fetch(
-        `https://node.mainnet.klever.finance/transaction/decode`, //needs to be mainnet, it is broken on other networks as of now
+        `${utils.getProviders().node}/transaction/decode`,
         {
           method: "POST",
           body: JSON.stringify(tx),

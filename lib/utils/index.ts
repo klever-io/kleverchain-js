@@ -60,13 +60,10 @@ const broadcastTransactions = async (
 const decodeTransaction = async (
   tx: ITransaction
 ): Promise<IDecodedTransaction> => {
-  const req = await fetch(
-    `https://node.mainnet.klever.finance/transaction/decode`, //needs to be mainnet, it is broken on other networks as of now
-    {
-      method: "POST",
-      body: JSON.stringify(tx),
-    }
-  );
+  const req = await fetch(`${getProviders().node}/transaction/decode`, {
+    method: "POST",
+    body: JSON.stringify(tx),
+  });
 
   const res = await req.json();
   if (res?.error) throw res?.error;
