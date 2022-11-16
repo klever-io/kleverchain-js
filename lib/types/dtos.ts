@@ -1,3 +1,5 @@
+import { TransactionType } from "@klever/kleverweb/dist/types/enums";
+
 export interface IAccountInfo {
   address: string;
   nonce: number;
@@ -34,6 +36,33 @@ export interface IAccountNonceResponse {
     nonce: number;
     txPending: number;
   };
+  error: string;
+  code: string;
+}
+
+export interface ITransactionContract {
+  type: TransactionType;
+  typeString: string;
+  parameter: any;
+}
+
+export interface IDecodedTransaction {
+  data: {
+    tx: {
+      hash: string;
+      sender: string;
+      nonce: number;
+      data: string[];
+      kAppFee: number;
+      bandwidthFee: number;
+      status: string;
+      version: number;
+      chainID: string;
+      searchOrder: number;
+      contract: ITransactionContract[];
+    };
+  };
+
   error: string;
   code: string;
 }

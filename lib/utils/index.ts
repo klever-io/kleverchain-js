@@ -4,6 +4,7 @@ import * as ed from "@noble/ed25519";
 
 import { IBroadcastResponse } from "@klever/kleverweb/dist/types/dtos";
 import { bech32 } from "bech32";
+import { IDecodedTransaction } from "../types/dtos";
 
 const getAddressFromPrivateKey = async (
   privateKey: string
@@ -56,12 +57,30 @@ const broadcastTransactions = async (
   return await res.json();
 };
 
+const decodeTransaction = async (
+  tx: ITransaction
+): Promise<IDecodedTransaction> => {
+  const req = await fetch(
+    `https://node.mainnet.klever.finance/transaction/decode`, //needs to be mainnet, it is broken on other networks as of now
+    {
+      method: "POST",
+      body: JSON.stringify(tx),
+    }
+  );
+
+  const res = await req.json();
+  if (res?.error) throw res?.error;
+
+  return res.data;
+};
+
 const utils = {
   getAddressFromPrivateKey,
   generateKeyPair,
   getProviders,
   setProviders,
   broadcastTransactions,
+  decodeTransaction,
 };
 
 export default utils;
