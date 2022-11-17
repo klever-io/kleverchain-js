@@ -1,15 +1,12 @@
-import KleverWeb from "@klever/kleverweb";
 import {
   IBroadcastResponse,
   IContractRequest,
   ITxOptionsRequest,
 } from "@klever/kleverweb/dist/types/dtos";
 import { IProvider, ITransaction } from "..";
-import { ErrLoadKleverWeb } from "./errors";
+import { ErrLoadKleverWeb } from "../errors";
 
 import * as ed from "@noble/ed25519";
-
-import { bech32 } from "bech32";
 
 const isKleverWebLoaded = () => {
   return !!globalThis?.kleverWeb;
@@ -112,94 +109,7 @@ const buildTransaction = async (
   return globalThis?.kleverWeb?.buildTransaction(contracts, txData, options);
 };
 
-const localSignMessage = async (
-  message: string,
-  privateKey: string
-): Promise<string> => {
-  const signature = await ed.sign(message, privateKey);
-
-  const parsedSignature = Buffer.from(signature).toString("base64");
-
-  return parsedSignature;
-};
-
-const localSignTransaction = async (
-  tx: ITransaction,
-  privateKey: string
-): Promise<ITransaction> => {
-  if (!isKleverWebActive()) {
-    throw ErrLoadKleverWeb;
-  }
-
-  let hash;
-
-  try {
-    const req = await fetch(
-      `https://node.mainnet.klever.finance/transaction/decode`,
-      {
-        method: "POST",
-        body: JSON.stringify(tx),
-      }
-    );
-
-    const res = await req.json();
-    hash = res.data.tx.hash;
-  } catch (e) {
-    console.log(e);
-  }
-  const signature = await localSignMessage(hash, privateKey);
-
-  const signedTx = {
-    ...tx,
-    Signature: [signature],
-  };
-
-  return signedTx;
-};
-
-const nodeSetup = (address: string, providers?: IProvider) => {
-  if (!address) {
-    throw new Error("address is required");
-  }
-
-  const kleverWeb = new KleverWeb(
-    address,
-    providers || {
-      node: "https://node.mainnet.klever.finance",
-      api: "https://api.mainnet.klever.finance",
-    }
-  );
-  globalThis.kleverWeb = {
-    ...globalThis.kleverWeb,
-    ...kleverWeb,
-  };
-};
-
-const getAddressFromPrivateKey = async (
-  privateKey: string
-): Promise<string> => {
-  const publicKey = await ed.getPublicKey(privateKey);
-  const address = bech32.encode("klv", bech32.toWords(publicKey));
-
-  return address;
-};
-
-const generateKeyPair = async (): Promise<{
-  privateKey: string;
-  address: string;
-}> => {
-  const privateKey = Buffer.from(ed.utils.randomPrivateKey()).toString("hex");
-  const publicKey = await ed.getPublicKey(privateKey);
-
-  const address = bech32.encode("klv", bech32.toWords(publicKey));
-
-  return {
-    privateKey,
-    address,
-  };
-};
-
-const core = {
+const web = {
   isKleverWebLoaded,
   isKleverWebActive,
   broadcastTransactions,
@@ -211,11 +121,6 @@ const core = {
   getWalletAddress,
   getProvider,
   setProvider,
-  localSignTransaction,
-  localSignMessage,
-  nodeSetup,
-  getAddressFromPrivateKey,
-  generateKeyPair,
 };
 
-export default core;
+export default web;

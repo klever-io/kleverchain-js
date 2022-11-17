@@ -36,12 +36,14 @@ import {
 } from "@klever/kleverweb/dist/types/enums";
 
 import Account from "./account";
-import core from "./core";
-import { IAccount } from "./types";
+import utils from "./utils";
+import web from "./web";
+import { IAccountResponse } from "./types/dtos";
 
-export { Account, core };
+export { Account, utils, web };
+
 export {
-  IAccount,
+  IAccountResponse,
   ITransaction,
   ITransfer,
   ICreateMarketplace,
