@@ -74,14 +74,11 @@ const response = await web.broadcastTransactions([signedTx]);
 
 <hr/>
 
-## NodeJS
+## Node.js
 
-If you are using NodeJS, before calling any methods, you must call
-utils.setProviders(providers)
+If you are using NodeJS, before calling any methods, you should call [utils.setProviders(providers)](#changing-network) to set the network providers.
 
-You must also use the localSignTransaction and localSignMessage methods when signing.
-
-Ex:
+Common flow example:
 
 ```ts
 import { Account, TransactionType } from "@klever/sdk";
@@ -95,6 +92,7 @@ const payload = {
 const privateKey = "yourPrivateKey";
 
 const account = new Account(privateKey);
+await account.ready;
 
 const unsignedTx = await account.buildTransaction([
   {
@@ -103,9 +101,37 @@ const unsignedTx = await account.buildTransaction([
   },
 ]);
 
-const signedTx = await account.localSignTransaction(unsignedTx);
+const signedTx = await account.signTransaction(unsignedTx);
 
 const broadcastRes = await account.broadcastTransactions([signedTx]);
+
+console.log(broadcastRes);
+```
+
+<br/>
+
+Quick send example:
+
+```ts
+import { Account, TransactionType } from "@klever/sdk";
+
+const payload = {
+  amount,
+  receiver,
+  kda,
+};
+
+const privateKey = "yourPrivateKey";
+
+const account = new Account(privateKey);
+await account.ready;
+
+const broadcastRes = await account.quickSend([
+  {
+    payload,
+    type: TransactionType.Transfer,
+  },
+]); //the same as buildTransaction + signTransaction + broadcastTransactions
 
 console.log(broadcastRes);
 ```
@@ -114,7 +140,7 @@ console.log(broadcastRes);
 
 The default network is the Kleverchain Mainnet, but if you want to use the Kleverchain Testnet or a local version of the Kleverchain, you can change the kleverWeb provider object by setting it before calling the initialize function.
 
-In web app:
+### In web app:
 
 ```ts
 import { web, IProvider } from '@klever/sdk';
@@ -129,7 +155,7 @@ import { web, IProvider } from '@klever/sdk';
 ...
 ```
 
-In NodeJS:
+### In Node.js:
 
 ```ts
 import { utils, IProvider } from "@klever/sdk";
@@ -143,7 +169,7 @@ import { utils, IProvider } from "@klever/sdk";
 ...
 ```
 
-## Generating and importing accounts
+## Generating and importing accounts in Node.js
 
 Using the SDK you can generate and import accounts using the following methods from the `utils` object:
 
@@ -172,6 +198,8 @@ import { utils } from '@klever/sdk';
 ...
 ```
 
+Also, when you create an instance of an account with no private key, the SDK will generate a new key pair for you. Be sure to use the `downloadAsPem` account method to save the private key.
+
 ## Transactions
 
 All available transactions:
@@ -199,7 +227,7 @@ All available transactions:
 - `SetAccountName`
 - `UpdateAccountPermission`
 
-## Usage Inside a Context
+## Usage Inside a Context (Web App)
 
 If you want a global instance of your account to use throughout your app, you can create a custom hook to help you with that.
 Using React as an example, you can create a MyCustomHook.tsx file and create your provider as follows:
