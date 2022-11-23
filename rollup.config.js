@@ -24,7 +24,7 @@ const config = [
     plugins: [
       resolve(),
       commonjs(),
-      typescript({ tsconfig: "./tsconfig.json" }),
+      typescript({ tsconfig: "./tsconfig.json", downlevelIteration: true }),
       terser(),
     ],
   },
