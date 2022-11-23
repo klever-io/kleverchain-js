@@ -55,7 +55,7 @@ declare class Account {
     getBalance(): number;
     getNonce(): number;
     getAddress(): string;
-    Sync(): Promise<void>;
+    sync(): Promise<void>;
     getInfo(): Promise<IAccountInfo>;
     buildTransaction: (contracts: IContractRequest[], txData?: string[] | undefined, options?: ITxOptionsRequest | undefined) => Promise<ITransaction>;
     signMessage: (message: string) => Promise<string>;
@@ -72,7 +72,7 @@ declare const utils: {
         address: string;
     }>;
     getProviders: () => IProvider;
-    setProviders: (providers: IProvider) => IProvider;
+    setProviders: (providers: IProvider) => void;
     broadcastTransactions: (txs: ITransaction[]) => Promise<IBroadcastResponse>;
     decodeTransaction: (tx: ITransaction) => Promise<IDecodedTransaction>;
     transactionsProcessed: (txs: Promise<IBroadcastResponse>[], tries?: number) => Promise<IDecodedTransaction[]>;
@@ -90,7 +90,7 @@ declare const web: {
     initialize: () => Promise<void>;
     getWalletAddress: () => string;
     getProvider: () => IProvider;
-    setProvider: (pvd: IProvider) => any;
+    setProvider: (pvd: IProvider) => void;
 };
 
 export { Account, IAccountResponse, utils, web };

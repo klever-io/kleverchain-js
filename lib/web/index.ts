@@ -29,7 +29,8 @@ const getProvider = (): IProvider => {
 };
 
 const setProvider = (pvd: IProvider) => {
-  return globalThis?.kleverWeb?.setProvider(pvd);
+  globalThis?.kleverWeb?.setProvider(pvd);
+  return;
 };
 
 const broadcastTransactions = async (

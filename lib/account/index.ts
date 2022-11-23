@@ -41,7 +41,7 @@ class Account {
         this.privateKey = keyPair.privateKey;
         this.address = keyPair.address;
       }
-      await this.Sync();
+      await this.sync();
     } catch (e) {
       this.address = "";
       this.balance = 0;
@@ -63,7 +63,7 @@ class Account {
     return this.address;
   }
 
-  async Sync() {
+  async sync() {
     const addressReq = await fetch(
       `${utils.getProviders().node}/address/${this.address}`,
       {
