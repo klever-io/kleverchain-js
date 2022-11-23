@@ -40,7 +40,16 @@ import utils from "./utils";
 import web from "./web";
 import { IAccountResponse } from "./types/dtos";
 
-export { Account, utils, web };
+import Transaction, { Contracts, TXContract_ContractType, proto } from "./transaction";
+export { 
+  Account,
+  utils,
+  web,
+  Transaction,
+  Contracts,
+  TXContract_ContractType,
+  proto,
+ };
 
 export {
   IAccountResponse,
