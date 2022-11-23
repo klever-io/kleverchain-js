@@ -40,7 +40,8 @@ const getProviders = (): IProvider => {
 };
 
 const setProviders = (providers: IProvider) => {
-  return (globalThis.kleverProviders = providers);
+  globalThis.kleverProviders = providers;
+  return;
 };
 
 const broadcastTransactions = async (
