@@ -1,0 +1,120 @@
+syntax = "proto3";
+
+package proto;
+
+option go_package = "./;transaction";
+
+import "google/protobuf/any.proto";
+
+// TXContract available
+message TXContract {
+	enum ContractType {
+		TransferContractType                  = 0;
+		CreateAssetContractType               = 1;
+		CreateValidatorContractType           = 2;
+		ValidatorConfigContractType           = 3;
+		FreezeContractType                    = 4;
+		UnfreezeContractType                  = 5;
+		DelegateContractType                  = 6;
+		UndelegateContractType                = 7;
+		WithdrawContractType                  = 8;
+		ClaimContractType                     = 9;
+		UnjailContractType                    = 10;
+		AssetTriggerContractType              = 11;
+		SetAccountNameContractType            = 12;
+		ProposalContractType                  = 13;
+		VoteContractType                      = 14;
+		ConfigITOContractType                 = 15;
+		SetITOPricesContractType              = 16;
+		BuyContractType                       = 17;
+		SellContractType                      = 18;
+		CancelMarketOrderContractType         = 19;
+		CreateMarketplaceContractType         = 20;
+		ConfigMarketplaceContractType         = 21;
+		UpdateAccountPermissionContractType   = 22;
+	}
+	ContractType Type 				= 1;
+	google.protobuf.Any Parameter 	= 2;
+}
+
+// Transaction holds all the data needed for a value transfer
+message Transaction {
+    enum TXResult {
+        SUCCESS = 0;
+        FAILED  = 1;
+    }
+
+	enum TXResultCode {
+        Ok                      = 0;
+        OutOfFunds              = 1;
+        AccountError            = 2;
+        AssetError              = 3;
+        ContractInvalid         = 4;
+        ContractNotFound        = 5;
+        FeeInvalid              = 6;
+        ParameterInvalid        = 7;
+        APRInvalid              = 8;
+        AssetIDInvalid          = 9;
+        AssetTypeInvalid        = 10;
+        AssetCantBeMinted       = 11;
+        AssetCantBeBurned       = 12;
+        AssetCantBePaused       = 13;
+        AssetCantBeDelegated    = 14;
+        AssetOwnerCantBeChanged = 15;
+        AccountNotOwner         = 16;
+        CommissionTooHigh       = 17;
+        DelegationAmountInvalid = 18;
+        ProposalNotActive       = 19;
+        ValueInvalid            = 20;
+        AmountInvalid           = 21;
+        BucketIDInvalid         = 22;
+        KeyConflict             = 23;
+        MaxDelegationAmount     = 24;
+        InvalidPeerKey          = 25;
+        MinKFIStakedUnreached   = 26;
+        MaxSupplyExeeced        = 27;
+        SaveAccountError        = 28;
+        LoadAccountError        = 29;
+        SameAccountError        = 30;
+        AssetPaused             = 31;
+        DeletegateError         = 32;
+        WithdrawNotAvailable    = 33;
+        ErrOverflow             = 34;
+        SetStakingErr           = 35;
+        SetMarketOrderErr       = 36;
+        BalanceError            = 37;
+        KAPPError               = 38;
+        UnfreezeError           = 39;
+        UndeletegateError       = 40;
+        WithdrawError           = 41;
+        ClaimError              = 42;
+        BucketsExceded          = 43;
+        AssetCantBeWiped        = 44;
+        AssetCantAddRoles       = 45;
+        FreezeError             = 46;
+        Fail                    = 99;
+	}
+
+	message Raw {
+		uint64   Nonce               = 1  ;
+		bytes    Sender              = 2  ;
+		repeated TXContract Contract = 6  ;
+		int32    PermissionID        = 7  ;
+		repeated bytes Data          = 10 ;
+		int64    KAppFee             = 13 ;
+		int64    BandwidthFee        = 14 ;
+		uint32   Version             = 15 ;
+		bytes    ChainID             = 16 ;
+	}
+
+	message Receipt {
+		repeated bytes Data = 1 [json_name = "data"];
+	}
+
+	Raw              RawData           = 1;
+	repeated bytes   Signature         = 2;
+	TXResult         Result            = 3;
+	TXResultCode     ResultCode        = 4;
+	repeated Receipt Receipts          = 5;
+	uint64           Block             = 6;
+}

@@ -1,0 +1,304 @@
+syntax = "proto3";
+
+package proto;
+
+option go_package = "./;transaction";
+
+// TXContract available
+message TransferContract {
+	bytes ToAddress    = 1;
+	bytes AssetID      = 2;
+	int64 Amount       = 3;
+}
+
+// CreateAssetContract holds the data for a Klever digital asset
+message CreateAssetContract {
+    enum EnumAssetType {
+        Fungible    = 0;
+        NonFungible = 1;
+    }
+    EnumAssetType        Type                      = 1 ;
+    bytes                Name                      = 2 ;
+    bytes                Ticker                    = 3 ;
+    bytes                OwnerAddress              = 4 ;
+    string               Logo                      = 5 ;
+    map<string, string>  URIs                      = 6 ;
+    uint32               Precision                 = 7 ;
+    int64                InitialSupply             = 8 ;
+    int64                MaxSupply                 = 9 ;
+    RoyaltiesInfo        Royalties                 = 10;
+    PropertiesInfo       Properties                = 11;
+    AttributesInfo       Attributes                = 12;
+    StakingInfo          Staking                   = 13;
+    repeated RolesInfo   Roles                     = 14;
+}
+
+// PropertiesInfo hold the properties structure for the KDA asset
+message PropertiesInfo {
+    bool CanFreeze                = 1;
+    bool CanWipe                  = 2;
+    bool CanPause                 = 3;
+    bool CanMint                  = 4;
+    bool CanBurn                  = 5;
+    bool CanChangeOwner           = 6;
+    bool CanAddRoles              = 7;
+}
+
+// AttributesInfo hold the attributes structure for the KDA asset
+message AttributesInfo {
+    bool IsPaused          = 1;
+    bool IsNFTMintStopped  = 2;
+}
+
+// StakingInfo hold the staking structure for the KDA asset
+message StakingInfo {
+    enum InterestType {	
+        APRI = 0;	
+        FPRI = 1;	
+    }
+    InterestType Type                         = 1;
+    uint32       APR                          = 2;
+    uint32       MinEpochsToClaim             = 3;
+    uint32       MinEpochsToUnstake           = 4;
+    uint32       MinEpochsToWithdraw          = 5;
+}
+
+// RolesInfo holds the roles for a given asset and the given address
+message RolesInfo {
+    bytes Address               = 1;
+    bool  HasRoleMint           = 2;
+    bool  HasRoleSetITOPrices   = 3;
+}
+
+// RoyaltiesInfo holds the royalties for a given asset
+message RoyaltiesInfo {
+    bytes                Address            = 1;
+    repeated RoyaltyInfo TransferPercentage = 2;
+    int64                TransferFixed      = 3;
+    uint32               MarketPercentage   = 4;
+    int64                MarketFixed        = 5;
+}
+
+// RoyaltyInfo holds the royalty threshold
+message RoyaltyInfo {
+    int64  Amount     = 1  [json_name = "amount"];
+    uint32 Percentage = 2  [json_name = "percentage"];
+}
+
+// AssetTriggerContract triggers assets functions
+message AssetTriggerContract {
+    enum EnumTriggerType {
+        Mint                    = 0;
+        Burn                    = 1;
+        Wipe                    = 2;
+        Pause                   = 3;
+        Resume                  = 4;
+        ChangeOwner             = 5;
+        AddRole                 = 6;
+        RemoveRole              = 7;
+        UpdateMetadata          = 8;
+        StopNFTMint             = 9;
+        UpdateLogo              = 10;
+        UpdateURIs              = 11;
+        ChangeRoyaltiesReceiver = 12;
+        UpdateStaking           = 13;
+    }
+    EnumTriggerType    TriggerType  = 1;
+  	bytes              AssetID      = 2;
+    bytes              ToAddress    = 3;
+	  int64              Amount       = 4;
+	  bytes              MIME         = 5;
+	  string             Logo         = 6;
+	  map<string,string> URIs         = 7;
+    RolesInfo          Role         = 8;
+    StakingInfo        Staking      = 9;
+}
+
+// ValidatorConfig holds the data for a validator configuration
+message ValidatorConfig {
+    bytes                BLSPublicKey        = 1;
+    bytes                RewardAddress       = 2;
+    bool                 CanDelegate         = 3;
+    uint32               Commission          = 4;
+    int64                MaxDelegationAmount = 5;
+    string               Logo                = 6;
+    map<string, string>  URIs                = 7;
+    string               Name                = 8;
+}
+
+// CreateValidatorContract holds the data for create a validator
+message CreateValidatorContract {
+    bytes OwnerAddress         = 1;
+    ValidatorConfig Config     = 2;
+}
+
+// ValidatorConfigContract holds the data for a validator configuration transaction
+message ValidatorConfigContract {
+    ValidatorConfig Config = 1;
+}
+
+// FreezeContract holds the data for a freeze transaction
+message FreezeContract {
+    bytes AssetID      = 1;
+    int64 Amount       = 2;
+}
+
+// UnfreezeContract holds the data for a unfreeze transaction
+message UnfreezeContract {
+    bytes AssetID      = 1;
+    bytes BucketID     = 2;
+}
+
+// DelegateContract holds the data for a delegate transaction
+message DelegateContract {
+    bytes ToAddress    = 1;
+    bytes BucketID     = 2;
+}
+
+// UndelegateContract holds the data for a undelegate transaction
+message UndelegateContract {
+    bytes BucketID     = 1;
+}
+
+// WithdrawContract holds the data for a withdraw transaction
+message WithdrawContract {
+    bytes AssetID      = 1;
+}
+
+// ClaimContract holds the data for a claim transaction
+message ClaimContract {
+    enum EnumClaimType {
+        StakingClaim    = 0;
+        AllowanceClaim  = 1;
+        MarketClaim     = 2;
+    }
+    EnumClaimType ClaimType  = 1;
+    bytes         ID         = 2;
+}
+
+// UnjailContract holds the data for a unjail transaction
+message UnjailContract {}
+
+// SetAccountNameContract holds the data for a setAccountName transaction
+message SetAccountNameContract {
+    bytes Name     = 1 ;
+}
+
+// ProposalContract holds the data for a proposal transaction
+message ProposalContract {
+    map<int32, bytes> Parameters     = 1 ;
+    bytes             Description    = 2 ;
+    uint32            EpochsDuration = 3 ;
+}
+
+// VoteContract holds the data for a vote transaction
+message VoteContract {
+    enum EnumVoteType {
+        Yes = 0;
+        No  = 1;
+    }
+    uint64       ProposalID = 1;
+    int64        Amount     = 2;
+    EnumVoteType Type       = 3;
+}
+
+// ConfigITOContract holds the data for a ConfigITO transaction
+message ConfigITOContract {
+    enum EnumITOStatus {
+        DefaultITO = 0;
+        ActiveITO  = 1;
+        PausedITO  = 2;
+    }
+    bytes                 AssetID         = 1;
+    bytes                 ReceiverAddress = 2;
+    EnumITOStatus         Status          = 3;
+    int64                 MaxAmount       = 4;
+    map<string, PackInfo> PackInfo        = 5;
+}
+
+// SetITOPrices holds the data for a ConfigITO transaction
+message SetITOPricesContract {
+    bytes                 AssetID  = 1;
+    map<string, PackInfo> PackInfo = 2;
+}
+
+// PackInfo holds the pack list structure for the ITO contract
+message PackInfo {
+    repeated PackItem Packs = 1 ;
+}
+
+// PackItem hold the pack structure for the ITO contract
+message PackItem {
+    int64 Amount = 1 ;
+    int64 Price  = 2 ;
+}
+
+// BuyContract holds the data for a buy transaction
+message BuyContract {
+    enum EnumBuyType {
+        ITOBuy    = 0;
+        MarketBuy = 1;
+    }
+    EnumBuyType BuyType    = 1 ;
+    bytes       ID         = 2 ;
+    bytes       CurrencyID = 3 ;
+    int64       Amount     = 4 ;
+}
+
+// SellContract holds the data for a sell transaction
+message SellContract {
+    enum EnumMarketType {
+        BuyItNowMarket = 0;
+        AuctionMarket  = 1;
+    }
+    EnumMarketType  MarketType         = 1;
+    bytes           MarketplaceID      = 2;
+    bytes           AssetID            = 3;
+    bytes           CurrencyID         = 4;
+    int64           Price              = 5;
+    int64           ReservePrice       = 6;
+    int64           EndTime            = 7;
+}
+
+// CancelMarketOrderContract holds the data for a cancel market transaction
+message CancelMarketOrderContract {
+    bytes OrderID = 1 [json_name = "orderId"];
+}
+
+// CreateMarketplaceContract holds the data for a create marketplace transaction
+message CreateMarketplaceContract {
+    bytes  Name               = 1 ;
+    bytes  ReferralAddress    = 2 ;
+    uint32 ReferralPercentage = 3 ;
+}
+
+// ConfigMarketplaceContract holds the data for a config marketplace transaction
+message ConfigMarketplaceContract {
+    bytes  MarketplaceID      = 1;
+    bytes  Name               = 2;
+    bytes  ReferralAddress    = 3;
+    uint32 ReferralPercentage = 4;
+}
+
+// TODO: Reuse from account
+message AccKey {
+    bytes address = 1;
+    int64 weight  = 2;
+}
+
+message AccPermission {
+    enum AccPermissionType {
+        Owner = 0;
+        User  = 1;
+    }
+    AccPermissionType  Type           = 2;
+    string             PermissionName = 3;
+    int64              Threshold      = 4;
+    bytes              Operations     = 5;
+    repeated AccKey    Signers        = 6;
+}
+
+// UpdateAccountPermissionContract holds the data for update account permission transaction
+message UpdateAccountPermissionContract {
+    repeated AccPermission Permissions = 8;
+}

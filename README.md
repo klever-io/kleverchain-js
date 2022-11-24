@@ -169,6 +169,53 @@ import { utils, IProvider } from "@klever/sdk";
 ...
 ```
 
+### Offline build/sign transactions:
+
+```ts
+import { Transaction, Contracts, TXContract_ContractType, utils } from "@klever/sdk";
+...
+  // text encoder UTF-8
+  const enc = new TextEncoder();
+
+  const privateKey = "001122..."; // sender`s private key 32 bytes hex format
+  // decode addresses sender/receiver
+  const senderDecoded = await utils.decodeAddress("klv1vq9f7xtazuk9y3n46ukthgf2l30ev2s0qxvs6dfp4f2e76sfu3xshpmjsr");
+  const receiverDecoded = await utils.decodeAddress("klv1fpwjz234gy8aaae3gx0e8q9f52vymzzn3z5q0s5h60pvktzx0n0qwvtux5");
+  const accountNonce = 100
+
+  // create transfer contract
+  const transfer = Contracts.TransferContract.fromPartial({
+      ToAddress: receiverDecoded,
+      AssetID: enc.encode("KLV"),
+      Amount: 100 * 10 ** 6, // Must be in units (check asset precision) -> 100 KLV = 100 * 10^6 
+    });
+  
+  // create base transaction
+  const tx  = new Transaction({
+      Sender: senderDecoded,
+      Nonce: accountNonce,
+      BandwidthFee: 1000000,
+      KAppFee: 500000,
+      Version: 1,
+      ChainID: enc.encode("100420")
+    });
+    
+  // add contract to transaction
+  tx.addContract(TXContract_ContractType.TransferContractType, transfer);
+
+  // signature transaction
+  await tx.sign(privateKey);
+
+  console.log("Transaction Info", {
+      "Wired Proto": tx.hex(),
+      "To Broadcast Format": tx.toBroadcast(),
+      "Json Format": tx.toJSON(), 
+    });
+...
+```
+
+once transaction is signed, it can be broadcasted into network using node endpoint: `http://localhost:8080/transcation/broadcast`, or using `await utils.broadcastTransactions([tx.toBroadcast()])`.
+
 ## Generating and importing accounts in Node.js
 
 Using the SDK you can generate and import accounts using the following methods from the `utils` object:
