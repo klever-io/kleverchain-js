@@ -64,7 +64,7 @@ declare class Account {
     signTransaction: (tx: ITransaction) => Promise<ITransaction>;
     quickSend: (contracts: IContractRequest[], txData?: string[] | undefined, options?: ITxOptionsRequest | undefined) => Promise<IBroadcastResponse>;
     downloadAsPem: (path?: string | undefined) => Promise<void>;
-    broadcastTransactions: (txs: ITransaction[]) => Promise<IBroadcastResponse>;
+    broadcastTransactions: (txs: string[] | ITransaction[]) => Promise<IBroadcastResponse>;
 }
 
 declare const utils: {
@@ -75,7 +75,7 @@ declare const utils: {
     }>;
     getProviders: () => IProvider;
     setProviders: (providers: IProvider) => IProvider;
-    broadcastTransactions: (txs: ITransaction[]) => Promise<IBroadcastResponse>;
+    broadcastTransactions: (txs: ITransaction[] | string[]) => Promise<IBroadcastResponse>;
     decodeTransaction: (tx: ITransaction) => Promise<IDecodedTransaction>;
     transactionsProcessed: (txs: Promise<IBroadcastResponse>[], tries?: number) => Promise<IDecodedTransaction[]>;
     accountsReady: (accounts: Account[]) => Promise<void>;
@@ -104,14 +104,14 @@ declare enum CreateAssetContract_EnumAssetType {
     UNRECOGNIZED = -1
 }
 declare function createAssetContract_EnumAssetTypeFromJSON(object: any): CreateAssetContract_EnumAssetType;
-declare function createAssetContract_EnumAssetTypeToJSON(object: CreateAssetContract_EnumAssetType): string;
+declare function createAssetContract_EnumAssetTypeToJSON(object: CreateAssetContract_EnumAssetType): number;
 declare enum StakingInfo_InterestType {
     APRI = 0,
     FPRI = 1,
     UNRECOGNIZED = -1
 }
 declare function stakingInfo_InterestTypeFromJSON(object: any): StakingInfo_InterestType;
-declare function stakingInfo_InterestTypeToJSON(object: StakingInfo_InterestType): string;
+declare function stakingInfo_InterestTypeToJSON(object: StakingInfo_InterestType): number;
 declare enum AssetTriggerContract_EnumTriggerType {
     Mint = 0,
     Burn = 1,
@@ -130,7 +130,7 @@ declare enum AssetTriggerContract_EnumTriggerType {
     UNRECOGNIZED = -1
 }
 declare function assetTriggerContract_EnumTriggerTypeFromJSON(object: any): AssetTriggerContract_EnumTriggerType;
-declare function assetTriggerContract_EnumTriggerTypeToJSON(object: AssetTriggerContract_EnumTriggerType): string;
+declare function assetTriggerContract_EnumTriggerTypeToJSON(object: AssetTriggerContract_EnumTriggerType): number;
 declare enum ClaimContract_EnumClaimType {
     StakingClaim = 0,
     AllowanceClaim = 1,
@@ -138,14 +138,14 @@ declare enum ClaimContract_EnumClaimType {
     UNRECOGNIZED = -1
 }
 declare function claimContract_EnumClaimTypeFromJSON(object: any): ClaimContract_EnumClaimType;
-declare function claimContract_EnumClaimTypeToJSON(object: ClaimContract_EnumClaimType): string;
+declare function claimContract_EnumClaimTypeToJSON(object: ClaimContract_EnumClaimType): number;
 declare enum VoteContract_EnumVoteType {
     Yes = 0,
     No = 1,
     UNRECOGNIZED = -1
 }
 declare function voteContract_EnumVoteTypeFromJSON(object: any): VoteContract_EnumVoteType;
-declare function voteContract_EnumVoteTypeToJSON(object: VoteContract_EnumVoteType): string;
+declare function voteContract_EnumVoteTypeToJSON(object: VoteContract_EnumVoteType): number;
 declare enum ConfigITOContract_EnumITOStatus {
     DefaultITO = 0,
     ActiveITO = 1,
@@ -153,28 +153,28 @@ declare enum ConfigITOContract_EnumITOStatus {
     UNRECOGNIZED = -1
 }
 declare function configITOContract_EnumITOStatusFromJSON(object: any): ConfigITOContract_EnumITOStatus;
-declare function configITOContract_EnumITOStatusToJSON(object: ConfigITOContract_EnumITOStatus): string;
+declare function configITOContract_EnumITOStatusToJSON(object: ConfigITOContract_EnumITOStatus): number;
 declare enum BuyContract_EnumBuyType {
     ITOBuy = 0,
     MarketBuy = 1,
     UNRECOGNIZED = -1
 }
 declare function buyContract_EnumBuyTypeFromJSON(object: any): BuyContract_EnumBuyType;
-declare function buyContract_EnumBuyTypeToJSON(object: BuyContract_EnumBuyType): string;
+declare function buyContract_EnumBuyTypeToJSON(object: BuyContract_EnumBuyType): number;
 declare enum SellContract_EnumMarketType {
     BuyItNowMarket = 0,
     AuctionMarket = 1,
     UNRECOGNIZED = -1
 }
 declare function sellContract_EnumMarketTypeFromJSON(object: any): SellContract_EnumMarketType;
-declare function sellContract_EnumMarketTypeToJSON(object: SellContract_EnumMarketType): string;
+declare function sellContract_EnumMarketTypeToJSON(object: SellContract_EnumMarketType): number;
 declare enum AccPermission_AccPermissionType {
     Owner = 0,
     User = 1,
     UNRECOGNIZED = -1
 }
 declare function accPermission_AccPermissionTypeFromJSON(object: any): AccPermission_AccPermissionType;
-declare function accPermission_AccPermissionTypeToJSON(object: AccPermission_AccPermissionType): string;
+declare function accPermission_AccPermissionTypeToJSON(object: AccPermission_AccPermissionType): number;
 /** TXContract available */
 interface TransferContract {
     ToAddress?: Uint8Array;
@@ -1381,7 +1381,6 @@ interface AccPermission {
     Type?: AccPermission_AccPermissionType;
     PermissionName?: string;
     Threshold?: number;
-    /** 1 bit 1 contract */
     Operations?: Uint8Array;
     Signers?: AccKey[];
 }
@@ -1824,7 +1823,7 @@ interface Any {
      * Schemes other than `http`, `https` (or the empty scheme) might be
      * used with implementation specific semantics.
      */
-    typeUrl?: string;
+    type_url?: string;
     /** Must be a valid serialized protocol buffer of the above specified type. */
     value?: Uint8Array;
 }
@@ -1834,10 +1833,10 @@ declare const Any: {
     fromJSON(object: any): Any;
     toJSON(message: Any): unknown;
     fromPartial<I extends {
-        typeUrl?: string | undefined;
+        type_url?: string | undefined;
         value?: Uint8Array | undefined;
     } & {
-        typeUrl?: string | undefined;
+        type_url?: string | undefined;
         value?: Uint8Array | undefined;
     } & { [K in Exclude<keyof I, keyof Any>]: never; }>(object: I): Any;
 };
@@ -2022,16 +2021,16 @@ declare const TXContract: {
     fromPartial<I extends {
         Type?: TXContract_ContractType | undefined;
         Parameter?: {
-            typeUrl?: string | undefined;
+            type_url?: string | undefined;
             value?: Uint8Array | undefined;
         } | undefined;
     } & {
         Type?: TXContract_ContractType | undefined;
         Parameter?: ({
-            typeUrl?: string | undefined;
+            type_url?: string | undefined;
             value?: Uint8Array | undefined;
         } & {
-            typeUrl?: string | undefined;
+            type_url?: string | undefined;
             value?: Uint8Array | undefined;
         } & { [K in Exclude<keyof I["Parameter"], keyof Any>]: never; }) | undefined;
     } & { [K_1 in Exclude<keyof I, keyof TXContract>]: never; }>(object: I): TXContract;
@@ -2057,7 +2056,7 @@ declare const Transaction$1: {
             Contract?: {
                 Type?: TXContract_ContractType | undefined;
                 Parameter?: {
-                    typeUrl?: string | undefined;
+                    type_url?: string | undefined;
                     value?: Uint8Array | undefined;
                 } | undefined;
             }[] | undefined;
@@ -2082,7 +2081,7 @@ declare const Transaction$1: {
             Contract?: {
                 Type?: TXContract_ContractType | undefined;
                 Parameter?: {
-                    typeUrl?: string | undefined;
+                    type_url?: string | undefined;
                     value?: Uint8Array | undefined;
                 } | undefined;
             }[] | undefined;
@@ -2098,28 +2097,28 @@ declare const Transaction$1: {
             Contract?: ({
                 Type?: TXContract_ContractType | undefined;
                 Parameter?: {
-                    typeUrl?: string | undefined;
+                    type_url?: string | undefined;
                     value?: Uint8Array | undefined;
                 } | undefined;
             }[] & ({
                 Type?: TXContract_ContractType | undefined;
                 Parameter?: {
-                    typeUrl?: string | undefined;
+                    type_url?: string | undefined;
                     value?: Uint8Array | undefined;
                 } | undefined;
             } & {
                 Type?: TXContract_ContractType | undefined;
                 Parameter?: ({
-                    typeUrl?: string | undefined;
+                    type_url?: string | undefined;
                     value?: Uint8Array | undefined;
                 } & {
-                    typeUrl?: string | undefined;
+                    type_url?: string | undefined;
                     value?: Uint8Array | undefined;
                 } & { [K in Exclude<keyof I["RawData"]["Contract"][number]["Parameter"], keyof Any>]: never; }) | undefined;
             } & { [K_1 in Exclude<keyof I["RawData"]["Contract"][number], keyof TXContract>]: never; })[] & { [K_2 in Exclude<keyof I["RawData"]["Contract"], keyof {
                 Type?: TXContract_ContractType | undefined;
                 Parameter?: {
-                    typeUrl?: string | undefined;
+                    type_url?: string | undefined;
                     value?: Uint8Array | undefined;
                 } | undefined;
             }[]>]: never; }) | undefined;
@@ -2167,7 +2166,7 @@ declare const Transaction_Raw: {
         Contract?: {
             Type?: TXContract_ContractType | undefined;
             Parameter?: {
-                typeUrl?: string | undefined;
+                type_url?: string | undefined;
                 value?: Uint8Array | undefined;
             } | undefined;
         }[] | undefined;
@@ -2183,28 +2182,28 @@ declare const Transaction_Raw: {
         Contract?: ({
             Type?: TXContract_ContractType | undefined;
             Parameter?: {
-                typeUrl?: string | undefined;
+                type_url?: string | undefined;
                 value?: Uint8Array | undefined;
             } | undefined;
         }[] & ({
             Type?: TXContract_ContractType | undefined;
             Parameter?: {
-                typeUrl?: string | undefined;
+                type_url?: string | undefined;
                 value?: Uint8Array | undefined;
             } | undefined;
         } & {
             Type?: TXContract_ContractType | undefined;
             Parameter?: ({
-                typeUrl?: string | undefined;
+                type_url?: string | undefined;
                 value?: Uint8Array | undefined;
             } & {
-                typeUrl?: string | undefined;
+                type_url?: string | undefined;
                 value?: Uint8Array | undefined;
             } & { [K in Exclude<keyof I["Contract"][number]["Parameter"], keyof Any>]: never; }) | undefined;
         } & { [K_1 in Exclude<keyof I["Contract"][number], keyof TXContract>]: never; })[] & { [K_2 in Exclude<keyof I["Contract"], keyof {
             Type?: TXContract_ContractType | undefined;
             Parameter?: {
-                typeUrl?: string | undefined;
+                type_url?: string | undefined;
                 value?: Uint8Array | undefined;
             } | undefined;
         }[]>]: never; }) | undefined;
@@ -2246,9 +2245,11 @@ declare class Transaction {
     });
     addContract: (type: TXContract_ContractType, contract: any) => Promise<void>;
     signMessage: (message: string, privateKey: string) => Promise<Uint8Array>;
+    computeHash: () => string;
     sign: (privateKey: string) => Promise<Boolean>;
     hex: () => string;
     toJSON: () => string;
+    toBroadcast: () => any;
 }
 
 export { Account, contracts_d as Contracts, IAccountResponse, TXContract_ContractType, Transaction, any_d as proto, utils, web };
