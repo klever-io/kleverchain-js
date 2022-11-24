@@ -61,14 +61,15 @@ const setProviders = (providers: IProvider) => {
 };
 
 const broadcastTransactions = async (
-  txs: ITransaction[]
+  txs: ITransaction[] | string[]
 ): Promise<IBroadcastResponse> => {
+  console.log("TX", {txs})
   const res = await fetch(`${getProviders().node}/transaction/broadcast`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ txs: [...txs] }),
+    body: JSON.stringify({ txs }),
   });
 
   return await res.json();
