@@ -117,57 +117,57 @@ export function tXContract_ContractTypeFromJSON(object: any): TXContract_Contrac
   }
 }
 
-export function tXContract_ContractTypeToJSON(object: TXContract_ContractType): string {
+export function tXContract_ContractTypeToJSON(object: TXContract_ContractType): number {
   switch (object) {
     case TXContract_ContractType.TransferContractType:
-      return "TransferContractType";
+      return 0;
     case TXContract_ContractType.CreateAssetContractType:
-      return "CreateAssetContractType";
+      return 1;
     case TXContract_ContractType.CreateValidatorContractType:
-      return "CreateValidatorContractType";
+      return 2;
     case TXContract_ContractType.ValidatorConfigContractType:
-      return "ValidatorConfigContractType";
+      return 3;
     case TXContract_ContractType.FreezeContractType:
-      return "FreezeContractType";
+      return 4;
     case TXContract_ContractType.UnfreezeContractType:
-      return "UnfreezeContractType";
+      return 5;
     case TXContract_ContractType.DelegateContractType:
-      return "DelegateContractType";
+      return 6;
     case TXContract_ContractType.UndelegateContractType:
-      return "UndelegateContractType";
+      return 7;
     case TXContract_ContractType.WithdrawContractType:
-      return "WithdrawContractType";
+      return 8;
     case TXContract_ContractType.ClaimContractType:
-      return "ClaimContractType";
+      return 9;
     case TXContract_ContractType.UnjailContractType:
-      return "UnjailContractType";
+      return 10;
     case TXContract_ContractType.AssetTriggerContractType:
-      return "AssetTriggerContractType";
+      return 11;
     case TXContract_ContractType.SetAccountNameContractType:
-      return "SetAccountNameContractType";
+      return 12;
     case TXContract_ContractType.ProposalContractType:
-      return "ProposalContractType";
+      return 13;
     case TXContract_ContractType.VoteContractType:
-      return "VoteContractType";
+      return 14;
     case TXContract_ContractType.ConfigITOContractType:
-      return "ConfigITOContractType";
+      return 15;
     case TXContract_ContractType.SetITOPricesContractType:
-      return "SetITOPricesContractType";
+      return 16;
     case TXContract_ContractType.BuyContractType:
-      return "BuyContractType";
+      return 17;
     case TXContract_ContractType.SellContractType:
-      return "SellContractType";
+      return 18;
     case TXContract_ContractType.CancelMarketOrderContractType:
-      return "CancelMarketOrderContractType";
+      return 19;
     case TXContract_ContractType.CreateMarketplaceContractType:
-      return "CreateMarketplaceContractType";
+      return 20;
     case TXContract_ContractType.ConfigMarketplaceContractType:
-      return "ConfigMarketplaceContractType";
+      return 21;
     case TXContract_ContractType.UpdateAccountPermissionContractType:
-      return "UpdateAccountPermissionContractType";
+      return 22;
     case TXContract_ContractType.UNRECOGNIZED:
     default:
-      return "UNRECOGNIZED";
+      return -1;
   }
 }
 
@@ -202,15 +202,15 @@ export function transaction_TXResultFromJSON(object: any): Transaction_TXResult 
   }
 }
 
-export function transaction_TXResultToJSON(object: Transaction_TXResult): string {
+export function transaction_TXResultToJSON(object: Transaction_TXResult): number {
   switch (object) {
     case Transaction_TXResult.SUCCESS:
-      return "SUCCESS";
+      return 0;
     case Transaction_TXResult.FAILED:
-      return "FAILED";
+      return 1;
     case Transaction_TXResult.UNRECOGNIZED:
     default:
-      return "UNRECOGNIZED";
+      return -1;
   }
 }
 
@@ -419,107 +419,107 @@ export function transaction_TXResultCodeFromJSON(object: any): Transaction_TXRes
   }
 }
 
-export function transaction_TXResultCodeToJSON(object: Transaction_TXResultCode): string {
+export function transaction_TXResultCodeToJSON(object: Transaction_TXResultCode): number {
   switch (object) {
     case Transaction_TXResultCode.Ok:
-      return "Ok";
+      return 0;
     case Transaction_TXResultCode.OutOfFunds:
-      return "OutOfFunds";
+      return 1;
     case Transaction_TXResultCode.AccountError:
-      return "AccountError";
+      return 2;
     case Transaction_TXResultCode.AssetError:
-      return "AssetError";
+      return 3;
     case Transaction_TXResultCode.ContractInvalid:
-      return "ContractInvalid";
+      return 4;
     case Transaction_TXResultCode.ContractNotFound:
-      return "ContractNotFound";
+      return 5;
     case Transaction_TXResultCode.FeeInvalid:
-      return "FeeInvalid";
+      return 6;
     case Transaction_TXResultCode.ParameterInvalid:
-      return "ParameterInvalid";
+      return 7;
     case Transaction_TXResultCode.APRInvalid:
-      return "APRInvalid";
+      return 8;
     case Transaction_TXResultCode.AssetIDInvalid:
-      return "AssetIDInvalid";
+      return 9;
     case Transaction_TXResultCode.AssetTypeInvalid:
-      return "AssetTypeInvalid";
+      return 10;
     case Transaction_TXResultCode.AssetCantBeMinted:
-      return "AssetCantBeMinted";
+      return 11;
     case Transaction_TXResultCode.AssetCantBeBurned:
-      return "AssetCantBeBurned";
+      return 12;
     case Transaction_TXResultCode.AssetCantBePaused:
-      return "AssetCantBePaused";
+      return 13;
     case Transaction_TXResultCode.AssetCantBeDelegated:
-      return "AssetCantBeDelegated";
+      return 14;
     case Transaction_TXResultCode.AssetOwnerCantBeChanged:
-      return "AssetOwnerCantBeChanged";
+      return 15;
     case Transaction_TXResultCode.AccountNotOwner:
-      return "AccountNotOwner";
+      return 16;
     case Transaction_TXResultCode.CommissionTooHigh:
-      return "CommissionTooHigh";
+      return 17;
     case Transaction_TXResultCode.DelegationAmountInvalid:
-      return "DelegationAmountInvalid";
+      return 18;
     case Transaction_TXResultCode.ProposalNotActive:
-      return "ProposalNotActive";
+      return 19;
     case Transaction_TXResultCode.ValueInvalid:
-      return "ValueInvalid";
+      return 20;
     case Transaction_TXResultCode.AmountInvalid:
-      return "AmountInvalid";
+      return 21;
     case Transaction_TXResultCode.BucketIDInvalid:
-      return "BucketIDInvalid";
+      return 22;
     case Transaction_TXResultCode.KeyConflict:
-      return "KeyConflict";
+      return 23;
     case Transaction_TXResultCode.MaxDelegationAmount:
-      return "MaxDelegationAmount";
+      return 24;
     case Transaction_TXResultCode.InvalidPeerKey:
-      return "InvalidPeerKey";
+      return 25;
     case Transaction_TXResultCode.MinKFIStakedUnreached:
-      return "MinKFIStakedUnreached";
+      return 26;
     case Transaction_TXResultCode.MaxSupplyExeeced:
-      return "MaxSupplyExeeced";
+      return 27;
     case Transaction_TXResultCode.SaveAccountError:
-      return "SaveAccountError";
+      return 28;
     case Transaction_TXResultCode.LoadAccountError:
-      return "LoadAccountError";
+      return 29;
     case Transaction_TXResultCode.SameAccountError:
-      return "SameAccountError";
+      return 30;
     case Transaction_TXResultCode.AssetPaused:
-      return "AssetPaused";
+      return 31;
     case Transaction_TXResultCode.DeletegateError:
-      return "DeletegateError";
+      return 32;
     case Transaction_TXResultCode.WithdrawNotAvailable:
-      return "WithdrawNotAvailable";
+      return 33;
     case Transaction_TXResultCode.ErrOverflow:
-      return "ErrOverflow";
+      return 34;
     case Transaction_TXResultCode.SetStakingErr:
-      return "SetStakingErr";
+      return 35;
     case Transaction_TXResultCode.SetMarketOrderErr:
-      return "SetMarketOrderErr";
+      return 36;
     case Transaction_TXResultCode.BalanceError:
-      return "BalanceError";
+      return 37;
     case Transaction_TXResultCode.KAPPError:
-      return "KAPPError";
+      return 38;
     case Transaction_TXResultCode.UnfreezeError:
-      return "UnfreezeError";
+      return 39;
     case Transaction_TXResultCode.UndeletegateError:
-      return "UndeletegateError";
+      return 40;
     case Transaction_TXResultCode.WithdrawError:
-      return "WithdrawError";
+      return 41;
     case Transaction_TXResultCode.ClaimError:
-      return "ClaimError";
+      return 42;
     case Transaction_TXResultCode.BucketsExceded:
-      return "BucketsExceded";
+      return 43;
     case Transaction_TXResultCode.AssetCantBeWiped:
-      return "AssetCantBeWiped";
+      return 44;
     case Transaction_TXResultCode.AssetCantAddRoles:
-      return "AssetCantAddRoles";
+      return 45;
     case Transaction_TXResultCode.FreezeError:
-      return "FreezeError";
+      return 46;
     case Transaction_TXResultCode.Fail:
-      return "Fail";
+      return 99;
     case Transaction_TXResultCode.UNRECOGNIZED:
     default:
-      return "UNRECOGNIZED";
+      return -1;
   }
 }
 
@@ -577,15 +577,15 @@ export const TXContract = {
 
   fromJSON(object: any): TXContract {
     return {
-      Type: isSet(object.type) ? tXContract_ContractTypeFromJSON(object.type) : 0,
-      Parameter: isSet(object.parameter) ? Any.fromJSON(object.parameter) : undefined,
+      Type: isSet(object.Type) ? tXContract_ContractTypeFromJSON(object.Type) : 0,
+      Parameter: isSet(object.Parameter) ? Any.fromJSON(object.Parameter) : undefined,
     };
   },
 
   toJSON(message: TXContract): unknown {
     const obj: any = {};
-    message.Type !== undefined && (obj.type = tXContract_ContractTypeToJSON(message.Type));
-    message.Parameter !== undefined && (obj.parameter = message.Parameter ? Any.toJSON(message.Parameter) : undefined);
+    message.Type !== undefined && (obj.Type = tXContract_ContractTypeToJSON(message.Type));
+    message.Parameter !== undefined && (obj.Parameter = message.Parameter ? Any.toJSON(message.Parameter) : undefined);
     return obj;
   },
 
@@ -665,39 +665,32 @@ export const Transaction = {
 
   fromJSON(object: any): Transaction {
     return {
-      RawData: isSet(object.rawData) ? Transaction_Raw.fromJSON(object.rawData) : undefined,
-      Signature: Array.isArray(object?.["signature,omitempty"])
-        ? object["signature,omitempty"].map((e: any) => bytesFromBase64(e))
-        : [],
-      Result: isSet(object["result,omitempty"]) ? transaction_TXResultFromJSON(object["result,omitempty"]) : 0,
-      ResultCode: isSet(object["resultCode,omitempty"])
-        ? transaction_TXResultCodeFromJSON(object["resultCode,omitempty"])
-        : 0,
-      Receipts: Array.isArray(object?.receipts) ? object.receipts.map((e: any) => Transaction_Receipt.fromJSON(e)) : [],
-      Block: isSet(object.block) ? Number(object.block) : 0,
+      RawData: isSet(object.RawData) ? Transaction_Raw.fromJSON(object.RawData) : undefined,
+      Signature: Array.isArray(object?.Signature) ? object.Signature.map((e: any) => bytesFromBase64(e)) : [],
+      Result: isSet(object.Result) ? transaction_TXResultFromJSON(object.Result) : 0,
+      ResultCode: isSet(object.ResultCode) ? transaction_TXResultCodeFromJSON(object.ResultCode) : 0,
+      Receipts: Array.isArray(object?.Receipts) ? object.Receipts.map((e: any) => Transaction_Receipt.fromJSON(e)) : [],
+      Block: isSet(object.Block) ? Number(object.Block) : 0,
     };
   },
 
   toJSON(message: Transaction): unknown {
     const obj: any = {};
     message.RawData !== undefined &&
-      (obj.rawData = message.RawData ? Transaction_Raw.toJSON(message.RawData) : undefined);
+      (obj.RawData = message.RawData ? Transaction_Raw.toJSON(message.RawData) : undefined);
     if (message.Signature) {
-      obj["signature,omitempty"] = message.Signature.map((e) =>
-        base64FromBytes(e !== undefined ? e : new Uint8Array())
-      );
+      obj.Signature = message.Signature.map((e) => base64FromBytes(e !== undefined ? e : new Uint8Array()));
     } else {
-      obj["signature,omitempty"] = [];
+      obj.Signature = [];
     }
-    message.Result !== undefined && (obj["result,omitempty"] = transaction_TXResultToJSON(message.Result));
-    message.ResultCode !== undefined &&
-      (obj["resultCode,omitempty"] = transaction_TXResultCodeToJSON(message.ResultCode));
+    message.Result !== undefined && (obj.Result = transaction_TXResultToJSON(message.Result));
+    message.ResultCode !== undefined && (obj.ResultCode = transaction_TXResultCodeToJSON(message.ResultCode));
     if (message.Receipts) {
-      obj.receipts = message.Receipts.map((e) => e ? Transaction_Receipt.toJSON(e) : undefined);
+      obj.Receipts = message.Receipts.map((e) => e ? Transaction_Receipt.toJSON(e) : undefined);
     } else {
-      obj.receipts = [];
+      obj.Receipts = [];
     }
-    message.Block !== undefined && (obj.block = Math.round(message.Block));
+    message.Block !== undefined && (obj.Block = Math.round(message.Block));
     return obj;
   },
 
@@ -809,41 +802,39 @@ export const Transaction_Raw = {
 
   fromJSON(object: any): Transaction_Raw {
     return {
-      Nonce: isSet(object.nonce) ? Number(object.nonce) : 0,
-      Sender: isSet(object.sender) ? bytesFromBase64(object.sender) : new Uint8Array(),
-      Contract: Array.isArray(object?.contract) ? object.contract.map((e: any) => TXContract.fromJSON(e)) : [],
-      PermissionID: isSet(object["permissionID,omitempty"]) ? Number(object["permissionID,omitempty"]) : 0,
-      Data: Array.isArray(object?.["data,omitempty"])
-        ? object["data,omitempty"].map((e: any) => bytesFromBase64(e))
-        : [],
-      KAppFee: isSet(object.kAppFee) ? Number(object.kAppFee) : 0,
-      BandwidthFee: isSet(object.bandwidthFee) ? Number(object.bandwidthFee) : 0,
-      Version: isSet(object["version,omitempty"]) ? Number(object["version,omitempty"]) : 0,
-      ChainID: isSet(object["chainID,omitempty"]) ? bytesFromBase64(object["chainID,omitempty"]) : new Uint8Array(),
+      Nonce: isSet(object.Nonce) ? Number(object.Nonce) : 0,
+      Sender: isSet(object.Sender) ? bytesFromBase64(object.Sender) : new Uint8Array(),
+      Contract: Array.isArray(object?.Contract) ? object.Contract.map((e: any) => TXContract.fromJSON(e)) : [],
+      PermissionID: isSet(object.PermissionID) ? Number(object.PermissionID) : 0,
+      Data: Array.isArray(object?.Data) ? object.Data.map((e: any) => bytesFromBase64(e)) : [],
+      KAppFee: isSet(object.KAppFee) ? Number(object.KAppFee) : 0,
+      BandwidthFee: isSet(object.BandwidthFee) ? Number(object.BandwidthFee) : 0,
+      Version: isSet(object.Version) ? Number(object.Version) : 0,
+      ChainID: isSet(object.ChainID) ? bytesFromBase64(object.ChainID) : new Uint8Array(),
     };
   },
 
   toJSON(message: Transaction_Raw): unknown {
     const obj: any = {};
-    message.Nonce !== undefined && (obj.nonce = Math.round(message.Nonce));
+    message.Nonce !== undefined && (obj.Nonce = Math.round(message.Nonce));
     message.Sender !== undefined &&
-      (obj.sender = base64FromBytes(message.Sender !== undefined ? message.Sender : new Uint8Array()));
+      (obj.Sender = base64FromBytes(message.Sender !== undefined ? message.Sender : new Uint8Array()));
     if (message.Contract) {
-      obj.contract = message.Contract.map((e) => e ? TXContract.toJSON(e) : undefined);
+      obj.Contract = message.Contract.map((e) => e ? TXContract.toJSON(e) : undefined);
     } else {
-      obj.contract = [];
+      obj.Contract = [];
     }
-    message.PermissionID !== undefined && (obj["permissionID,omitempty"] = Math.round(message.PermissionID));
+    message.PermissionID !== undefined && (obj.PermissionID = Math.round(message.PermissionID));
     if (message.Data) {
-      obj["data,omitempty"] = message.Data.map((e) => base64FromBytes(e !== undefined ? e : new Uint8Array()));
+      obj.Data = message.Data.map((e) => base64FromBytes(e !== undefined ? e : new Uint8Array()));
     } else {
-      obj["data,omitempty"] = [];
+      obj.Data = [];
     }
-    message.KAppFee !== undefined && (obj.kAppFee = Math.round(message.KAppFee));
-    message.BandwidthFee !== undefined && (obj.bandwidthFee = Math.round(message.BandwidthFee));
-    message.Version !== undefined && (obj["version,omitempty"] = Math.round(message.Version));
+    message.KAppFee !== undefined && (obj.KAppFee = Math.round(message.KAppFee));
+    message.BandwidthFee !== undefined && (obj.BandwidthFee = Math.round(message.BandwidthFee));
+    message.Version !== undefined && (obj.Version = Math.round(message.Version));
     message.ChainID !== undefined &&
-      (obj["chainID,omitempty"] = base64FromBytes(message.ChainID !== undefined ? message.ChainID : new Uint8Array()));
+      (obj.ChainID = base64FromBytes(message.ChainID !== undefined ? message.ChainID : new Uint8Array()));
     return obj;
   },
 
@@ -954,7 +945,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "type",
+        "jsonName": "Type",
         "options": undefined,
         "proto3Optional": false,
       }, {
@@ -966,7 +957,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "parameter",
+        "jsonName": "Parameter",
         "options": undefined,
         "proto3Optional": false,
       }],
@@ -1019,7 +1010,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "rawData",
+        "jsonName": "RawData",
         "options": undefined,
         "proto3Optional": false,
       }, {
@@ -1031,7 +1022,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "signature,omitempty",
+        "jsonName": "Signature",
         "options": undefined,
         "proto3Optional": false,
       }, {
@@ -1043,7 +1034,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "result,omitempty",
+        "jsonName": "Result",
         "options": undefined,
         "proto3Optional": false,
       }, {
@@ -1055,7 +1046,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "resultCode,omitempty",
+        "jsonName": "ResultCode",
         "options": undefined,
         "proto3Optional": false,
       }, {
@@ -1067,7 +1058,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "receipts",
+        "jsonName": "Receipts",
         "options": undefined,
         "proto3Optional": false,
       }, {
@@ -1079,7 +1070,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "block",
+        "jsonName": "Block",
         "options": undefined,
         "proto3Optional": false,
       }],
@@ -1095,7 +1086,7 @@ export const protoMetadata: ProtoMetadata = {
           "extendee": "",
           "defaultValue": "",
           "oneofIndex": 0,
-          "jsonName": "nonce",
+          "jsonName": "Nonce",
           "options": undefined,
           "proto3Optional": false,
         }, {
@@ -1107,7 +1098,7 @@ export const protoMetadata: ProtoMetadata = {
           "extendee": "",
           "defaultValue": "",
           "oneofIndex": 0,
-          "jsonName": "sender",
+          "jsonName": "Sender",
           "options": undefined,
           "proto3Optional": false,
         }, {
@@ -1119,7 +1110,7 @@ export const protoMetadata: ProtoMetadata = {
           "extendee": "",
           "defaultValue": "",
           "oneofIndex": 0,
-          "jsonName": "contract",
+          "jsonName": "Contract",
           "options": undefined,
           "proto3Optional": false,
         }, {
@@ -1131,7 +1122,7 @@ export const protoMetadata: ProtoMetadata = {
           "extendee": "",
           "defaultValue": "",
           "oneofIndex": 0,
-          "jsonName": "permissionID,omitempty",
+          "jsonName": "PermissionID",
           "options": undefined,
           "proto3Optional": false,
         }, {
@@ -1143,7 +1134,7 @@ export const protoMetadata: ProtoMetadata = {
           "extendee": "",
           "defaultValue": "",
           "oneofIndex": 0,
-          "jsonName": "data,omitempty",
+          "jsonName": "Data",
           "options": undefined,
           "proto3Optional": false,
         }, {
@@ -1155,7 +1146,7 @@ export const protoMetadata: ProtoMetadata = {
           "extendee": "",
           "defaultValue": "",
           "oneofIndex": 0,
-          "jsonName": "kAppFee",
+          "jsonName": "KAppFee",
           "options": undefined,
           "proto3Optional": false,
         }, {
@@ -1167,7 +1158,7 @@ export const protoMetadata: ProtoMetadata = {
           "extendee": "",
           "defaultValue": "",
           "oneofIndex": 0,
-          "jsonName": "bandwidthFee",
+          "jsonName": "BandwidthFee",
           "options": undefined,
           "proto3Optional": false,
         }, {
@@ -1179,7 +1170,7 @@ export const protoMetadata: ProtoMetadata = {
           "extendee": "",
           "defaultValue": "",
           "oneofIndex": 0,
-          "jsonName": "version,omitempty",
+          "jsonName": "Version",
           "options": undefined,
           "proto3Optional": false,
         }, {
@@ -1191,7 +1182,7 @@ export const protoMetadata: ProtoMetadata = {
           "extendee": "",
           "defaultValue": "",
           "oneofIndex": 0,
-          "jsonName": "chainID,omitempty",
+          "jsonName": "ChainID",
           "options": undefined,
           "proto3Optional": false,
         }],

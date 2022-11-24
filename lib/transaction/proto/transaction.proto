@@ -33,8 +33,8 @@ message TXContract {
 		ConfigMarketplaceContractType         = 21;
 		UpdateAccountPermissionContractType   = 22;
 	}
-	ContractType Type 				= 1 [json_name = "type"];
-	google.protobuf.Any Parameter 	= 2 [json_name = "parameter"];
+	ContractType Type 				= 1;
+	google.protobuf.Any Parameter 	= 2;
 }
 
 // Transaction holds all the data needed for a value transfer
@@ -96,25 +96,25 @@ message Transaction {
 	}
 
 	message Raw {
-		uint64   Nonce               = 1  [json_name = "nonce"];
-		bytes    Sender              = 2  [json_name = "sender"];
-		repeated TXContract Contract = 6  [json_name = "contract"];
-		int32    PermissionID        = 7  [json_name = "permissionID,omitempty"];
-		repeated bytes Data          = 10 [json_name = "data,omitempty"];
-		int64    KAppFee             = 13 [json_name = "kAppFee"];
-		int64    BandwidthFee        = 14 [json_name = "bandwidthFee"];
-		uint32   Version             = 15 [json_name = "version,omitempty"];
-		bytes    ChainID             = 16 [json_name = "chainID,omitempty"];
+		uint64   Nonce               = 1  ;
+		bytes    Sender              = 2  ;
+		repeated TXContract Contract = 6  ;
+		int32    PermissionID        = 7  ;
+		repeated bytes Data          = 10 ;
+		int64    KAppFee             = 13 ;
+		int64    BandwidthFee        = 14 ;
+		uint32   Version             = 15 ;
+		bytes    ChainID             = 16 ;
 	}
 
 	message Receipt {
 		repeated bytes Data = 1 [json_name = "data"];
 	}
 
-	Raw              RawData           = 1 [json_name = "rawData"];
-	repeated bytes   Signature         = 2 [json_name = "signature,omitempty"];
-	TXResult         Result            = 3 [json_name = "result,omitempty"];
-	TXResultCode     ResultCode        = 4 [json_name = "resultCode,omitempty"];
-	repeated Receipt Receipts          = 5 [json_name = "receipts"];
-	uint64           Block             = 6 [json_name = "block"];
+	Raw              RawData           = 1;
+	repeated bytes   Signature         = 2;
+	TXResult         Result            = 3;
+	TXResultCode     ResultCode        = 4;
+	repeated Receipt Receipts          = 5;
+	uint64           Block             = 6;
 }

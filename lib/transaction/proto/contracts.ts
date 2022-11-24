@@ -51,15 +51,15 @@ export function createAssetContract_EnumAssetTypeFromJSON(object: any): CreateAs
   }
 }
 
-export function createAssetContract_EnumAssetTypeToJSON(object: CreateAssetContract_EnumAssetType): string {
+export function createAssetContract_EnumAssetTypeToJSON(object: CreateAssetContract_EnumAssetType): number {
   switch (object) {
     case CreateAssetContract_EnumAssetType.Fungible:
-      return "Fungible";
+      return 0;
     case CreateAssetContract_EnumAssetType.NonFungible:
-      return "NonFungible";
+      return 1;
     case CreateAssetContract_EnumAssetType.UNRECOGNIZED:
     default:
-      return "UNRECOGNIZED";
+      return -1;
   }
 }
 
@@ -115,15 +115,15 @@ export function stakingInfo_InterestTypeFromJSON(object: any): StakingInfo_Inter
   }
 }
 
-export function stakingInfo_InterestTypeToJSON(object: StakingInfo_InterestType): string {
+export function stakingInfo_InterestTypeToJSON(object: StakingInfo_InterestType): number {
   switch (object) {
     case StakingInfo_InterestType.APRI:
-      return "APRI";
+      return 0;
     case StakingInfo_InterestType.FPRI:
-      return "FPRI";
+      return 1;
     case StakingInfo_InterestType.UNRECOGNIZED:
     default:
-      return "UNRECOGNIZED";
+      return -1;
   }
 }
 
@@ -231,39 +231,39 @@ export function assetTriggerContract_EnumTriggerTypeFromJSON(object: any): Asset
   }
 }
 
-export function assetTriggerContract_EnumTriggerTypeToJSON(object: AssetTriggerContract_EnumTriggerType): string {
+export function assetTriggerContract_EnumTriggerTypeToJSON(object: AssetTriggerContract_EnumTriggerType): number {
   switch (object) {
     case AssetTriggerContract_EnumTriggerType.Mint:
-      return "Mint";
+      return 0;
     case AssetTriggerContract_EnumTriggerType.Burn:
-      return "Burn";
+      return 1;
     case AssetTriggerContract_EnumTriggerType.Wipe:
-      return "Wipe";
+      return 2;
     case AssetTriggerContract_EnumTriggerType.Pause:
-      return "Pause";
+      return 3;
     case AssetTriggerContract_EnumTriggerType.Resume:
-      return "Resume";
+      return 4;
     case AssetTriggerContract_EnumTriggerType.ChangeOwner:
-      return "ChangeOwner";
+      return 5;
     case AssetTriggerContract_EnumTriggerType.AddRole:
-      return "AddRole";
+      return 6;
     case AssetTriggerContract_EnumTriggerType.RemoveRole:
-      return "RemoveRole";
+      return 7;
     case AssetTriggerContract_EnumTriggerType.UpdateMetadata:
-      return "UpdateMetadata";
+      return 8;
     case AssetTriggerContract_EnumTriggerType.StopNFTMint:
-      return "StopNFTMint";
+      return 9;
     case AssetTriggerContract_EnumTriggerType.UpdateLogo:
-      return "UpdateLogo";
+      return 10;
     case AssetTriggerContract_EnumTriggerType.UpdateURIs:
-      return "UpdateURIs";
+      return 11;
     case AssetTriggerContract_EnumTriggerType.ChangeRoyaltiesReceiver:
-      return "ChangeRoyaltiesReceiver";
+      return 12;
     case AssetTriggerContract_EnumTriggerType.UpdateStaking:
-      return "UpdateStaking";
+      return 13;
     case AssetTriggerContract_EnumTriggerType.UNRECOGNIZED:
     default:
-      return "UNRECOGNIZED";
+      return -1;
   }
 }
 
@@ -359,17 +359,17 @@ export function claimContract_EnumClaimTypeFromJSON(object: any): ClaimContract_
   }
 }
 
-export function claimContract_EnumClaimTypeToJSON(object: ClaimContract_EnumClaimType): string {
+export function claimContract_EnumClaimTypeToJSON(object: ClaimContract_EnumClaimType): number {
   switch (object) {
     case ClaimContract_EnumClaimType.StakingClaim:
-      return "StakingClaim";
+      return 0;
     case ClaimContract_EnumClaimType.AllowanceClaim:
-      return "AllowanceClaim";
+      return 1;
     case ClaimContract_EnumClaimType.MarketClaim:
-      return "MarketClaim";
+      return 2;
     case ClaimContract_EnumClaimType.UNRECOGNIZED:
     default:
-      return "UNRECOGNIZED";
+      return -1;
   }
 }
 
@@ -422,15 +422,15 @@ export function voteContract_EnumVoteTypeFromJSON(object: any): VoteContract_Enu
   }
 }
 
-export function voteContract_EnumVoteTypeToJSON(object: VoteContract_EnumVoteType): string {
+export function voteContract_EnumVoteTypeToJSON(object: VoteContract_EnumVoteType): number {
   switch (object) {
     case VoteContract_EnumVoteType.Yes:
-      return "Yes";
+      return 0;
     case VoteContract_EnumVoteType.No:
-      return "No";
+      return 1;
     case VoteContract_EnumVoteType.UNRECOGNIZED:
     default:
-      return "UNRECOGNIZED";
+      return -1;
   }
 }
 
@@ -468,17 +468,17 @@ export function configITOContract_EnumITOStatusFromJSON(object: any): ConfigITOC
   }
 }
 
-export function configITOContract_EnumITOStatusToJSON(object: ConfigITOContract_EnumITOStatus): string {
+export function configITOContract_EnumITOStatusToJSON(object: ConfigITOContract_EnumITOStatus): number {
   switch (object) {
     case ConfigITOContract_EnumITOStatus.DefaultITO:
-      return "DefaultITO";
+      return 0;
     case ConfigITOContract_EnumITOStatus.ActiveITO:
-      return "ActiveITO";
+      return 1;
     case ConfigITOContract_EnumITOStatus.PausedITO:
-      return "PausedITO";
+      return 2;
     case ConfigITOContract_EnumITOStatus.UNRECOGNIZED:
     default:
-      return "UNRECOGNIZED";
+      return -1;
   }
 }
 
@@ -538,15 +538,15 @@ export function buyContract_EnumBuyTypeFromJSON(object: any): BuyContract_EnumBu
   }
 }
 
-export function buyContract_EnumBuyTypeToJSON(object: BuyContract_EnumBuyType): string {
+export function buyContract_EnumBuyTypeToJSON(object: BuyContract_EnumBuyType): number {
   switch (object) {
     case BuyContract_EnumBuyType.ITOBuy:
-      return "ITOBuy";
+      return 0;
     case BuyContract_EnumBuyType.MarketBuy:
-      return "MarketBuy";
+      return 1;
     case BuyContract_EnumBuyType.UNRECOGNIZED:
     default:
-      return "UNRECOGNIZED";
+      return -1;
   }
 }
 
@@ -582,15 +582,15 @@ export function sellContract_EnumMarketTypeFromJSON(object: any): SellContract_E
   }
 }
 
-export function sellContract_EnumMarketTypeToJSON(object: SellContract_EnumMarketType): string {
+export function sellContract_EnumMarketTypeToJSON(object: SellContract_EnumMarketType): number {
   switch (object) {
     case SellContract_EnumMarketType.BuyItNowMarket:
-      return "BuyItNowMarket";
+      return 0;
     case SellContract_EnumMarketType.AuctionMarket:
-      return "AuctionMarket";
+      return 1;
     case SellContract_EnumMarketType.UNRECOGNIZED:
     default:
-      return "UNRECOGNIZED";
+      return -1;
   }
 }
 
@@ -624,7 +624,6 @@ export interface AccPermission {
   Type?: AccPermission_AccPermissionType;
   PermissionName?: string;
   Threshold?: number;
-  /** 1 bit 1 contract */
   Operations?: Uint8Array;
   Signers?: AccKey[];
 }
@@ -650,15 +649,15 @@ export function accPermission_AccPermissionTypeFromJSON(object: any): AccPermiss
   }
 }
 
-export function accPermission_AccPermissionTypeToJSON(object: AccPermission_AccPermissionType): string {
+export function accPermission_AccPermissionTypeToJSON(object: AccPermission_AccPermissionType): number {
   switch (object) {
     case AccPermission_AccPermissionType.Owner:
-      return "Owner";
+      return 0;
     case AccPermission_AccPermissionType.User:
-      return "User";
+      return 1;
     case AccPermission_AccPermissionType.UNRECOGNIZED:
     default:
-      return "UNRECOGNIZED";
+      return -1;
   }
 }
 
@@ -711,23 +710,19 @@ export const TransferContract = {
 
   fromJSON(object: any): TransferContract {
     return {
-      ToAddress: isSet(object["toAddress,omitempty"])
-        ? bytesFromBase64(object["toAddress,omitempty"])
-        : new Uint8Array(),
-      AssetID: isSet(object["assetId,omitempty"]) ? bytesFromBase64(object["assetId,omitempty"]) : new Uint8Array(),
-      Amount: isSet(object["amount,omitempty"]) ? Number(object["amount,omitempty"]) : 0,
+      ToAddress: isSet(object.ToAddress) ? bytesFromBase64(object.ToAddress) : new Uint8Array(),
+      AssetID: isSet(object.AssetID) ? bytesFromBase64(object.AssetID) : new Uint8Array(),
+      Amount: isSet(object.Amount) ? Number(object.Amount) : 0,
     };
   },
 
   toJSON(message: TransferContract): unknown {
     const obj: any = {};
     message.ToAddress !== undefined &&
-      (obj["toAddress,omitempty"] = base64FromBytes(
-        message.ToAddress !== undefined ? message.ToAddress : new Uint8Array(),
-      ));
+      (obj.ToAddress = base64FromBytes(message.ToAddress !== undefined ? message.ToAddress : new Uint8Array()));
     message.AssetID !== undefined &&
-      (obj["assetId,omitempty"] = base64FromBytes(message.AssetID !== undefined ? message.AssetID : new Uint8Array()));
-    message.Amount !== undefined && (obj["amount,omitempty"] = Math.round(message.Amount));
+      (obj.AssetID = base64FromBytes(message.AssetID !== undefined ? message.AssetID : new Uint8Array()));
+    message.Amount !== undefined && (obj.Amount = Math.round(message.Amount));
     return obj;
   },
 
@@ -870,60 +865,60 @@ export const CreateAssetContract = {
 
   fromJSON(object: any): CreateAssetContract {
     return {
-      Type: isSet(object.type) ? createAssetContract_EnumAssetTypeFromJSON(object.type) : 0,
-      Name: isSet(object.name) ? bytesFromBase64(object.name) : new Uint8Array(),
-      Ticker: isSet(object.ticker) ? bytesFromBase64(object.ticker) : new Uint8Array(),
-      OwnerAddress: isSet(object.ownerAddress) ? bytesFromBase64(object.ownerAddress) : new Uint8Array(),
-      Logo: isSet(object.logo) ? String(object.logo) : "",
-      URIs: isObject(object.uris)
-        ? Object.entries(object.uris).reduce<{ [key: string]: string }>((acc, [key, value]) => {
+      Type: isSet(object.Type) ? createAssetContract_EnumAssetTypeFromJSON(object.Type) : 0,
+      Name: isSet(object.Name) ? bytesFromBase64(object.Name) : new Uint8Array(),
+      Ticker: isSet(object.Ticker) ? bytesFromBase64(object.Ticker) : new Uint8Array(),
+      OwnerAddress: isSet(object.OwnerAddress) ? bytesFromBase64(object.OwnerAddress) : new Uint8Array(),
+      Logo: isSet(object.Logo) ? String(object.Logo) : "",
+      URIs: isObject(object.URIs)
+        ? Object.entries(object.URIs).reduce<{ [key: string]: string }>((acc, [key, value]) => {
           acc[key] = String(value);
           return acc;
         }, {})
         : {},
-      Precision: isSet(object.precision) ? Number(object.precision) : 0,
-      InitialSupply: isSet(object.initialSupply) ? Number(object.initialSupply) : 0,
-      MaxSupply: isSet(object.maxSupply) ? Number(object.maxSupply) : 0,
-      Royalties: isSet(object.royalties) ? RoyaltiesInfo.fromJSON(object.royalties) : undefined,
-      Properties: isSet(object.properties) ? PropertiesInfo.fromJSON(object.properties) : undefined,
-      Attributes: isSet(object.attributes) ? AttributesInfo.fromJSON(object.attributes) : undefined,
-      Staking: isSet(object.staking) ? StakingInfo.fromJSON(object.staking) : undefined,
-      Roles: Array.isArray(object?.roles) ? object.roles.map((e: any) => RolesInfo.fromJSON(e)) : [],
+      Precision: isSet(object.Precision) ? Number(object.Precision) : 0,
+      InitialSupply: isSet(object.InitialSupply) ? Number(object.InitialSupply) : 0,
+      MaxSupply: isSet(object.MaxSupply) ? Number(object.MaxSupply) : 0,
+      Royalties: isSet(object.Royalties) ? RoyaltiesInfo.fromJSON(object.Royalties) : undefined,
+      Properties: isSet(object.Properties) ? PropertiesInfo.fromJSON(object.Properties) : undefined,
+      Attributes: isSet(object.Attributes) ? AttributesInfo.fromJSON(object.Attributes) : undefined,
+      Staking: isSet(object.Staking) ? StakingInfo.fromJSON(object.Staking) : undefined,
+      Roles: Array.isArray(object?.Roles) ? object.Roles.map((e: any) => RolesInfo.fromJSON(e)) : [],
     };
   },
 
   toJSON(message: CreateAssetContract): unknown {
     const obj: any = {};
-    message.Type !== undefined && (obj.type = createAssetContract_EnumAssetTypeToJSON(message.Type));
+    message.Type !== undefined && (obj.Type = createAssetContract_EnumAssetTypeToJSON(message.Type));
     message.Name !== undefined &&
-      (obj.name = base64FromBytes(message.Name !== undefined ? message.Name : new Uint8Array()));
+      (obj.Name = base64FromBytes(message.Name !== undefined ? message.Name : new Uint8Array()));
     message.Ticker !== undefined &&
-      (obj.ticker = base64FromBytes(message.Ticker !== undefined ? message.Ticker : new Uint8Array()));
+      (obj.Ticker = base64FromBytes(message.Ticker !== undefined ? message.Ticker : new Uint8Array()));
     message.OwnerAddress !== undefined &&
-      (obj.ownerAddress = base64FromBytes(
+      (obj.OwnerAddress = base64FromBytes(
         message.OwnerAddress !== undefined ? message.OwnerAddress : new Uint8Array(),
       ));
-    message.Logo !== undefined && (obj.logo = message.Logo);
-    obj.uris = {};
+    message.Logo !== undefined && (obj.Logo = message.Logo);
+    obj.URIs = {};
     if (message.URIs) {
       Object.entries(message.URIs).forEach(([k, v]) => {
-        obj.uris[k] = v;
+        obj.URIs[k] = v;
       });
     }
-    message.Precision !== undefined && (obj.precision = Math.round(message.Precision));
-    message.InitialSupply !== undefined && (obj.initialSupply = Math.round(message.InitialSupply));
-    message.MaxSupply !== undefined && (obj.maxSupply = Math.round(message.MaxSupply));
+    message.Precision !== undefined && (obj.Precision = Math.round(message.Precision));
+    message.InitialSupply !== undefined && (obj.InitialSupply = Math.round(message.InitialSupply));
+    message.MaxSupply !== undefined && (obj.MaxSupply = Math.round(message.MaxSupply));
     message.Royalties !== undefined &&
-      (obj.royalties = message.Royalties ? RoyaltiesInfo.toJSON(message.Royalties) : undefined);
+      (obj.Royalties = message.Royalties ? RoyaltiesInfo.toJSON(message.Royalties) : undefined);
     message.Properties !== undefined &&
-      (obj.properties = message.Properties ? PropertiesInfo.toJSON(message.Properties) : undefined);
+      (obj.Properties = message.Properties ? PropertiesInfo.toJSON(message.Properties) : undefined);
     message.Attributes !== undefined &&
-      (obj.attributes = message.Attributes ? AttributesInfo.toJSON(message.Attributes) : undefined);
-    message.Staking !== undefined && (obj.staking = message.Staking ? StakingInfo.toJSON(message.Staking) : undefined);
+      (obj.Attributes = message.Attributes ? AttributesInfo.toJSON(message.Attributes) : undefined);
+    message.Staking !== undefined && (obj.Staking = message.Staking ? StakingInfo.toJSON(message.Staking) : undefined);
     if (message.Roles) {
-      obj.roles = message.Roles.map((e) => e ? RolesInfo.toJSON(e) : undefined);
+      obj.Roles = message.Roles.map((e) => e ? RolesInfo.toJSON(e) : undefined);
     } else {
-      obj.roles = [];
+      obj.Roles = [];
     }
     return obj;
   },
@@ -1094,25 +1089,25 @@ export const PropertiesInfo = {
 
   fromJSON(object: any): PropertiesInfo {
     return {
-      CanFreeze: isSet(object.canFreeze) ? Boolean(object.canFreeze) : false,
-      CanWipe: isSet(object.canWipe) ? Boolean(object.canWipe) : false,
-      CanPause: isSet(object.canPause) ? Boolean(object.canPause) : false,
-      CanMint: isSet(object.canMint) ? Boolean(object.canMint) : false,
-      CanBurn: isSet(object.canBurn) ? Boolean(object.canBurn) : false,
-      CanChangeOwner: isSet(object.canChangeOwner) ? Boolean(object.canChangeOwner) : false,
-      CanAddRoles: isSet(object.canAddRoles) ? Boolean(object.canAddRoles) : false,
+      CanFreeze: isSet(object.CanFreeze) ? Boolean(object.CanFreeze) : false,
+      CanWipe: isSet(object.CanWipe) ? Boolean(object.CanWipe) : false,
+      CanPause: isSet(object.CanPause) ? Boolean(object.CanPause) : false,
+      CanMint: isSet(object.CanMint) ? Boolean(object.CanMint) : false,
+      CanBurn: isSet(object.CanBurn) ? Boolean(object.CanBurn) : false,
+      CanChangeOwner: isSet(object.CanChangeOwner) ? Boolean(object.CanChangeOwner) : false,
+      CanAddRoles: isSet(object.CanAddRoles) ? Boolean(object.CanAddRoles) : false,
     };
   },
 
   toJSON(message: PropertiesInfo): unknown {
     const obj: any = {};
-    message.CanFreeze !== undefined && (obj.canFreeze = message.CanFreeze);
-    message.CanWipe !== undefined && (obj.canWipe = message.CanWipe);
-    message.CanPause !== undefined && (obj.canPause = message.CanPause);
-    message.CanMint !== undefined && (obj.canMint = message.CanMint);
-    message.CanBurn !== undefined && (obj.canBurn = message.CanBurn);
-    message.CanChangeOwner !== undefined && (obj.canChangeOwner = message.CanChangeOwner);
-    message.CanAddRoles !== undefined && (obj.canAddRoles = message.CanAddRoles);
+    message.CanFreeze !== undefined && (obj.CanFreeze = message.CanFreeze);
+    message.CanWipe !== undefined && (obj.CanWipe = message.CanWipe);
+    message.CanPause !== undefined && (obj.CanPause = message.CanPause);
+    message.CanMint !== undefined && (obj.CanMint = message.CanMint);
+    message.CanBurn !== undefined && (obj.CanBurn = message.CanBurn);
+    message.CanChangeOwner !== undefined && (obj.CanChangeOwner = message.CanChangeOwner);
+    message.CanAddRoles !== undefined && (obj.CanAddRoles = message.CanAddRoles);
     return obj;
   },
 
@@ -1167,15 +1162,15 @@ export const AttributesInfo = {
 
   fromJSON(object: any): AttributesInfo {
     return {
-      IsPaused: isSet(object.isPaused) ? Boolean(object.isPaused) : false,
-      IsNFTMintStopped: isSet(object.isNFTMintStopped) ? Boolean(object.isNFTMintStopped) : false,
+      IsPaused: isSet(object.IsPaused) ? Boolean(object.IsPaused) : false,
+      IsNFTMintStopped: isSet(object.IsNFTMintStopped) ? Boolean(object.IsNFTMintStopped) : false,
     };
   },
 
   toJSON(message: AttributesInfo): unknown {
     const obj: any = {};
-    message.IsPaused !== undefined && (obj.isPaused = message.IsPaused);
-    message.IsNFTMintStopped !== undefined && (obj.isNFTMintStopped = message.IsNFTMintStopped);
+    message.IsPaused !== undefined && (obj.IsPaused = message.IsPaused);
+    message.IsNFTMintStopped !== undefined && (obj.IsNFTMintStopped = message.IsNFTMintStopped);
     return obj;
   },
 
@@ -1243,21 +1238,21 @@ export const StakingInfo = {
 
   fromJSON(object: any): StakingInfo {
     return {
-      Type: isSet(object.type) ? stakingInfo_InterestTypeFromJSON(object.type) : 0,
-      APR: isSet(object.apr) ? Number(object.apr) : 0,
-      MinEpochsToClaim: isSet(object.minEpochsToClaim) ? Number(object.minEpochsToClaim) : 0,
-      MinEpochsToUnstake: isSet(object.minEpochsToUnstake) ? Number(object.minEpochsToUnstake) : 0,
-      MinEpochsToWithdraw: isSet(object.minEpochsToWithdraw) ? Number(object.minEpochsToWithdraw) : 0,
+      Type: isSet(object.Type) ? stakingInfo_InterestTypeFromJSON(object.Type) : 0,
+      APR: isSet(object.APR) ? Number(object.APR) : 0,
+      MinEpochsToClaim: isSet(object.MinEpochsToClaim) ? Number(object.MinEpochsToClaim) : 0,
+      MinEpochsToUnstake: isSet(object.MinEpochsToUnstake) ? Number(object.MinEpochsToUnstake) : 0,
+      MinEpochsToWithdraw: isSet(object.MinEpochsToWithdraw) ? Number(object.MinEpochsToWithdraw) : 0,
     };
   },
 
   toJSON(message: StakingInfo): unknown {
     const obj: any = {};
-    message.Type !== undefined && (obj.type = stakingInfo_InterestTypeToJSON(message.Type));
-    message.APR !== undefined && (obj.apr = Math.round(message.APR));
-    message.MinEpochsToClaim !== undefined && (obj.minEpochsToClaim = Math.round(message.MinEpochsToClaim));
-    message.MinEpochsToUnstake !== undefined && (obj.minEpochsToUnstake = Math.round(message.MinEpochsToUnstake));
-    message.MinEpochsToWithdraw !== undefined && (obj.minEpochsToWithdraw = Math.round(message.MinEpochsToWithdraw));
+    message.Type !== undefined && (obj.Type = stakingInfo_InterestTypeToJSON(message.Type));
+    message.APR !== undefined && (obj.APR = Math.round(message.APR));
+    message.MinEpochsToClaim !== undefined && (obj.MinEpochsToClaim = Math.round(message.MinEpochsToClaim));
+    message.MinEpochsToUnstake !== undefined && (obj.MinEpochsToUnstake = Math.round(message.MinEpochsToUnstake));
+    message.MinEpochsToWithdraw !== undefined && (obj.MinEpochsToWithdraw = Math.round(message.MinEpochsToWithdraw));
     return obj;
   },
 
@@ -1316,18 +1311,18 @@ export const RolesInfo = {
 
   fromJSON(object: any): RolesInfo {
     return {
-      Address: isSet(object.address) ? bytesFromBase64(object.address) : new Uint8Array(),
-      HasRoleMint: isSet(object.hasRoleMint) ? Boolean(object.hasRoleMint) : false,
-      HasRoleSetITOPrices: isSet(object.hasRoleSetITOPrices) ? Boolean(object.hasRoleSetITOPrices) : false,
+      Address: isSet(object.Address) ? bytesFromBase64(object.Address) : new Uint8Array(),
+      HasRoleMint: isSet(object.HasRoleMint) ? Boolean(object.HasRoleMint) : false,
+      HasRoleSetITOPrices: isSet(object.HasRoleSetITOPrices) ? Boolean(object.HasRoleSetITOPrices) : false,
     };
   },
 
   toJSON(message: RolesInfo): unknown {
     const obj: any = {};
     message.Address !== undefined &&
-      (obj.address = base64FromBytes(message.Address !== undefined ? message.Address : new Uint8Array()));
-    message.HasRoleMint !== undefined && (obj.hasRoleMint = message.HasRoleMint);
-    message.HasRoleSetITOPrices !== undefined && (obj.hasRoleSetITOPrices = message.HasRoleSetITOPrices);
+      (obj.Address = base64FromBytes(message.Address !== undefined ? message.Address : new Uint8Array()));
+    message.HasRoleMint !== undefined && (obj.HasRoleMint = message.HasRoleMint);
+    message.HasRoleSetITOPrices !== undefined && (obj.HasRoleSetITOPrices = message.HasRoleSetITOPrices);
     return obj;
   },
 
@@ -1399,12 +1394,12 @@ export const RoyaltiesInfo = {
   fromJSON(object: any): RoyaltiesInfo {
     return {
       Address: isSet(object.Address) ? bytesFromBase64(object.Address) : new Uint8Array(),
-      TransferPercentage: Array.isArray(object?.transferPercentage)
-        ? object.transferPercentage.map((e: any) => RoyaltyInfo.fromJSON(e))
+      TransferPercentage: Array.isArray(object?.TransferPercentage)
+        ? object.TransferPercentage.map((e: any) => RoyaltyInfo.fromJSON(e))
         : [],
-      TransferFixed: isSet(object.transferFixed) ? Number(object.transferFixed) : 0,
-      MarketPercentage: isSet(object.marketPercentage) ? Number(object.marketPercentage) : 0,
-      MarketFixed: isSet(object.marketFixed) ? Number(object.marketFixed) : 0,
+      TransferFixed: isSet(object.TransferFixed) ? Number(object.TransferFixed) : 0,
+      MarketPercentage: isSet(object.MarketPercentage) ? Number(object.MarketPercentage) : 0,
+      MarketFixed: isSet(object.MarketFixed) ? Number(object.MarketFixed) : 0,
     };
   },
 
@@ -1413,13 +1408,13 @@ export const RoyaltiesInfo = {
     message.Address !== undefined &&
       (obj.Address = base64FromBytes(message.Address !== undefined ? message.Address : new Uint8Array()));
     if (message.TransferPercentage) {
-      obj.transferPercentage = message.TransferPercentage.map((e) => e ? RoyaltyInfo.toJSON(e) : undefined);
+      obj.TransferPercentage = message.TransferPercentage.map((e) => e ? RoyaltyInfo.toJSON(e) : undefined);
     } else {
-      obj.transferPercentage = [];
+      obj.TransferPercentage = [];
     }
-    message.TransferFixed !== undefined && (obj.transferFixed = Math.round(message.TransferFixed));
-    message.MarketPercentage !== undefined && (obj.marketPercentage = Math.round(message.MarketPercentage));
-    message.MarketFixed !== undefined && (obj.marketFixed = Math.round(message.MarketFixed));
+    message.TransferFixed !== undefined && (obj.TransferFixed = Math.round(message.TransferFixed));
+    message.MarketPercentage !== undefined && (obj.MarketPercentage = Math.round(message.MarketPercentage));
+    message.MarketFixed !== undefined && (obj.MarketFixed = Math.round(message.MarketFixed));
     return obj;
   },
 
@@ -1585,48 +1580,43 @@ export const AssetTriggerContract = {
 
   fromJSON(object: any): AssetTriggerContract {
     return {
-      TriggerType: isSet(object.triggerType) ? assetTriggerContract_EnumTriggerTypeFromJSON(object.triggerType) : 0,
-      AssetID: isSet(object.assetId) ? bytesFromBase64(object.assetId) : new Uint8Array(),
-      ToAddress: isSet(object["toAddress,omitempty"])
-        ? bytesFromBase64(object["toAddress,omitempty"])
-        : new Uint8Array(),
-      Amount: isSet(object["amount,omitempty"]) ? Number(object["amount,omitempty"]) : 0,
-      MIME: isSet(object["mime,omitempty"]) ? bytesFromBase64(object["mime,omitempty"]) : new Uint8Array(),
-      Logo: isSet(object["logo,omitempty"]) ? String(object["logo,omitempty"]) : "",
-      URIs: isObject(object["uris,omitempty"])
-        ? Object.entries(object["uris,omitempty"]).reduce<{ [key: string]: string }>((acc, [key, value]) => {
+      TriggerType: isSet(object.TriggerType) ? assetTriggerContract_EnumTriggerTypeFromJSON(object.TriggerType) : 0,
+      AssetID: isSet(object.AssetID) ? bytesFromBase64(object.AssetID) : new Uint8Array(),
+      ToAddress: isSet(object.ToAddress) ? bytesFromBase64(object.ToAddress) : new Uint8Array(),
+      Amount: isSet(object.Amount) ? Number(object.Amount) : 0,
+      MIME: isSet(object.MIME) ? bytesFromBase64(object.MIME) : new Uint8Array(),
+      Logo: isSet(object.Logo) ? String(object.Logo) : "",
+      URIs: isObject(object.URIs)
+        ? Object.entries(object.URIs).reduce<{ [key: string]: string }>((acc, [key, value]) => {
           acc[key] = String(value);
           return acc;
         }, {})
         : {},
-      Role: isSet(object["role,omitempty"]) ? RolesInfo.fromJSON(object["role,omitempty"]) : undefined,
-      Staking: isSet(object["staking,omitempty"]) ? StakingInfo.fromJSON(object["staking,omitempty"]) : undefined,
+      Role: isSet(object.Role) ? RolesInfo.fromJSON(object.Role) : undefined,
+      Staking: isSet(object.Staking) ? StakingInfo.fromJSON(object.Staking) : undefined,
     };
   },
 
   toJSON(message: AssetTriggerContract): unknown {
     const obj: any = {};
     message.TriggerType !== undefined &&
-      (obj.triggerType = assetTriggerContract_EnumTriggerTypeToJSON(message.TriggerType));
+      (obj.TriggerType = assetTriggerContract_EnumTriggerTypeToJSON(message.TriggerType));
     message.AssetID !== undefined &&
-      (obj.assetId = base64FromBytes(message.AssetID !== undefined ? message.AssetID : new Uint8Array()));
+      (obj.AssetID = base64FromBytes(message.AssetID !== undefined ? message.AssetID : new Uint8Array()));
     message.ToAddress !== undefined &&
-      (obj["toAddress,omitempty"] = base64FromBytes(
-        message.ToAddress !== undefined ? message.ToAddress : new Uint8Array(),
-      ));
-    message.Amount !== undefined && (obj["amount,omitempty"] = Math.round(message.Amount));
+      (obj.ToAddress = base64FromBytes(message.ToAddress !== undefined ? message.ToAddress : new Uint8Array()));
+    message.Amount !== undefined && (obj.Amount = Math.round(message.Amount));
     message.MIME !== undefined &&
-      (obj["mime,omitempty"] = base64FromBytes(message.MIME !== undefined ? message.MIME : new Uint8Array()));
-    message.Logo !== undefined && (obj["logo,omitempty"] = message.Logo);
-    obj["uris,omitempty"] = {};
+      (obj.MIME = base64FromBytes(message.MIME !== undefined ? message.MIME : new Uint8Array()));
+    message.Logo !== undefined && (obj.Logo = message.Logo);
+    obj.URIs = {};
     if (message.URIs) {
       Object.entries(message.URIs).forEach(([k, v]) => {
-        obj["uris,omitempty"][k] = v;
+        obj.URIs[k] = v;
       });
     }
-    message.Role !== undefined && (obj["role,omitempty"] = message.Role ? RolesInfo.toJSON(message.Role) : undefined);
-    message.Staking !== undefined &&
-      (obj["staking,omitempty"] = message.Staking ? StakingInfo.toJSON(message.Staking) : undefined);
+    message.Role !== undefined && (obj.Role = message.Role ? RolesInfo.toJSON(message.Role) : undefined);
+    message.Staking !== undefined && (obj.Staking = message.Staking ? StakingInfo.toJSON(message.Staking) : undefined);
     return obj;
   },
 
@@ -1795,47 +1785,43 @@ export const ValidatorConfig = {
 
   fromJSON(object: any): ValidatorConfig {
     return {
-      BLSPublicKey: isSet(object["blsPublicKey,omitempty"])
-        ? bytesFromBase64(object["blsPublicKey,omitempty"])
-        : new Uint8Array(),
-      RewardAddress: isSet(object["rewardAddress,omitempty"])
-        ? bytesFromBase64(object["rewardAddress,omitempty"])
-        : new Uint8Array(),
-      CanDelegate: isSet(object.canDelegate) ? Boolean(object.canDelegate) : false,
-      Commission: isSet(object.commission) ? Number(object.commission) : 0,
-      MaxDelegationAmount: isSet(object.maxDelegationAmount) ? Number(object.maxDelegationAmount) : 0,
-      Logo: isSet(object.logo) ? String(object.logo) : "",
-      URIs: isObject(object.uris)
-        ? Object.entries(object.uris).reduce<{ [key: string]: string }>((acc, [key, value]) => {
+      BLSPublicKey: isSet(object.BLSPublicKey) ? bytesFromBase64(object.BLSPublicKey) : new Uint8Array(),
+      RewardAddress: isSet(object.RewardAddress) ? bytesFromBase64(object.RewardAddress) : new Uint8Array(),
+      CanDelegate: isSet(object.CanDelegate) ? Boolean(object.CanDelegate) : false,
+      Commission: isSet(object.Commission) ? Number(object.Commission) : 0,
+      MaxDelegationAmount: isSet(object.MaxDelegationAmount) ? Number(object.MaxDelegationAmount) : 0,
+      Logo: isSet(object.Logo) ? String(object.Logo) : "",
+      URIs: isObject(object.URIs)
+        ? Object.entries(object.URIs).reduce<{ [key: string]: string }>((acc, [key, value]) => {
           acc[key] = String(value);
           return acc;
         }, {})
         : {},
-      Name: isSet(object.name) ? String(object.name) : "",
+      Name: isSet(object.Name) ? String(object.Name) : "",
     };
   },
 
   toJSON(message: ValidatorConfig): unknown {
     const obj: any = {};
     message.BLSPublicKey !== undefined &&
-      (obj["blsPublicKey,omitempty"] = base64FromBytes(
+      (obj.BLSPublicKey = base64FromBytes(
         message.BLSPublicKey !== undefined ? message.BLSPublicKey : new Uint8Array(),
       ));
     message.RewardAddress !== undefined &&
-      (obj["rewardAddress,omitempty"] = base64FromBytes(
+      (obj.RewardAddress = base64FromBytes(
         message.RewardAddress !== undefined ? message.RewardAddress : new Uint8Array(),
       ));
-    message.CanDelegate !== undefined && (obj.canDelegate = message.CanDelegate);
-    message.Commission !== undefined && (obj.commission = Math.round(message.Commission));
-    message.MaxDelegationAmount !== undefined && (obj.maxDelegationAmount = Math.round(message.MaxDelegationAmount));
-    message.Logo !== undefined && (obj.logo = message.Logo);
-    obj.uris = {};
+    message.CanDelegate !== undefined && (obj.CanDelegate = message.CanDelegate);
+    message.Commission !== undefined && (obj.Commission = Math.round(message.Commission));
+    message.MaxDelegationAmount !== undefined && (obj.MaxDelegationAmount = Math.round(message.MaxDelegationAmount));
+    message.Logo !== undefined && (obj.Logo = message.Logo);
+    obj.URIs = {};
     if (message.URIs) {
       Object.entries(message.URIs).forEach(([k, v]) => {
-        obj.uris[k] = v;
+        obj.URIs[k] = v;
       });
     }
-    message.Name !== undefined && (obj.name = message.Name);
+    message.Name !== undefined && (obj.Name = message.Name);
     return obj;
   },
 
@@ -1951,21 +1937,18 @@ export const CreateValidatorContract = {
 
   fromJSON(object: any): CreateValidatorContract {
     return {
-      OwnerAddress: isSet(object["ownerAddress,omitempty"])
-        ? bytesFromBase64(object["ownerAddress,omitempty"])
-        : new Uint8Array(),
-      Config: isSet(object["config,omitempty"]) ? ValidatorConfig.fromJSON(object["config,omitempty"]) : undefined,
+      OwnerAddress: isSet(object.OwnerAddress) ? bytesFromBase64(object.OwnerAddress) : new Uint8Array(),
+      Config: isSet(object.Config) ? ValidatorConfig.fromJSON(object.Config) : undefined,
     };
   },
 
   toJSON(message: CreateValidatorContract): unknown {
     const obj: any = {};
     message.OwnerAddress !== undefined &&
-      (obj["ownerAddress,omitempty"] = base64FromBytes(
+      (obj.OwnerAddress = base64FromBytes(
         message.OwnerAddress !== undefined ? message.OwnerAddress : new Uint8Array(),
       ));
-    message.Config !== undefined &&
-      (obj["config,omitempty"] = message.Config ? ValidatorConfig.toJSON(message.Config) : undefined);
+    message.Config !== undefined && (obj.Config = message.Config ? ValidatorConfig.toJSON(message.Config) : undefined);
     return obj;
   },
 
@@ -2010,15 +1993,12 @@ export const ValidatorConfigContract = {
   },
 
   fromJSON(object: any): ValidatorConfigContract {
-    return {
-      Config: isSet(object["config,omitempty"]) ? ValidatorConfig.fromJSON(object["config,omitempty"]) : undefined,
-    };
+    return { Config: isSet(object.Config) ? ValidatorConfig.fromJSON(object.Config) : undefined };
   },
 
   toJSON(message: ValidatorConfigContract): unknown {
     const obj: any = {};
-    message.Config !== undefined &&
-      (obj["config,omitempty"] = message.Config ? ValidatorConfig.toJSON(message.Config) : undefined);
+    message.Config !== undefined && (obj.Config = message.Config ? ValidatorConfig.toJSON(message.Config) : undefined);
     return obj;
   },
 
@@ -2069,16 +2049,16 @@ export const FreezeContract = {
 
   fromJSON(object: any): FreezeContract {
     return {
-      AssetID: isSet(object.assetId) ? bytesFromBase64(object.assetId) : new Uint8Array(),
-      Amount: isSet(object.amount) ? Number(object.amount) : 0,
+      AssetID: isSet(object.AssetID) ? bytesFromBase64(object.AssetID) : new Uint8Array(),
+      Amount: isSet(object.Amount) ? Number(object.Amount) : 0,
     };
   },
 
   toJSON(message: FreezeContract): unknown {
     const obj: any = {};
     message.AssetID !== undefined &&
-      (obj.assetId = base64FromBytes(message.AssetID !== undefined ? message.AssetID : new Uint8Array()));
-    message.Amount !== undefined && (obj.amount = Math.round(message.Amount));
+      (obj.AssetID = base64FromBytes(message.AssetID !== undefined ? message.AssetID : new Uint8Array()));
+    message.Amount !== undefined && (obj.Amount = Math.round(message.Amount));
     return obj;
   },
 
@@ -2128,17 +2108,17 @@ export const UnfreezeContract = {
 
   fromJSON(object: any): UnfreezeContract {
     return {
-      AssetID: isSet(object.assetId) ? bytesFromBase64(object.assetId) : new Uint8Array(),
-      BucketID: isSet(object.bucketId) ? bytesFromBase64(object.bucketId) : new Uint8Array(),
+      AssetID: isSet(object.AssetID) ? bytesFromBase64(object.AssetID) : new Uint8Array(),
+      BucketID: isSet(object.BucketID) ? bytesFromBase64(object.BucketID) : new Uint8Array(),
     };
   },
 
   toJSON(message: UnfreezeContract): unknown {
     const obj: any = {};
     message.AssetID !== undefined &&
-      (obj.assetId = base64FromBytes(message.AssetID !== undefined ? message.AssetID : new Uint8Array()));
+      (obj.AssetID = base64FromBytes(message.AssetID !== undefined ? message.AssetID : new Uint8Array()));
     message.BucketID !== undefined &&
-      (obj.bucketId = base64FromBytes(message.BucketID !== undefined ? message.BucketID : new Uint8Array()));
+      (obj.BucketID = base64FromBytes(message.BucketID !== undefined ? message.BucketID : new Uint8Array()));
     return obj;
   },
 
@@ -2188,21 +2168,17 @@ export const DelegateContract = {
 
   fromJSON(object: any): DelegateContract {
     return {
-      ToAddress: isSet(object["toAddress,omitempty"])
-        ? bytesFromBase64(object["toAddress,omitempty"])
-        : new Uint8Array(),
-      BucketID: isSet(object.bucketId) ? bytesFromBase64(object.bucketId) : new Uint8Array(),
+      ToAddress: isSet(object.ToAddress) ? bytesFromBase64(object.ToAddress) : new Uint8Array(),
+      BucketID: isSet(object.BucketID) ? bytesFromBase64(object.BucketID) : new Uint8Array(),
     };
   },
 
   toJSON(message: DelegateContract): unknown {
     const obj: any = {};
     message.ToAddress !== undefined &&
-      (obj["toAddress,omitempty"] = base64FromBytes(
-        message.ToAddress !== undefined ? message.ToAddress : new Uint8Array(),
-      ));
+      (obj.ToAddress = base64FromBytes(message.ToAddress !== undefined ? message.ToAddress : new Uint8Array()));
     message.BucketID !== undefined &&
-      (obj.bucketId = base64FromBytes(message.BucketID !== undefined ? message.BucketID : new Uint8Array()));
+      (obj.BucketID = base64FromBytes(message.BucketID !== undefined ? message.BucketID : new Uint8Array()));
     return obj;
   },
 
@@ -2245,13 +2221,13 @@ export const UndelegateContract = {
   },
 
   fromJSON(object: any): UndelegateContract {
-    return { BucketID: isSet(object.bucketId) ? bytesFromBase64(object.bucketId) : new Uint8Array() };
+    return { BucketID: isSet(object.BucketID) ? bytesFromBase64(object.BucketID) : new Uint8Array() };
   },
 
   toJSON(message: UndelegateContract): unknown {
     const obj: any = {};
     message.BucketID !== undefined &&
-      (obj.bucketId = base64FromBytes(message.BucketID !== undefined ? message.BucketID : new Uint8Array()));
+      (obj.BucketID = base64FromBytes(message.BucketID !== undefined ? message.BucketID : new Uint8Array()));
     return obj;
   },
 
@@ -2293,13 +2269,13 @@ export const WithdrawContract = {
   },
 
   fromJSON(object: any): WithdrawContract {
-    return { AssetID: isSet(object.assetId) ? bytesFromBase64(object.assetId) : new Uint8Array() };
+    return { AssetID: isSet(object.AssetID) ? bytesFromBase64(object.AssetID) : new Uint8Array() };
   },
 
   toJSON(message: WithdrawContract): unknown {
     const obj: any = {};
     message.AssetID !== undefined &&
-      (obj.assetId = base64FromBytes(message.AssetID !== undefined ? message.AssetID : new Uint8Array()));
+      (obj.AssetID = base64FromBytes(message.AssetID !== undefined ? message.AssetID : new Uint8Array()));
     return obj;
   },
 
@@ -2348,15 +2324,15 @@ export const ClaimContract = {
 
   fromJSON(object: any): ClaimContract {
     return {
-      ClaimType: isSet(object.claimType) ? claimContract_EnumClaimTypeFromJSON(object.claimType) : 0,
-      ID: isSet(object.id) ? bytesFromBase64(object.id) : new Uint8Array(),
+      ClaimType: isSet(object.ClaimType) ? claimContract_EnumClaimTypeFromJSON(object.ClaimType) : 0,
+      ID: isSet(object.ID) ? bytesFromBase64(object.ID) : new Uint8Array(),
     };
   },
 
   toJSON(message: ClaimContract): unknown {
     const obj: any = {};
-    message.ClaimType !== undefined && (obj.claimType = claimContract_EnumClaimTypeToJSON(message.ClaimType));
-    message.ID !== undefined && (obj.id = base64FromBytes(message.ID !== undefined ? message.ID : new Uint8Array()));
+    message.ClaimType !== undefined && (obj.ClaimType = claimContract_EnumClaimTypeToJSON(message.ClaimType));
+    message.ID !== undefined && (obj.ID = base64FromBytes(message.ID !== undefined ? message.ID : new Uint8Array()));
     return obj;
   },
 
@@ -2438,13 +2414,13 @@ export const SetAccountNameContract = {
   },
 
   fromJSON(object: any): SetAccountNameContract {
-    return { Name: isSet(object.name) ? bytesFromBase64(object.name) : new Uint8Array() };
+    return { Name: isSet(object.Name) ? bytesFromBase64(object.Name) : new Uint8Array() };
   },
 
   toJSON(message: SetAccountNameContract): unknown {
     const obj: any = {};
     message.Name !== undefined &&
-      (obj.name = base64FromBytes(message.Name !== undefined ? message.Name : new Uint8Array()));
+      (obj.Name = base64FromBytes(message.Name !== undefined ? message.Name : new Uint8Array()));
     return obj;
   },
 
@@ -2502,28 +2478,28 @@ export const ProposalContract = {
 
   fromJSON(object: any): ProposalContract {
     return {
-      Parameters: isObject(object.parameters)
-        ? Object.entries(object.parameters).reduce<{ [key: number]: Uint8Array }>((acc, [key, value]) => {
+      Parameters: isObject(object.Parameters)
+        ? Object.entries(object.Parameters).reduce<{ [key: number]: Uint8Array }>((acc, [key, value]) => {
           acc[Number(key)] = bytesFromBase64(value as string);
           return acc;
         }, {})
         : {},
-      Description: isSet(object.description) ? bytesFromBase64(object.description) : new Uint8Array(),
-      EpochsDuration: isSet(object.epochsDuration) ? Number(object.epochsDuration) : 0,
+      Description: isSet(object.Description) ? bytesFromBase64(object.Description) : new Uint8Array(),
+      EpochsDuration: isSet(object.EpochsDuration) ? Number(object.EpochsDuration) : 0,
     };
   },
 
   toJSON(message: ProposalContract): unknown {
     const obj: any = {};
-    obj.parameters = {};
+    obj.Parameters = {};
     if (message.Parameters) {
       Object.entries(message.Parameters).forEach(([k, v]) => {
-        obj.parameters[k] = base64FromBytes(v);
+        obj.Parameters[k] = base64FromBytes(v);
       });
     }
     message.Description !== undefined &&
-      (obj.description = base64FromBytes(message.Description !== undefined ? message.Description : new Uint8Array()));
-    message.EpochsDuration !== undefined && (obj.epochsDuration = Math.round(message.EpochsDuration));
+      (obj.Description = base64FromBytes(message.Description !== undefined ? message.Description : new Uint8Array()));
+    message.EpochsDuration !== undefined && (obj.EpochsDuration = Math.round(message.EpochsDuration));
     return obj;
   },
 
@@ -2649,17 +2625,17 @@ export const VoteContract = {
 
   fromJSON(object: any): VoteContract {
     return {
-      ProposalID: isSet(object.proposalId) ? Number(object.proposalId) : 0,
-      Amount: isSet(object.amount) ? Number(object.amount) : 0,
-      Type: isSet(object.type) ? voteContract_EnumVoteTypeFromJSON(object.type) : 0,
+      ProposalID: isSet(object.ProposalID) ? Number(object.ProposalID) : 0,
+      Amount: isSet(object.Amount) ? Number(object.Amount) : 0,
+      Type: isSet(object.Type) ? voteContract_EnumVoteTypeFromJSON(object.Type) : 0,
     };
   },
 
   toJSON(message: VoteContract): unknown {
     const obj: any = {};
-    message.ProposalID !== undefined && (obj.proposalId = Math.round(message.ProposalID));
-    message.Amount !== undefined && (obj.amount = Math.round(message.Amount));
-    message.Type !== undefined && (obj.type = voteContract_EnumVoteTypeToJSON(message.Type));
+    message.ProposalID !== undefined && (obj.ProposalID = Math.round(message.ProposalID));
+    message.Amount !== undefined && (obj.Amount = Math.round(message.Amount));
+    message.Type !== undefined && (obj.Type = voteContract_EnumVoteTypeToJSON(message.Type));
     return obj;
   },
 
@@ -2731,12 +2707,12 @@ export const ConfigITOContract = {
 
   fromJSON(object: any): ConfigITOContract {
     return {
-      AssetID: isSet(object.assetId) ? bytesFromBase64(object.assetId) : new Uint8Array(),
-      ReceiverAddress: isSet(object.receiverAddress) ? bytesFromBase64(object.receiverAddress) : new Uint8Array(),
-      Status: isSet(object.status) ? configITOContract_EnumITOStatusFromJSON(object.status) : 0,
-      MaxAmount: isSet(object.maxAmount) ? Number(object.maxAmount) : 0,
-      PackInfo: isObject(object.packInfo)
-        ? Object.entries(object.packInfo).reduce<{ [key: string]: PackInfo }>((acc, [key, value]) => {
+      AssetID: isSet(object.AssetID) ? bytesFromBase64(object.AssetID) : new Uint8Array(),
+      ReceiverAddress: isSet(object.ReceiverAddress) ? bytesFromBase64(object.ReceiverAddress) : new Uint8Array(),
+      Status: isSet(object.Status) ? configITOContract_EnumITOStatusFromJSON(object.Status) : 0,
+      MaxAmount: isSet(object.MaxAmount) ? Number(object.MaxAmount) : 0,
+      PackInfo: isObject(object.PackInfo)
+        ? Object.entries(object.PackInfo).reduce<{ [key: string]: PackInfo }>((acc, [key, value]) => {
           acc[key] = PackInfo.fromJSON(value);
           return acc;
         }, {})
@@ -2747,17 +2723,17 @@ export const ConfigITOContract = {
   toJSON(message: ConfigITOContract): unknown {
     const obj: any = {};
     message.AssetID !== undefined &&
-      (obj.assetId = base64FromBytes(message.AssetID !== undefined ? message.AssetID : new Uint8Array()));
+      (obj.AssetID = base64FromBytes(message.AssetID !== undefined ? message.AssetID : new Uint8Array()));
     message.ReceiverAddress !== undefined &&
-      (obj.receiverAddress = base64FromBytes(
+      (obj.ReceiverAddress = base64FromBytes(
         message.ReceiverAddress !== undefined ? message.ReceiverAddress : new Uint8Array(),
       ));
-    message.Status !== undefined && (obj.status = configITOContract_EnumITOStatusToJSON(message.Status));
-    message.MaxAmount !== undefined && (obj.maxAmount = Math.round(message.MaxAmount));
-    obj.packInfo = {};
+    message.Status !== undefined && (obj.Status = configITOContract_EnumITOStatusToJSON(message.Status));
+    message.MaxAmount !== undefined && (obj.MaxAmount = Math.round(message.MaxAmount));
+    obj.PackInfo = {};
     if (message.PackInfo) {
       Object.entries(message.PackInfo).forEach(([k, v]) => {
-        obj.packInfo[k] = PackInfo.toJSON(v);
+        obj.PackInfo[k] = PackInfo.toJSON(v);
       });
     }
     return obj;
@@ -2885,9 +2861,9 @@ export const SetITOPricesContract = {
 
   fromJSON(object: any): SetITOPricesContract {
     return {
-      AssetID: isSet(object.assetId) ? bytesFromBase64(object.assetId) : new Uint8Array(),
-      PackInfo: isObject(object.packInfo)
-        ? Object.entries(object.packInfo).reduce<{ [key: string]: PackInfo }>((acc, [key, value]) => {
+      AssetID: isSet(object.AssetID) ? bytesFromBase64(object.AssetID) : new Uint8Array(),
+      PackInfo: isObject(object.PackInfo)
+        ? Object.entries(object.PackInfo).reduce<{ [key: string]: PackInfo }>((acc, [key, value]) => {
           acc[key] = PackInfo.fromJSON(value);
           return acc;
         }, {})
@@ -2898,11 +2874,11 @@ export const SetITOPricesContract = {
   toJSON(message: SetITOPricesContract): unknown {
     const obj: any = {};
     message.AssetID !== undefined &&
-      (obj.assetId = base64FromBytes(message.AssetID !== undefined ? message.AssetID : new Uint8Array()));
-    obj.packInfo = {};
+      (obj.AssetID = base64FromBytes(message.AssetID !== undefined ? message.AssetID : new Uint8Array()));
+    obj.PackInfo = {};
     if (message.PackInfo) {
       Object.entries(message.PackInfo).forEach(([k, v]) => {
-        obj.packInfo[k] = PackInfo.toJSON(v);
+        obj.PackInfo[k] = PackInfo.toJSON(v);
       });
     }
     return obj;
@@ -3019,15 +2995,15 @@ export const PackInfo = {
   },
 
   fromJSON(object: any): PackInfo {
-    return { Packs: Array.isArray(object?.packs) ? object.packs.map((e: any) => PackItem.fromJSON(e)) : [] };
+    return { Packs: Array.isArray(object?.Packs) ? object.Packs.map((e: any) => PackItem.fromJSON(e)) : [] };
   },
 
   toJSON(message: PackInfo): unknown {
     const obj: any = {};
     if (message.Packs) {
-      obj.packs = message.Packs.map((e) => e ? PackItem.toJSON(e) : undefined);
+      obj.Packs = message.Packs.map((e) => e ? PackItem.toJSON(e) : undefined);
     } else {
-      obj.packs = [];
+      obj.Packs = [];
     }
     return obj;
   },
@@ -3077,15 +3053,15 @@ export const PackItem = {
 
   fromJSON(object: any): PackItem {
     return {
-      Amount: isSet(object.amount) ? Number(object.amount) : 0,
-      Price: isSet(object.price) ? Number(object.price) : 0,
+      Amount: isSet(object.Amount) ? Number(object.Amount) : 0,
+      Price: isSet(object.Price) ? Number(object.Price) : 0,
     };
   },
 
   toJSON(message: PackItem): unknown {
     const obj: any = {};
-    message.Amount !== undefined && (obj.amount = Math.round(message.Amount));
-    message.Price !== undefined && (obj.price = Math.round(message.Price));
+    message.Amount !== undefined && (obj.Amount = Math.round(message.Amount));
+    message.Price !== undefined && (obj.Price = Math.round(message.Price));
     return obj;
   },
 
@@ -3147,20 +3123,20 @@ export const BuyContract = {
 
   fromJSON(object: any): BuyContract {
     return {
-      BuyType: isSet(object.buyType) ? buyContract_EnumBuyTypeFromJSON(object.buyType) : 0,
-      ID: isSet(object.id) ? bytesFromBase64(object.id) : new Uint8Array(),
-      CurrencyID: isSet(object.currencyId) ? bytesFromBase64(object.currencyId) : new Uint8Array(),
-      Amount: isSet(object.amount) ? Number(object.amount) : 0,
+      BuyType: isSet(object.BuyType) ? buyContract_EnumBuyTypeFromJSON(object.BuyType) : 0,
+      ID: isSet(object.ID) ? bytesFromBase64(object.ID) : new Uint8Array(),
+      CurrencyID: isSet(object.CurrencyID) ? bytesFromBase64(object.CurrencyID) : new Uint8Array(),
+      Amount: isSet(object.Amount) ? Number(object.Amount) : 0,
     };
   },
 
   toJSON(message: BuyContract): unknown {
     const obj: any = {};
-    message.BuyType !== undefined && (obj.buyType = buyContract_EnumBuyTypeToJSON(message.BuyType));
-    message.ID !== undefined && (obj.id = base64FromBytes(message.ID !== undefined ? message.ID : new Uint8Array()));
+    message.BuyType !== undefined && (obj.BuyType = buyContract_EnumBuyTypeToJSON(message.BuyType));
+    message.ID !== undefined && (obj.ID = base64FromBytes(message.ID !== undefined ? message.ID : new Uint8Array()));
     message.CurrencyID !== undefined &&
-      (obj.currencyId = base64FromBytes(message.CurrencyID !== undefined ? message.CurrencyID : new Uint8Array()));
-    message.Amount !== undefined && (obj.amount = Math.round(message.Amount));
+      (obj.CurrencyID = base64FromBytes(message.CurrencyID !== undefined ? message.CurrencyID : new Uint8Array()));
+    message.Amount !== undefined && (obj.Amount = Math.round(message.Amount));
     return obj;
   },
 
@@ -3250,30 +3226,30 @@ export const SellContract = {
 
   fromJSON(object: any): SellContract {
     return {
-      MarketType: isSet(object.marketType) ? sellContract_EnumMarketTypeFromJSON(object.marketType) : 0,
-      MarketplaceID: isSet(object.marketplaceId) ? bytesFromBase64(object.marketplaceId) : new Uint8Array(),
-      AssetID: isSet(object.assetId) ? bytesFromBase64(object.assetId) : new Uint8Array(),
-      CurrencyID: isSet(object.currencyId) ? bytesFromBase64(object.currencyId) : new Uint8Array(),
-      Price: isSet(object.price) ? Number(object.price) : 0,
-      ReservePrice: isSet(object.reservePrice) ? Number(object.reservePrice) : 0,
-      EndTime: isSet(object.endTime) ? Number(object.endTime) : 0,
+      MarketType: isSet(object.MarketType) ? sellContract_EnumMarketTypeFromJSON(object.MarketType) : 0,
+      MarketplaceID: isSet(object.MarketplaceID) ? bytesFromBase64(object.MarketplaceID) : new Uint8Array(),
+      AssetID: isSet(object.AssetID) ? bytesFromBase64(object.AssetID) : new Uint8Array(),
+      CurrencyID: isSet(object.CurrencyID) ? bytesFromBase64(object.CurrencyID) : new Uint8Array(),
+      Price: isSet(object.Price) ? Number(object.Price) : 0,
+      ReservePrice: isSet(object.ReservePrice) ? Number(object.ReservePrice) : 0,
+      EndTime: isSet(object.EndTime) ? Number(object.EndTime) : 0,
     };
   },
 
   toJSON(message: SellContract): unknown {
     const obj: any = {};
-    message.MarketType !== undefined && (obj.marketType = sellContract_EnumMarketTypeToJSON(message.MarketType));
+    message.MarketType !== undefined && (obj.MarketType = sellContract_EnumMarketTypeToJSON(message.MarketType));
     message.MarketplaceID !== undefined &&
-      (obj.marketplaceId = base64FromBytes(
+      (obj.MarketplaceID = base64FromBytes(
         message.MarketplaceID !== undefined ? message.MarketplaceID : new Uint8Array(),
       ));
     message.AssetID !== undefined &&
-      (obj.assetId = base64FromBytes(message.AssetID !== undefined ? message.AssetID : new Uint8Array()));
+      (obj.AssetID = base64FromBytes(message.AssetID !== undefined ? message.AssetID : new Uint8Array()));
     message.CurrencyID !== undefined &&
-      (obj.currencyId = base64FromBytes(message.CurrencyID !== undefined ? message.CurrencyID : new Uint8Array()));
-    message.Price !== undefined && (obj.price = Math.round(message.Price));
-    message.ReservePrice !== undefined && (obj.reservePrice = Math.round(message.ReservePrice));
-    message.EndTime !== undefined && (obj.endTime = Math.round(message.EndTime));
+      (obj.CurrencyID = base64FromBytes(message.CurrencyID !== undefined ? message.CurrencyID : new Uint8Array()));
+    message.Price !== undefined && (obj.Price = Math.round(message.Price));
+    message.ReservePrice !== undefined && (obj.ReservePrice = Math.round(message.ReservePrice));
+    message.EndTime !== undefined && (obj.EndTime = Math.round(message.EndTime));
     return obj;
   },
 
@@ -3382,26 +3358,21 @@ export const CreateMarketplaceContract = {
 
   fromJSON(object: any): CreateMarketplaceContract {
     return {
-      Name: isSet(object.name) ? bytesFromBase64(object.name) : new Uint8Array(),
-      ReferralAddress: isSet(object["referralAddress,omitempty"])
-        ? bytesFromBase64(object["referralAddress,omitempty"])
-        : new Uint8Array(),
-      ReferralPercentage: isSet(object["referralPercentage,omitempty"])
-        ? Number(object["referralPercentage,omitempty"])
-        : 0,
+      Name: isSet(object.Name) ? bytesFromBase64(object.Name) : new Uint8Array(),
+      ReferralAddress: isSet(object.ReferralAddress) ? bytesFromBase64(object.ReferralAddress) : new Uint8Array(),
+      ReferralPercentage: isSet(object.ReferralPercentage) ? Number(object.ReferralPercentage) : 0,
     };
   },
 
   toJSON(message: CreateMarketplaceContract): unknown {
     const obj: any = {};
     message.Name !== undefined &&
-      (obj.name = base64FromBytes(message.Name !== undefined ? message.Name : new Uint8Array()));
+      (obj.Name = base64FromBytes(message.Name !== undefined ? message.Name : new Uint8Array()));
     message.ReferralAddress !== undefined &&
-      (obj["referralAddress,omitempty"] = base64FromBytes(
+      (obj.ReferralAddress = base64FromBytes(
         message.ReferralAddress !== undefined ? message.ReferralAddress : new Uint8Array(),
       ));
-    message.ReferralPercentage !== undefined &&
-      (obj["referralPercentage,omitempty"] = Math.round(message.ReferralPercentage));
+    message.ReferralPercentage !== undefined && (obj.ReferralPercentage = Math.round(message.ReferralPercentage));
     return obj;
   },
 
@@ -3469,31 +3440,26 @@ export const ConfigMarketplaceContract = {
 
   fromJSON(object: any): ConfigMarketplaceContract {
     return {
-      MarketplaceID: isSet(object.marketplaceId) ? bytesFromBase64(object.marketplaceId) : new Uint8Array(),
-      Name: isSet(object.name) ? bytesFromBase64(object.name) : new Uint8Array(),
-      ReferralAddress: isSet(object["referralAddress,omitempty"])
-        ? bytesFromBase64(object["referralAddress,omitempty"])
-        : new Uint8Array(),
-      ReferralPercentage: isSet(object["referralPercentage,omitempty"])
-        ? Number(object["referralPercentage,omitempty"])
-        : 0,
+      MarketplaceID: isSet(object.MarketplaceID) ? bytesFromBase64(object.MarketplaceID) : new Uint8Array(),
+      Name: isSet(object.Name) ? bytesFromBase64(object.Name) : new Uint8Array(),
+      ReferralAddress: isSet(object.ReferralAddress) ? bytesFromBase64(object.ReferralAddress) : new Uint8Array(),
+      ReferralPercentage: isSet(object.ReferralPercentage) ? Number(object.ReferralPercentage) : 0,
     };
   },
 
   toJSON(message: ConfigMarketplaceContract): unknown {
     const obj: any = {};
     message.MarketplaceID !== undefined &&
-      (obj.marketplaceId = base64FromBytes(
+      (obj.MarketplaceID = base64FromBytes(
         message.MarketplaceID !== undefined ? message.MarketplaceID : new Uint8Array(),
       ));
     message.Name !== undefined &&
-      (obj.name = base64FromBytes(message.Name !== undefined ? message.Name : new Uint8Array()));
+      (obj.Name = base64FromBytes(message.Name !== undefined ? message.Name : new Uint8Array()));
     message.ReferralAddress !== undefined &&
-      (obj["referralAddress,omitempty"] = base64FromBytes(
+      (obj.ReferralAddress = base64FromBytes(
         message.ReferralAddress !== undefined ? message.ReferralAddress : new Uint8Array(),
       ));
-    message.ReferralPercentage !== undefined &&
-      (obj["referralPercentage,omitempty"] = Math.round(message.ReferralPercentage));
+    message.ReferralPercentage !== undefined && (obj.ReferralPercentage = Math.round(message.ReferralPercentage));
     return obj;
   },
 
@@ -3624,25 +3590,25 @@ export const AccPermission = {
 
   fromJSON(object: any): AccPermission {
     return {
-      Type: isSet(object.type) ? accPermission_AccPermissionTypeFromJSON(object.type) : 0,
-      PermissionName: isSet(object.permissionName) ? String(object.permissionName) : "",
-      Threshold: isSet(object.threshold) ? Number(object.threshold) : 0,
-      Operations: isSet(object.operations) ? bytesFromBase64(object.operations) : new Uint8Array(),
-      Signers: Array.isArray(object?.signers) ? object.signers.map((e: any) => AccKey.fromJSON(e)) : [],
+      Type: isSet(object.Type) ? accPermission_AccPermissionTypeFromJSON(object.Type) : 0,
+      PermissionName: isSet(object.PermissionName) ? String(object.PermissionName) : "",
+      Threshold: isSet(object.Threshold) ? Number(object.Threshold) : 0,
+      Operations: isSet(object.Operations) ? bytesFromBase64(object.Operations) : new Uint8Array(),
+      Signers: Array.isArray(object?.Signers) ? object.Signers.map((e: any) => AccKey.fromJSON(e)) : [],
     };
   },
 
   toJSON(message: AccPermission): unknown {
     const obj: any = {};
-    message.Type !== undefined && (obj.type = accPermission_AccPermissionTypeToJSON(message.Type));
-    message.PermissionName !== undefined && (obj.permissionName = message.PermissionName);
-    message.Threshold !== undefined && (obj.threshold = Math.round(message.Threshold));
+    message.Type !== undefined && (obj.Type = accPermission_AccPermissionTypeToJSON(message.Type));
+    message.PermissionName !== undefined && (obj.PermissionName = message.PermissionName);
+    message.Threshold !== undefined && (obj.Threshold = Math.round(message.Threshold));
     message.Operations !== undefined &&
-      (obj.operations = base64FromBytes(message.Operations !== undefined ? message.Operations : new Uint8Array()));
+      (obj.Operations = base64FromBytes(message.Operations !== undefined ? message.Operations : new Uint8Array()));
     if (message.Signers) {
-      obj.signers = message.Signers.map((e) => e ? AccKey.toJSON(e) : undefined);
+      obj.Signers = message.Signers.map((e) => e ? AccKey.toJSON(e) : undefined);
     } else {
-      obj.signers = [];
+      obj.Signers = [];
     }
     return obj;
   },
@@ -3692,8 +3658,8 @@ export const UpdateAccountPermissionContract = {
 
   fromJSON(object: any): UpdateAccountPermissionContract {
     return {
-      Permissions: Array.isArray(object?.["permissions,omitempty"])
-        ? object["permissions,omitempty"].map((e: any) => AccPermission.fromJSON(e))
+      Permissions: Array.isArray(object?.Permissions)
+        ? object.Permissions.map((e: any) => AccPermission.fromJSON(e))
         : [],
     };
   },
@@ -3701,9 +3667,9 @@ export const UpdateAccountPermissionContract = {
   toJSON(message: UpdateAccountPermissionContract): unknown {
     const obj: any = {};
     if (message.Permissions) {
-      obj["permissions,omitempty"] = message.Permissions.map((e) => e ? AccPermission.toJSON(e) : undefined);
+      obj.Permissions = message.Permissions.map((e) => e ? AccPermission.toJSON(e) : undefined);
     } else {
-      obj["permissions,omitempty"] = [];
+      obj.Permissions = [];
     }
     return obj;
   },
@@ -3756,7 +3722,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "toAddress,omitempty",
+        "jsonName": "ToAddress",
         "options": undefined,
         "proto3Optional": false,
       }, {
@@ -3768,7 +3734,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "assetId,omitempty",
+        "jsonName": "AssetID",
         "options": undefined,
         "proto3Optional": false,
       }, {
@@ -3780,7 +3746,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "amount,omitempty",
+        "jsonName": "Amount",
         "options": undefined,
         "proto3Optional": false,
       }],
@@ -3803,7 +3769,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "type",
+        "jsonName": "Type",
         "options": undefined,
         "proto3Optional": false,
       }, {
@@ -3815,7 +3781,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "name",
+        "jsonName": "Name",
         "options": undefined,
         "proto3Optional": false,
       }, {
@@ -3827,7 +3793,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "ticker",
+        "jsonName": "Ticker",
         "options": undefined,
         "proto3Optional": false,
       }, {
@@ -3839,7 +3805,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "ownerAddress",
+        "jsonName": "OwnerAddress",
         "options": undefined,
         "proto3Optional": false,
       }, {
@@ -3851,7 +3817,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "logo",
+        "jsonName": "Logo",
         "options": undefined,
         "proto3Optional": false,
       }, {
@@ -3863,7 +3829,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "uris",
+        "jsonName": "URIs",
         "options": undefined,
         "proto3Optional": false,
       }, {
@@ -3875,7 +3841,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "precision",
+        "jsonName": "Precision",
         "options": undefined,
         "proto3Optional": false,
       }, {
@@ -3887,7 +3853,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "initialSupply",
+        "jsonName": "InitialSupply",
         "options": undefined,
         "proto3Optional": false,
       }, {
@@ -3899,7 +3865,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "maxSupply",
+        "jsonName": "MaxSupply",
         "options": undefined,
         "proto3Optional": false,
       }, {
@@ -3911,7 +3877,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "royalties",
+        "jsonName": "Royalties",
         "options": undefined,
         "proto3Optional": false,
       }, {
@@ -3923,7 +3889,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "properties",
+        "jsonName": "Properties",
         "options": undefined,
         "proto3Optional": false,
       }, {
@@ -3935,7 +3901,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "attributes",
+        "jsonName": "Attributes",
         "options": undefined,
         "proto3Optional": false,
       }, {
@@ -3947,7 +3913,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "staking",
+        "jsonName": "Staking",
         "options": undefined,
         "proto3Optional": false,
       }, {
@@ -3959,7 +3925,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "roles",
+        "jsonName": "Roles",
         "options": undefined,
         "proto3Optional": false,
       }],
@@ -4033,7 +3999,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "canFreeze",
+        "jsonName": "CanFreeze",
         "options": undefined,
         "proto3Optional": false,
       }, {
@@ -4045,7 +4011,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "canWipe",
+        "jsonName": "CanWipe",
         "options": undefined,
         "proto3Optional": false,
       }, {
@@ -4057,7 +4023,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "canPause",
+        "jsonName": "CanPause",
         "options": undefined,
         "proto3Optional": false,
       }, {
@@ -4069,7 +4035,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "canMint",
+        "jsonName": "CanMint",
         "options": undefined,
         "proto3Optional": false,
       }, {
@@ -4081,7 +4047,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "canBurn",
+        "jsonName": "CanBurn",
         "options": undefined,
         "proto3Optional": false,
       }, {
@@ -4093,7 +4059,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "canChangeOwner",
+        "jsonName": "CanChangeOwner",
         "options": undefined,
         "proto3Optional": false,
       }, {
@@ -4105,7 +4071,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "canAddRoles",
+        "jsonName": "CanAddRoles",
         "options": undefined,
         "proto3Optional": false,
       }],
@@ -4128,7 +4094,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "isPaused",
+        "jsonName": "IsPaused",
         "options": undefined,
         "proto3Optional": false,
       }, {
@@ -4140,7 +4106,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "isNFTMintStopped",
+        "jsonName": "IsNFTMintStopped",
         "options": undefined,
         "proto3Optional": false,
       }],
@@ -4163,7 +4129,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "type",
+        "jsonName": "Type",
         "options": undefined,
         "proto3Optional": false,
       }, {
@@ -4175,7 +4141,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "apr",
+        "jsonName": "APR",
         "options": undefined,
         "proto3Optional": false,
       }, {
@@ -4187,7 +4153,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "minEpochsToClaim",
+        "jsonName": "MinEpochsToClaim",
         "options": undefined,
         "proto3Optional": false,
       }, {
@@ -4199,7 +4165,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "minEpochsToUnstake",
+        "jsonName": "MinEpochsToUnstake",
         "options": undefined,
         "proto3Optional": false,
       }, {
@@ -4211,7 +4177,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "minEpochsToWithdraw",
+        "jsonName": "MinEpochsToWithdraw",
         "options": undefined,
         "proto3Optional": false,
       }],
@@ -4244,7 +4210,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "address",
+        "jsonName": "Address",
         "options": undefined,
         "proto3Optional": false,
       }, {
@@ -4256,7 +4222,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "hasRoleMint",
+        "jsonName": "HasRoleMint",
         "options": undefined,
         "proto3Optional": false,
       }, {
@@ -4268,7 +4234,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "hasRoleSetITOPrices",
+        "jsonName": "HasRoleSetITOPrices",
         "options": undefined,
         "proto3Optional": false,
       }],
@@ -4303,7 +4269,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "transferPercentage",
+        "jsonName": "TransferPercentage",
         "options": undefined,
         "proto3Optional": false,
       }, {
@@ -4315,7 +4281,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "transferFixed",
+        "jsonName": "TransferFixed",
         "options": undefined,
         "proto3Optional": false,
       }, {
@@ -4327,7 +4293,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "marketPercentage",
+        "jsonName": "MarketPercentage",
         "options": undefined,
         "proto3Optional": false,
       }, {
@@ -4339,7 +4305,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "marketFixed",
+        "jsonName": "MarketFixed",
         "options": undefined,
         "proto3Optional": false,
       }],
@@ -4397,7 +4363,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "triggerType",
+        "jsonName": "TriggerType",
         "options": undefined,
         "proto3Optional": false,
       }, {
@@ -4409,7 +4375,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "assetId",
+        "jsonName": "AssetID",
         "options": undefined,
         "proto3Optional": false,
       }, {
@@ -4421,7 +4387,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "toAddress,omitempty",
+        "jsonName": "ToAddress",
         "options": undefined,
         "proto3Optional": false,
       }, {
@@ -4433,7 +4399,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "amount,omitempty",
+        "jsonName": "Amount",
         "options": undefined,
         "proto3Optional": false,
       }, {
@@ -4445,7 +4411,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "mime,omitempty",
+        "jsonName": "MIME",
         "options": undefined,
         "proto3Optional": false,
       }, {
@@ -4457,7 +4423,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "logo,omitempty",
+        "jsonName": "Logo",
         "options": undefined,
         "proto3Optional": false,
       }, {
@@ -4469,7 +4435,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "uris,omitempty",
+        "jsonName": "URIs",
         "options": undefined,
         "proto3Optional": false,
       }, {
@@ -4481,7 +4447,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "role,omitempty",
+        "jsonName": "Role",
         "options": undefined,
         "proto3Optional": false,
       }, {
@@ -4493,7 +4459,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "staking,omitempty",
+        "jsonName": "Staking",
         "options": undefined,
         "proto3Optional": false,
       }],
@@ -4578,7 +4544,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "blsPublicKey,omitempty",
+        "jsonName": "BLSPublicKey",
         "options": undefined,
         "proto3Optional": false,
       }, {
@@ -4590,7 +4556,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "rewardAddress,omitempty",
+        "jsonName": "RewardAddress",
         "options": undefined,
         "proto3Optional": false,
       }, {
@@ -4602,7 +4568,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "canDelegate",
+        "jsonName": "CanDelegate",
         "options": undefined,
         "proto3Optional": false,
       }, {
@@ -4614,7 +4580,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "commission",
+        "jsonName": "Commission",
         "options": undefined,
         "proto3Optional": false,
       }, {
@@ -4626,7 +4592,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "maxDelegationAmount",
+        "jsonName": "MaxDelegationAmount",
         "options": undefined,
         "proto3Optional": false,
       }, {
@@ -4638,7 +4604,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "logo",
+        "jsonName": "Logo",
         "options": undefined,
         "proto3Optional": false,
       }, {
@@ -4650,7 +4616,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "uris",
+        "jsonName": "URIs",
         "options": undefined,
         "proto3Optional": false,
       }, {
@@ -4662,7 +4628,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "name",
+        "jsonName": "Name",
         "options": undefined,
         "proto3Optional": false,
       }],
@@ -4726,7 +4692,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "ownerAddress,omitempty",
+        "jsonName": "OwnerAddress",
         "options": undefined,
         "proto3Optional": false,
       }, {
@@ -4738,7 +4704,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "config,omitempty",
+        "jsonName": "Config",
         "options": undefined,
         "proto3Optional": false,
       }],
@@ -4761,7 +4727,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "config,omitempty",
+        "jsonName": "Config",
         "options": undefined,
         "proto3Optional": false,
       }],
@@ -4784,7 +4750,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "assetId",
+        "jsonName": "AssetID",
         "options": undefined,
         "proto3Optional": false,
       }, {
@@ -4796,7 +4762,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "amount",
+        "jsonName": "Amount",
         "options": undefined,
         "proto3Optional": false,
       }],
@@ -4819,7 +4785,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "assetId",
+        "jsonName": "AssetID",
         "options": undefined,
         "proto3Optional": false,
       }, {
@@ -4831,7 +4797,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "bucketId",
+        "jsonName": "BucketID",
         "options": undefined,
         "proto3Optional": false,
       }],
@@ -4854,7 +4820,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "toAddress,omitempty",
+        "jsonName": "ToAddress",
         "options": undefined,
         "proto3Optional": false,
       }, {
@@ -4866,7 +4832,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "bucketId",
+        "jsonName": "BucketID",
         "options": undefined,
         "proto3Optional": false,
       }],
@@ -4889,7 +4855,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "bucketId",
+        "jsonName": "BucketID",
         "options": undefined,
         "proto3Optional": false,
       }],
@@ -4912,7 +4878,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "assetId",
+        "jsonName": "AssetID",
         "options": undefined,
         "proto3Optional": false,
       }],
@@ -4935,7 +4901,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "claimType",
+        "jsonName": "ClaimType",
         "options": undefined,
         "proto3Optional": false,
       }, {
@@ -4947,7 +4913,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "id",
+        "jsonName": "ID",
         "options": undefined,
         "proto3Optional": false,
       }],
@@ -4991,7 +4957,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "name",
+        "jsonName": "Name",
         "options": undefined,
         "proto3Optional": false,
       }],
@@ -5014,7 +4980,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "parameters",
+        "jsonName": "Parameters",
         "options": undefined,
         "proto3Optional": false,
       }, {
@@ -5026,7 +4992,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "description",
+        "jsonName": "Description",
         "options": undefined,
         "proto3Optional": false,
       }, {
@@ -5038,7 +5004,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "epochsDuration",
+        "jsonName": "EpochsDuration",
         "options": undefined,
         "proto3Optional": false,
       }],
@@ -5102,7 +5068,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "proposalId",
+        "jsonName": "ProposalID",
         "options": undefined,
         "proto3Optional": false,
       }, {
@@ -5114,7 +5080,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "amount",
+        "jsonName": "Amount",
         "options": undefined,
         "proto3Optional": false,
       }, {
@@ -5126,7 +5092,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "type",
+        "jsonName": "Type",
         "options": undefined,
         "proto3Optional": false,
       }],
@@ -5159,7 +5125,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "assetId",
+        "jsonName": "AssetID",
         "options": undefined,
         "proto3Optional": false,
       }, {
@@ -5171,7 +5137,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "receiverAddress",
+        "jsonName": "ReceiverAddress",
         "options": undefined,
         "proto3Optional": false,
       }, {
@@ -5183,7 +5149,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "status",
+        "jsonName": "Status",
         "options": undefined,
         "proto3Optional": false,
       }, {
@@ -5195,7 +5161,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "maxAmount",
+        "jsonName": "MaxAmount",
         "options": undefined,
         "proto3Optional": false,
       }, {
@@ -5207,7 +5173,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "packInfo",
+        "jsonName": "PackInfo",
         "options": undefined,
         "proto3Optional": false,
       }],
@@ -5281,7 +5247,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "assetId",
+        "jsonName": "AssetID",
         "options": undefined,
         "proto3Optional": false,
       }, {
@@ -5293,7 +5259,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "packInfo",
+        "jsonName": "PackInfo",
         "options": undefined,
         "proto3Optional": false,
       }],
@@ -5357,7 +5323,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "packs",
+        "jsonName": "Packs",
         "options": undefined,
         "proto3Optional": false,
       }],
@@ -5380,7 +5346,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "amount",
+        "jsonName": "Amount",
         "options": undefined,
         "proto3Optional": false,
       }, {
@@ -5392,7 +5358,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "price",
+        "jsonName": "Price",
         "options": undefined,
         "proto3Optional": false,
       }],
@@ -5415,7 +5381,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "buyType",
+        "jsonName": "BuyType",
         "options": undefined,
         "proto3Optional": false,
       }, {
@@ -5427,7 +5393,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "id",
+        "jsonName": "ID",
         "options": undefined,
         "proto3Optional": false,
       }, {
@@ -5439,7 +5405,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "currencyId",
+        "jsonName": "CurrencyID",
         "options": undefined,
         "proto3Optional": false,
       }, {
@@ -5451,7 +5417,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "amount",
+        "jsonName": "Amount",
         "options": undefined,
         "proto3Optional": false,
       }],
@@ -5484,7 +5450,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "marketType",
+        "jsonName": "MarketType",
         "options": undefined,
         "proto3Optional": false,
       }, {
@@ -5496,7 +5462,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "marketplaceId",
+        "jsonName": "MarketplaceID",
         "options": undefined,
         "proto3Optional": false,
       }, {
@@ -5508,7 +5474,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "assetId",
+        "jsonName": "AssetID",
         "options": undefined,
         "proto3Optional": false,
       }, {
@@ -5520,7 +5486,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "currencyId",
+        "jsonName": "CurrencyID",
         "options": undefined,
         "proto3Optional": false,
       }, {
@@ -5532,7 +5498,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "price",
+        "jsonName": "Price",
         "options": undefined,
         "proto3Optional": false,
       }, {
@@ -5544,7 +5510,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "reservePrice",
+        "jsonName": "ReservePrice",
         "options": undefined,
         "proto3Optional": false,
       }, {
@@ -5556,7 +5522,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "endTime",
+        "jsonName": "EndTime",
         "options": undefined,
         "proto3Optional": false,
       }],
@@ -5612,7 +5578,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "name",
+        "jsonName": "Name",
         "options": undefined,
         "proto3Optional": false,
       }, {
@@ -5624,7 +5590,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "referralAddress,omitempty",
+        "jsonName": "ReferralAddress",
         "options": undefined,
         "proto3Optional": false,
       }, {
@@ -5636,7 +5602,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "referralPercentage,omitempty",
+        "jsonName": "ReferralPercentage",
         "options": undefined,
         "proto3Optional": false,
       }],
@@ -5659,7 +5625,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "marketplaceId",
+        "jsonName": "MarketplaceID",
         "options": undefined,
         "proto3Optional": false,
       }, {
@@ -5671,7 +5637,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "name",
+        "jsonName": "Name",
         "options": undefined,
         "proto3Optional": false,
       }, {
@@ -5683,7 +5649,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "referralAddress,omitempty",
+        "jsonName": "ReferralAddress",
         "options": undefined,
         "proto3Optional": false,
       }, {
@@ -5695,7 +5661,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "referralPercentage,omitempty",
+        "jsonName": "ReferralPercentage",
         "options": undefined,
         "proto3Optional": false,
       }],
@@ -5753,7 +5719,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "type",
+        "jsonName": "Type",
         "options": undefined,
         "proto3Optional": false,
       }, {
@@ -5765,7 +5731,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "permissionName",
+        "jsonName": "PermissionName",
         "options": undefined,
         "proto3Optional": false,
       }, {
@@ -5777,7 +5743,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "threshold",
+        "jsonName": "Threshold",
         "options": undefined,
         "proto3Optional": false,
       }, {
@@ -5789,7 +5755,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "operations",
+        "jsonName": "Operations",
         "options": undefined,
         "proto3Optional": false,
       }, {
@@ -5801,7 +5767,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "signers",
+        "jsonName": "Signers",
         "options": undefined,
         "proto3Optional": false,
       }],
@@ -5834,7 +5800,7 @@ export const protoMetadata: ProtoMetadata = {
         "extendee": "",
         "defaultValue": "",
         "oneofIndex": 0,
-        "jsonName": "permissions,omitempty",
+        "jsonName": "Permissions",
         "options": undefined,
         "proto3Optional": false,
       }],
@@ -6065,12 +6031,6 @@ export const protoMetadata: ProtoMetadata = {
         "span": [283, 0, 286, 1],
         "leadingComments": " TODO: Reuse from account\n",
         "trailingComments": "",
-        "leadingDetachedComments": [],
-      }, {
-        "path": [4, 32, 2, 3],
-        "span": [296, 4, 69],
-        "leadingComments": "",
-        "trailingComments": "1 bit 1 contract\n",
         "leadingDetachedComments": [],
       }, {
         "path": [4, 33],
