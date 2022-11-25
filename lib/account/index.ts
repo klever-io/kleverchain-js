@@ -15,6 +15,7 @@ import {
 import * as ed from "@noble/ed25519";
 
 import * as fs from "node:fs/promises";
+import { bech32 } from "bech32";
 
 class Account {
   private privateKey!: string;
@@ -222,6 +223,13 @@ ${pemFormattedString}
 -----END PRIVATE KEY for ${this.address}-----`;
 
     fs.writeFile(`${path}`, pem);
+  };
+
+  validateSignature = (
+    message: string,
+    signature: string
+  ): Promise<boolean> => {
+    return utils.validateSignature(message, signature, this.address);
   };
 
   broadcastTransactions = utils.broadcastTransactions;
