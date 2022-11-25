@@ -133,9 +133,7 @@ const validateSignature = async (
   signature: string,
   address: string
 ): Promise<boolean> => {
-  const publicKey = Buffer.from(
-    bech32.fromWords(bech32.decode(address).words)
-  ).toString("hex");
+  const publicKey = await decodeAddress(address);
 
   const response = await ed.verify(signature, message, publicKey);
 
