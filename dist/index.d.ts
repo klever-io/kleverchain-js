@@ -64,6 +64,7 @@ declare class Account {
     signTransaction: (tx: ITransaction) => Promise<ITransaction>;
     quickSend: (contracts: IContractRequest[], txData?: string[] | undefined, options?: ITxOptionsRequest | undefined) => Promise<IBroadcastResponse>;
     downloadAsPem: (path?: string | undefined) => Promise<void>;
+    validateSignature: (message: string, signature: string) => Promise<boolean>;
     broadcastTransactions: (txs: string[] | ITransaction[]) => Promise<IBroadcastResponse>;
 }
 
@@ -81,6 +82,7 @@ declare const utils: {
     accountsReady: (accounts: Account[]) => Promise<void>;
     decodeAddress: (address: string) => Promise<Uint8Array>;
     toHex: (data: Uint8Array) => string;
+    validateSignature: (message: string, signature: string, address: string) => Promise<boolean>;
 };
 
 declare const web: {

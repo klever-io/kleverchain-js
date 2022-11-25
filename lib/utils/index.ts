@@ -6,21 +6,14 @@ import { IBroadcastResponse } from "@klever/kleverweb/dist/types/dtos";
 import { bech32 } from "bech32";
 import { IDecodedTransaction } from "../types/dtos";
 
-
-const decodeAddress = async (
-  address: string
-): Promise<Uint8Array> => {
+const decodeAddress = async (address: string): Promise<Uint8Array> => {
   const decoded = bech32.decode(address);
   return Uint8Array.from(bech32.fromWords(decoded.words));
 };
 
-
-const toHex = (
-  data: Uint8Array
-): string => {
+const toHex = (data: Uint8Array): string => {
   return Buffer.from(data).toString("hex");
 };
-
 
 const getAddressFromPrivateKey = async (
   privateKey: string
@@ -135,6 +128,18 @@ const accountsReady = async (accounts: Account[]): Promise<void> => {
   await Promise.all(promises);
 };
 
+const validateSignature = async (
+  message: string,
+  signature: string,
+  address: string
+): Promise<boolean> => {
+  const publicKey = await decodeAddress(address);
+
+  const response = await ed.verify(signature, message, publicKey);
+
+  return response;
+};
+
 const utils = {
   getAddressFromPrivateKey,
   generateKeyPair,
@@ -146,6 +151,7 @@ const utils = {
   accountsReady,
   decodeAddress,
   toHex,
+  validateSignature,
 };
 
 export default utils;
