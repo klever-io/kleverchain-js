@@ -22,8 +22,6 @@ import {
   IUpdateAccountPermission,
   IVotes,
   IWithdraw,
-  IDeposit,
-  IITOTrigger,
 } from "@klever/kleverweb/dist/types/contracts";
 import {
   IContract,
@@ -42,8 +40,12 @@ import utils from "./utils";
 import web from "./web";
 import { IAccountResponse } from "./types/dtos";
 
-import Transaction, { Contracts, TXContract_ContractType, proto } from "./transaction";
-export { 
+import Transaction, {
+  Contracts,
+  TXContract_ContractType,
+  proto,
+} from "./transaction";
+export {
   Account,
   utils,
   web,
@@ -51,7 +53,7 @@ export {
   Contracts,
   TXContract_ContractType,
   proto,
- };
+};
 
 export {
   IAccountResponse,
@@ -80,8 +82,6 @@ export {
   ISetITOPrices,
   IProvider,
   IUnjail,
-  IITOTrigger,
-  IDeposit,
 };
 
 export {
