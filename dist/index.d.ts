@@ -81,6 +81,7 @@ declare const utils: {
     transactionsProcessed: (txs: Promise<IBroadcastResponse>[], tries?: number) => Promise<IDecodedTransaction[]>;
     accountsReady: (accounts: Account[]) => Promise<void>;
     decodeAddress: (address: string) => Promise<Uint8Array>;
+    encodeAddress: (address: Uint8Array) => string;
     toHex: (data: Uint8Array) => string;
     validateSignature: (message: string, signature: string, address: string) => Promise<boolean>;
 };
@@ -2251,6 +2252,7 @@ declare class Transaction {
     sign: (privateKey: string) => Promise<Boolean>;
     hex: () => string;
     toJSON: () => string;
+    decode: () => Promise<string>;
     toBroadcast: () => any;
 }
 
