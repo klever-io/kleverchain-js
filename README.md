@@ -211,6 +211,9 @@ import { Transaction, Contracts, TXContract_ContractType, utils } from "@klever/
       "To Broadcast Format": tx.toBroadcast(),
       "Json Format": tx.toJSON(), 
     });
+
+  // decode TX will encode address in bech32 format and Uint8Array data into utf-8 string array
+  console.log(tx.decode())
 ...
 ```
 

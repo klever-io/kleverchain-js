@@ -2,9 +2,12 @@ import * as ed from "@noble/ed25519";
 import * as blake from "blakejs"
 import _m0 from "protobufjs/minimal";
 
+import { decodeContract } from "./contracts"
+
 import utils from "../utils"
 import * as Contracts from './proto/contracts'
 import * as proto from "./../../google/protobuf/any";
+
 import { 
   Transaction as T,
   tXContract_ContractTypeToJSON,
@@ -89,6 +92,41 @@ class Transaction {
   toJSON = (): string => {
     const j = T.toJSON(this.data)
     return JSON.stringify(j);
+  }
+  
+  decode = (): string => {
+    const enc = new TextDecoder()
+
+    const rawTX = this.data.RawData!;
+    const decodedTX: any = {
+      Hash: this.computeHash(),
+      BlockNum: this.data.Block,
+      Sender: utils.encodeAddress(rawTX.Sender!),
+		  Nonce:  rawTX.Nonce,
+      PermissionID: rawTX.PermissionID,
+      Data: [],
+      KAppFee: rawTX.KAppFee,
+      BandwidthFee: rawTX.BandwidthFee,
+      Status: this.data.Block?"on-chain":"pending",
+      Result: this.data.Result,
+      ResultCode: this.data.ResultCode,
+      Version: rawTX.Version,
+      ChainID: enc.decode(rawTX.ChainID!),
+      Signature: [],
+      //Receipts
+      Contracts: [],
+    }
+
+    rawTX.Data?.forEach(d => { decodedTX.Data.push(enc.decode(d)) })
+    this.data.Signature?.forEach( s => { decodedTX.Signature.push(utils.toHex(s)) })
+    rawTX.Contract?.forEach(txContract => { 
+      decodedTX.Contracts.push( {
+        Type: txContract.Type,
+        Contract: decodeContract(txContract.Type, txContract.Parameter),
+      })
+    })
+    
+    return JSON.stringify(decodedTX);
   }
 
   toBroadcast = (): any => {
