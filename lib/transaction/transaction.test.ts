@@ -76,6 +76,6 @@ describe("Transaction", () => {
     expect(tx.data.RawData?.Contract?.length).toEqual(3);
 
     console.log(JSON.parse(await tx.decode()))
-    console.log(await tx.decode())
+    console.log(tx.decode())
   });
 });

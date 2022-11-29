@@ -2252,7 +2252,7 @@ declare class Transaction {
     sign: (privateKey: string) => Promise<Boolean>;
     hex: () => string;
     toJSON: () => string;
-    decode: () => Promise<string>;
+    decode: () => string;
     toBroadcast: () => any;
 }
 

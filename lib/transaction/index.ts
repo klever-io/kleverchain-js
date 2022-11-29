@@ -94,7 +94,7 @@ class Transaction {
     return JSON.stringify(j);
   }
   
-  decode = async (): Promise<string> => {
+  decode = (): string => {
     const enc = new TextDecoder()
 
     const rawTX = this.data.RawData!;
@@ -119,7 +119,7 @@ class Transaction {
 
     rawTX.Data?.forEach(d => { decodedTX.Data.push(enc.decode(d)) })
     this.data.Signature?.forEach( s => { decodedTX.Signature.push(utils.toHex(s)) })
-    rawTX.Contract?.forEach(async txContract => { 
+    rawTX.Contract?.forEach(txContract => { 
       decodedTX.Contracts.push( {
         Type: txContract.Type,
         Contract: decodeContract(txContract.Type, txContract.Parameter),
