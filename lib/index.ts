@@ -38,12 +38,23 @@ import {
 } from "@klever/kleverweb/dist/types/enums";
 
 import Account from "./account";
-import core from "./core";
-import { IAccount } from "./types";
+import utils from "./utils";
+import web from "./web";
+import { IAccountResponse } from "./types/dtos";
 
-export { Account, core };
+import Transaction, { Contracts, TXContract_ContractType, proto } from "./transaction";
+export { 
+  Account,
+  utils,
+  web,
+  Transaction,
+  Contracts,
+  TXContract_ContractType,
+  proto,
+ };
+
 export {
-  IAccount,
+  IAccountResponse,
   ITransaction,
   ITransfer,
   ICreateMarketplace,
