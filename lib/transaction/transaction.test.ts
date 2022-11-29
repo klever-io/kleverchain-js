@@ -27,9 +27,55 @@ describe("Transaction", () => {
       Amount: 100 * 10 ** 6,
     })
 
+    tx.data.RawData?.Data?.push(enc.encode("KLEVER TEST"))
+    
     tx.addContract(TXContract_ContractType.TransferContractType, transfer)
+    tx.addContract(TXContract_ContractType.ProposalContractType, Contracts.ProposalContract.fromPartial({
+      Parameters: {
+        10: enc.encode("10")
+      },
+      Description: enc.encode("WORKING ON IT next proposal"),
+      EpochsDuration: 10,
+    }));
+    tx.addContract(TXContract_ContractType.SetITOPricesContractType, Contracts.SetITOPricesContract.fromPartial(
+      {
+        AssetID: enc.encode("DVK-1234"),
+        PackInfo: {
+          "KLV": {
+            Packs: [
+              {
+                Amount: 10,
+                Price: 10000,
+              },
+              {
+                Amount: 100,
+                Price: 100000,
+              }
+            ],
+          },
+          "KUSD-1234": {
+            Packs: [
+              {
+                Amount: 10,
+                Price: 2000,
+              },
+              {
+                Amount: 100,
+                Price: 20000,
+              }
+            ],
+          },
+        }
+      }
+    ));
+
+    await tx.sign("0011223344556677889900112233445566778899001122334455667788991122")
+
     expect(tx.data.RawData?.Sender).toEqual(senderDecoded);
     expect(tx.data.RawData?.Nonce).toEqual(158);
-    expect(tx.data.RawData?.Contract?.length).toEqual(1);
+    expect(tx.data.RawData?.Contract?.length).toEqual(3);
+
+    console.log(JSON.parse(await tx.decode()))
+    console.log(await tx.decode())
   });
 });
