@@ -40,7 +40,7 @@
   },
   "peerDependencies": {},
   "dependencies": {
-    "@klever/kleverweb": "^1.0.4",
+    "@klever/kleverweb": "^1.0.3",
     "@noble/ed25519": "^1.7.1",
     "bech32": "^2.0.0",
     "blakejs": "^1.2.1",
