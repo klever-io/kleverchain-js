@@ -11,6 +11,11 @@ const decodeAddress = async (address: string): Promise<Uint8Array> => {
   return Uint8Array.from(bech32.fromWords(decoded.words));
 };
 
+const encodeAddress = (address: Uint8Array): string => {
+  const encoded = bech32.encode("klv", bech32.toWords(address));
+  return encoded
+};
+
 const toHex = (data: Uint8Array): string => {
   return Buffer.from(data).toString("hex");
 };
@@ -150,6 +155,7 @@ const utils = {
   transactionsProcessed,
   accountsReady,
   decodeAddress,
+  encodeAddress,
   toHex,
   validateSignature,
 };
