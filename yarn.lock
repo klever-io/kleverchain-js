@@ -581,7 +581,7 @@
     "@jridgewell/resolve-uri" "3.1.0"
     "@jridgewell/sourcemap-codec" "1.4.14"
 
-"@klever/kleverweb@^1.0.3":
+"@klever/kleverweb@^1.0.4":
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/@klever/kleverweb/-/kleverweb-1.0.3.tgz#f10e696384c493bf6727be93ee13fafa01780f86"
   integrity sha512-j8mbqOW0kmfbL2cJQJ0lW1REwGRWAerPwBHpytoyett+J7zTIs33Ox2M0k8ibg9OiVKuHz6Qb5Mc/jXFp7Ybiw==
