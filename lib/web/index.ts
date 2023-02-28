@@ -6,8 +6,6 @@ import {
 import { IProvider, ITransaction } from "..";
 import { ErrLoadKleverWeb } from "../errors";
 
-import * as ed from "@noble/ed25519";
-
 const isKleverWebLoaded = () => {
   return !!globalThis?.kleverWeb;
 };
@@ -84,20 +82,11 @@ const validateSignature = async (
     throw ErrLoadKleverWeb;
   }
 
-  let response;
-  if (typeof window !== "undefined") {
-    const payload = JSON.stringify({
-      message,
-      signature,
-      publicKey,
-    });
-
-    response = await globalThis?.kleverWeb?.validateSignature(payload);
-  } else if (typeof global !== "undefined") {
-    response = await ed.verify(signature, message, publicKey);
-  } else {
-    throw new Error("neither global nor window is defined");
-  }
+  const response = await globalThis?.kleverWeb?.validateSignature(
+    message,
+    signature,
+    publicKey
+  );
 
   return response;
 };

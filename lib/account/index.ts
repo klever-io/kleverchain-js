@@ -14,7 +14,7 @@ import {
 
 import * as ed from "@noble/ed25519";
 
-import * as fs from "node:fs/promises";
+import fs from "fs";
 import { bech32 } from "bech32";
 
 class Account {
@@ -222,7 +222,9 @@ class Account {
 ${pemFormattedString}
 -----END PRIVATE KEY for ${this.address}-----`;
 
-    fs.writeFile(`${path}`, pem);
+    fs.writeFile(`${path}`, pem, (err) => {
+      if (err) throw err;
+    });
   };
 
   validateSignature = (
