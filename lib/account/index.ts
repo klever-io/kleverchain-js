@@ -115,6 +115,8 @@ class Account {
     const nonce = options?.nonce ? options.nonce : this.nonce;
     const permID = options?.permID || 0;
 
+    const kdaFee = options?.kdaFee || "";
+
     const txBody: ITxRequest = {
       type: fistContractType,
       nonce,
@@ -122,6 +124,7 @@ class Account {
       data: txData || [],
       permID,
       contracts: payloads,
+      kdaFee,
     };
 
     try {
