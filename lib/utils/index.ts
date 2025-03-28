@@ -47,8 +47,8 @@ const generateKeyPair = async (): Promise<{
 const getProviders = (): IProvider => {
   return (
     globalThis.kleverProviders || {
-      node: "https://node.mainnet.klever.finance",
-      api: "https://api.mainnet.klever.finance",
+      node: "https://node.mainnet.klever.org",
+      api: "https://api.mainnet.klever.org",
     }
   );
 };
