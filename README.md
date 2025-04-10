@@ -146,8 +146,8 @@ The default network is the Kleverchain Mainnet, but if you want to use the Kleve
 import { web, IProvider } from '@klever/sdk';
 ...
   const provider:IProvider = {
-      api: 'https://api.testnet.klever.finance',
-      node: 'https://node.testnet.klever.finance'
+      api: 'https://api.testnet.klever.org',
+      node: 'https://node.testnet.klever.org'
   };
 
   window.kleverWeb.provider = provider;
@@ -161,8 +161,8 @@ import { web, IProvider } from '@klever/sdk';
 import { utils, IProvider } from "@klever/sdk";
 ...
   const provider: IProvider = {
-    api: "https://api.testnet.klever.finance",
-    node: "https://node.testnet.klever.finance",
+    api: "https://api.testnet.klever.org",
+    node: "https://node.testnet.klever.org",
   };
 
   utils.setProviders(provider);
